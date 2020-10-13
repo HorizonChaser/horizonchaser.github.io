@@ -573,3 +573,12 @@ artitalk:
   enable: false
   appId: xxxxx
   appKey: xxxxxx
+
+highlight:
+  enable: false
+
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'darcula'
+  line_number: true    # default false
+  custom_css:
