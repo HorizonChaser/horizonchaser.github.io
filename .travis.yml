@@ -1,4 +1,3 @@
-sudo: false
 language: node_js
 node_js:
   - 12
@@ -10,9 +9,8 @@ script:
   - hexo generate
 deploy:
   provider: pages
-  skip-cleanup: true
   github-token: $GH_TOKEN
   keep-history: true
   on:
-    branch: gh-pages
+    branch: backup
   local-dir: public
