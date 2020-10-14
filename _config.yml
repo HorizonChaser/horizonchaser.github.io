@@ -56,6 +56,7 @@ prismjs:
   preprocess: true
   line_number: true
   auto_detect: true
+  theme: 'darcula'
   tab_replace: ''
 
 # Home page setting

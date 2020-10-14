@@ -66,7 +66,7 @@ Misc入门题, 附件profession.jpg. 打开, 发现是专业团队, 仔细一看
 
 下载附件, 打开, 按照入门指南和Hint提示, 使用IDA64分析SignIn.exe, 在左侧定位main函数, 双击跳转到对应位置, 按下F5反汇编, 得到伪代码如下
 
-```c
+``` c
 int __cdecl main(int argc, const char **argv, const char **envp)
 {
   char Str1; // [rsp+20h] [rbp-60h]
@@ -100,7 +100,7 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 
 双击RxEncode并反汇编, 得伪代码如下.
 
-```C
+``` C
 void *__fastcall RxEncode(const char *a1, int a2)
 {
   int v2; // eax
