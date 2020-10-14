@@ -56,7 +56,7 @@ prismjs:
   preprocess: true
   line_number: true
   auto_detect: true
-  theme: 'darcula'
+  theme: ''
   tab_replace: ''
 
 # Home page setting
@@ -130,7 +130,7 @@ deploy:
 
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
-  theme: 'darcula'
+  theme: ''
   line_number: true    # default false
 
 
