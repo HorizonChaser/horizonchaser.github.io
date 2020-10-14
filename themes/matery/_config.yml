@@ -574,9 +574,6 @@ artitalk:
   appId: xxxxx
   appKey: xxxxxx
 
-highlight:
-  enable: false
-
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
   theme: 'darcula'
