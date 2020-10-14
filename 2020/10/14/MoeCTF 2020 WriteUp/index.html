@@ -456,14 +456,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    7 分
                 </div>
                 
 
@@ -502,29 +502,30 @@
 <p><del>由此得知, JS确实是最强大的编程语言</del></p>
 <h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="Welcome-To-Re"><a href="#Welcome-To-Re" class="headerlink" title="Welcome To Re!"></a>Welcome To Re!</h3><p>签到题, 也是第一道我做出来的逆向的题😂</p>
 <p>下载附件, 打开, 按照入门指南和Hint提示, 使用IDA64分析SignIn.exe, 在左侧定位main函数, 双击跳转到对应位置, 按下F5反汇编, 得到伪代码如下</p>
-<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">int</span> __cdecl <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>envp<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  <span class="token keyword">char</span> Str1<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [rsp+20h] [rbp-60h]</span>
-  <span class="token keyword">char</span> Str2<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [rsp+50h] [rbp-30h]</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  char Str1; // [rsp+20h] [rbp-60h]
+  char Str2[8]; // [rsp+50h] [rbp-30h]
 
-  <span class="token function">_main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">strcpy</span><span class="token punctuation">(</span>Str2<span class="token punctuation">,</span> <span class="token string">"moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Welcome to MoeCTF! --by Reverier\nPlease Input your flag and I will check it:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%41s"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>Str1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span><span class="token function">strcmp</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>Str1<span class="token punctuation">,</span> Str2<span class="token punctuation">)</span> <span class="token punctuation">)</span>
-    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Congratulations!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">else</span>
-    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Ruaaaaaaaaaaaaa~~~Wrong!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  _main();
+  strcpy(Str2, "moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}");
+  puts("Welcome to MoeCTF! --by Reverier\nPlease Input your flag and I will check it:");
+  scanf("%41s", &amp;Str1);
+  if ( !strcmp(&amp;Str1, Str2) )
+    puts("Congratulations!");
+  else
+    puts("Ruaaaaaaaaaaaaa~~~Wrong!");
+  getchar();
+  getchar();
+  return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在main函数中, 首先将flag内容复制到str2中, 然后输出提示信息并将输入保存到Str1中. 之后通过strcmp比较输入的Str2与保存的Str1的值是否一致. 由此我们得出, Str2的值就是flag<code>moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}</code>. <del>虽然说是显然的, 但是该分析还是要分析的</del></p>
 <p>总之, Welcome to the World of Reverse 🍻!</p>
 <h3 id="RxEncode"><a href="#RxEncode" class="headerlink" title="RxEncode"></a>RxEncode</h3><p>这道题当时没有做出来 <del>, 然后就变成了面试作业</del></p>
 <p>使用IDA反汇编, 观察main函数, 发现程序将输入的内容作为RxEncode函数的参数, 再将返回值s1同s2进行比较确定flag正确与否.</p>
 <p>双击RxEncode并反汇编, 得伪代码如下.</p>
-<pre class="line-numbers language-C"><code class="language-C">void *__fastcall RxEncode(const char *a1, int a2)
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">void *__fastcall RxEncode(const char *a1, int a2)
 {
   int v2; // eax
   int v3; // edx
@@ -545,9 +546,9 @@
   v15 = a2;
   v2 = a2;
   v3 = a2 + 3;
-  if ( v2 < 0 )
+  if ( v2 &lt; 0 )
     v2 = v3;
-  v13 = 3 * (v2 >> 2);
+  v13 = 3 * (v2 &gt;&gt; 2);
   v12 = 0;
   v10 = 0;
   if ( a1[v15 - 1] == 61 )
@@ -560,7 +561,7 @@
   {
     v13 += 4;
   }
-  else if ( v12 > 1 )
+  else if ( v12 &gt; 1 )
   {
     if ( v12 == 2 )
     {
@@ -580,19 +581,19 @@
   {
     memset(Dst, 0, v13);
     v11 = Dst;
-    while ( v15 - v12 > v10 )
+    while ( v15 - v12 &gt; v10 )
     {
       v9 = 0;
       v7 = 0;
-      while ( v9 <= 3 && v15 - v12 > v10 )
+      while ( v9 &lt;= 3 &amp;&amp; v15 - v12 &gt; v10 )
       {
-        v7 = (v7 << 6) | (char)find_pos(v14[v10]);
+        v7 = (v7 &lt;&lt; 6) | (char)find_pos(v14[v10]);
         ++v9;
         ++v10;
       }
-      v8 = v7 << 6 * (4 - v9);
-      for ( i = 0; i <= 2 && i != v9; ++i )
-        *v11++ = v8 >> 8 * (2 - i);
+      v8 = v7 &lt;&lt; 6 * (4 - v9);
+      for ( i = 0; i &lt;= 2 &amp;&amp; i != v9; ++i )
+        *v11++ = v8 &gt;&gt; 8 * (2 - i);
     }
     *v11 = 0;
     result = Dst;
@@ -604,63 +605,67 @@
   }
   return result;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>注意到 ‘=’ 的ASCII码是61, 结合面试时的提示**”将flag进行**(类似)<strong>base64解码”</strong>, 仔细分析RxEncode的逻辑后, 得出这个函数的作用就是将内容进行类似base64的解码.</p>
 <p>由此我们得出, s2保存的应当就是解码后的flag内容, 将变量的值转为16进制后结果如下.</p>
-<pre class="line-numbers language-C"><code class="language-C">   char s2[8]; // [rsp+10h] [rbp-60h]
-  __int64 v15; // [rsp+18h] [rbp-58h]
-  __int64 v16; // [rsp+20h] [rbp-50h]
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">  char s2[8]; // [rsp+10h] [rbp-60h]
+ __int64 v15; // [rsp+18h] [rbp-58h]
+ __int64 v16; // [rsp+20h] [rbp-50h]
 
- /*....................................
-   其他内容
-   .....................................*/
+/*....................................
+  其他内容
+  .....................................*/
 
-  *(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
-  v15 = 0xCBEBFDFA6CED0BFELL;
-  v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ *(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
+ v15 = 0xCBEBFDFA6CED0BFELL;
+ v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>结合s2 v15 v16在main的栈帧中相邻存放这一点, 我们推测s2实际的长度应当不止为8, 而是24. </p>
 <p>事实上, 我认为v15 v16的__int64类型也是IDA的推测(它并不确定真实类型是什么) - 因为在栈帧中将s2的类型由默认的char []改为char [24]后, 三个变量变成了这样.</p>
-<pre class="line-numbers language-c"><code class="language-c">  <span class="token operator">*</span><span class="token punctuation">(</span>_QWORD <span class="token operator">*</span><span class="token punctuation">)</span>s2 <span class="token operator">=</span> <span class="token number">0x4AD158FEB59C879ALL</span><span class="token punctuation">;</span>
-  <span class="token operator">*</span><span class="token punctuation">(</span>_QWORD <span class="token operator">*</span><span class="token punctuation">)</span>v15 <span class="token operator">=</span> <span class="token number">0xCBEBFDFA6CED0BFELL</span><span class="token punctuation">;</span>
-  <span class="token operator">*</span><span class="token punctuation">(</span>_QWORD <span class="token operator">*</span><span class="token punctuation">)</span>v16 <span class="token operator">=</span> <span class="token number">0x7A47A38E43A334E8LL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">*(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
+*(_QWORD *)v15 = 0xCBEBFDFA6CED0BFELL;
+*(_QWORD *)v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p>考虑到x86的小端序, 实际的字节顺序应当是 <code>9A 87 9C B5 FE 58</code>这样. 获得解码的flag后, 尝试进行base64编码. </p>
 <p>考虑到flag中含有标准编码表不包含的<code>{ }</code>, 因此我们可以认为这个表不同于标准的编码表.</p>
 <p>观察发现, RxEncode中调用了一个名为find_pos的函数, 它的作用应当是在编码表中查找字符的位置, 进入该函数, 得到编码表<code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234{}789+/=</code>.</p>
 <p>对先前得到的字节按照编码表进行编码, 可以得到flag<code>moectf{Y0Ur+C+1s+v3ry+g0o0OOo0d}</code>.</p>
 <p><del>No my C is very poooooooor /(ㄒoㄒ)/</del></p>
 <h4 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h4><p>在分析时我不小心改错了s2的类型, 却又改不回去, 而IDA本身又不支持撤销…<br>当时我通过菜单栏的New Instance新打开了一个IDA实例重新分析, 得到的main函数中解码后的flag的相关内容变成了这样, 栈帧也发生了相应的改变…</p>
-<pre class="line-numbers language-c"><code class="language-c">  Str2 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">98</span><span class="token punctuation">;</span>
-  v11 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">101</span><span class="token punctuation">;</span>
-  v12 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">100</span><span class="token punctuation">;</span>
-  v13 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">75</span><span class="token punctuation">;</span>
-  v14 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span>
-  v15 <span class="token operator">=</span> <span class="token number">112</span><span class="token punctuation">;</span>
-  v16 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">45</span><span class="token punctuation">;</span>
-  v17 <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
-  v18 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">78</span><span class="token punctuation">;</span>
-  v19 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">47</span><span class="token punctuation">;</span>
-  v20 <span class="token operator">=</span> <span class="token number">79</span><span class="token punctuation">;</span>
-  v21 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">100</span><span class="token punctuation">;</span>
-  v22 <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
-  v23 <span class="token operator">=</span> <span class="token number">127</span><span class="token punctuation">;</span>
-  v24 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">85</span><span class="token punctuation">;</span>
-  v25 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">34</span><span class="token punctuation">;</span>
-  v26 <span class="token operator">=</span> <span class="token number">89</span><span class="token punctuation">;</span>
-  v27 <span class="token operator">=</span> <span class="token number">101</span><span class="token punctuation">;</span>
-  v28 <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">;</span>
-  v29 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">25</span><span class="token punctuation">;</span>
-  v30 <span class="token operator">=</span> <span class="token number">64</span><span class="token punctuation">;</span>
-  v31 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">99</span><span class="token punctuation">;</span>
-  v32 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">51</span><span class="token punctuation">;</span>
-  v33 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">6</span><span class="token punctuation">;</span>
-  v34 <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
-  v35 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  v36 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  v37 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  v38 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  v39 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  v40 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  v41 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-  v42 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">Str2 = -98;
+v11 = -101;
+v12 = -100;
+v13 = -75;
+v14 = -2;
+v15 = 112;
+v16 = -45;
+v17 = 15;
+v18 = -78;
+v19 = -47;
+v20 = 79;
+v21 = -100;
+v22 = 2;
+v23 = 127;
+v24 = -85;
+v25 = -34;
+v26 = 89;
+v27 = 101;
+v28 = 99;
+v29 = -25;
+v30 = 64;
+v31 = -99;
+v32 = -51;
+v33 = -6;
+v34 = 4;
+v35 = 0;
+v36 = 0;
+v37 = 0;
+v38 = 0;
+v39 = 0;
+v40 = 0;
+v41 = 0;
+v42 = 0;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>不过除此之外整体的结构并未发生过多改变, 其余内容一样.</p>
 
             </div>
@@ -1028,7 +1033,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">1.2k</span>&nbsp;字
+                class="white-color">1.8k</span>&nbsp;字
             
             
             
