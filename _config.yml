@@ -126,6 +126,13 @@ deploy:
     categories: false
     tags: true
 
+
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'darcula'
+  line_number: true    # default false
+
+
 githubEmojis:
   enable: true
   className: github-emoji
