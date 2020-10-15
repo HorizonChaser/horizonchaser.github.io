@@ -115,11 +115,12 @@ deploy:
     excerpt: false
     categories: false
     tags: true
-    
+
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
   theme: 'default'
   line_number: true    # default false
+  custom_css: 'themes/prism-darcula.css'
 
 
 githubEmojis:
