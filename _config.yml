@@ -46,18 +46,6 @@ relative_link: false
 future: true
 highlight:
   enable: false
-  line_number: true
-  auto_detect: true
-  tab_replace: ''
-  wrap: true
-  hljs: false
-prismjs:
-  enable: true
-  preprocess: true
-  line_number: true
-  auto_detect: true
-  theme: ''
-  tab_replace: ''
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -127,10 +115,10 @@ deploy:
     excerpt: false
     categories: false
     tags: true
-
+    
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
-  theme: ''
+  theme: 'default'
   line_number: true    # default false
 
 
