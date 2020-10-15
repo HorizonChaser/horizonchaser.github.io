@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Horizon Blog">
+    <meta name="keywords" content="Hello World, Horizon Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Horizon Blog</title>
+    <title>Hello World | Horizon Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -313,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">Hello World</h1>
                 </div>
             </div>
         </div>
@@ -447,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-14
+                    2020-10-15
                 </div>
                 
 
@@ -456,14 +456,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    73
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    1 分
                 </div>
                 
 
@@ -478,195 +478,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MoeCTF-2020-Write-Up"><a href="#MoeCTF-2020-Write-Up" class="headerlink" title="MoeCTF 2020 Write Up"></a>MoeCTF 2020 Write Up</h1><p><strong><em>By Horizon Chaser, aka. Horizon</em></strong></p>
-<p>第一次参加CTF, 现学现用, 会做的题实在有限😂, 先把自己会的或者有思路的部分题写下来, 以供参考</p>
-<p><del>其他不会的题就等各位巨佬的Write Up辽</del></p>
-<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><p>Misc, 全程Miscellaneous, 本意是”杂项”. 在CTF中大概是指多个领域 <del>脑洞</del> 的混合. 因此做起来还是很有意思的.</p>
-<h3 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h3><p>Misc入门题, 附件profession.jpg. 打开, 发现是专业团队, 仔细一看右下角有黑白色块, 觉得可能是在jpg文件末端添加了内容.</p>
-<p>使用binwalk分析, 未发现隐写的文件, 有点疑惑.</p>
-<p>使用16进制编辑器打开, 发现flag就在末尾😂</p>
-<p><img src="MoeCTF%202020%20WriteUp.assets/image-20201012183142831.png" alt="image-20201012183142831"></p>
-<h3 id="hey-fxck-you"><a href="#hey-fxck-you" class="headerlink" title="hey fxck you!"></a>hey fxck you!</h3><p>附件good_morning_my_neighbors.png, 表达了诚挚的问候(大雾)</p>
-<p>除了最下方被裁剪了, 图片没有发现什么问题, 使用binwalk分析, 发现末尾有一个zip文件, 解压得fk u.txt, 内容如下</p>
-<blockquote>
-<p>++++++++[&gt;&gt;++&gt;++++&gt;++++++&gt;++++++++&gt;++++++++++&gt;++++++++++++&gt;++++++++++++++&gt;++++++++++++++++&gt;++++++++++++++++++&gt;++++++++++++++++++++&gt;++++++++++++++++++++++&gt;++++++++++++++++++++++++&gt;++++++++++++++++++++++++++&gt;++++++++++++++++++++++++++++&gt;++++++++++++++++++++++++++++++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;—.++.&lt;+++++.–.&gt;+++++.&lt;+++.&gt;&gt;—–.–.&lt;&lt;-.&gt;-.&lt;&lt;&lt;&lt;&lt;+.&gt;&gt;&gt;&gt;&gt;&gt;.&lt;&lt;.&gt;.&lt;&lt;&lt;&lt;&lt;.&gt;&gt;&gt;&gt;+.+++++.————.&lt;+++++.&gt;.&lt;&lt;&lt;++.&lt;.&gt;&gt;&gt;&gt;&gt;&gt;++++.</p>
-</blockquote>
-<p>搜索, 得知这是BrainFuck语言, 解密得到flag <code>moectf{yes!yes!fk_U_2!}</code></p>
-<p><del>这是对此前问候的友好回应(确信)</del></p>
-<h3 id="base64？¿"><a href="#base64？¿" class="headerlink" title="base64？¿"></a>base64？¿</h3><p>题面是一个以等号结尾的字符串  <code>0H9MJjCNPiMgJHMQJNtfyEJgIjtS1Ig=</code>, 结合名称, 确定是base64编码的文本.</p>
-<p>按照标准的字符表无法解密, 查看hint, 得到字符表为<code>vwxrstuopq34567ABCDEFGHIJyz012PQRSTKLMNOZabcdUVWXYefghijklmn89+/</code>, 按照这个字符表解码, 得到flag<code>moectf{itai_base64_qaq}</code></p>
-<h3 id="A3FXCK"><a href="#A3FXCK" class="headerlink" title="A3FXCK"></a>A3FXCK</h3><p><del>所以a3又干啥了这是</del></p>
-<p>题面是一个jpg, binwalk分析, 得到隐藏的A3FXCK.txt, 打开, 发现内容可被拆分为两类: <code>luoqXan</code>与<code>arttnbaX</code>, X为1~6的正整数.</p>
-<p>结合首行的<code>123456[]()+!</code>, 推测1~6的值分别代表<code>[]()+!</code>, 替换后得到一坨奇怪的东西, 尝试按照JavaScript运行后得到flag <code>moectf{J5Fxck_1s_1nt3res7in9!}</code></p>
-<p>新知识: <a target="_blank" rel="noopener" href="https://github.com/aemkei/jsfuck">JSFuck</a>是将(小段的)JS代码加密为仅包含<code>[]()+!</code>的文本, 但是会造成严重的体积膨胀. 所以替换后得到的那一坨解密之后也只是一行<code>alert('moectf{J5Fxck_1s_1nt3res7in9!}'</code></p>
-<p><del>由此得知, JS确实是最强大的编程语言</del></p>
-<h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="Welcome-To-Re"><a href="#Welcome-To-Re" class="headerlink" title="Welcome To Re!"></a>Welcome To Re!</h3><p>签到题, 也是第一道我做出来的逆向的题😂</p>
-<p>下载附件, 打开, 按照入门指南和Hint提示, 使用IDA64分析SignIn.exe, 在左侧定位main函数, 双击跳转到对应位置, 按下F5反汇编, 得到伪代码如下</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">int __cdecl main(int argc, const char **argv, const char **envp)
-{
-  char Str1; // [rsp+20h] [rbp-60h]
-  char Str2[8]; // [rsp+50h] [rbp-30h]
-
-  _main();
-  strcpy(Str2, "moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}");
-  puts("Welcome to MoeCTF! --by Reverier\nPlease Input your flag and I will check it:");
-  scanf("%41s", &amp;Str1);
-  if ( !strcmp(&amp;Str1, Str2) )
-    puts("Congratulations!");
-  else
-    puts("Ruaaaaaaaaaaaaa~~~Wrong!");
-  getchar();
-  getchar();
-  return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>在main函数中, 首先将flag内容复制到str2中, 然后输出提示信息并将输入保存到Str1中. 之后通过strcmp比较输入的Str2与保存的Str1的值是否一致. 由此我们得出, Str2的值就是flag<code>moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}</code>. <del>虽然说是显然的, 但是该分析还是要分析的</del></p>
-<p>总之, Welcome to the World of Reverse 🍻!</p>
-<h3 id="RxEncode"><a href="#RxEncode" class="headerlink" title="RxEncode"></a>RxEncode</h3><p>这道题当时没有做出来 <del>, 然后就变成了面试作业</del></p>
-<p>使用IDA反汇编, 观察main函数, 发现程序将输入的内容作为RxEncode函数的参数, 再将返回值s1同s2进行比较确定flag正确与否.</p>
-<p>双击RxEncode并反汇编, 得伪代码如下.</p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">void *__fastcall RxEncode(const char *a1, int a2)
-{
-  int v2; // eax
-  int v3; // edx
-  void *result; // rax
-  void *Dst; // [rsp+28h] [rbp-58h]
-  signed int i; // [rsp+30h] [rbp-50h]
-  int v7; // [rsp+34h] [rbp-4Ch]
-  int v8; // [rsp+34h] [rbp-4Ch]
-  signed int v9; // [rsp+38h] [rbp-48h]
-  int v10; // [rsp+3Ch] [rbp-44h]
-  _BYTE *v11; // [rsp+40h] [rbp-40h]
-  signed int v12; // [rsp+48h] [rbp-38h]
-  int v13; // [rsp+4Ch] [rbp-34h]
-  const char *v14; // [rsp+70h] [rbp-10h]
-  int v15; // [rsp+78h] [rbp-8h]
-
-  v14 = a1;
-  v15 = a2;
-  v2 = a2;
-  v3 = a2 + 3;
-  if ( v2 &lt; 0 )
-    v2 = v3;
-  v13 = 3 * (v2 &gt;&gt; 2);
-  v12 = 0;
-  v10 = 0;
-  if ( a1[v15 - 1] == 61 )
-    v12 = 1;
-  if ( a1[v15 - 2] == 61 )
-    ++v12;
-  if ( a1[v15 - 3] == 61 )
-    ++v12;
-  if ( v12 == 1 )
-  {
-    v13 += 4;
-  }
-  else if ( v12 &gt; 1 )
-  {
-    if ( v12 == 2 )
-    {
-      v13 += 3;
-    }
-    else if ( v12 == 3 )
-    {
-      v13 += 2;
-    }
-  }
-  else if ( !v12 )
-  {
-    v13 += 4;
-  }
-  Dst = malloc(v13);
-  if ( Dst )
-  {
-    memset(Dst, 0, v13);
-    v11 = Dst;
-    while ( v15 - v12 &gt; v10 )
-    {
-      v9 = 0;
-      v7 = 0;
-      while ( v9 &lt;= 3 &amp;&amp; v15 - v12 &gt; v10 )
-      {
-        v7 = (v7 &lt;&lt; 6) | (char)find_pos(v14[v10]);
-        ++v9;
-        ++v10;
-      }
-      v8 = v7 &lt;&lt; 6 * (4 - v9);
-      for ( i = 0; i &lt;= 2 &amp;&amp; i != v9; ++i )
-        *v11++ = v8 &gt;&gt; 8 * (2 - i);
-    }
-    *v11 = 0;
-    result = Dst;
-  }
-  else
-  {
-    printf("No enough memory.\n");
-    result = 0i64;
-  }
-  return result;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>注意到 ‘=’ 的ASCII码是61, 结合面试时的提示**”将flag进行**(类似)<strong>base64解码”</strong>, 仔细分析RxEncode的逻辑后, 得出这个函数的作用就是将内容进行类似base64的解码.</p>
-<p>由此我们得出, s2保存的应当就是解码后的flag内容, 将变量的值转为16进制后结果如下.</p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">  char s2[8]; // [rsp+10h] [rbp-60h]
- __int64 v15; // [rsp+18h] [rbp-58h]
- __int64 v16; // [rsp+20h] [rbp-50h]
-
-/*....................................
-  其他内容
-  .....................................*/
-
- *(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
- v15 = 0xCBEBFDFA6CED0BFELL;
- v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>结合s2 v15 v16在main的栈帧中相邻存放这一点, 我们推测s2实际的长度应当不止为8, 而是24. </p>
-<p>事实上, 我认为v15 v16的__int64类型也是IDA的推测(它并不确定真实类型是什么) - 因为在栈帧中将s2的类型由默认的char []改为char [24]后, 三个变量变成了这样.</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">*(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
-*(_QWORD *)v15 = 0xCBEBFDFA6CED0BFELL;
-*(_QWORD *)v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>考虑到x86的小端序, 实际的字节顺序应当是 <code>9A 87 9C B5 FE 58</code>这样. 获得解码的flag后, 尝试进行base64编码. </p>
-<p>考虑到flag中含有标准编码表不包含的<code>{ }</code>, 因此我们可以认为这个表不同于标准的编码表.</p>
-<p>观察发现, RxEncode中调用了一个名为find_pos的函数, 它的作用应当是在编码表中查找字符的位置, 进入该函数, 得到编码表<code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234{}789+/=</code>.</p>
-<p>对先前得到的字节按照编码表进行编码, 可以得到flag<code>moectf{Y0Ur+C+1s+v3ry+g0o0OOo0d}</code>.</p>
-<p><del>No my C is very poooooooor /(ㄒoㄒ)/</del></p>
-<h4 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h4><p>在分析时我不小心改错了s2的类型, 却又改不回去, 而IDA本身又不支持撤销…<br>当时我通过菜单栏的New Instance新打开了一个IDA实例重新分析, 得到的main函数中解码后的flag的相关内容变成了这样, 栈帧也发生了相应的改变…</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">Str2 = -98;
-v11 = -101;
-v12 = -100;
-v13 = -75;
-v14 = -2;
-v15 = 112;
-v16 = -45;
-v17 = 15;
-v18 = -78;
-v19 = -47;
-v20 = 79;
-v21 = -100;
-v22 = 2;
-v23 = 127;
-v24 = -85;
-v25 = -34;
-v26 = 89;
-v27 = 101;
-v28 = 99;
-v29 = -25;
-v30 = 64;
-v31 = -99;
-v32 = -51;
-v33 = -6;
-v34 = 4;
-v35 = 0;
-v36 = 0;
-v37 = 0;
-v38 = 0;
-v39 = 0;
-v40 = 0;
-v41 = 0;
-v42 = 0;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>不过除此之外整体的结构并未发生过多改变, 其余内容一样.</p>
+                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
             </div>
             <hr/>
@@ -692,7 +512,7 @@ v42 = 0;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/10/14/MoeCTF%202020%20WriteUp/">http://example.com/2020/10/14/MoeCTF%202020%20WriteUp/</a>
+                    <a href="http://example.com/2020/10/15/hello-world/">http://example.com/2020/10/15/hello-world/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -769,12 +589,11 @@ v42 = 0;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/10/14/MoeCTF%202020%20WriteUp/">
+                <a href="/2020/10/15/MoeCTF%202020%20WriteUp/">
                     <div class="card-image">
                         
                         
@@ -790,9 +609,9 @@ v42 = 0;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-14
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-15
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -801,7 +620,6 @@ v42 = 0;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -812,13 +630,13 @@ v42 = 0;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/10/14/hello-world/">
+                <a href="/2020/10/13/test-blog/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="test blog">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">test blog</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -829,7 +647,7 @@ v42 = 0;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-13
                             </span>
                         <span class="publish-author">
                             
@@ -1033,7 +851,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">1.8k</span>&nbsp;字
+                class="white-color">1.2k</span>&nbsp;字
             
             
             
