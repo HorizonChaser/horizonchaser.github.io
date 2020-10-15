@@ -118,7 +118,7 @@ deploy:
 
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
-  theme: 'default'
+  theme: 'darcula'
   line_number: true    # default false
   custom_css: 'themes/prism-darcula.css'
 
