@@ -340,6 +340,22 @@ img[srcset] {
     border-top-color: #435266;
     transition: border-top-color 0.2s ease-in-out;
   }
+  @supports (-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px)) {
+    :root:not([data-user-color-scheme]) .navbar .dropdown-collapse,
+    :root:not([data-user-color-scheme]) .top-nav-collapse,
+    :root:not([data-user-color-scheme]) .navbar-col-show {
+      background: rgba(31,49,68,0.5);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
+  }
+  @supports not ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+    :root:not([data-user-color-scheme]) .navbar .dropdown-collapse,
+    :root:not([data-user-color-scheme]) .top-nav-collapse,
+    :root:not([data-user-color-scheme]) .navbar-col-show {
+      background: #1f3144;
+    }
+  }
   :root:not([data-user-color-scheme]) .note :not(pre) > code {
     background-color: rgba(27,31,35,0.05);
   }
@@ -409,6 +425,22 @@ img[srcset] {
 [data-user-color-scheme='dark'] hr {
   border-top-color: #435266;
   transition: border-top-color 0.2s ease-in-out;
+}
+@supports (-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px)) {
+  [data-user-color-scheme='dark'] .navbar .dropdown-collapse,
+  [data-user-color-scheme='dark'] .top-nav-collapse,
+  [data-user-color-scheme='dark'] .navbar-col-show {
+    background: rgba(31,49,68,0.5);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+}
+@supports not ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+  [data-user-color-scheme='dark'] .navbar .dropdown-collapse,
+  [data-user-color-scheme='dark'] .top-nav-collapse,
+  [data-user-color-scheme='dark'] .navbar-col-show {
+    background: #1f3144;
+  }
 }
 [data-user-color-scheme='dark'] .note :not(pre) > code {
   background-color: rgba(27,31,35,0.05);
@@ -766,10 +798,21 @@ img[srcset] {
   -o-transform: rotate(-135deg);
   transform: rotate(-135deg);
 }
-.navbar .dropdown-collapse,
-.top-nav-collapse,
-.navbar-col-show {
-  background-color: var(--navbar-bg-color);
+@supports (-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px)) {
+  .navbar .dropdown-collapse,
+  .top-nav-collapse,
+  .navbar-col-show {
+    background: rgba(47,65,84,0.5);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+}
+@supports not ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+  .navbar .dropdown-collapse,
+  .top-nav-collapse,
+  .navbar-col-show {
+    background: #2f4154;
+  }
 }
 @media (max-width: 767px) {
   .navbar {
@@ -825,7 +868,7 @@ img[srcset] {
   overflow: visible;
 }
 .markdown-body pre code {
-  font-size: 85%;
+  font-size: 100%;
   display: block;
   overflow-x: auto;
   padding: 0.5rem 0;

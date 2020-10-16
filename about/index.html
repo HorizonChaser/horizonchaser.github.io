@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -29,7 +29,15 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      
+        
+        
+        
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/themes/prism-coy.min.css" />
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
     
   
 
@@ -54,8 +62,7 @@
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -63,7 +70,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Horizon Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -153,7 +160,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/img/avatar.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,14 +196,14 @@
 
 <div class="text-center">
   <div class="about-info">
-    <div class="about-name">myname</div>
-    <div class="about-intro">一句简短的介绍</div>
+    <div class="about-name">Horizon</div>
+    <div class="about-intro">学生, CTF新手, 对很多事情都感兴趣 <del>但是总是三分钟热度</del></div>
     <div class="about-icons">
       
         
         
         
-        <a target="_blank" rel="noopener" href="https://github.com" class="
+        <a target="_blank" rel="noopener" href="https://github.com/HorizonChaser" class="
            hint--bottom hint--rounded"
            aria-label=GitHub
         >
@@ -207,24 +214,11 @@
         
         
         
-        <a target="_blank" rel="noopener" href="https://douban.com" class="
+        <a href="mailto:ahorizonchaser@gmail.com" class="
            hint--bottom hint--rounded"
-           aria-label=豆瓣
+           aria-label=Gmail
         >
-          <i class="iconfont icon-douban-fill" aria-hidden="true"></i>
-          
-        </a>
-      
-        
-        
-        
-        <a href="javascript:;" class="qr-trigger
-           "
-           
-        >
-          <i class="iconfont icon-wechat-fill" aria-hidden="true"></i>
-          
-            <img class="qr-img" src="/img/favicon.png" srcset="/img/loading.gif" alt="qrcode" />
+          <i class="iconfont icon-mail" aria-hidden="true"></i>
           
         </a>
       
@@ -232,7 +226,12 @@
   </div>
 </div>
 <div class="mt-5 markdown-body">
-  
+  <p>基于Hexo, <a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a>主题</p>
+<p>代码高亮:    </p>
+<p>​    prismjs, soy主题, 开启行数显示</p>
+<p>头像来源: </p>
+<p>​    <a target="_blank" rel="noopener" href="https://www.pixiv.net/artworks/47522338">Prinz Eugen by Hiten from Pixiv</a></p>
+
 </div>
 
               </div>
@@ -286,6 +285,30 @@
         <span>Fluid</span></a>
     </div>
     
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
 
     
 
@@ -308,6 +331,8 @@
 
 
 
+  
+    
   
 
 
@@ -333,7 +358,7 @@
         "关于&nbsp;",
       ],
       cursorChar: "_",
-      typeSpeed: 70,
+      typeSpeed: 65,
       loop: false,
     });
     typed.stop();

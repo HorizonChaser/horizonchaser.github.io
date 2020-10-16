@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Horizon">
   <meta name="keywords" content="">
-  <title>Horizon Blog</title>
+  <title>MoeCTF 2020 Write Up - Horizon Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -29,7 +29,15 @@
     
     
       
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+      
+        
+        
+        
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/themes/prism-coy.min.css" />
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
     
   
 
@@ -54,8 +62,7 @@
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -63,7 +70,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Horizon Blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -168,8 +175,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-16 09:13" pubdate>
-        2020年10月16日 上午
+      <time datetime="2020-10-16 17:28" pubdate>
+        2020年10月16日 下午
       </time>
     </span>
   
@@ -180,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1.7k 字
     </span>
   
 
@@ -190,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      23
        分钟
     </span>
   
@@ -228,11 +235,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">MoeCTF 2020 Write Up</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月16日 上午
+                  本文最后更新于：几秒前
                 
               </p>
             
@@ -244,7 +251,7 @@
 <h3 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h3><p>Misc入门题, 附件profession.jpg. 打开, 发现是专业团队, 仔细一看右下角有黑白色块, 觉得可能是在jpg文件末端添加了内容.</p>
 <p>使用binwalk分析, 未发现隐写的文件, 有点疑惑.</p>
 <p>使用16进制编辑器打开, 发现flag就在末尾😂</p>
-<p><img src="MoeCTF%202020%20WriteUp.assets/image-20201012183142831.png" srcset="/img/loading.gif" alt="image-20201012183142831"></p>
+<p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/image-20201012183142831.png" srcset="/img/loading.gif"></p>
 <h3 id="hey-fxck-you"><a href="#hey-fxck-you" class="headerlink" title="hey fxck you!"></a>hey fxck you!</h3><p>附件good_morning_my_neighbors.png, 表达了诚挚的问候(大雾)</p>
 <p>除了最下方被裁剪了, 图片没有发现什么问题, 使用binwalk分析, 发现末尾有一个zip文件, 解压得fk u.txt, 内容如下</p>
 <blockquote>
@@ -261,129 +268,129 @@
 <p><del>由此得知, JS确实是最强大的编程语言</del></p>
 <h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="Welcome-To-Re"><a href="#Welcome-To-Re" class="headerlink" title="Welcome To Re!"></a>Welcome To Re!</h3><p>签到题, 也是第一道我做出来的逆向的题😂</p>
 <p>下载附件, 打开, 按照入门指南和Hint提示, 使用IDA64分析SignIn.exe, 在左侧定位main函数, 双击跳转到对应位置, 按下F5反汇编, 得到伪代码如下</p>
-<pre class="line-numbers language-hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> __cdecl <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **argv, <span class="hljs-keyword">const</span> <span class="hljs-keyword"><code class="language-hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> __cdecl <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **argv, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **envp)</span></span>
-<span class="hljs-function"></span>{
-  <span class="hljs-keyword">char</span> Str1; <span class="hljs-comment">// [rsp+20h] [rbp-60h]</span>
-  <span class="hljs-keyword">char</span> Str2[<span class="hljs-number">8</span>]; <span class="hljs-comment">// [rsp+50h] [rbp-30h]</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __cdecl <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>envp<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">char</span> Str1<span class="token punctuation">;</span> <span class="token comment">// [rsp+20h] [rbp-60h]</span>
+  <span class="token keyword">char</span> Str2<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [rsp+50h] [rbp-30h]</span>
 
-  _main();
-  <span class="hljs-built_in">strcpy</span>(Str2, <span class="hljs-string">"moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}"</span>);
-  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Welcome to MoeCTF! --by Reverier\nPlease Input your flag and I will check it:"</span>);
-  <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%41s"</span>, &Str1);
-  <span class="hljs-keyword">if</span> ( !<span class="hljs-built_in">strcmp</span>(&Str1, Str2) )
-    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Congratulations!"</span>);
-  <span class="hljs-keyword">else</span>
-    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Ruaaaaaaaaaaaaa~~~Wrong!"</span>);
-  getchar();
-  getchar();
-  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token function">_main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">strcpy</span><span class="token punctuation">(</span>Str2<span class="token punctuation">,</span> <span class="token string">"moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Welcome to MoeCTF! --by Reverier\nPlease Input your flag and I will check it:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%41s"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>Str1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span><span class="token function">strcmp</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>Str1<span class="token punctuation">,</span> Str2<span class="token punctuation">)</span> <span class="token punctuation">)</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Congratulations!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Ruaaaaaaaaaaaaa~~~Wrong!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在main函数中, 首先将flag内容复制到str2中, 然后输出提示信息并将输入保存到Str1中. 之后通过strcmp比较输入的Str2与保存的Str1的值是否一致. 由此我们得出, Str2的值就是flag<code>moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}</code>. <del>虽然说是显然的, 但是该分析还是要分析的</del></p>
 <p>总之, Welcome to the World of Reverse 🍻!</p>
 <h3 id="RxEncode"><a href="#RxEncode" class="headerlink" title="RxEncode"></a>RxEncode</h3><p>这道题当时没有做出来 <del>, 然后就变成了面试作业</del></p>
 <p>使用IDA反汇编, 观察main函数, 发现程序将输入的内容作为RxEncode函数的参数, 再将返回值s1同s2进行比较确定flag正确与否.</p>
 <p>双击RxEncode并反汇编, 得伪代码如下.</p>
-<pre class="line-numbers language-hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> *__fastcall <span class="hljs-title">RxEncode</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *a1, <span class="hljs-keyword"><code class="language-hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> *__fastcall <span class="hljs-title">RxEncode</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *a1, <span class="hljs-keyword">int</span> a2)</span></span>
-<span class="hljs-function"></span>{
-  <span class="hljs-keyword">int</span> v2; <span class="hljs-comment">// eax</span>
-  <span class="hljs-keyword">int</span> v3; <span class="hljs-comment">// edx</span>
-  <span class="hljs-keyword">void</span> *result; <span class="hljs-comment">// rax</span>
-  <span class="hljs-keyword">void</span> *Dst; <span class="hljs-comment">// [rsp+28h] [rbp-58h]</span>
-  <span class="hljs-keyword">signed</span> <span class="hljs-keyword">int</span> i; <span class="hljs-comment">// [rsp+30h] [rbp-50h]</span>
-  <span class="hljs-keyword">int</span> v7; <span class="hljs-comment">// [rsp+34h] [rbp-4Ch]</span>
-  <span class="hljs-keyword">int</span> v8; <span class="hljs-comment">// [rsp+34h] [rbp-4Ch]</span>
-  <span class="hljs-keyword">signed</span> <span class="hljs-keyword">int</span> v9; <span class="hljs-comment">// [rsp+38h] [rbp-48h]</span>
-  <span class="hljs-keyword">int</span> v10; <span class="hljs-comment">// [rsp+3Ch] [rbp-44h]</span>
-  _BYTE *v11; <span class="hljs-comment">// [rsp+40h] [rbp-40h]</span>
-  <span class="hljs-keyword">signed</span> <span class="hljs-keyword">int</span> v12; <span class="hljs-comment">// [rsp+48h] [rbp-38h]</span>
-  <span class="hljs-keyword">int</span> v13; <span class="hljs-comment">// [rsp+4Ch] [rbp-34h]</span>
-  <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *v14; <span class="hljs-comment">// [rsp+70h] [rbp-10h]</span>
-  <span class="hljs-keyword">int</span> v15; <span class="hljs-comment">// [rsp+78h] [rbp-8h]</span>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token operator">*</span>__fastcall <span class="token function">RxEncode</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>a1<span class="token punctuation">,</span> <span class="token keyword">int</span> a2<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> v2<span class="token punctuation">;</span> <span class="token comment">// eax</span>
+  <span class="token keyword">int</span> v3<span class="token punctuation">;</span> <span class="token comment">// edx</span>
+  <span class="token keyword">void</span> <span class="token operator">*</span>result<span class="token punctuation">;</span> <span class="token comment">// rax</span>
+  <span class="token keyword">void</span> <span class="token operator">*</span>Dst<span class="token punctuation">;</span> <span class="token comment">// [rsp+28h] [rbp-58h]</span>
+  <span class="token keyword">signed</span> <span class="token keyword">int</span> i<span class="token punctuation">;</span> <span class="token comment">// [rsp+30h] [rbp-50h]</span>
+  <span class="token keyword">int</span> v7<span class="token punctuation">;</span> <span class="token comment">// [rsp+34h] [rbp-4Ch]</span>
+  <span class="token keyword">int</span> v8<span class="token punctuation">;</span> <span class="token comment">// [rsp+34h] [rbp-4Ch]</span>
+  <span class="token keyword">signed</span> <span class="token keyword">int</span> v9<span class="token punctuation">;</span> <span class="token comment">// [rsp+38h] [rbp-48h]</span>
+  <span class="token keyword">int</span> v10<span class="token punctuation">;</span> <span class="token comment">// [rsp+3Ch] [rbp-44h]</span>
+  _BYTE <span class="token operator">*</span>v11<span class="token punctuation">;</span> <span class="token comment">// [rsp+40h] [rbp-40h]</span>
+  <span class="token keyword">signed</span> <span class="token keyword">int</span> v12<span class="token punctuation">;</span> <span class="token comment">// [rsp+48h] [rbp-38h]</span>
+  <span class="token keyword">int</span> v13<span class="token punctuation">;</span> <span class="token comment">// [rsp+4Ch] [rbp-34h]</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>v14<span class="token punctuation">;</span> <span class="token comment">// [rsp+70h] [rbp-10h]</span>
+  <span class="token keyword">int</span> v15<span class="token punctuation">;</span> <span class="token comment">// [rsp+78h] [rbp-8h]</span>
 
-  v14 = a1;
-  v15 = a2;
-  v2 = a2;
-  v3 = a2 + <span class="hljs-number">3</span>;
-  <span class="hljs-keyword">if</span> ( v2 < <span class="hljs-number">0</span> )
-    v2 = v3;
-  v13 = <span class="hljs-number">3</span> * (v2 >> <span class="hljs-number">2</span>);
-  v12 = <span class="hljs-number">0</span>;
-  v10 = <span class="hljs-number">0</span>;
-  <span class="hljs-keyword">if</span> ( a1[v15 - <span class="hljs-number">1</span>] == <span class="hljs-number">61</span> )
-    v12 = <span class="hljs-number">1</span>;
-  <span class="hljs-keyword">if</span> ( a1[v15 - <span class="hljs-number">2</span>] == <span class="hljs-number">61</span> )
-    ++v12;
-  <span class="hljs-keyword">if</span> ( a1[v15 - <span class="hljs-number">3</span>] == <span class="hljs-number">61</span> )
-    ++v12;
-  <span class="hljs-keyword">if</span> ( v12 == <span class="hljs-number">1</span> )
-  {
-    v13 += <span class="hljs-number">4</span>;
-  }
-  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( v12 > <span class="hljs-number">1</span> )
-  {
-    <span class="hljs-keyword">if</span> ( v12 == <span class="hljs-number">2</span> )
-    {
-      v13 += <span class="hljs-number">3</span>;
-    }
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( v12 == <span class="hljs-number">3</span> )
-    {
-      v13 += <span class="hljs-number">2</span>;
-    }
-  }
-  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( !v12 )
-  {
-    v13 += <span class="hljs-number">4</span>;
-  }
-  Dst = <span class="hljs-built_in">malloc</span>(v13);
-  <span class="hljs-keyword">if</span> ( Dst )
-  {
-    <span class="hljs-built_in">memset</span>(Dst, <span class="hljs-number">0</span>, v13);
-    v11 = Dst;
-    <span class="hljs-keyword">while</span> ( v15 - v12 > v10 )
-    {
-      v9 = <span class="hljs-number">0</span>;
-      v7 = <span class="hljs-number">0</span>;
-      <span class="hljs-keyword">while</span> ( v9 <= <span class="hljs-number">3</span> && v15 - v12 > v10 )
-      {
-        v7 = (v7 << <span class="hljs-number">6</span>) | (<span class="hljs-keyword">char</span>)find_pos(v14[v10]);
-        ++v9;
-        ++v10;
-      }
-      v8 = v7 << <span class="hljs-number">6</span> * (<span class="hljs-number">4</span> - v9);
-      <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i <= <span class="hljs-number">2</span> && i != v9; ++i )
-        *v11++ = v8 >> <span class="hljs-number">8</span> * (<span class="hljs-number">2</span> - i);
-    }
-    *v11 = <span class="hljs-number">0</span>;
-    result = Dst;
-  }
-  <span class="hljs-keyword">else</span>
-  {
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"No enough memory.\n"</span>);
-    result = <span class="hljs-number">0</span>i64;
-  }
-  <span class="hljs-keyword">return</span> result;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  v14 <span class="token operator">=</span> a1<span class="token punctuation">;</span>
+  v15 <span class="token operator">=</span> a2<span class="token punctuation">;</span>
+  v2 <span class="token operator">=</span> a2<span class="token punctuation">;</span>
+  v3 <span class="token operator">=</span> a2 <span class="token operator">+</span> <span class="token number">3</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> v2 <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token punctuation">)</span>
+    v2 <span class="token operator">=</span> v3<span class="token punctuation">;</span>
+  v13 <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">*</span> <span class="token punctuation">(</span>v2 <span class="token operator">&gt;&gt;</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  v12 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  v10 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> a1<span class="token punctuation">[</span>v15 <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">61</span> <span class="token punctuation">)</span>
+    v12 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> a1<span class="token punctuation">[</span>v15 <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">61</span> <span class="token punctuation">)</span>
+    <span class="token operator">++</span>v12<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> a1<span class="token punctuation">[</span>v15 <span class="token operator">-</span> <span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">61</span> <span class="token punctuation">)</span>
+    <span class="token operator">++</span>v12<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> v12 <span class="token operator">==</span> <span class="token number">1</span> <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    v13 <span class="token operator">+=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> v12 <span class="token operator">&gt;</span> <span class="token number">1</span> <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> v12 <span class="token operator">==</span> <span class="token number">2</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      v13 <span class="token operator">+=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> v12 <span class="token operator">==</span> <span class="token number">3</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      v13 <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span>v12 <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    v13 <span class="token operator">+=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  Dst <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span>v13<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> Dst <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>Dst<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> v13<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    v11 <span class="token operator">=</span> Dst<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span> v15 <span class="token operator">-</span> v12 <span class="token operator">&gt;</span> v10 <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      v9 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      v7 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span> v9 <span class="token operator">&lt;=</span> <span class="token number">3</span> <span class="token operator">&amp;&amp;</span> v15 <span class="token operator">-</span> v12 <span class="token operator">&gt;</span> v10 <span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+        v7 <span class="token operator">=</span> <span class="token punctuation">(</span>v7 <span class="token operator">&lt;&lt;</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token function">find_pos</span><span class="token punctuation">(</span>v14<span class="token punctuation">[</span>v10<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">++</span>v9<span class="token punctuation">;</span>
+        <span class="token operator">++</span>v10<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      v8 <span class="token operator">=</span> v7 <span class="token operator">&lt;&lt;</span> <span class="token number">6</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">-</span> v9<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">2</span> <span class="token operator">&amp;&amp;</span> i <span class="token operator">!=</span> v9<span class="token punctuation">;</span> <span class="token operator">++</span>i <span class="token punctuation">)</span>
+        <span class="token operator">*</span>v11<span class="token operator">++</span> <span class="token operator">=</span> v8 <span class="token operator">&gt;&gt;</span> <span class="token number">8</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">-</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">*</span>v11 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    result <span class="token operator">=</span> Dst<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"No enough memory.\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    result <span class="token operator">=</span> <span class="token number">0</span>i64<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>注意到 ‘=’ 的ASCII码是61, 结合面试时的提示**”将flag进行**(类似)<strong>base64解码”</strong>, 仔细分析RxEncode的逻辑后, 得出这个函数的作用就是将内容进行类似base64的解码.</p>
 <p>由此我们得出, s2保存的应当就是解码后的flag内容, 将变量的值转为16进制后结果如下.</p>
-<pre class="line-numbers language-hljs C">  <span class="hljs-keyword">char</span> s2[<span class="hljs-number">8</span>]; <span class="hljs-comment"><code class="language-hljs C">  <span class="hljs-keyword">char</span> s2[<span class="hljs-number">8</span>]; <span class="hljs-comment">// [rsp+10h] [rbp-60h]</span>
- __int64 v15; <span class="hljs-comment">// [rsp+18h] [rbp-58h]</span>
- __int64 v16; <span class="hljs-comment">// [rsp+20h] [rbp-50h]</span>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">  char s2[8]; // [rsp+10h] [rbp-60h]
+ __int64 v15; // [rsp+18h] [rbp-58h]
+ __int64 v16; // [rsp+20h] [rbp-50h]
 
-<span class="hljs-comment">/*....................................</span>
-<span class="hljs-comment">  其他内容</span>
-<span class="hljs-comment">  .....................................*/</span>
+/*....................................
+  其他内容
+  .....................................*/
 
- *(_QWORD *)s2 = <span class="hljs-number">0x4AD158FEB59C879A</span>LL;
- v15 = <span class="hljs-number">0xCBEBFDFA6CED0BFE</span>LL;
- v16 = <span class="hljs-number">0x7A47A38E43A334E8</span>LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ *(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
+ v15 = 0xCBEBFDFA6CED0BFELL;
+ v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>结合s2 v15 v16在main的栈帧中相邻存放这一点, 我们推测s2实际的长度应当不止为8, 而是24. </p>
 <p>事实上, 我认为v15 v16的__int64类型也是IDA的推测(它并不确定真实类型是什么) - 因为在栈帧中将s2的类型由默认的char []改为char [24]后, 三个变量变成了这样.</p>
-<pre class="line-numbers language-hljs c">*(_QWORD *)s2 = <span class="hljs-number"><code class="language-hljs c">*(_QWORD *)s2 = <span class="hljs-number">0x4AD158FEB59C879A</span>LL;
-*(_QWORD *)v15 = <span class="hljs-number">0xCBEBFDFA6CED0BFE</span>LL;
-*(_QWORD *)v16 = <span class="hljs-number">0x7A47A38E43A334E8</span>LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">*(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
+*(_QWORD *)v15 = 0xCBEBFDFA6CED0BFELL;
+*(_QWORD *)v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>考虑到x86的小端序, 实际的字节顺序应当是 <code>9A 87 9C B5 FE 58</code>这样. 获得解码的flag后, 尝试进行base64编码. </p>
 <p>考虑到flag中含有标准编码表不包含的<code>{ }</code>, 因此我们可以认为这个表不同于标准的编码表.</p>
@@ -391,39 +398,39 @@
 <p>对先前得到的字节按照编码表进行编码, 可以得到flag<code>moectf{Y0Ur+C+1s+v3ry+g0o0OOo0d}</code>.</p>
 <p><del>No my C is very poooooooor /(ㄒoㄒ)/</del></p>
 <h4 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h4><p>在分析时我不小心改错了s2的类型, 却又改不回去, 而IDA本身又不支持撤销…<br>当时我通过菜单栏的New Instance新打开了一个IDA实例重新分析, 得到的main函数中解码后的flag的相关内容变成了这样, 栈帧也发生了相应的改变…</p>
-<pre class="line-numbers language-hljs c">Str2 = <span class="hljs-number"><code class="language-hljs c">Str2 = <span class="hljs-number">-98</span>;
-v11 = <span class="hljs-number">-101</span>;
-v12 = <span class="hljs-number">-100</span>;
-v13 = <span class="hljs-number">-75</span>;
-v14 = <span class="hljs-number">-2</span>;
-v15 = <span class="hljs-number">112</span>;
-v16 = <span class="hljs-number">-45</span>;
-v17 = <span class="hljs-number">15</span>;
-v18 = <span class="hljs-number">-78</span>;
-v19 = <span class="hljs-number">-47</span>;
-v20 = <span class="hljs-number">79</span>;
-v21 = <span class="hljs-number">-100</span>;
-v22 = <span class="hljs-number">2</span>;
-v23 = <span class="hljs-number">127</span>;
-v24 = <span class="hljs-number">-85</span>;
-v25 = <span class="hljs-number">-34</span>;
-v26 = <span class="hljs-number">89</span>;
-v27 = <span class="hljs-number">101</span>;
-v28 = <span class="hljs-number">99</span>;
-v29 = <span class="hljs-number">-25</span>;
-v30 = <span class="hljs-number">64</span>;
-v31 = <span class="hljs-number">-99</span>;
-v32 = <span class="hljs-number">-51</span>;
-v33 = <span class="hljs-number">-6</span>;
-v34 = <span class="hljs-number">4</span>;
-v35 = <span class="hljs-number">0</span>;
-v36 = <span class="hljs-number">0</span>;
-v37 = <span class="hljs-number">0</span>;
-v38 = <span class="hljs-number">0</span>;
-v39 = <span class="hljs-number">0</span>;
-v40 = <span class="hljs-number">0</span>;
-v41 = <span class="hljs-number">0</span>;
-v42 = <span class="hljs-number">0</span>;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">Str2 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">98</span><span class="token punctuation">;</span>
+v11 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">101</span><span class="token punctuation">;</span>
+v12 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">100</span><span class="token punctuation">;</span>
+v13 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">75</span><span class="token punctuation">;</span>
+v14 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span>
+v15 <span class="token operator">=</span> <span class="token number">112</span><span class="token punctuation">;</span>
+v16 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">45</span><span class="token punctuation">;</span>
+v17 <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
+v18 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">78</span><span class="token punctuation">;</span>
+v19 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">47</span><span class="token punctuation">;</span>
+v20 <span class="token operator">=</span> <span class="token number">79</span><span class="token punctuation">;</span>
+v21 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">100</span><span class="token punctuation">;</span>
+v22 <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+v23 <span class="token operator">=</span> <span class="token number">127</span><span class="token punctuation">;</span>
+v24 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">85</span><span class="token punctuation">;</span>
+v25 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">34</span><span class="token punctuation">;</span>
+v26 <span class="token operator">=</span> <span class="token number">89</span><span class="token punctuation">;</span>
+v27 <span class="token operator">=</span> <span class="token number">101</span><span class="token punctuation">;</span>
+v28 <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">;</span>
+v29 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">25</span><span class="token punctuation">;</span>
+v30 <span class="token operator">=</span> <span class="token number">64</span><span class="token punctuation">;</span>
+v31 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">99</span><span class="token punctuation">;</span>
+v32 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">51</span><span class="token punctuation">;</span>
+v33 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">6</span><span class="token punctuation">;</span>
+v34 <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+v35 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+v36 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+v37 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+v38 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+v39 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+v40 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+v41 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+v42 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>不过除此之外整体的结构并未发生过多改变, 其余内容一样.</p>
 
@@ -432,6 +439,13 @@ v42 = <span class="hljs-number">0</span>;<span aria-hidden="true" class="line-nu
             <div>
               <div class="post-metas mb-3">
                 
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/MoeCTF/">MoeCTF</a>
+                    
+                  </div>
                 
               </div>
               
@@ -523,6 +537,30 @@ v42 = <span class="hljs-number">0</span>;<span aria-hidden="true" class="line-nu
         <span>Fluid</span></a>
     </div>
     
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
 
     
 
@@ -545,6 +583,8 @@ v42 = <span class="hljs-number">0</span>;<span aria-hidden="true" class="line-nu
 
 
 
+  
+    
   
 
 
@@ -592,10 +632,10 @@ v42 = <span class="hljs-number">0</span>;<span aria-hidden="true" class="line-nu
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "MoeCTF 2020 Write Up&nbsp;",
       ],
       cursorChar: "_",
-      typeSpeed: 70,
+      typeSpeed: 65,
       loop: false,
     });
     typed.stop();
