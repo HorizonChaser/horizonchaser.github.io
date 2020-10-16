@@ -6,6 +6,7 @@ branches:
   only:
     - backup # build master branch only
 script:
+  - hexo clean
   - hexo generate
 deploy:
   provider: pages
