@@ -251,7 +251,7 @@
 <h3 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h3><p>Misc入门题, 附件profession.jpg. 打开, 发现是专业团队, 仔细一看右下角有黑白色块, 觉得可能是在jpg文件末端添加了内容.</p>
 <p>使用binwalk分析, 未发现隐写的文件, 有点疑惑.</p>
 <p>使用16进制编辑器打开, 发现flag就在末尾😂</p>
-<p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/image-20201012183142831.png" srcset="/img/loading.gif"></p>
+<p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/image-20201012183142831.png" srcset="/img/loading.gif" alt="welcome"></p>
 <h3 id="hey-fxck-you"><a href="#hey-fxck-you" class="headerlink" title="hey fxck you!"></a>hey fxck you!</h3><p>附件good_morning_my_neighbors.png, 表达了诚挚的问候(大雾)</p>
 <p>除了最下方被裁剪了, 图片没有发现什么问题, 使用binwalk分析, 发现末尾有一个zip文件, 解压得fk u.txt, 内容如下</p>
 <blockquote>
@@ -456,6 +456,12 @@ v42 <span class="token operator">=</span> <span class="token number">0</span><sp
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2020/10/16/MoeCTF-2020-Write-Up-for-RxEncode/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MoeCTF 2020 Write Up for RxEncode</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
@@ -565,6 +571,38 @@ v42 <span class="token operator">=</span> <span class="token number">0</span><sp
     
 
     
+  </div>
+
+  <div>
+    <span id="timeDate">载入天数...</span>
+    <span id="times">载入时分秒...</span>
+    <script>
+    var now = new Date();
+    function createtime(){
+        var grt= new Date("14/10/2020 15:39:24");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if(String(mnum).length ==1 ){
+                  mnum = "0" + mnum;
+        }
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if(String(snum).length ==1 ){
+                  snum = "0" + snum;
+        }
+        document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+        document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+    }
+    setInterval("createtime()",250);
+    </script>
   </div>
 </footer>
 
