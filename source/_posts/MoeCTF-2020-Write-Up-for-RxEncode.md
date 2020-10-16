@@ -1,7 +1,9 @@
 ---
 title: MoeCTF 2020 Write Up for RxEncode
 date: 2020-10-16 19:32:50
-tags: MoeCTF Reverse
+tags: 
+- MoeCTF
+- Reverse
 ---
 
 ### RxEncode 题解
@@ -12,7 +14,7 @@ tags: MoeCTF Reverse
 
 双击RxEncode并反汇编, 得伪代码如下.
 
-``` C
+``` c
 void *__fastcall RxEncode(const char *a1, int a2)
 {
   int v2; // eax
@@ -99,7 +101,7 @@ void *__fastcall RxEncode(const char *a1, int a2)
 
 由此我们得出, s2保存的应当就是解码后的flag内容, 将变量的值转为16进制后结果如下.
 
-``` C
+``` c
    char s2[8]; // [rsp+10h] [rbp-60h]
   __int64 v15; // [rsp+18h] [rbp-58h]
   __int64 v16; // [rsp+20h] [rbp-50h]
