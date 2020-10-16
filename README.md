@@ -3,4 +3,4 @@ Horizon Chaser personal blog site
 
 Current Build Status: 
 
-![BUILD_STAT](README/horizonchaser.github.io.svg)
+![BUILD_STAT](https://travis-ci.org/HorizonChaser/horizonchaser.github.io.svg?branch=backup)
