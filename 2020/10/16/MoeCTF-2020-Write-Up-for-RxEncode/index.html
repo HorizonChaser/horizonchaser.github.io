@@ -247,100 +247,100 @@
               <h3 id="RxEncode-题解"><a href="#RxEncode-题解" class="headerlink" title="RxEncode 题解"></a>RxEncode 题解</h3><p>这道题当时没有做出来 <del>, 然后就变成了面试作业</del></p>
 <p>使用IDA反汇编, 观察main函数, 发现程序将输入的内容作为RxEncode函数的参数, 再将返回值s1同s2进行比较确定flag正确与否.</p>
 <p>双击RxEncode并反汇编, 得伪代码如下.</p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">void *__fastcall RxEncode(const char *a1, int a2)
-{
-  int v2; // eax
-  int v3; // edx
-  void *result; // rax
-  void *Dst; // [rsp+28h] [rbp-58h]
-  signed int i; // [rsp+30h] [rbp-50h]
-  int v7; // [rsp+34h] [rbp-4Ch]
-  int v8; // [rsp+34h] [rbp-4Ch]
-  signed int v9; // [rsp+38h] [rbp-48h]
-  int v10; // [rsp+3Ch] [rbp-44h]
-  _BYTE *v11; // [rsp+40h] [rbp-40h]
-  signed int v12; // [rsp+48h] [rbp-38h]
-  int v13; // [rsp+4Ch] [rbp-34h]
-  const char *v14; // [rsp+70h] [rbp-10h]
-  int v15; // [rsp+78h] [rbp-8h]
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token operator">*</span>__fastcall <span class="token function">RxEncode</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>a1<span class="token punctuation">,</span> <span class="token keyword">int</span> a2<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> v2<span class="token punctuation">;</span> <span class="token comment">// eax</span>
+  <span class="token keyword">int</span> v3<span class="token punctuation">;</span> <span class="token comment">// edx</span>
+  <span class="token keyword">void</span> <span class="token operator">*</span>result<span class="token punctuation">;</span> <span class="token comment">// rax</span>
+  <span class="token keyword">void</span> <span class="token operator">*</span>Dst<span class="token punctuation">;</span> <span class="token comment">// [rsp+28h] [rbp-58h]</span>
+  <span class="token keyword">signed</span> <span class="token keyword">int</span> i<span class="token punctuation">;</span> <span class="token comment">// [rsp+30h] [rbp-50h]</span>
+  <span class="token keyword">int</span> v7<span class="token punctuation">;</span> <span class="token comment">// [rsp+34h] [rbp-4Ch]</span>
+  <span class="token keyword">int</span> v8<span class="token punctuation">;</span> <span class="token comment">// [rsp+34h] [rbp-4Ch]</span>
+  <span class="token keyword">signed</span> <span class="token keyword">int</span> v9<span class="token punctuation">;</span> <span class="token comment">// [rsp+38h] [rbp-48h]</span>
+  <span class="token keyword">int</span> v10<span class="token punctuation">;</span> <span class="token comment">// [rsp+3Ch] [rbp-44h]</span>
+  _BYTE <span class="token operator">*</span>v11<span class="token punctuation">;</span> <span class="token comment">// [rsp+40h] [rbp-40h]</span>
+  <span class="token keyword">signed</span> <span class="token keyword">int</span> v12<span class="token punctuation">;</span> <span class="token comment">// [rsp+48h] [rbp-38h]</span>
+  <span class="token keyword">int</span> v13<span class="token punctuation">;</span> <span class="token comment">// [rsp+4Ch] [rbp-34h]</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>v14<span class="token punctuation">;</span> <span class="token comment">// [rsp+70h] [rbp-10h]</span>
+  <span class="token keyword">int</span> v15<span class="token punctuation">;</span> <span class="token comment">// [rsp+78h] [rbp-8h]</span>
 
-  v14 = a1;
-  v15 = a2;
-  v2 = a2;
-  v3 = a2 + 3;
-  if ( v2 &lt; 0 )
-    v2 = v3;
-  v13 = 3 * (v2 &gt;&gt; 2);
-  v12 = 0;
-  v10 = 0;
-  if ( a1[v15 - 1] == 61 )
-    v12 = 1;
-  if ( a1[v15 - 2] == 61 )
-    ++v12;
-  if ( a1[v15 - 3] == 61 )
-    ++v12;
-  if ( v12 == 1 )
-  {
-    v13 += 4;
-  }
-  else if ( v12 &gt; 1 )
-  {
-    if ( v12 == 2 )
-    {
-      v13 += 3;
-    }
-    else if ( v12 == 3 )
-    {
-      v13 += 2;
-    }
-  }
-  else if ( !v12 )
-  {
-    v13 += 4;
-  }
-  Dst = malloc(v13);
-  if ( Dst )
-  {
-    memset(Dst, 0, v13);
-    v11 = Dst;
-    while ( v15 - v12 &gt; v10 )
-    {
-      v9 = 0;
-      v7 = 0;
-      while ( v9 &lt;= 3 &amp;&amp; v15 - v12 &gt; v10 )
-      {
-        v7 = (v7 &lt;&lt; 6) | (char)find_pos(v14[v10]);
-        ++v9;
-        ++v10;
-      }
-      v8 = v7 &lt;&lt; 6 * (4 - v9);
-      for ( i = 0; i &lt;= 2 &amp;&amp; i != v9; ++i )
-        *v11++ = v8 &gt;&gt; 8 * (2 - i);
-    }
-    *v11 = 0;
-    result = Dst;
-  }
-  else
-  {
-    printf("No enough memory.\n");
-    result = 0i64;
-  }
-  return result;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  v14 <span class="token operator">=</span> a1<span class="token punctuation">;</span>
+  v15 <span class="token operator">=</span> a2<span class="token punctuation">;</span>
+  v2 <span class="token operator">=</span> a2<span class="token punctuation">;</span>
+  v3 <span class="token operator">=</span> a2 <span class="token operator">+</span> <span class="token number">3</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> v2 <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token punctuation">)</span>
+    v2 <span class="token operator">=</span> v3<span class="token punctuation">;</span>
+  v13 <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">*</span> <span class="token punctuation">(</span>v2 <span class="token operator">&gt;&gt;</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  v12 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  v10 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> a1<span class="token punctuation">[</span>v15 <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">61</span> <span class="token punctuation">)</span>
+    v12 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> a1<span class="token punctuation">[</span>v15 <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">61</span> <span class="token punctuation">)</span>
+    <span class="token operator">++</span>v12<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> a1<span class="token punctuation">[</span>v15 <span class="token operator">-</span> <span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">61</span> <span class="token punctuation">)</span>
+    <span class="token operator">++</span>v12<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> v12 <span class="token operator">==</span> <span class="token number">1</span> <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    v13 <span class="token operator">+=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> v12 <span class="token operator">&gt;</span> <span class="token number">1</span> <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> v12 <span class="token operator">==</span> <span class="token number">2</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      v13 <span class="token operator">+=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> v12 <span class="token operator">==</span> <span class="token number">3</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      v13 <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span>v12 <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    v13 <span class="token operator">+=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  Dst <span class="token operator">=</span> <span class="token function">malloc</span><span class="token punctuation">(</span>v13<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> Dst <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">memset</span><span class="token punctuation">(</span>Dst<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> v13<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    v11 <span class="token operator">=</span> Dst<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span> v15 <span class="token operator">-</span> v12 <span class="token operator">&gt;</span> v10 <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      v9 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      v7 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span> v9 <span class="token operator">&lt;=</span> <span class="token number">3</span> <span class="token operator">&amp;&amp;</span> v15 <span class="token operator">-</span> v12 <span class="token operator">&gt;</span> v10 <span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+        v7 <span class="token operator">=</span> <span class="token punctuation">(</span>v7 <span class="token operator">&lt;&lt;</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span><span class="token function">find_pos</span><span class="token punctuation">(</span>v14<span class="token punctuation">[</span>v10<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">++</span>v9<span class="token punctuation">;</span>
+        <span class="token operator">++</span>v10<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      v8 <span class="token operator">=</span> v7 <span class="token operator">&lt;&lt;</span> <span class="token number">6</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">-</span> v9<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">2</span> <span class="token operator">&amp;&amp;</span> i <span class="token operator">!=</span> v9<span class="token punctuation">;</span> <span class="token operator">++</span>i <span class="token punctuation">)</span>
+        <span class="token operator">*</span>v11<span class="token operator">++</span> <span class="token operator">=</span> v8 <span class="token operator">&gt;&gt;</span> <span class="token number">8</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">-</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">*</span>v11 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    result <span class="token operator">=</span> Dst<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"No enough memory.\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    result <span class="token operator">=</span> <span class="token number">0</span>i64<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>注意到 ‘=’ 的ASCII码是61, 结合面试时的提示**”将flag进行**(类似)<strong>base64解码”</strong>, 仔细分析RxEncode的逻辑后, 得出这个函数的作用就是将内容进行类似base64的解码.</p>
 <p>由此我们得出, s2保存的应当就是解码后的flag内容, 将变量的值转为16进制后结果如下.</p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">  char s2[8]; // [rsp+10h] [rbp-60h]
- __int64 v15; // [rsp+18h] [rbp-58h]
- __int64 v16; // [rsp+20h] [rbp-50h]
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">  <span class="token keyword">char</span> s2<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [rsp+10h] [rbp-60h]</span>
+ __int64 v15<span class="token punctuation">;</span> <span class="token comment">// [rsp+18h] [rbp-58h]</span>
+ __int64 v16<span class="token punctuation">;</span> <span class="token comment">// [rsp+20h] [rbp-50h]</span>
 
-/*....................................
+<span class="token comment">/*....................................
   其他内容
-  .....................................*/
+  .....................................*/</span>
 
- *(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
- v15 = 0xCBEBFDFA6CED0BFELL;
- v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <span class="token operator">*</span><span class="token punctuation">(</span>_QWORD <span class="token operator">*</span><span class="token punctuation">)</span>s2 <span class="token operator">=</span> <span class="token number">0x4AD158FEB59C879ALL</span><span class="token punctuation">;</span>
+ v15 <span class="token operator">=</span> <span class="token number">0xCBEBFDFA6CED0BFELL</span><span class="token punctuation">;</span>
+ v16 <span class="token operator">=</span> <span class="token number">0x7A47A38E43A334E8LL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>结合s2 v15 v16在main的栈帧中相邻存放这一点, 我们推测s2实际的长度应当不止为8, 而是24. </p>
 <p>事实上, 我认为v15 v16的__int64类型也是IDA的推测(它并不确定真实类型是什么) - 因为在栈帧中将s2的类型由默认的char []改为char [24]后, 三个变量变成了这样.</p>
@@ -363,7 +363,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/MoeCTF-Reverse/">MoeCTF Reverse</a>
+                      <a class="hover-with-bg" href="/tags/MoeCTF/">MoeCTF</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Reverse/">Reverse</a>
                     
                   </div>
                 
@@ -451,6 +453,24 @@
   <footer class="mt-5">
   <div class="text-center py-3">
     <div>
+      <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+      <script>
+        var now = new Date();
+        function createtime() {
+          var grt = new Date("10/14/2020 17:38:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
+          now.setTime(now.getTime() + 250);
+          days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+          hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+          if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
+          seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
+          document.getElementById("timeDate").innerHTML = "Horizon Blog 已经运行 " + dnum + " 天 ";
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒 ";
+        }
+        setInterval("createtime()", 250);
+      </script>
+
       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
       <i class="iconfont icon-love"></i>
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
@@ -485,38 +505,6 @@
     
 
     
-  </div>
-
-  <div>
-    <span id="timeDate">载入天数...</span>
-    <span id="times">载入时分秒...</span>
-    <script>
-    var now = new Date();
-    function createtime(){
-        var grt= new Date("14/10/2020 15:39:24");//此处修改你的建站时间或者网站上线时间
-        now.setTime(now.getTime()+250);
-        days = (now - grt ) / 1000 / 60 / 60 / 24;
-        dnum = Math.floor(days);
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
-        hnum = Math.floor(hours);
-        if(String(hnum).length ==1 ){
-            hnum = "0" + hnum;
-        }
-        minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
-        mnum = Math.floor(minutes);
-        if(String(mnum).length ==1 ){
-                  mnum = "0" + mnum;
-        }
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-        snum = Math.round(seconds);
-        if(String(snum).length ==1 ){
-                  snum = "0" + snum;
-        }
-        document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
-        document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
-    }
-    setInterval("createtime()",250);
-    </script>
   </div>
 </footer>
 
@@ -641,7 +629,6 @@
       }
     );
   </script>
-
 
 
 

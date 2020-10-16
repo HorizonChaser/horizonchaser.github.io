@@ -210,7 +210,9 @@ void *__fastcall RxEncode(const char *a1, int a2)
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/MoeCTF-Reverse/">MoeCTF Reverse</a>
+              <a href="/tags/MoeCTF/">MoeCTF</a>
+            
+              <a href="/tags/Reverse/">Reverse</a>
             
           </div>
         
@@ -311,6 +313,24 @@ MiscMisc, 全程Miscellaneous, 本意是”杂项”. 在CTF中大概是指多�
   <footer class="mt-5">
   <div class="text-center py-3">
     <div>
+      <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+      <script>
+        var now = new Date();
+        function createtime() {
+          var grt = new Date("10/14/2020 17:38:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
+          now.setTime(now.getTime() + 250);
+          days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+          hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+          if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
+          seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
+          document.getElementById("timeDate").innerHTML = "Horizon Blog 已经运行 " + dnum + " 天 ";
+          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒 ";
+        }
+        setInterval("createtime()", 250);
+      </script>
+
       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
       <i class="iconfont icon-love"></i>
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
@@ -345,38 +365,6 @@ MiscMisc, 全程Miscellaneous, 本意是”杂项”. 在CTF中大概是指多�
     
 
     
-  </div>
-
-  <div>
-    <span id="timeDate">载入天数...</span>
-    <span id="times">载入时分秒...</span>
-    <script>
-    var now = new Date();
-    function createtime(){
-        var grt= new Date("14/10/2020 15:39:24");//此处修改你的建站时间或者网站上线时间
-        now.setTime(now.getTime()+250);
-        days = (now - grt ) / 1000 / 60 / 60 / 24;
-        dnum = Math.floor(days);
-        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
-        hnum = Math.floor(hours);
-        if(String(hnum).length ==1 ){
-            hnum = "0" + hnum;
-        }
-        minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
-        mnum = Math.floor(minutes);
-        if(String(mnum).length ==1 ){
-                  mnum = "0" + mnum;
-        }
-        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-        snum = Math.round(seconds);
-        if(String(snum).length ==1 ){
-                  snum = "0" + snum;
-        }
-        document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
-        document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
-    }
-    setInterval("createtime()",250);
-    </script>
   </div>
 </footer>
 
@@ -445,7 +433,6 @@ MiscMisc, 全程Miscellaneous, 本意是”杂项”. 在CTF中大概是指多�
       this.onclick = null
     }
   </script>
-
 
 
 
