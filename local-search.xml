@@ -43,5 +43,24 @@
   
   
   
+  <entry>
+    <title>The Beginning of Everything</title>
+    <link href="/2020/10/15/The-Beginning-of-Everything/"/>
+    <url>/2020/10/15/The-Beginning-of-Everything/</url>
+    
+    <content type="html"><![CDATA[<h1 id="The-Beginning-of-Everything"><a href="#The-Beginning-of-Everything" class="headerlink" title="The Beginning of Everything"></a>The Beginning of Everything</h1><p>其实很早之前就想在Github Pages上搭一个个人博客了, CSDN总是让人很难受   </p><p> <del>但是拖延症晚期的我现在才搭完hhh</del>    </p><p>言归正传, 基于Hexo和Travis CI的Pages并不难部署, 只是基于YMAL的主题配置写起来有点麻烦, 向Markdown中插入图片也是一件麻烦事儿….    </p><p>博客在 <a href="https://horizonchaser.gitee.io/">Gitee Pages</a> 上有一份镜像, 不过在我搞定Github的workflow之前, Gitee的更新可能不是很及时😂    </p><p>就这样吧, 欢迎大家来玩儿~</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>随笔</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
   
 </search>
