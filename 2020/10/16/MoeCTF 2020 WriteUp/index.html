@@ -1,0 +1,673 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Horizon">
+  <meta name="keywords" content="">
+  <title>Horizon Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-16 09:13" pubdate>
+        2020年10月16日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年10月16日 上午
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="MoeCTF-2020-Write-Up"><a href="#MoeCTF-2020-Write-Up" class="headerlink" title="MoeCTF 2020 Write Up"></a>MoeCTF 2020 Write Up</h1><p><strong><em>By Horizon Chaser, aka. Horizon</em></strong></p>
+<p>第一次参加CTF, 现学现用, 会做的题实在有限😂, 先把自己会的或者有思路的部分题写下来, 以供参考</p>
+<p><del>其他不会的题就等各位巨佬的Write Up辽</del></p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><p>Misc, 全程Miscellaneous, 本意是”杂项”. 在CTF中大概是指多个领域 <del>脑洞</del> 的混合. 因此做起来还是很有意思的.</p>
+<h3 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h3><p>Misc入门题, 附件profession.jpg. 打开, 发现是专业团队, 仔细一看右下角有黑白色块, 觉得可能是在jpg文件末端添加了内容.</p>
+<p>使用binwalk分析, 未发现隐写的文件, 有点疑惑.</p>
+<p>使用16进制编辑器打开, 发现flag就在末尾😂</p>
+<p><img src="MoeCTF%202020%20WriteUp.assets/image-20201012183142831.png" srcset="/img/loading.gif" alt="image-20201012183142831"></p>
+<h3 id="hey-fxck-you"><a href="#hey-fxck-you" class="headerlink" title="hey fxck you!"></a>hey fxck you!</h3><p>附件good_morning_my_neighbors.png, 表达了诚挚的问候(大雾)</p>
+<p>除了最下方被裁剪了, 图片没有发现什么问题, 使用binwalk分析, 发现末尾有一个zip文件, 解压得fk u.txt, 内容如下</p>
+<blockquote>
+<p>++++++++[&gt;&gt;++&gt;++++&gt;++++++&gt;++++++++&gt;++++++++++&gt;++++++++++++&gt;++++++++++++++&gt;++++++++++++++++&gt;++++++++++++++++++&gt;++++++++++++++++++++&gt;++++++++++++++++++++++&gt;++++++++++++++++++++++++&gt;++++++++++++++++++++++++++&gt;++++++++++++++++++++++++++++&gt;++++++++++++++++++++++++++++++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;—.++.&lt;+++++.–.&gt;+++++.&lt;+++.&gt;&gt;—–.–.&lt;&lt;-.&gt;-.&lt;&lt;&lt;&lt;&lt;+.&gt;&gt;&gt;&gt;&gt;&gt;.&lt;&lt;.&gt;.&lt;&lt;&lt;&lt;&lt;.&gt;&gt;&gt;&gt;+.+++++.————.&lt;+++++.&gt;.&lt;&lt;&lt;++.&lt;.&gt;&gt;&gt;&gt;&gt;&gt;++++.</p>
+</blockquote>
+<p>搜索, 得知这是BrainFuck语言, 解密得到flag <code>moectf{yes!yes!fk_U_2!}</code></p>
+<p><del>这是对此前问候的友好回应(确信)</del></p>
+<h3 id="base64？¿"><a href="#base64？¿" class="headerlink" title="base64？¿"></a>base64？¿</h3><p>题面是一个以等号结尾的字符串  <code>0H9MJjCNPiMgJHMQJNtfyEJgIjtS1Ig=</code>, 结合名称, 确定是base64编码的文本.</p>
+<p>按照标准的字符表无法解密, 查看hint, 得到字符表为<code>vwxrstuopq34567ABCDEFGHIJyz012PQRSTKLMNOZabcdUVWXYefghijklmn89+/</code>, 按照这个字符表解码, 得到flag<code>moectf{itai_base64_qaq}</code></p>
+<h3 id="A3FXCK"><a href="#A3FXCK" class="headerlink" title="A3FXCK"></a>A3FXCK</h3><p><del>所以a3又干啥了这是</del></p>
+<p>题面是一个jpg, binwalk分析, 得到隐藏的A3FXCK.txt, 打开, 发现内容可被拆分为两类: <code>luoqXan</code>与<code>arttnbaX</code>, X为1~6的正整数.</p>
+<p>结合首行的<code>123456[]()+!</code>, 推测1~6的值分别代表<code>[]()+!</code>, 替换后得到一坨奇怪的东西, 尝试按照JavaScript运行后得到flag <code>moectf{J5Fxck_1s_1nt3res7in9!}</code></p>
+<p>新知识: <a target="_blank" rel="noopener" href="https://github.com/aemkei/jsfuck">JSFuck</a>是将(小段的)JS代码加密为仅包含<code>[]()+!</code>的文本, 但是会造成严重的体积膨胀. 所以替换后得到的那一坨解密之后也只是一行<code>alert('moectf{J5Fxck_1s_1nt3res7in9!}'</code></p>
+<p><del>由此得知, JS确实是最强大的编程语言</del></p>
+<h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="Welcome-To-Re"><a href="#Welcome-To-Re" class="headerlink" title="Welcome To Re!"></a>Welcome To Re!</h3><p>签到题, 也是第一道我做出来的逆向的题😂</p>
+<p>下载附件, 打开, 按照入门指南和Hint提示, 使用IDA64分析SignIn.exe, 在左侧定位main函数, 双击跳转到对应位置, 按下F5反汇编, 得到伪代码如下</p>
+<pre class="line-numbers language-hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> __cdecl <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **argv, <span class="hljs-keyword">const</span> <span class="hljs-keyword"><code class="language-hljs c"><span class="hljs-function"><span class="hljs-keyword">int</span> __cdecl <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **argv, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> **envp)</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-keyword">char</span> Str1; <span class="hljs-comment">// [rsp+20h] [rbp-60h]</span>
+  <span class="hljs-keyword">char</span> Str2[<span class="hljs-number">8</span>]; <span class="hljs-comment">// [rsp+50h] [rbp-30h]</span>
+
+  _main();
+  <span class="hljs-built_in">strcpy</span>(Str2, <span class="hljs-string">"moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}"</span>);
+  <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Welcome to MoeCTF! --by Reverier\nPlease Input your flag and I will check it:"</span>);
+  <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%41s"</span>, &Str1);
+  <span class="hljs-keyword">if</span> ( !<span class="hljs-built_in">strcmp</span>(&Str1, Str2) )
+    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Congratulations!"</span>);
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-built_in">puts</span>(<span class="hljs-string">"Ruaaaaaaaaaaaaa~~~Wrong!"</span>);
+  getchar();
+  getchar();
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在main函数中, 首先将flag内容复制到str2中, 然后输出提示信息并将输入保存到Str1中. 之后通过strcmp比较输入的Str2与保存的Str1的值是否一致. 由此我们得出, Str2的值就是flag<code>moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}</code>. <del>虽然说是显然的, 但是该分析还是要分析的</del></p>
+<p>总之, Welcome to the World of Reverse 🍻!</p>
+<h3 id="RxEncode"><a href="#RxEncode" class="headerlink" title="RxEncode"></a>RxEncode</h3><p>这道题当时没有做出来 <del>, 然后就变成了面试作业</del></p>
+<p>使用IDA反汇编, 观察main函数, 发现程序将输入的内容作为RxEncode函数的参数, 再将返回值s1同s2进行比较确定flag正确与否.</p>
+<p>双击RxEncode并反汇编, 得伪代码如下.</p>
+<pre class="line-numbers language-hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> *__fastcall <span class="hljs-title">RxEncode</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *a1, <span class="hljs-keyword"><code class="language-hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> *__fastcall <span class="hljs-title">RxEncode</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *a1, <span class="hljs-keyword">int</span> a2)</span></span>
+<span class="hljs-function"></span>{
+  <span class="hljs-keyword">int</span> v2; <span class="hljs-comment">// eax</span>
+  <span class="hljs-keyword">int</span> v3; <span class="hljs-comment">// edx</span>
+  <span class="hljs-keyword">void</span> *result; <span class="hljs-comment">// rax</span>
+  <span class="hljs-keyword">void</span> *Dst; <span class="hljs-comment">// [rsp+28h] [rbp-58h]</span>
+  <span class="hljs-keyword">signed</span> <span class="hljs-keyword">int</span> i; <span class="hljs-comment">// [rsp+30h] [rbp-50h]</span>
+  <span class="hljs-keyword">int</span> v7; <span class="hljs-comment">// [rsp+34h] [rbp-4Ch]</span>
+  <span class="hljs-keyword">int</span> v8; <span class="hljs-comment">// [rsp+34h] [rbp-4Ch]</span>
+  <span class="hljs-keyword">signed</span> <span class="hljs-keyword">int</span> v9; <span class="hljs-comment">// [rsp+38h] [rbp-48h]</span>
+  <span class="hljs-keyword">int</span> v10; <span class="hljs-comment">// [rsp+3Ch] [rbp-44h]</span>
+  _BYTE *v11; <span class="hljs-comment">// [rsp+40h] [rbp-40h]</span>
+  <span class="hljs-keyword">signed</span> <span class="hljs-keyword">int</span> v12; <span class="hljs-comment">// [rsp+48h] [rbp-38h]</span>
+  <span class="hljs-keyword">int</span> v13; <span class="hljs-comment">// [rsp+4Ch] [rbp-34h]</span>
+  <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *v14; <span class="hljs-comment">// [rsp+70h] [rbp-10h]</span>
+  <span class="hljs-keyword">int</span> v15; <span class="hljs-comment">// [rsp+78h] [rbp-8h]</span>
+
+  v14 = a1;
+  v15 = a2;
+  v2 = a2;
+  v3 = a2 + <span class="hljs-number">3</span>;
+  <span class="hljs-keyword">if</span> ( v2 < <span class="hljs-number">0</span> )
+    v2 = v3;
+  v13 = <span class="hljs-number">3</span> * (v2 >> <span class="hljs-number">2</span>);
+  v12 = <span class="hljs-number">0</span>;
+  v10 = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">if</span> ( a1[v15 - <span class="hljs-number">1</span>] == <span class="hljs-number">61</span> )
+    v12 = <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">if</span> ( a1[v15 - <span class="hljs-number">2</span>] == <span class="hljs-number">61</span> )
+    ++v12;
+  <span class="hljs-keyword">if</span> ( a1[v15 - <span class="hljs-number">3</span>] == <span class="hljs-number">61</span> )
+    ++v12;
+  <span class="hljs-keyword">if</span> ( v12 == <span class="hljs-number">1</span> )
+  {
+    v13 += <span class="hljs-number">4</span>;
+  }
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( v12 > <span class="hljs-number">1</span> )
+  {
+    <span class="hljs-keyword">if</span> ( v12 == <span class="hljs-number">2</span> )
+    {
+      v13 += <span class="hljs-number">3</span>;
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( v12 == <span class="hljs-number">3</span> )
+    {
+      v13 += <span class="hljs-number">2</span>;
+    }
+  }
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( !v12 )
+  {
+    v13 += <span class="hljs-number">4</span>;
+  }
+  Dst = <span class="hljs-built_in">malloc</span>(v13);
+  <span class="hljs-keyword">if</span> ( Dst )
+  {
+    <span class="hljs-built_in">memset</span>(Dst, <span class="hljs-number">0</span>, v13);
+    v11 = Dst;
+    <span class="hljs-keyword">while</span> ( v15 - v12 > v10 )
+    {
+      v9 = <span class="hljs-number">0</span>;
+      v7 = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">while</span> ( v9 <= <span class="hljs-number">3</span> && v15 - v12 > v10 )
+      {
+        v7 = (v7 << <span class="hljs-number">6</span>) | (<span class="hljs-keyword">char</span>)find_pos(v14[v10]);
+        ++v9;
+        ++v10;
+      }
+      v8 = v7 << <span class="hljs-number">6</span> * (<span class="hljs-number">4</span> - v9);
+      <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i <= <span class="hljs-number">2</span> && i != v9; ++i )
+        *v11++ = v8 >> <span class="hljs-number">8</span> * (<span class="hljs-number">2</span> - i);
+    }
+    *v11 = <span class="hljs-number">0</span>;
+    result = Dst;
+  }
+  <span class="hljs-keyword">else</span>
+  {
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"No enough memory.\n"</span>);
+    result = <span class="hljs-number">0</span>i64;
+  }
+  <span class="hljs-keyword">return</span> result;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意到 ‘=’ 的ASCII码是61, 结合面试时的提示**”将flag进行**(类似)<strong>base64解码”</strong>, 仔细分析RxEncode的逻辑后, 得出这个函数的作用就是将内容进行类似base64的解码.</p>
+<p>由此我们得出, s2保存的应当就是解码后的flag内容, 将变量的值转为16进制后结果如下.</p>
+<pre class="line-numbers language-hljs C">  <span class="hljs-keyword">char</span> s2[<span class="hljs-number">8</span>]; <span class="hljs-comment"><code class="language-hljs C">  <span class="hljs-keyword">char</span> s2[<span class="hljs-number">8</span>]; <span class="hljs-comment">// [rsp+10h] [rbp-60h]</span>
+ __int64 v15; <span class="hljs-comment">// [rsp+18h] [rbp-58h]</span>
+ __int64 v16; <span class="hljs-comment">// [rsp+20h] [rbp-50h]</span>
+
+<span class="hljs-comment">/*....................................</span>
+<span class="hljs-comment">  其他内容</span>
+<span class="hljs-comment">  .....................................*/</span>
+
+ *(_QWORD *)s2 = <span class="hljs-number">0x4AD158FEB59C879A</span>LL;
+ v15 = <span class="hljs-number">0xCBEBFDFA6CED0BFE</span>LL;
+ v16 = <span class="hljs-number">0x7A47A38E43A334E8</span>LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>结合s2 v15 v16在main的栈帧中相邻存放这一点, 我们推测s2实际的长度应当不止为8, 而是24. </p>
+<p>事实上, 我认为v15 v16的__int64类型也是IDA的推测(它并不确定真实类型是什么) - 因为在栈帧中将s2的类型由默认的char []改为char [24]后, 三个变量变成了这样.</p>
+<pre class="line-numbers language-hljs c">*(_QWORD *)s2 = <span class="hljs-number"><code class="language-hljs c">*(_QWORD *)s2 = <span class="hljs-number">0x4AD158FEB59C879A</span>LL;
+*(_QWORD *)v15 = <span class="hljs-number">0xCBEBFDFA6CED0BFE</span>LL;
+*(_QWORD *)v16 = <span class="hljs-number">0x7A47A38E43A334E8</span>LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>考虑到x86的小端序, 实际的字节顺序应当是 <code>9A 87 9C B5 FE 58</code>这样. 获得解码的flag后, 尝试进行base64编码. </p>
+<p>考虑到flag中含有标准编码表不包含的<code>{ }</code>, 因此我们可以认为这个表不同于标准的编码表.</p>
+<p>观察发现, RxEncode中调用了一个名为find_pos的函数, 它的作用应当是在编码表中查找字符的位置, 进入该函数, 得到编码表<code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234{}789+/=</code>.</p>
+<p>对先前得到的字节按照编码表进行编码, 可以得到flag<code>moectf{Y0Ur+C+1s+v3ry+g0o0OOo0d}</code>.</p>
+<p><del>No my C is very poooooooor /(ㄒoㄒ)/</del></p>
+<h4 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h4><p>在分析时我不小心改错了s2的类型, 却又改不回去, 而IDA本身又不支持撤销…<br>当时我通过菜单栏的New Instance新打开了一个IDA实例重新分析, 得到的main函数中解码后的flag的相关内容变成了这样, 栈帧也发生了相应的改变…</p>
+<pre class="line-numbers language-hljs c">Str2 = <span class="hljs-number"><code class="language-hljs c">Str2 = <span class="hljs-number">-98</span>;
+v11 = <span class="hljs-number">-101</span>;
+v12 = <span class="hljs-number">-100</span>;
+v13 = <span class="hljs-number">-75</span>;
+v14 = <span class="hljs-number">-2</span>;
+v15 = <span class="hljs-number">112</span>;
+v16 = <span class="hljs-number">-45</span>;
+v17 = <span class="hljs-number">15</span>;
+v18 = <span class="hljs-number">-78</span>;
+v19 = <span class="hljs-number">-47</span>;
+v20 = <span class="hljs-number">79</span>;
+v21 = <span class="hljs-number">-100</span>;
+v22 = <span class="hljs-number">2</span>;
+v23 = <span class="hljs-number">127</span>;
+v24 = <span class="hljs-number">-85</span>;
+v25 = <span class="hljs-number">-34</span>;
+v26 = <span class="hljs-number">89</span>;
+v27 = <span class="hljs-number">101</span>;
+v28 = <span class="hljs-number">99</span>;
+v29 = <span class="hljs-number">-25</span>;
+v30 = <span class="hljs-number">64</span>;
+v31 = <span class="hljs-number">-99</span>;
+v32 = <span class="hljs-number">-51</span>;
+v33 = <span class="hljs-number">-6</span>;
+v34 = <span class="hljs-number">4</span>;
+v35 = <span class="hljs-number">0</span>;
+v36 = <span class="hljs-number">0</span>;
+v37 = <span class="hljs-number">0</span>;
+v38 = <span class="hljs-number">0</span>;
+v39 = <span class="hljs-number">0</span>;
+v40 = <span class="hljs-number">0</span>;
+v41 = <span class="hljs-number">0</span>;
+v42 = <span class="hljs-number">0</span>;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>不过除此之外整体的结构并未发生过多改变, 其余内容一样.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/16/hello-world/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
