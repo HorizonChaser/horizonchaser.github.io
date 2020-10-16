@@ -41,10 +41,12 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
+  enable: false
+prismjs:
   enable: false
 
 # Home page setting
@@ -115,12 +117,6 @@ deploy:
     excerpt: false
     categories: false
     tags: true
-
-prism_plugin:
-  mode: 'preprocess'    # realtime/preprocess
-  theme: 'default'
-  line_number: true    # default false
-
 
 githubEmojis:
   enable: true

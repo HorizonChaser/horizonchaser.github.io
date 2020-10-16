@@ -11,9 +11,9 @@
 # 全局
 # Site
 #---------------------------
-favicon: /img/favicon.png # 网站标签页的 icon
+favicon: /img/avatar.png # 网站标签页的 icon
 
-apple_touch_icon: /img/favicon.png # 用于苹果设备的 icon
+apple_touch_icon: /img/avatar.png # 用于苹果设备的 icon
 
 title_join_string: ' - '  # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
 
@@ -23,18 +23,20 @@ code:  # 代码块相关的配置
   copy_btn: true  # 是否开启复制代码的按钮
   highlight:  # 代码高亮
     enable: true
-    lib: 'highlightjs'  # 实现高亮的库，可选：highlightjs | prismjs，对应下面的配置项
+    lib: 'prismjs'  # 实现高亮的库，可选：highlightjs | prismjs，对应下面的配置项
     highlightjs:
-      style: 'Github Gist'  # 高亮样式见：https://highlightjs.org/static/demo/  在页面挑选 style 填入
-      bg_color: false  # 是否根据 style 改变代码背景色，**如果 style 是深色背景别忘了开启此项**
+      style: 'Atom One Dark'  # 高亮样式见：https://highlightjs.org/static/demo/  在页面挑选 style 填入
+      bg_color: true  # 是否根据 style 改变代码背景色，**如果 style 是深色背景别忘了开启此项**
     prismjs:
-      style: 'default'  # 高亮样式见：https://prismjs.com/  在页面右侧的圆形按钮挑选 style 填入，也可以直接填入 css 链接
+      style: 'coy'  # 高亮样式见：https://prismjs.com/  在页面右侧的圆形按钮挑选 style 填入，也可以直接填入 css 链接
+      line_number: true    # default false
       preprocess: true  # 设为 true 高亮将本地静态生成（并只支持部分 prismjs 插件），设为 false 高亮将在浏览器通过 js 生成
+      bg_color: true  # 是否根据 style 改变代码背景色，**如果 style 是深色背景别忘了开启此项**
 
 fun_features: # 一些好玩的功能
   typing: # 为 subtitle 添加打字机效果
     enable: true
-    typeSpeed: 70  # 打印速度，数字越大越慢
+    typeSpeed: 65  # 打印速度，数字越大越慢
     cursorChar: "_" # 游标字符
     loop: false # 是否循环播放效果
   anchorjs: # 为文章内容中的标题添加锚图标
@@ -78,10 +80,10 @@ color:  # 主题颜色配置，不一定能每一处都生效，可能会被局�
 font:  # 主题字体配置
   font_size: 16px                   # 全局字号
   font_family:                      # 全局字体
-  code_font_size: 85%               # 代码的字号
+  code_font_size: 100%               # 代码的字号
 
 custom_js:   # 指定自定义 js 文件路径，路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js，支持列表
-custom_css:   # 指定自定义 css 文件路径，路径是相对 source 目录，如 /css/custom.css 同上，支持列表
+custom_css: ''  # 指定自定义 css 文件路径，路径是相对 source 目录，如 /css/custom.css 同上，支持列表 /css/prism-darcula.css
 custom_html: ''  # 自定义底部 HTML 内容（位于 footer 上方），也可用于外部引入 js css 这些操作，注意不要和 post.custom 配置冲突
 
 web_analytics:  # 网页访问统计
@@ -125,11 +127,11 @@ version:  # 主题版本相关
 # Header
 #---------------------------
 navbar:
-  blog_title: Fluid # 导航栏左侧的标题，为空则按 hexo config.title 显示
+  blog_title: Horizon Blog # 导航栏左侧的标题，为空则按 hexo config.title 显示
   ground_glass:  # 导航栏毛玻璃特效，实验性功能，可能会造成页面滚动掉帧和抖动，部分浏览器不支持会自动不生效
-    enable: false
-    px: 3  # 模糊像素，只能为数字，数字越大模糊度越高
-    alpha: 0.7   # 透明度，只能为数字，范围 0~1，数字越大透明度越低，注意透明过度可能看不清菜单字体
+    enable: true
+    px: 4  # 模糊像素，只能为数字，数字越大模糊度越高
+    alpha: 0.5   # 透明度，只能为数字，范围 0~1，数字越大透明度越低，注意透明过度可能看不清菜单字体
   menu:  # 可自行增减，key 用来关联 languages/*.yml，如不存在关联则显示 key 本身的值；icon 是 css class，可以省略；增加 name 可以强制显示指定名称
     - { key: 'home', link: '/', icon: 'iconfont icon-home-fill' }
     - { key: 'archive', link: '/archives/', icon: 'iconfont icon-archive-fill' }
@@ -159,7 +161,7 @@ banner_parallax: true  # 头图滚动视差
 #---------------------------
 footer:
   statistics:  # 展示网站的 PV、UV 统计数
-    enable: false
+    enable: true
     source: "busuanzi"  # 统计数据来源，可选：busuanzi | leancloud，使用 leancloud 需要在 web_analytics 中设置 api 参数，使用 busuanzi 注意可能间歇抽风
     pv_format: "总访问量 {} 次"  # 显示的文本，{}是数字的占位符（必须包含)，下同
     uv_format: "总访客数 {} 人"
@@ -229,7 +231,7 @@ post:  # 部分配置同时控制自定义页面，注意备注
   updated:  # 在文章开头显示文章更新时间，该时间默认是 md 文件更新时间，可通过 front-matter 中 `updated` 手动指定（和 date 一样格式）
     enable: true
     content: 本文最后更新于：  # 描述文字
-    relative: false  # 是否使用相对时间表示，比如："3 天前"
+    relative: true  # 是否使用相对时间表示，比如："3 天前"
   toc:  # 文章右侧目录
     enable: true
     headingSelector: h1,h2,h3,h4,h5,h6
@@ -383,17 +385,17 @@ tag:
 # About Page
 #---------------------------
 about:  # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.com/docs/guide/#%E5%85%B3%E4%BA%8E%E9%A1%B5
-  banner_img: /img/default.png
+  banner_img: /img/avatar.png
   banner_img_height: 60  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
   subtitle:  # 打字机内容
   avatar: /img/avatar.png # 头像
-  name: myname
-  introduce: '一句简短的介绍' # 支持 HTML
+  name: Horizon
+  introduce: '学生, CTF新手, 对很多事情都感兴趣 <del>但是总是三分钟热度</del>' # 支持 HTML
   icons: # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，class 代表图标的 css class
-    - { class: 'iconfont icon-github-fill', link: 'https://github.com', tip: 'GitHub' }
-    - { class: 'iconfont icon-douban-fill', link: 'https://douban.com', tip: '豆瓣' }
-    - { class: 'iconfont icon-wechat-fill', qrcode: '/img/favicon.png' }  # 添加 qrcode 后，点击不再跳转，而是悬浮二维码，需要指定 image
+    - { class: 'iconfont icon-github-fill', link: 'https://github.com/HorizonChaser', tip: 'GitHub' }
+    - { class: 'iconfont icon-mail', link: 'mailto:ahorizonchaser@gmail.com', tip: 'Gmail' }
+    # - { class: 'iconfont icon-wechat-fill', qrcode: '/img/favicon.png' }  # 添加 qrcode 后，点击不再跳转，而是悬浮二维码，需要指定 image
 
 
 #---------------------------

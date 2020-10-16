@@ -1,3 +1,9 @@
+---
+title: MoeCTF 2020 Write Up
+date: 2020-10-16 17:28:59
+tags: MoeCTF
+---
+
 # MoeCTF 2020 Write Up
 
 ***By Horizon Chaser, aka. Horizon***
@@ -18,7 +24,7 @@ Misc入门题, 附件profession.jpg. 打开, 发现是专业团队, 仔细一看
 
 使用16进制编辑器打开, 发现flag就在末尾😂
 
-![image-20201012183142831](MoeCTF%202020%20WriteUp.assets/image-20201012183142831.png)
+![](MoeCTF%202020%20WriteUp/image-20201012183142831.png)
 
 ### hey fxck you!
 
@@ -187,7 +193,7 @@ void *__fastcall RxEncode(const char *a1, int a2)
 
 由此我们得出, s2保存的应当就是解码后的flag内容, 将变量的值转为16进制后结果如下.
 
-``` C
+```C
    char s2[8]; // [rsp+10h] [rbp-60h]
   __int64 v15; // [rsp+18h] [rbp-58h]
   __int64 v16; // [rsp+20h] [rbp-50h]
@@ -205,7 +211,7 @@ void *__fastcall RxEncode(const char *a1, int a2)
 
 事实上, 我认为v15 v16的__int64类型也是IDA的推测(它并不确定真实类型是什么) - 因为在栈帧中将s2的类型由默认的char []改为char [24]后, 三个变量变成了这样.
 
-``` c
+``` C
   *(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
   *(_QWORD *)v15 = 0xCBEBFDFA6CED0BFELL;
   *(_QWORD *)v16 = 0x7A47A38E43A334E8LL;
