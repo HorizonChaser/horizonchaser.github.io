@@ -176,7 +176,7 @@
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
       <time datetime="2020-10-16 17:28" pubdate>
-        2020年 10月 16日 周五, 17:28:59
+        2020年10月16日 周五 17:28:59
       </time>
     </span>
   
@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      2.3k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      38
        分钟
     </span>
   
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  最后更新：2020年 10月 17日 周六, 3:55:7
+                  最后更新：2020年10月17日 周六 16:34:32
                 
               </p>
             
@@ -433,6 +433,88 @@ v41 <span class="token operator">=</span> <span class="token number">0</span><sp
 v42 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>不过除此之外整体的结构并未发生过多改变, 其余内容一样.</p>
+<h3 id="Simple-Re"><a href="#Simple-Re" class="headerlink" title="Simple Re"></a>Simple Re</h3><p>下载解压, 拖入IDA中反汇编, 得到伪代码. 观察发现, main中会将输入的字符串作为参数调用enc()函数.    </p>
+<p>双击跳转进该函数, 反汇编后得到伪代码如下. </p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __fastcall <span class="token function">enc</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>a1<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> result<span class="token punctuation">;</span> <span class="token comment">// eax</span>
+    
+  <span class="token comment">/*
+  ............
+  循环用变量定义
+  ............
+  */</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>i <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> a1<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">^</span> <span class="token number">0x17</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>j <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x39u</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>k <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x4Bu</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> l <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> l <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>l <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>l<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x4Au</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> m <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> m <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>m <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>m<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x49u</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> n <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> n <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>n <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x26u</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> ii <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> ii <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>ii <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>ii<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x15u</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> jj <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> jj <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>jj <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>jj<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x61u</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> kk <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> kk <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>kk <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>kk<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x56u</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> ll <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> ll <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>ll <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>ll<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x1Bu</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> mm <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> mm <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>mm <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>mm<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x21u</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> nn <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> nn <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>nn <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>nn<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x40u</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> i1 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i1 <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>i1 <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>i1<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x57u</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> i2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i2 <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>i2 <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>i2<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x2Eu</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> i3 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i3 <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>i3 <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>i3<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x49u</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> i4 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i4 <span class="token operator">&lt;=</span> <span class="token number">30</span><span class="token punctuation">;</span> <span class="token operator">++</span>i4 <span class="token punctuation">)</span>
+    out<span class="token punctuation">[</span>i4<span class="token punctuation">]</span> <span class="token operator">^=</span> <span class="token number">0x37u</span><span class="token punctuation">;</span>
+  byte_40807F <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span><span class="token function">strcmp</span><span class="token punctuation">(</span>out<span class="token punctuation">,</span> aim<span class="token punctuation">)</span> <span class="token punctuation">)</span>
+    result <span class="token operator">=</span> <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Congratulations!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span>
+    result <span class="token operator">=</span> <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"no...Don't Give up!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看到, 它是将输入依次对 0x17 0x39 0x4A …… 0x37 进行异或, 然后将运算结果out与aim进行比较. 双击aim变量名, 跳转到栈帧中, 得到aim的值<code>rpz|kydKw^qTl@Y/m2f/J-@o^k.,qkb</code>.</p>
+<p>由 <code>a^b^b == a</code>, 不难发现将aim依次同 0x37 0x49 …… 0x39 0x17 进行异或即可得到flag<code>moectf{ThAnKs_F0r-y0U2_pAt13nt}</code></p>
+<p><del>是挺需要耐心的…</del></p>
+<h3 id="Protection"><a href="#Protection" class="headerlink" title="Protection"></a>Protection</h3><p>下载文件, 根据提示, 程序应该是加了个壳… 检测一下, 是一个UPX的壳, 根据 <a target="_blank" rel="noopener" href="https://linux.die.net/man/1/upx">UPX的文档</a>, 我们可以使用<code>-d</code>选项解压缩.</p>
+<p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/image-20201017215239958.png" srcset="/img/loading.gif" alt="image-20201017215239958"></p>
+<p>去掉UPX壳之后, 又到了IDA大显神通的时间了. 我们得到main函数的伪代码如下.</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __cdecl <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>envp<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">signed</span> <span class="token keyword">int</span> i<span class="token punctuation">;</span> <span class="token comment">// [rsp+Ch] [rbp-34h]</span>
+  <span class="token keyword">char</span> v5<span class="token punctuation">[</span><span class="token number">40</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [rsp+10h] [rbp-30h]</span>
+  <span class="token keyword">unsigned</span> __int64 v6<span class="token punctuation">;</span> <span class="token comment">// [rsp+38h] [rbp-8h]</span>
+
+  v6 <span class="token operator">=</span> <span class="token function">__readfsqword</span><span class="token punctuation">(</span><span class="token number">0x28u</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> __int64<span class="token punctuation">)</span><span class="token string">"please input your flag: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">_isoc99_scanf</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> __int64<span class="token punctuation">)</span><span class="token string">"%28s"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">27</span><span class="token punctuation">;</span> <span class="token operator">++</span>i <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">unsigned</span> __int8<span class="token punctuation">)</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">^</span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> __int8<span class="token punctuation">)</span>v5<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">!=</span> y<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"wrong!"</span><span class="token punctuation">,</span> v5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"right!"</span><span class="token punctuation">,</span> v5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>不难看出, 这里是将输入和 x 进行逐个字符异或后再同 y 比较. 用同样的方法, 我们得到<code>x = aouv#@!V08asdozpnma&amp;*#%!$^&amp;*</code>, <code>y ={0x0c, 0x0, 0x10, 0x15, 0x57, 0x26, 0x5a, 0x23, 0x40, 0x40, 0x3e, 0x42, 0x37, 0x30, 0x9, 0x19, 0x3, 0x1d, 0x50, 0x43, 0x7, 0x57, 0x15, 0x7e, 0x51, 0x6d, 0x43, 0x57, 0, 0, 0, 0}</code>. </p>
+<p>写个Java脚本 <del>暂时还不会py</del> 异或之后得到 flag <code>moectf{upx_1S_simp1e-t0_u3e}</code></p>
+<p><del>UPX是挺好用的</del></p>
 
             </div>
             <hr>
