@@ -272,11 +272,106 @@ void *__fastcall RxEncode(const char *a1, int a2)
 
 
 
+### Simple Re
 
+下载解压, 拖入IDA中反汇编, 得到伪代码. 观察发现, main中会将输入的字符串作为参数调用enc()函数.    
 
+双击跳转进该函数, 反汇编后得到伪代码如下. 
 
+``` c
+int __fastcall enc(char *a1)
+{
+  int result; // eax
+    
+  /*
+  ............
+  循环用变量定义
+  ............
+  */
 
+  for ( i = 0; i <= 30; ++i )
+    out[i] = a1[i] ^ 0x17;
+  for ( j = 0; j <= 30; ++j )
+    out[j] ^= 0x39u;
+  for ( k = 0; k <= 30; ++k )
+    out[k] ^= 0x4Bu;
+  for ( l = 0; l <= 30; ++l )
+    out[l] ^= 0x4Au;
+  for ( m = 0; m <= 30; ++m )
+    out[m] ^= 0x49u;
+  for ( n = 0; n <= 30; ++n )
+    out[n] ^= 0x26u;
+  for ( ii = 0; ii <= 30; ++ii )
+    out[ii] ^= 0x15u;
+  for ( jj = 0; jj <= 30; ++jj )
+    out[jj] ^= 0x61u;
+  for ( kk = 0; kk <= 30; ++kk )
+    out[kk] ^= 0x56u;
+  for ( ll = 0; ll <= 30; ++ll )
+    out[ll] ^= 0x1Bu;
+  for ( mm = 0; mm <= 30; ++mm )
+    out[mm] ^= 0x21u;
+  for ( nn = 0; nn <= 30; ++nn )
+    out[nn] ^= 0x40u;
+  for ( i1 = 0; i1 <= 30; ++i1 )
+    out[i1] ^= 0x57u;
+  for ( i2 = 0; i2 <= 30; ++i2 )
+    out[i2] ^= 0x2Eu;
+  for ( i3 = 0; i3 <= 30; ++i3 )
+    out[i3] ^= 0x49u;
+  for ( i4 = 0; i4 <= 30; ++i4 )
+    out[i4] ^= 0x37u;
+  byte_40807F = 0;
+  if ( !strcmp(out, aim) )
+    result = puts("Congratulations!");
+  else
+    result = puts("no...Don't Give up!");
+  return result;
+}
+```
 
+可以看到, 它是将输入依次对 0x17 0x39 0x4A ...... 0x37 进行异或, 然后将运算结果out与aim进行比较. 双击aim变量名, 跳转到栈帧中, 得到aim的值```rpz|kydKw^qTl@Y/m2f/J-@o^k.,qkb```.
+
+由 ```a^b^b == a```, 不难发现将aim依次同 0x37 0x49 ...... 0x39 0x17 进行异或即可得到flag```moectf{ThAnKs_F0r-y0U2_pAt13nt}```
+
+~~是挺需要耐心的...~~
+
+### Protection
+
+下载文件, 根据提示, 程序应该是加了个壳... 检测一下, 是一个UPX的壳, 根据 [UPX的文档](https://linux.die.net/man/1/upx), 我们可以使用```-d```选项解压缩.
+
+![image-20201017215239958](MoeCTF%202020%20WriteUp/image-20201017215239958.png)
+
+去掉UPX壳之后, 又到了IDA大显神通的时间了. 我们得到main函数的伪代码如下.
+
+``` c
+int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  signed int i; // [rsp+Ch] [rbp-34h]
+  char v5[40]; // [rsp+10h] [rbp-30h]
+  unsigned __int64 v6; // [rsp+38h] [rbp-8h]
+
+  v6 = __readfsqword(0x28u);
+  printf((unsigned __int64)"please input your flag: ");
+  _isoc99_scanf((unsigned __int64)"%28s");
+  for ( i = 0; i <= 27; ++i )
+  {
+    if ( ((unsigned __int8)x[i] ^ (unsigned __int8)v5[i]) != y[i] )
+    {
+      puts("wrong!", v5);
+      return 0;
+    }
+  }
+  puts("right!", v5);
+  return 0;
+}
+```
+
+不难看出, 这里是将输入和 x 进行逐个字符异或后再同 y 比较. 用同样的方法, 我们得到```x = aouv#@!V08asdozpnma&*#%!$^&*```, `y ={0x0c, 0x0, 0x10, 0x15, 0x57, 0x26, 0x5a, 0x23, 0x40, 0x40, 0x3e, 0x42, 0x37, 0x30, 0x9, 0x19, 0x3, 0x1d, 0x50, 0x43, 0x7, 0x57, 0x15, 0x7e, 0x51, 0x6d, 0x43, 0x57, 0, 0, 0, 0}`. 
+
+写个Java脚本 ~~暂时还不会py~~ 异或之后得到 flag `moectf{upx_1S_simp1e-t0_u3e}`
+
+~~UPX是挺好用的~~
 
 
 

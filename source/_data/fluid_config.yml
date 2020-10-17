@@ -216,7 +216,7 @@ post:  # 部分配置同时控制自定义页面，注意备注
       enable: false
     date:  # 文章日期，优先根据 front-matter 里 date 字段，其次是 md 文件日期
       enable: true
-      format: "YYYY年 MMM Do ddd, H:m:s"  # 格式参照 ISO-8601 日期格式化，可参照 http://momentjs.cn/docs/#/parsing/string-format/
+      format: "YYYY年MMMDo ddd H:m:s"  # 格式参照 ISO-8601 日期格式化，可参照 http://momentjs.cn/docs/#/parsing/string-format/
     wordcount:  # 字数统计
       enable: true
       format: "{} 字"  # 显示的文本，{}是数字的占位符（必须包含)，下同
