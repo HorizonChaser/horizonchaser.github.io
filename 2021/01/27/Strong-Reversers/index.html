@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Horizon">
   <meta name="keywords" content="">
-  <title>The Beginning of Everything - Horizon Blog</title>
+  <title>Strong-Reversers - Horizon Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -175,8 +175,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-15 21:52" pubdate>
-        2020年10月15日 周四 21:52:8
+      <time datetime="2021-01-27 14:39" pubdate>
+        2021年1月27日 周三 14:39:10
       </time>
     </span>
   
@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      136 字
+      1.1k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      15
        分钟
     </span>
   
@@ -235,7 +235,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">The Beginning of Everything</h1>
+            <h1 style="display: none">Strong-Reversers</h1>
             
               <p class="note note-info">
                 
@@ -244,11 +244,65 @@
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="The-Beginning-of-Everything"><a href="#The-Beginning-of-Everything" class="headerlink" title="The Beginning of Everything"></a>The Beginning of Everything</h1><p>其实很早之前就想在Github Pages上搭一个个人博客了, CSDN总是让人很难受   </p>
-<p> <del>但是拖延症晚期的我现在才搭完hhh</del>    </p>
-<p>言归正传, 基于Hexo和Travis CI的Pages并不难部署, 只是基于YMAL的主题配置写起来有点麻烦, 向Markdown中插入图片也是一件麻烦事儿….    </p>
-<p>博客在 <a target="_blank" rel="noopener" href="https://horizonchaser.gitee.io/">Gitee Pages</a> 上有一份镜像, 不过在我搞定Github的workflow之前, Gitee的更新可能不是很及时😂    </p>
-<p>就这样吧, 欢迎大家来玩儿~</p>
+              <h2 id="0x00-DDCTF-Android-Easy"><a href="#0x00-DDCTF-Android-Easy" class="headerlink" title="0x00 DDCTF-Android Easy"></a>0x00 DDCTF-Android Easy</h2><p><del>接触到的第二道安卓逆向题</del></p>
+<p>下载, 发现是个 zip , 但是有 apk 的目录结构, 用 jadx-gui 打开可以看到如下的结构</p>
+<p><img src="https://i.loli.net/2021/01/27/Jd8H6ITzRl5NYsO.png" srcset="/img/loading.gif" alt="image-20210127124159278"></p>
+<p>很明显, 重点在 FlagActivity 类里面, <code>i()</code>中将<code>p</code> <code>q</code> 两个byte数组进行一系列操作后得到解密后的<code>byte[] bArr2</code>, 作为<code>String()</code>的参数返回.  之后在<code>onClickTest()</code>中通过将输入的字符串同<code>i()</code>的返回值进行比较, 判定 flag 是否正确.</p>
+<p>那就很显然, <code>i()</code>的返回值就是正确的 flag. 把<code>i()</code>运行一次, 得到返回值<code>DDCTF-3ad60811d87c4a2dba0ef651b2d93476@didichuxing.com</code>, 用<code>flag{ }</code>包裹提交.</p>
+<p><code>flag{DDCTF-3ad60811d87c4a2dba0ef651b2d93476@didichuxing.com}</code></p>
+<h2 id="0x01-WELCOME-TO-JNI"><a href="#0x01-WELCOME-TO-JNI" class="headerlink" title="0x01 WELCOME TO JNI"></a>0x01 WELCOME TO JNI</h2><blockquote>
+<p>“JNI是什么？”</p>
+</blockquote>
+<blockquote>
+<p><strong>JNI</strong> （<strong>Java Native Interface，Java本地接口</strong>）是一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=%E7%BC%96%E7%A8%8B%E6%A1%86%E6%9E%B6&amp;action=edit&amp;redlink=1">编程框架</a>，使得<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Java%E8%99%9A%E6%8B%9F%E6%9C%BA">Java虚拟机</a>中的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Java">Java</a>程序可以调用本地应用/或库，也可以被其他程序调用。 本地程序一般是用其它语言（<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/C%E8%AF%AD%E8%A8%80">C</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/C%2B%2B">C++</a>或<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80">汇编语言</a>等）编写的，并且被编译为基于本机硬件和操作系统的程序。</p>
+<p>– Wikipedia</p>
+</blockquote>
+<p>简单的来说, JNI 可以让 Java 调用其他语言的库.</p>
+<p>用 jadx-gui 打开 apk 文件, 定位到 Main Activity –在<code>com.reverier.xdsec_re_20200126</code>下面</p>
+<p><img src="https://i.loli.net/2021/01/27/hwg4BSpNfiFO8DH.png" srcset="/img/loading.gif" alt="image-20210127131115411"></p>
+<p>在<code>MainActivity</code>类中, 可以看到声明了一个 native 方法 - <code>loginUtils()</code>, 从名字推测是 <del>检查 flag</del> 登陆验证, 加载了一个本地库<code>native-lib</code>, 它对应的文件在<code>/lib</code>下面, 对应不同的架构.</p>
+<p>在 33 行可以看到, <code>loginUtil()</code>接受了输入的字符串作为参数, 然后返回一个布尔值作为结果, 控制输出<code>Right</code>和<code>Wrong</code> - 这就是重点了.</p>
+<p>从 apk 中提取出 x86 架构对应的<code>native-lib.so</code>, IDA 打开, 找到对应的方法<code>Java_com_reverier_xdsec_1re_120200126_MainActivity_loginUtils()</code>, 反编译如下.</p>
+<p><img src="https://i.loli.net/2021/01/27/7UM1xOPLB3RTIFK.png" srcset="/img/loading.gif" alt="image-20210127132734025"></p>
+<p>第 8 行开始, <code>v6</code>保存了作为参数的字符串的长度, <code>v5</code>则保存了另一个字符串的长度, <code>v4</code>保存了参数字符串. 第 11 行比较两个字符串的长度, 若相等则再通过<code>strncmp()</code>比较. </p>
+<p>综上, <code>off_1FD4 + 5972</code>应该就指向了flag. <code>0x1FD4 + 5972d == 0x880</code>, 跳转过去, 发现果然保存着flag.</p>
+<p><img src="https://i.loli.net/2021/01/27/shcxbOGXJ2U6DFV.png" srcset="/img/loading.gif" alt="image-20210127133107771"></p>
+<p><code>flag{welcome_to_naive_lib!}</code></p>
+<p>做完了才意识到, 其实当时直接从 IDA 的 Strings window 能直接看到这个明文字符串…</p>
+<h2 id="0×02-Codegate-CTF-2018-RedVelvet"><a href="#0×02-Codegate-CTF-2018-RedVelvet" class="headerlink" title="0×02 Codegate CTF 2018 RedVelvet"></a>0×02 Codegate CTF 2018 RedVelvet</h2><p>IDA 打开, 跳转到<code>main()</code>, 发现了一大串<code>funcX()</code>的调用.  <del>有点壮观(x</del></p>
+<p>观察结构发现, 在 48 行, ``fgets()<code>接受了 28 个字节的输入(包含末尾的</code>\n<code>), 保存到</code>s<code>中. 而</code>funcX()<code>并未改变</code>s<code>的值, 而是进行了一些验证, 比如</code>func7()`: </p>
+<p><img src="https://i.loli.net/2021/01/27/fuRYoAhm31TjLzw.png" srcset="/img/loading.gif" alt="image-20210127134648665"></p>
+<p>这 15 个<code>funcX()</code>共同对<code>s</code>进行了一系列的检查, 然后计算<code>s</code>的 SHA256 值, 并和<code>0a435f46288bb5a764d13fca6c901d3750cee73fd7689ce79ef6dc0ff8f380e5</code>比较, 确定 flag 正确与否.</p>
+<p><del>所以直接用 hashcat 穷举破解理论上倒也可行</del></p>
+<p>接下来就是 angr 发挥威力的时候了, 我们不需要将程序执行完, 只需要找到一个输入, 能够满足这十五个<code>funcX()</code>的约束, 使程序运行到<code>SHA256_Init()</code>前即可 - 对应的地址是<code>0x401534</code>.</p>
+<p>同时, 我们还需要避免进入<code>funcX()</code>中的<code>exit(1)</code>的分支, 以<code>func1()</code>为例.</p>
+<p><img src="https://i.loli.net/2021/01/27/Mu2QcKWZ81dfzFR.png" srcset="/img/loading.gif" alt="image-20210127135526675"></p>
+<p><code>0x4009ED</code>和<code>0x4009F7</code>就是我们不希望运行到的地方, 因为到这里说明我们的输入没有通过<code>func1()</code>的检验, 执行了<code>exit(1)</code> - 其他的<code>funcX()</code>同理.</p>
+<p>这样, 我们得到了期望执行到的地址与要避免的地址, 写出如下脚本.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> angr
+
+prog <span class="token operator">=</span> angr<span class="token punctuation">.</span>Project<span class="token punctuation">(</span><span class="token string">'./RedVelvet'</span><span class="token punctuation">,</span> load_options<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'auto_load_libs'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">)</span>   
+state <span class="token operator">=</span> prog<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>entry_state<span class="token punctuation">(</span><span class="token punctuation">)</span>    
+simgr <span class="token operator">=</span> prog<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>simgr<span class="token punctuation">(</span>state<span class="token punctuation">)</span>   
+
+simgr<span class="token punctuation">.</span>explore<span class="token punctuation">(</span>find<span class="token operator">=</span><span class="token number">0x00401534</span> <span class="token punctuation">,</span>avoid<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0x4009ED</span><span class="token punctuation">,</span><span class="token number">0x4009F7</span><span class="token punctuation">,</span><span class="token number">0x400A3C</span><span class="token punctuation">,</span><span class="token number">0x400A46</span><span class="token punctuation">,</span><span class="token number">0x400A9F</span><span class="token punctuation">,</span><span class="token number">0x400B01</span><span class="token punctuation">,</span><span class="token number">0x400B5C</span><span class="token punctuation">,</span><span class="token number">0x400C05</span><span class="token punctuation">,</span><span class="token number">0x400CAB</span><span class="token punctuation">,</span><span class="token number">0x400D51</span><span class="token punctuation">,</span><span class="token number">0x400DD6</span><span class="token punctuation">,</span><span class="token number">0x400E5E</span><span class="token punctuation">,</span><span class="token number">0x400F07</span><span class="token punctuation">,</span><span class="token number">0x400FAD</span><span class="token punctuation">,</span><span class="token number">0x4105F</span><span class="token punctuation">,</span><span class="token number">0x4010E9</span><span class="token punctuation">,</span> <span class="token number">0x40119D</span><span class="token punctuation">]</span><span class="token punctuation">)</span> 
+
+flag <span class="token operator">=</span> simgr<span class="token punctuation">.</span>found<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>posix<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>经过漫长的运行( VMWare Ubuntu + Docker angr/angr 大概 30 分钟? ), 我们得到了如下输出 (<code>fg</code>是因为我之前误以为写错了, 于是挂起去检查脚本了…)</p>
+<p><img src="https://i.loli.net/2021/01/27/id16RHAoK5TBpW3.png" srcset="/img/loading.gif" alt="image-20210127140006667"></p>
+<p>放到源程序里检查一下, 看来没毛病. </p>
+<p><img src="https://i.loli.net/2021/01/27/DeuYsaXi3ZW4mMt.png" srcset="/img/loading.gif" alt="image-20210127140226953"></p>
+<p><code>flag{What_You_Wanna_Be?:)_la_la}</code></p>
+<h3 id="Something-Else"><a href="#Something-Else" class="headerlink" title="Something Else"></a>Something Else</h3><ol>
+<li>RedVelvet依赖 1.0.0 版本的 libcrypto.so, 但是包含它的老版本的 openssl 已经过时了, 最后用<code>apt-file</code>查到英伟达的<code>nslight-system</code>还带这东西, 于是安装之后手动复制出来…</li>
+<li>理论上通过 15 个<code>funcX()</code>中的约束条件, 可以直接求出来满足的输入值, 就像<code>z3</code>那样</li>
+<li>如果限定输入长度与范围( ASCII 可见字符) 的话, 应当能够跑的更快, 学习中</li>
+<li>关于原题: 暂时没找到….</li>
+</ol>
 
             </div>
             <hr>
@@ -259,7 +313,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+                      <a class="hover-with-bg" href="/tags/Reverse/">Reverse</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
                     
                   </div>
                 
@@ -272,15 +328,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/16/MoeCTF%202020%20WriteUp/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MoeCTF 2020 Write Up</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2020/10/16/MoeCTF-2020-Write-Up-for-RxEncode/">
+                        <span class="hidden-mobile">MoeCTF 2020 Write Up for RxEncode</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -466,7 +522,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "The Beginning of Everything&nbsp;",
+        "Strong-Reversers&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
