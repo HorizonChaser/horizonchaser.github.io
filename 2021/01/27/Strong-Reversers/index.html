@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Horizon">
   <meta name="keywords" content="">
-  <title>Strong-Reversers - Horizon Blog</title>
+  <title>2021 Weekly Reverse - Horizon Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -235,16 +235,16 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Strong-Reversers</h1>
+            <h1 style="display: none">2021 Weekly Reverse</h1>
             
               <p class="note note-info">
                 
-                  最后更新：2021年1月27日 周三 8:19:5
+                  最后更新：2021年1月27日 周三 10:11:34
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h2 id="0x00-DDCTF-Android-Easy"><a href="#0x00-DDCTF-Android-Easy" class="headerlink" title="0x00 DDCTF-Android Easy"></a>0x00 DDCTF-Android Easy</h2><p><del>接触到的第二道安卓逆向题</del></p>
+              <h1 id="2021-Week-2-01-26"><a href="#2021-Week-2-01-26" class="headerlink" title="2021 Week 2 - 01/26"></a>2021 Week 2 - 01/26</h1><h2 id="0x00-DDCTF-Android-Easy"><a href="#0x00-DDCTF-Android-Easy" class="headerlink" title="0x00 DDCTF-Android Easy"></a>0x00 DDCTF-Android Easy</h2><p><del>接触到的第二道安卓逆向题</del></p>
 <p>下载, 发现是个 zip , 但是有 apk 的目录结构, 用 jadx-gui 打开可以看到如下的结构</p>
 <p><img src="https://i.loli.net/2021/01/27/Jd8H6ITzRl5NYsO.png" srcset="/img/loading.gif" alt="image-20210127124159278"></p>
 <p>很明显, 重点在 FlagActivity 类里面, <code>i()</code>中将<code>p</code> <code>q</code> 两个byte数组进行一系列操作后得到解密后的<code>byte[] bArr2</code>, 作为<code>String()</code>的参数返回.  之后在<code>onClickTest()</code>中通过将输入的字符串同<code>i()</code>的返回值进行比较, 判定 flag 是否正确.</p>
@@ -522,7 +522,7 @@ flag <span class="token operator">=</span> simgr<span class="token punctuation">
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Strong-Reversers&nbsp;",
+        "2021 Weekly Reverse&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
