@@ -1,10 +1,14 @@
 ---
-title: Strong-Reversers
+title: 2021 Weekly Reverse
 date: 2021-01-27 14:39:10
 tags:
 - Reverse
 - Android
 ---
+
+# 2021 Week 2 - 01/26
+
+
 
 ## 0x00 DDCTF-Android Easy
 
