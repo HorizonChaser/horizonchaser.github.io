@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      840 字
+      985 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      13
        分钟
     </span>
   
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  最后更新：2021年1月30日 周六 8:43:59
+                  最后更新：2021年1月30日 周六 15:36:2
                 
               </p>
             
@@ -286,6 +286,14 @@
 <p>发现一个 rar 文件, binwalk 分离, 发现有密码, 爆破, 得口令为<code>1903</code>, 解压得 flag.</p>
 <p><code>flag{d72e5a671aa50fa5f400e5d10eedeaa5}</code></p>
 <p><del>我一开始还以为密码是ctf来着…</del></p>
+<h3 id="BJDCTF2020-你猜我是个啥"><a href="#BJDCTF2020-你猜我是个啥" class="headerlink" title="[BJDCTF2020] 你猜我是个啥"></a>[BJDCTF2020] 你猜我是个啥</h3><p>下载附件, 打开, 提示不是个有效的压缩文件…</p>
+<p>010 Editor, 发现是个 png, 打开发现是一个二维码, 在文件尾有明文 flag.</p>
+<p><code>flag{i_am_fl@g}</code></p>
+<h3 id="BJDCTF-2nd-EasyBaBa"><a href="#BJDCTF-2nd-EasyBaBa" class="headerlink" title="[BJDCTF 2nd] EasyBaBa"></a>[BJDCTF 2nd] EasyBaBa</h3><p>下载, 得到一个 19.9 MB 的 454x427 的 jpg 文件…这大小显然不对啊…</p>
+<p>binwalk 分离, 发现 zip 结尾, 从 <code>0x6E43</code>手动分离 zip, 得到了这个</p>
+<p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130223536091.png" srcset="/img/loading.gif" alt="image-20210130223536091"></p>
+<p>查看文件头, 发现是一个 avi 视频, 打开, 在里面发现几个隐藏的一闪而过的二维码, 截图, 用 QR Research 解码, 拼接得flag.</p>
+<p><code>flag{imagin_love_Y1ng}</code></p>
 
             </div>
             <hr>
