@@ -13,7 +13,7 @@ tags:
 
 言归正传, 基于Hexo和Travis CI的Pages并不难部署, 只是基于YMAL的主题配置写起来有点麻烦, 向Markdown中插入图片也是一件麻烦事儿....    
 
-博客在 [Gitee Pages](https://horizonchaser.gitee.io/) 上有一份镜像, 不过在我搞定Github的workflow之前, Gitee的更新可能不是很及时😂    
+博客在 [Gitee Pages](https://horizonchaser.gitee.io/) 上有一份镜像, ~~不过在我搞定Github的workflow之前, Gitee的更新可能不是很及时😂~~已经搞定了🍻
 
 就这样吧, 欢迎大家来玩儿~
 

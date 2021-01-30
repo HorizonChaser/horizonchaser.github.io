@@ -1,6 +1,7 @@
 ---
 title: 2021 Weekly Reverse
 date: 2021-01-27 14:39:10
+excerpt: 每周的逆向练习与 Writeup
 tags:
 - Reverse
 - Android

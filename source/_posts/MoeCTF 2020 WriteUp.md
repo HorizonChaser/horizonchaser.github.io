@@ -1,6 +1,7 @@
 ---
 title: MoeCTF 2020 Write Up
 date: 2020-10-16 17:28:59
+excerpt: 2020 MoeCTF 的部分 Writeup
 tags: 
  - MoeCTF
  - Reverse
