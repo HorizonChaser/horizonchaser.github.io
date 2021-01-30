@@ -96,7 +96,7 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  # repo: git@github.com:HorizonChaser/horizonchaser.github.io.git
+  repo: https://github.com/HorizonChaser/horizonchaser.github.io.git
   branch: gh-pages
 
   jsonContent:
