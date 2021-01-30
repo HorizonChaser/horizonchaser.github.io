@@ -1,15 +1,29 @@
 name: Sync
 
-on: push
+on: 
+  push:
+    branches:
+      - backup
+
+env:
+  DEPLOY_REPO: HorizonChaser/horizonchaser.github.io
+  DEPLOY_BRANCH: gh-pages
 
 jobs:
-  build:
+  build-and-sync:
 
     runs-on: ubuntu-latest
     steps:
 
     - name: Checkout source
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
+
+    - name: Checkout deploy repo
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ env.DEPLOY_REPO }}
+        ref: ${{ env.DEPLOY_BRANCH }}
+        path: .deploy_git
 
     - name: Use Node.js ${{ matrix.node_version }}
       uses: actions/setup-node@v1
