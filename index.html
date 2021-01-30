@@ -39,7 +39,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
@@ -177,6 +177,52 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/01/29/2021-Weekly-Misc/" target="_self">
+          <img src="/img/default_post_banner.png" srcset="/img/loading.gif" alt="2021 Weekly Misc">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2021/01/29/2021-Weekly-Misc/">2021 Weekly Misc</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/01/29/2021-Weekly-Misc/">
+          
+          
+            
+          
+          每周的Misc练习与Writeup
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-29 15:17" pubdate>
+              2021-01-29
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Misc/">Misc</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/01/27/Strong-Reversers/" target="_self">
           <img src="/img/default_post_banner.png" srcset="/img/loading.gif" alt="2021 Weekly Reverse">
         </a>
@@ -193,10 +239,7 @@
           
             
           
-          2021 Week 2 - 01/260x00 DDCTF-Android Easy接触到的第二道安卓逆向题
-下载, 发现是个 zip , 但是有 apk 的目录结构, 用 jadx-gui 打开可以看到如下的结构
-
-很明显, 重点在 FlagActivity 类里面, i()中将p q 两个byte数组进行一系列操作后得到解密后的byte[] bArr2, 作为String()的参数返回.  之
+          每周的逆向练习与 Writeup
         </a>
       </p>
 
@@ -244,12 +287,7 @@
           
             
           
-          RxEncode 题解这道题当时没有做出来 , 然后就变成了面试作业
-使用IDA反汇编, 观察main函数, 发现程序将输入的内容作为RxEncode函数的参数, 再将返回值s1同s2进行比较确定flag正确与否.
-双击RxEncode并反汇编, 得伪代码如下.
-void *__fastcall RxEncode(const char *a1, int a2)
-{
-  int v2; // eax
+          RxEncode 的 Writeup
         </a>
       </p>
 
@@ -297,14 +335,7 @@ void *__fastcall RxEncode(const char *a1, int a2)
           
             
           
-          MoeCTF 2020 Write UpBy Horizon Chaser, aka. Horizon
-第一次参加CTF, 现学现用, 会做的题实在有限😂, 先把自己会的或者有思路的部分题写下来, 以供参考
-其他不会的题就等各位巨佬的Write Up辽
-龟速更新记录
-
-10.14 Misc + Reverse.Rxencode
-10.16 Reverse
-10.18 Algorithm + Cl
+          2020 MoeCTF 的部分 Writeup
         </a>
       </p>
 
@@ -322,13 +353,13 @@ void *__fastcall RxEncode(const char *a1, int a2)
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
+              <a href="/tags/Misc/">Misc</a>
+            
               <a href="/tags/MoeCTF/">MoeCTF</a>
             
               <a href="/tags/Reverse/">Reverse</a>
             
               <a href="/tags/Android/">Android</a>
-            
-              <a href="/tags/Misc/">Misc</a>
             
               <a href="/tags/Algorithm/">Algorithm</a>
             
@@ -358,12 +389,7 @@ void *__fastcall RxEncode(const char *a1, int a2)
         <a href="/2020/10/15/The-Beginning-of-Everything/">
           
           
-            
           
-          The Beginning of Everything其实很早之前就想在Github Pages上搭一个个人博客了, CSDN总是让人很难受   
- 但是拖延症晚期的我现在才搭完hhh    
-言归正传, 基于Hexo和Travis CI的Pages并不难部署, 只是基于YMAL的主题配置写起来有点麻烦, 向Markdown中插入图片也是一件麻烦事儿….    
-博客在 Gitee Pages 上
         </a>
       </p>
 

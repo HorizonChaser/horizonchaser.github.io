@@ -17,10 +17,31 @@
   <meta name="description" content="">
   <meta name="author" content="Horizon">
   <meta name="keywords" content="">
-  <title>归档 - Horizon Blog</title>
+  <title>2021 Weekly Misc - Horizon Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+        
+        
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/themes/prism-coy.min.css" />
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -45,7 +66,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -139,7 +160,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.jpg') no-repeat center center;
+         style="background: url('/img/index_banner.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -147,6 +168,51 @@
             <span class="h2" id="subtitle">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-29 15:17" pubdate>
+        2021年1月29日 周五 15:17:16
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      424 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      5
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -159,64 +225,100 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">2021 Weekly Misc</h1>
+            
+              <p class="note note-info">
                 
+                  最后更新：2021年1月30日 周六 6:7:43
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="Week-4-01-24-01-30-BUUCTF"><a href="#Week-4-01-24-01-30-BUUCTF" class="headerlink" title="Week 4, 01/24 - 01/30 BUUCTF"></a>Week 4, 01/24 - 01/30 BUUCTF</h2><h3 id="被偷走的文件"><a href="#被偷走的文件" class="headerlink" title="被偷走的文件"></a>被偷走的文件</h3><p>打开流量包, 发现一些FTP协议的包, 用<code>ftp or ftp-data</code>筛选出来, 结果如下.</p>
+<p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130110430119.png" srcset="/img/loading.gif" alt="image-20210130110430119"></p>
+<p>55 号包就是服务器返回的包含 flag.rar 的数据包, 右键详情中的 FTP Data 分组, 导出分组字节流. 从文件头的<code>Rar!</code>可以判定, 这是一个 rar 文件.</p>
+<p>打开导出的文件, 发现需要密码, 用 ARCHPR 爆破, 得到四位密码<code>5790</code>, 进而得到 flag.</p>
+<p><code>flag{6fe99a5d03fb01f833ec3caa80358fa3}</code></p>
+<h4 id="另一种提取数据的做法"><a href="#另一种提取数据的做法" class="headerlink" title="另一种提取数据的做法"></a>另一种提取数据的做法</h4><p>从 <a target="_blank" rel="noopener" href="https://pcapng.github.io/pcapng/draft-tuexen-opsawg-pcapng.html">pcapng 的规范</a>中, 我们可以发现数据包在捕获文件中是明文存储的, 同时 FTP 的数据也是明文传输的, 所以我们可以直接使用 binwalk 或者 foremost 从 pcapng 中提取文件.</p>
+<p>如果提取出的文件太多的话, 也可以先导出指定的数据包再尝试提取.</p>
+<h3 id="BJDCTF2020-认真你就输了"><a href="#BJDCTF2020-认真你就输了" class="headerlink" title="[BJDCTF2020] 认真你就输了"></a>[BJDCTF2020] 认真你就输了</h3><p>打开, 是一个 xls 文件, 但不能正常显示.</p>
+<p>不过 xls 文件本身也是一个 zip 压缩包, 直接解压, 在 xl/charts 下面发现一个 flag.txt, 打开就是 flag…</p>
+<p><code>flag{M9eVfi2Pcs#}</code></p>
+<h3 id="BJDCTF2020-藏藏藏"><a href="#BJDCTF2020-藏藏藏" class="headerlink" title="[BJDCTF2020]藏藏藏"></a>[BJDCTF2020]藏藏藏</h3><p>打开, 是张 jpg 图片, 用 stegsolve 看一下 File Format…</p>
+<p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130121745206.png" srcset="/img/loading.gif" alt="image-20210130121745206"></p>
+<p>看来文件末尾藏了点东西, 熟悉的 <code>50 4B 03 04</code> - 应该就是个 zip 了. 比较奇怪的是, 用 binwalk 没能识别到 zip 头, 只识别到了结尾…</p>
+<p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130122312148.png" srcset="/img/loading.gif" alt="image-20210130122312148"></p>
+<p>不过关系不大, 用 UltraEdit (或者别的什么十六进制编辑器)打开, 定位到 zip 文件头, 在<code>0xC7EE</code>的位置, 写个 python 脚本从这里切分就行.</p>
+<p>打开切分得到的 zip 文件, 里面是个 docx 文件, 打开扫码, 得到flag.</p>
+<p><code>flag{you are the best!}</code></p>
 
-<div class="list-group">
-  <p class="h4">共计 5 篇文章</p>
-  <hr>
-  
-    
-      
-      <p class="h5">2021</p>
-    
-    <a href="/2021/01/29/2021-Weekly-Misc/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">2021 Weekly Misc</span>
-      <time style="float: right;">01-29</time>
-    </a>
-  
-    
-    <a href="/2021/01/27/Strong-Reversers/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">2021 Weekly Reverse</span>
-      <time style="float: right;">01-27</time>
-    </a>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/10/16/MoeCTF-2020-Write-Up-for-RxEncode/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MoeCTF 2020 Write Up for RxEncode</span>
-      <time style="float: right;">10-16</time>
-    </a>
-  
-    
-    <a href="/2020/10/16/MoeCTF%202020%20WriteUp/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MoeCTF 2020 Write Up</span>
-      <time style="float: right;">10-16</time>
-    </a>
-  
-    
-    <a href="/2020/10/15/The-Beginning-of-Everything/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">The Beginning of Everything</span>
-      <time style="float: right;">10-15</time>
-    </a>
-  
-</div>
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Misc/">Misc</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/01/27/Strong-Reversers/">
+                        <span class="hidden-mobile">2021 Weekly Reverse</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -344,6 +446,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -351,7 +478,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "2021 Weekly Misc&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
@@ -366,6 +493,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -379,6 +521,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 

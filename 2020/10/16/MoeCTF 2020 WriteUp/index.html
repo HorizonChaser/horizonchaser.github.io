@@ -60,7 +60,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  最后更新：2021年1月27日 周三 10:11:34
+                  最后更新：2021年1月30日 周六 6:7:43
                 
               </p>
             
@@ -291,7 +291,6 @@
   <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>在main函数中, 首先将flag内容复制到str2中, 然后输出提示信息并将输入保存到Str1中. 之后通过strcmp比较输入的Str2与保存的Str1的值是否一致. 由此我们得出, Str2的值就是flag<code>moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}</code>. <del>虽然说是显然的, 但是该分析还是要分析的</del></p>
 <p>总之, Welcome to the World of Reverse 🍻!</p>
 <h3 id="RxEncode"><a href="#RxEncode" class="headerlink" title="RxEncode"></a>RxEncode</h3><p>这道题当时没有做出来 <del>, 然后就变成了面试作业</del></p>
@@ -377,7 +376,6 @@
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> result<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>注意到 ‘=’ 的ASCII码是61, 结合面试时的提示**”将flag进行**(类似)<strong>base64解码”</strong>, 仔细分析RxEncode的逻辑后, 得出这个函数的作用就是将内容进行类似base64的解码.</p>
 <p>由此我们得出, s2保存的应当就是解码后的flag内容, 将变量的值转为16进制后结果如下.</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">  char s2[8]; // [rsp+10h] [rbp-60h]
@@ -391,13 +389,11 @@
  *(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
  v15 = 0xCBEBFDFA6CED0BFELL;
  v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>结合s2 v15 v16在main的栈帧中相邻存放这一点, 我们推测s2实际的长度应当不止为8, 而是24. </p>
 <p>事实上, 我认为v15 v16的__int64类型也是IDA的推测(它并不确定真实类型是什么) - 因为在栈帧中将s2的类型由默认的char []改为char [24]后, 三个变量变成了这样.</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">*(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
 *(_QWORD *)v15 = 0xCBEBFDFA6CED0BFELL;
 *(_QWORD *)v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
 <p>考虑到x86的小端序, 实际的字节顺序应当是 <code>9A 87 9C B5 FE 58</code>这样. 获得解码的flag后, 尝试进行base64编码. </p>
 <p>考虑到flag中含有标准编码表不包含的<code>{ }</code>, 因此我们可以认为这个表不同于标准的编码表.</p>
 <p>观察发现, RxEncode中调用了一个名为find_pos的函数, 它的作用应当是在编码表中查找字符的位置, 进入该函数, 得到编码表<code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234{}789+/=</code>.</p>
@@ -437,7 +433,6 @@ v39 <span class="token operator">=</span> <span class="token number">0</span><sp
 v40 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 v41 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 v42 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>不过除此之外整体的结构并未发生过多改变, 其余内容一样.</p>
 <h3 id="Simple-Re"><a href="#Simple-Re" class="headerlink" title="Simple Re"></a>Simple Re</h3><p>下载解压, 拖入IDA中反汇编, 得到伪代码. 观察发现, main中会将输入的字符串作为参数调用enc()函数.    </p>
 <p>双击跳转进该函数, 反汇编后得到伪代码如下. </p>
@@ -490,7 +485,6 @@ v42 <span class="token operator">=</span> <span class="token number">0</span><sp
     result <span class="token operator">=</span> <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"no...Don't Give up!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> result<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>可以看到, 它是将输入依次对 0x17 0x39 0x4A …… 0x37 进行异或, 然后将运算结果out与aim进行比较. 双击aim变量名, 跳转到栈帧中, 得到aim的值<code>rpz|kydKw^qTl@Y/m2f/J-@o^k.,qkb</code>.</p>
 <p>由 <code>a^b^b == a</code>, 不难发现将aim依次同 0x37 0x49 …… 0x39 0x17 进行异或即可得到flag<code>moectf{ThAnKs_F0r-y0U2_pAt13nt}</code></p>
 <p><del>是挺需要耐心的…</del></p>
@@ -517,7 +511,6 @@ v42 <span class="token operator">=</span> <span class="token number">0</span><sp
   <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"right!"</span><span class="token punctuation">,</span> v5<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>不难看出, 这里是将输入和 x 进行逐个字符异或后再同 y 比较. 用同样的方法, 我们得到<code>x = aouv#@!V08asdozpnma&amp;*#%!$^&amp;*</code>, <code>y ={0x0c, 0x0, 0x10, 0x15, 0x57, 0x26, 0x5a, 0x23, 0x40, 0x40, 0x3e, 0x42, 0x37, 0x30, 0x9, 0x19, 0x3, 0x1d, 0x50, 0x43, 0x7, 0x57, 0x15, 0x7e, 0x51, 0x6d, 0x43, 0x57, 0, 0, 0, 0}</code>. </p>
 <p>写个Java脚本 <del>暂时还不会py</del> 异或之后得到 flag <code>moectf{upx_1S_simp1e-t0_u3e}</code></p>
 <p><del>UPX是挺好用的</del></p>
@@ -571,7 +564,6 @@ using namespace std<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
-
 <h3 id="Frank-amp-赤道企鹅-永远的神"><a href="#Frank-amp-赤道企鹅-永远的神" class="headerlink" title="Frank &amp; 赤道企鹅, 永远的神"></a>Frank &amp; 赤道企鹅, 永远的神</h3><p>这两道题解法相似, 都是统计文件内容, 可参见repo中对应的FrankCounter.java 与EquatorCounter.java</p>
 <p>其余略😜</p>
 <h2 id="Classic-Crypto"><a href="#Classic-Crypto" class="headerlink" title="Classic Crypto"></a>Classic Crypto</h2><blockquote>
@@ -615,13 +607,13 @@ using namespace std<span class="token punctuation">;</span>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
+                      <a class="hover-with-bg" href="/tags/Misc/">Misc</a>
+                    
                       <a class="hover-with-bg" href="/tags/MoeCTF/">MoeCTF</a>
                     
                       <a class="hover-with-bg" href="/tags/Reverse/">Reverse</a>
                     
                       <a class="hover-with-bg" href="/tags/Android/">Android</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Misc/">Misc</a>
                     
                       <a class="hover-with-bg" href="/tags/Algorithm/">Algorithm</a>
                     
