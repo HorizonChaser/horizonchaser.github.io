@@ -1,9 +1,10 @@
 ---
 title: 2021 Weekly Misc
 date: 2021-01-29 15:17:16
-excerpt: 每周的Misc练习与Writeup
+excerpt: 每周的 Misc 练习与 Writeup
 tags:
 - Misc
+- BUUCTF
 ---
 
 ##  Week 4, 01/24 - 01/30 BUUCTF
@@ -105,6 +106,8 @@ tags:
 
 ~~我一开始还以为密码是ctf来着...~~
 
+
+
 ### [BJDCTF2020] 你猜我是个啥
 
 下载附件, 打开, 提示不是个有效的压缩文件...
@@ -112,6 +115,8 @@ tags:
 010 Editor, 发现是个 png, 打开发现是一个二维码, 在文件尾有明文 flag.
 
 `flag{i_am_fl@g}`
+
+
 
 ### [BJDCTF 2nd] EasyBaBa
 
@@ -124,4 +129,98 @@ binwalk 分离, 发现 zip 结尾, 从 `0x6E43`手动分离 zip, 得到了这个
 查看文件头, 发现是一个 avi 视频, 打开, 在里面发现几个隐藏的一闪而过的二维码, 截图, 用 QR Research 解码, 拼接得flag.
 
 `flag{imagin_love_Y1ng}`
+
+
+
+## Week 5, 01/31 - 02/06, BUUCTF
+
+### [SWPU2019] 神奇的二维码
+
+下载附件, 打开, 用 binwalk 分离一下, 得到四个 rar 压缩包.
+
+![image-20210131162556648](2021-Weekly-Misc/image-20210131162556648.png)
+
+先看第一个`7104.rar`, 里面有一个 `encode.txt`, 打开是一段 base64: `YXNkZmdoamtsMTIzNDU2Nzg5MA==`, 解码得`asdfghjkl1234567890`.
+
+对于`716A.rar`, 有一张图片和压缩包, 内层压缩包需要密码 - 也就是我们刚刚拿到的解码后的内容...不过解压之后检查, 并没发现 flag...
+
+~~看看flag在不在里面?~~
+
+~~不在😡~~
+
+在`17012.rar`中, 我们发现了一个 flag.doc, 里面有一段很长的, 看上去是 base64 的东西, 解码一下, 变成了另一段 base64... ~~有点意思~~
+
+重复解码多次之后, 我们得到了`comEON_YOuAreSOSoS0great`, 用这个解压 `18394.rar`, 有一段音频.
+
+放到 Audacity 里看一下, 明显是[摩尔斯电码](https://zh.wikipedia.org/wiki/摩尔斯电码), 用[这个](https://morsecode.world/international/decoder/audio-decoder-adaptive.html)解码一下(或者自己来也行), 得到 flag.
+
+![image-20210131164320704](2021-Weekly-Misc/image-20210131164320704.png)
+
+flag: `flag{morseisveryveryeasy}`
+
+
+
+BTW, 直接扫描二维码会告诉你 `flag is not here`...
+
+![image-20210131164506602](2021-Weekly-Misc/image-20210131164506602.png)
+
+### [BJDCTF2020] 一叶障目
+
+下载打开, 发现 Honeyview 打不开图片, 但是资源管理器能显示预览图 - 显然图的某些东西是被改过了.
+
+用 010 Editor 打开, 报了 CRC 校验错误, 结合之前看到的条状图案, 怀疑是宽高被改了.
+
+对于 [PNG 图片](https://dev.gameres.com/Program/Visual/Other/PNGFormat.htm), 宽高这些信息保存在 IHDR 中, 作为第一个数据块紧接着文件头之后. IHDR 长 13 字节, 定义如下.
+
+![image-20210201205712447](2021-Weekly-Misc/image-20210201205712447.png)
+
+所以在已知 CRC 的前提下, 我们可以通过在合理范围内穷举宽高的方式得到正确的大小.
+
+```python
+#coding=utf-8
+import zlib
+import struct
+import time
+
+time_start=time.time()
+
+#读文件
+file = '1.png'  #注意，1.png图片要和脚本在同一个文件夹下哦~
+fileRead = open(file,'rb').read()
+data = bytearray(fileRead[12:29]) #0xCh ~ 0x1Ch
+crc32key = eval(str(fileRead[29:33]).replace('\\x','').replace("b'",'0x').replace("'",''))
+
+#crc32key = 0xCBD6DF8A #补上0x，copy hex value
+#data = bytearray(b'\x49\x48\x44\x52\x00\x00\x01\xF4\x00\x00\x01\xF1\x08\x06\x00\x00\x00')  #hex下copy grep hex
+n = 4095 #理论上0xffffffff,但考虑到屏幕实际，0x0fff就差不多了
+
+for w in range(n):#高和宽一起爆破
+    width = bytearray(struct.pack('>i', w))#q为8字节，i为4字节，h为2字节
+    for h in range(n):
+        height = bytearray(struct.pack('>i', h))
+        for x in range(4):
+            data[x+4] = width[x]
+            data[x+8] = height[x]
+            #print(data)
+        crc32result = zlib.crc32(data)
+        if crc32result == crc32key:
+            #print("Correct Width: " + (width) + "\nCorrect Height: " + (height))
+            #写文件
+            newpic = bytearray(fileRead)
+            for x in range(4):
+                newpic[x+16] = width[x]
+                newpic[x+20] = height[x]
+            fw = open(file+'_CRC_Repaired.png','wb')#保存副本
+            fw.write(newpic)
+            fw.close
+
+time_end=time.time()
+print("CRC Repaired, saved as " + file+'_CRC_Repaired.png')
+print('Time Used: ',str(time_end-time_start),'s')
+
+```
+
+查看修复后的图片, 得到 flag.
+
+`flag{66666}`
 

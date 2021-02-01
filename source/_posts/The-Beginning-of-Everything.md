@@ -17,3 +17,7 @@ tags:
 
 就这样吧, 欢迎大家来玩儿~
 
+
+
+Update 21/01/31: 把博客的 CI 从 Travis 迁移到 Github Actions 上了, 前者太慢了, 排队能排半个小时...
+
