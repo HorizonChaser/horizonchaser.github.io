@@ -224,3 +224,23 @@ print('Time Used: ',str(time_end-time_start),'s')
 
 `flag{66666}`
 
+
+
+### [BJDCTF 2nd] Real_EasyBaBa
+
+查看图片, 发现是 jpg 格式, 并且有一定损坏...
+
+![image-20210204221540876](2021-Weekly-Misc/image-20210204221540876.png)
+
+binwalk 扫描一下, 发现 zip 文件尾但是没发现文件头. 检查发现文件头被修改为 `50 4B FF FF` , 修改后分离得到一个包含 `hint` 文件的 zip 压缩包, 打开后...是一个二维码...
+
+![image-20210204223726793](2021-Weekly-Misc/image-20210204223726793.png)
+
+缩小之后扫描, 得到一行指令 `od -vtx1 ./draw.png | head -56 | tail -28`, 执行后发现输出的是这里对应的 16 进制内容
+
+![image-20210204224728710](2021-Weekly-Misc/image-20210204224728710.png)
+
+仔细看, 能看到对应的字符画....~~这也太坑了吧~~
+
+`flag{572154976}`
+
