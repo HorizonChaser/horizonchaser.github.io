@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Horizon">
   <meta name="keywords" content="">
-  <title>2021 Weekly Reverse - Horizon Blog</title>
+  <title>BUUCTF Weekly Reverse - Horizon Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      126 字
+      410 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      7
        分钟
     </span>
   
@@ -235,16 +235,16 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">2021 Weekly Reverse</h1>
+            <h1 style="display: none">BUUCTF Weekly Reverse</h1>
             
               <p class="note note-info">
                 
-                  最后更新：2021年2月1日 周一 13:59:49
+                  最后更新：2021年2月4日 周四 16:11:21
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h2 id="Week-5-01-31-02-06-BUUCTF"><a href="#Week-5-01-31-02-06-BUUCTF" class="headerlink" title="Week 5, 01/31 - 02/06, BUUCTF"></a>Week 5, 01/31 - 02/06, BUUCTF</h2><h2 id="reverse1"><a href="#reverse1" class="headerlink" title="reverse1"></a>reverse1</h2><p>用 ExeinfoPE 看一下, 是一个 x64 程序.</p>
+              <h2 id="Week-5-01-31-02-06-BUUCTF"><a href="#Week-5-01-31-02-06-BUUCTF" class="headerlink" title="Week 5, 01/31 - 02/06, BUUCTF"></a>Week 5, 01/31 - 02/06, BUUCTF</h2><h3 id="reverse1"><a href="#reverse1" class="headerlink" title="reverse1"></a>reverse1</h3><p>用 ExeinfoPE 看一下, 是一个 x64 程序.</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210201212113576.png" srcset="/img/loading.gif" alt="image-20210201212113576"></p>
 <p>IDA, 入口是<code>sub_140012170</code>, 一路跟踪下去到<code>sub_140012190</code>,  <del>然后分析不能</del></p>
 <p>从 Strings window 看一下, 发现一条明显的提示语 <code>wrong flag</code>, 看一下, 是<code>sub_1400118C0</code>引用了它, 跳过去康康.</p>
@@ -252,6 +252,47 @@
 <p>第18行的 <code>for</code>循环中, 把 <code>Str2[]</code>中的<code>o</code>全部替换为了<code>0</code>, 然后和输入的<code>Str1</code>进行比较, 判断是否正确.</p>
 <p><code>Str2[]</code>的内容是<code>{hello_world}</code>, 替换后输入程序检查, 确定正确.</p>
 <p><code>flag{hell0_w0rld}</code></p>
+<h3 id="reverse3"><a href="#reverse3" class="headerlink" title="reverse3"></a>reverse3</h3><p>IDA, 找到 <code>main</code>之后 F5, 大概修改一些名称之后得到如下.</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __cdecl <span class="token function">main_0</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>envp<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  size_t StrLen<span class="token punctuation">;</span> <span class="token comment">// eax</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>v4<span class="token punctuation">;</span> <span class="token comment">// eax</span>
+  size_t destLen2<span class="token punctuation">;</span> <span class="token comment">// eax</span>
+  <span class="token keyword">char</span> v7<span class="token punctuation">;</span> <span class="token comment">// [esp+0h] [ebp-188h]</span>
+  <span class="token keyword">char</span> v8<span class="token punctuation">;</span> <span class="token comment">// [esp+0h] [ebp-188h]</span>
+  <span class="token keyword">signed</span> <span class="token keyword">int</span> j<span class="token punctuation">;</span> <span class="token comment">// [esp+DCh] [ebp-ACh]</span>
+  <span class="token keyword">int</span> i<span class="token punctuation">;</span> <span class="token comment">// [esp+E8h] [ebp-A0h]</span>
+  <span class="token keyword">signed</span> <span class="token keyword">int</span> destLen<span class="token punctuation">;</span> <span class="token comment">// [esp+E8h] [ebp-A0h]</span>
+  <span class="token keyword">char</span> Destination<span class="token punctuation">[</span><span class="token number">108</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [esp+F4h] [ebp-94h] BYREF</span>
+  <span class="token keyword">char</span> Str<span class="token punctuation">[</span><span class="token number">28</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [esp+160h] [ebp-28h] BYREF</span>
+  <span class="token keyword">char</span> v14<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [esp+17Ch] [ebp-Ch] BYREF</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">;</span> <span class="token operator">++</span>i <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span><span class="token punctuation">)</span>i <span class="token operator">&gt;=</span> <span class="token number">0x64</span> <span class="token punctuation">)</span>
+      <span class="token function">j____report_rangecheckfailure</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Destination<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"please enter the flag:"</span><span class="token punctuation">,</span> v7<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">input</span><span class="token punctuation">(</span><span class="token string">"%20s"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">char</span><span class="token punctuation">)</span>Str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  StrLen <span class="token operator">=</span> <span class="token function">j_strlen</span><span class="token punctuation">(</span>Str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  v4 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">sub_4110BE</span><span class="token punctuation">(</span>Str<span class="token punctuation">,</span> StrLen<span class="token punctuation">,</span> v14<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">strncpy</span><span class="token punctuation">(</span>Destination<span class="token punctuation">,</span> v4<span class="token punctuation">,</span> <span class="token number">0x28u</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  destLen <span class="token operator">=</span> <span class="token function">j_strlen</span><span class="token punctuation">(</span>Destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> destLen<span class="token punctuation">;</span> <span class="token operator">++</span>j <span class="token punctuation">)</span>
+    Destination<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+=</span> j<span class="token punctuation">;</span>
+  destLen2 <span class="token operator">=</span> <span class="token function">j_strlen</span><span class="token punctuation">(</span>Destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span><span class="token function">strncmp</span><span class="token punctuation">(</span>Destination<span class="token punctuation">,</span> aE3nifih9bCNDh<span class="token punctuation">,</span> destLen2<span class="token punctuation">)</span> <span class="token punctuation">)</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"rigth flag!\n"</span><span class="token punctuation">,</span> v8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"wrong flag!\n"</span><span class="token punctuation">,</span> v8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在得到输入之后, <code>sub_4110BE</code>对输入的 <code>Str</code>进行了一些处理, 同时 27 行的 <code>for</code> 循环也对 <code>Destination[]</code> 进行了移位, 之后两者比较判断是否正确.</p>
+<p>观察 <code>sub_4110BE</code>, 发现其中调用了一个 base64 的编码表, 结合行为确定是对输入进行 base64 编码.</p>
+<p>把 <code>Destination[]</code>的内容进行反移位, 得到<code>e2lfbDB2ZV95b3V9</code>, base64 解码后得到 <code>{i_l0ve_you}</code></p>
+<p><code>flag{i_l0ve_you}</code></p>
+<p><del>另外题中的”right”打错了…</del></p>
 
             </div>
             <hr>
@@ -471,7 +512,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "2021 Weekly Reverse&nbsp;",
+        "BUUCTF Weekly Reverse&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,

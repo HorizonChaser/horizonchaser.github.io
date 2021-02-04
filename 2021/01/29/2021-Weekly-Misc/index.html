@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      1.8k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23
+      25
        分钟
     </span>
   
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  最后更新：2021年2月1日 周一 13:59:49
+                  最后更新：2021年2月4日 周四 16:11:21
                 
               </p>
             
@@ -355,6 +355,14 @@ time_end<span class="token operator">=</span>time<span class="token punctuation"
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>查看修复后的图片, 得到 flag.</p>
 <p><code>flag{66666}</code></p>
+<h3 id="BJDCTF-2nd-Real-EasyBaBa"><a href="#BJDCTF-2nd-Real-EasyBaBa" class="headerlink" title="[BJDCTF 2nd] Real_EasyBaBa"></a>[BJDCTF 2nd] Real_EasyBaBa</h3><p>查看图片, 发现是 jpg 格式, 并且有一定损坏…</p>
+<p><img src="/2021/01/29/2021-Weekly-Misc/image-20210204221540876.png" srcset="/img/loading.gif" alt="image-20210204221540876"></p>
+<p>binwalk 扫描一下, 发现 zip 文件尾但是没发现文件头. 检查发现文件头被修改为 <code>50 4B FF FF</code> , 修改后分离得到一个包含 <code>hint</code> 文件的 zip 压缩包, 打开后…是一个二维码…</p>
+<p><img src="/2021/01/29/2021-Weekly-Misc/image-20210204223726793.png" srcset="/img/loading.gif" alt="image-20210204223726793"></p>
+<p>缩小之后扫描, 得到一行指令 <code>od -vtx1 ./draw.png | head -56 | tail -28</code>, 执行后发现输出的是这里对应的 16 进制内容</p>
+<p><img src="/2021/01/29/2021-Weekly-Misc/image-20210204224728710.png" srcset="/img/loading.gif" alt="image-20210204224728710"></p>
+<p>仔细看, 能看到对应的字符画….<del>这也太坑了吧</del></p>
+<p><code>flag{572154976}</code></p>
 
             </div>
             <hr>
@@ -382,7 +390,7 @@ time_end<span class="token operator">=</span>time<span class="token punctuation"
                     
                       <a href="/2021/02/01/2021-Weekly-Reverse/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2021 Weekly Reverse</span>
+                        <span class="hidden-mobile">BUUCTF Weekly Reverse</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
