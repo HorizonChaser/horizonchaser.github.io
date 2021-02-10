@@ -19,5 +19,14 @@ tags:
 
 
 
-Update 21/01/31: 把博客的 CI 从 Travis 迁移到 Github Actions 上了, 前者太慢了, 排队能排半个小时...
+# Update 21/01/31
 
+把博客的 CI 从 Travis 迁移到 Github Actions 上了, 前者太慢了, 排队能排半个小时...
+
+
+
+# Update 21/02/05
+
+从 [蝴蝶计数器](https://www.bfcounter.vip/) 拿到了一个统计的小工具, 放到这里
+
+![](https://www.bfcounter.vip/generatepic?userid=d582efcb-3c8b-49de-8f01-e9da8bb7be3e)
