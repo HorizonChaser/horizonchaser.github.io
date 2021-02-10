@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      2.4k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      39
        分钟
     </span>
   
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  最后更新：2021年2月4日 周四 16:11:21
+                  最后更新：2021年2月10日 周三 15:27:10
                 
               </p>
             
@@ -302,7 +302,252 @@ flag <span class="token operator">=</span> simgr<span class="token punctuation">
 <li>如果限定输入长度与范围( ASCII 可见字符) 的话, 应当能够跑的更快, 学习中</li>
 <li>关于原题: 暂时没找到….</li>
 </ol>
+<h1 id="2021-Week-3-02-10"><a href="#2021-Week-3-02-10" class="headerlink" title="2021 Week 3 - 02/10"></a>2021 Week 3 - 02/10</h1><h2 id="0x00-PyDis"><a href="#0x00-PyDis" class="headerlink" title="0x00 PyDis"></a>0x00 PyDis</h2><p>一道 Python 逆向题, 本来想直接用 uncompyle6 来着, 不过它目前只能支持到 3.8 …</p>
+<p>不过我们总是可以自己手动来解决 √ <del>从零开始, 半天过去了</del></p>
+<p>根据提示, 用 <code>marshal</code> 解析 pyc 文件, 提取出指令部分, 然后用 <code>dis</code> 反编译, 拿到字节码指令. 根据 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/dis.html">Python文档</a>, 我们可以写出同义的代码, 如下. </p>
+<p>(<code>#</code>开头的是我们推测出的每行对应的源代码, 缩进一致)</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"> <span class="token number">1</span>           <span class="token number">0</span> BUILD_LIST               <span class="token number">0</span>
+             <span class="token number">2</span> LOAD_CONST               <span class="token number">0</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">178</span><span class="token punctuation">,</span> <span class="token number">184</span><span class="token punctuation">,</span> <span class="token number">185</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">182</span><span class="token punctuation">,</span> <span class="token number">165</span><span class="token punctuation">,</span> <span class="token number">174</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">183</span><span class="token punctuation">,</span> <span class="token number">187</span><span class="token punctuation">,</span> <span class="token number">176</span><span class="token punctuation">,</span> <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">169</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">167</span><span class="token punctuation">,</span> <span class="token number">163</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+             <span class="token number">4</span> CALL_FINALLY             <span class="token number">1</span> <span class="token punctuation">(</span>to <span class="token number">7</span><span class="token punctuation">)</span>
+             <span class="token number">6</span> STORE_NAME               <span class="token number">0</span> <span class="token punctuation">(</span>magic<span class="token punctuation">)</span>
 
+   <span class="token comment"># magic = [178, ....]</span>
+
+ <span class="token number">2</span>           <span class="token number">8</span> LOAD_NAME                <span class="token number">1</span> <span class="token punctuation">(</span><span class="token builtin">input</span><span class="token punctuation">)</span>
+            <span class="token number">10</span> LOAD_CONST               <span class="token number">1</span> <span class="token punctuation">(</span><span class="token string">'flag &gt;&gt;&gt; '</span><span class="token punctuation">)</span>
+            <span class="token number">12</span> CALL_FUNCTION            <span class="token number">1</span>
+            <span class="token number">14</span> STORE_NAME               <span class="token number">2</span> <span class="token punctuation">(</span>inp<span class="token punctuation">)</span>
+
+   <span class="token comment"># inp = input("flag &gt;&gt;&gt; ")</span>
+
+ <span class="token number">4</span>          <span class="token number">16</span> LOAD_NAME                <span class="token number">3</span> <span class="token punctuation">(</span><span class="token builtin">list</span><span class="token punctuation">)</span>
+            <span class="token number">18</span> LOAD_NAME                <span class="token number">2</span> <span class="token punctuation">(</span>inp<span class="token punctuation">)</span>
+            <span class="token number">20</span> CALL_FUNCTION            <span class="token number">1</span>
+            <span class="token number">22</span> STORE_NAME               <span class="token number">4</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+
+   <span class="token comment"># inp = list(flag)</span>
+
+ <span class="token number">5</span>          <span class="token number">24</span> LOAD_NAME                <span class="token number">5</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">)</span>
+            <span class="token number">26</span> LOAD_NAME                <span class="token number">4</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+            <span class="token number">28</span> CALL_FUNCTION            <span class="token number">1</span>
+            <span class="token number">30</span> LOAD_NAME                <span class="token number">5</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">)</span>
+            <span class="token number">32</span> LOAD_NAME                <span class="token number">0</span> <span class="token punctuation">(</span>magic<span class="token punctuation">)</span>
+            <span class="token number">34</span> CALL_FUNCTION            <span class="token number">1</span>
+            <span class="token number">36</span> COMPARE_OP               <span class="token number">3</span> <span class="token punctuation">(</span><span class="token operator">!=</span><span class="token punctuation">)</span>
+            <span class="token number">38</span> POP_JUMP_IF_FALSE       <span class="token number">54</span>
+
+   <span class="token comment"># if(len(flag) != len(magic)):</span>
+
+ <span class="token number">6</span>          <span class="token number">40</span> LOAD_NAME                <span class="token number">6</span> <span class="token punctuation">(</span><span class="token keyword">print</span><span class="token punctuation">)</span>
+            <span class="token number">42</span> LOAD_CONST               <span class="token number">2</span> <span class="token punctuation">(</span><span class="token string">'qwq'</span><span class="token punctuation">)</span>
+            <span class="token number">44</span> CALL_FUNCTION            <span class="token number">1</span>
+            <span class="token number">46</span> POP_TOP
+
+   <span class="token comment">#   print("qwq")</span>
+
+ <span class="token number">7</span>          <span class="token number">48</span> LOAD_NAME                <span class="token number">7</span> <span class="token punctuation">(</span>exit<span class="token punctuation">)</span>
+            <span class="token number">50</span> CALL_FUNCTION            <span class="token number">0</span>
+            <span class="token number">52</span> POP_TOP
+   
+   <span class="token comment">#   exit()</span>
+
+ <span class="token number">9</span>     <span class="token operator">&gt;&gt;</span>   <span class="token number">54</span> LOAD_NAME                <span class="token number">8</span> <span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">)</span>
+            <span class="token number">56</span> LOAD_NAME                <span class="token number">5</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">)</span>
+            <span class="token number">58</span> LOAD_NAME                <span class="token number">4</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+            <span class="token number">60</span> CALL_FUNCTION            <span class="token number">1</span>
+            <span class="token number">62</span> LOAD_CONST               <span class="token number">3</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+            <span class="token number">64</span> BINARY_FLOOR_DIVIDE
+            <span class="token number">66</span> CALL_FUNCTION            <span class="token number">1</span>
+            <span class="token number">68</span> GET_ITER
+       <span class="token operator">&gt;&gt;</span>   <span class="token number">70</span> FOR_ITER                <span class="token number">54</span> <span class="token punctuation">(</span>to <span class="token number">126</span><span class="token punctuation">)</span>
+            <span class="token number">72</span> STORE_NAME               <span class="token number">9</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+   
+   <span class="token comment"># for i in range(len(flag) // 2):</span>
+
+<span class="token number">10</span>          <span class="token number">74</span> LOAD_NAME                <span class="token number">4</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+            <span class="token number">76</span> LOAD_CONST               <span class="token number">3</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+            <span class="token number">78</span> LOAD_NAME                <span class="token number">9</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+            <span class="token number">80</span> BINARY_MULTIPLY
+            <span class="token number">82</span> LOAD_CONST               <span class="token number">4</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token number">84</span> BINARY_ADD
+            <span class="token number">86</span> BINARY_SUBSCR
+            <span class="token number">88</span> LOAD_NAME                <span class="token number">4</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+            <span class="token number">90</span> LOAD_CONST               <span class="token number">3</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+            <span class="token number">92</span> LOAD_NAME                <span class="token number">9</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+            <span class="token number">94</span> BINARY_MULTIPLY
+            <span class="token number">96</span> BINARY_SUBSCR
+            <span class="token number">98</span> ROT_TWO
+           <span class="token number">100</span> LOAD_NAME                <span class="token number">4</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+           <span class="token number">102</span> LOAD_CONST               <span class="token number">3</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+           <span class="token number">104</span> LOAD_NAME                <span class="token number">9</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+           <span class="token number">106</span> BINARY_MULTIPLY
+           <span class="token number">108</span> STORE_SUBSCR                           <span class="token comment"># flag[2*i] = flag[2*i+1] </span>
+           <span class="token number">110</span> LOAD_NAME                <span class="token number">4</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+           <span class="token number">112</span> LOAD_CONST               <span class="token number">3</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+           <span class="token number">114</span> LOAD_NAME                <span class="token number">9</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>         <span class="token comment"># flag[2*i+1] = flag[2*i]</span>
+           <span class="token number">116</span> BINARY_MULTIPLY
+           <span class="token number">118</span> LOAD_CONST               <span class="token number">4</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+           <span class="token number">120</span> BINARY_ADD
+           <span class="token number">122</span> STORE_SUBSCR
+           <span class="token number">124</span> JUMP_ABSOLUTE           <span class="token number">70</span>
+
+   <span class="token comment">#   flag[2*i], flag[2*i+1] = flag[2*i+1], flag[2*i]</span>
+
+<span class="token number">12</span>     <span class="token operator">&gt;&gt;</span>  <span class="token number">126</span> BUILD_LIST               <span class="token number">0</span>
+           <span class="token number">128</span> STORE_NAME              <span class="token number">10</span> <span class="token punctuation">(</span>check<span class="token punctuation">)</span>
+
+   <span class="token comment"># check = []</span>
+
+<span class="token number">14</span>         <span class="token number">130</span> LOAD_NAME                <span class="token number">8</span> <span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">)</span>
+           <span class="token number">132</span> LOAD_NAME                <span class="token number">5</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">)</span>
+           <span class="token number">134</span> LOAD_NAME                <span class="token number">4</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+           <span class="token number">136</span> CALL_FUNCTION            <span class="token number">1</span>
+           <span class="token number">138</span> CALL_FUNCTION            <span class="token number">1</span>
+           <span class="token number">140</span> GET_ITER
+       <span class="token operator">&gt;&gt;</span>  <span class="token number">142</span> FOR_ITER                <span class="token number">26</span> <span class="token punctuation">(</span>to <span class="token number">170</span><span class="token punctuation">)</span>
+           <span class="token number">144</span> STORE_NAME               <span class="token number">9</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+
+   <span class="token comment"># for i in range(len(flag)):</span>
+
+<span class="token number">15</span>         <span class="token number">146</span> LOAD_NAME               <span class="token number">10</span> <span class="token punctuation">(</span>check<span class="token punctuation">)</span>
+           <span class="token number">148</span> LOAD_METHOD             <span class="token number">11</span> <span class="token punctuation">(</span>append<span class="token punctuation">)</span>
+           <span class="token number">150</span> LOAD_NAME               <span class="token number">12</span> <span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">)</span>
+           <span class="token number">152</span> LOAD_NAME                <span class="token number">4</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
+           <span class="token number">154</span> LOAD_NAME                <span class="token number">9</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+           <span class="token number">156</span> BINARY_SUBSCR
+           <span class="token number">158</span> CALL_FUNCTION            <span class="token number">1</span>
+           <span class="token number">160</span> LOAD_CONST               <span class="token number">5</span> <span class="token punctuation">(</span><span class="token number">222</span><span class="token punctuation">)</span>
+           <span class="token number">162</span> BINARY_XOR
+           <span class="token number">164</span> CALL_METHOD              <span class="token number">1</span>
+           <span class="token number">166</span> POP_TOP
+           <span class="token number">168</span> JUMP_ABSOLUTE          <span class="token number">142</span>
+
+   <span class="token comment">#   check.append(ord(flag[i]) ^ 222)</span>
+
+<span class="token number">17</span>     <span class="token operator">&gt;&gt;</span>  <span class="token number">170</span> LOAD_NAME                <span class="token number">8</span> <span class="token punctuation">(</span><span class="token builtin">range</span><span class="token punctuation">)</span>
+           <span class="token number">172</span> LOAD_NAME                <span class="token number">5</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">)</span>
+           <span class="token number">174</span> LOAD_NAME                <span class="token number">0</span> <span class="token punctuation">(</span>magic<span class="token punctuation">)</span>
+           <span class="token number">176</span> CALL_FUNCTION            <span class="token number">1</span>
+           <span class="token number">178</span> CALL_FUNCTION            <span class="token number">1</span>
+           <span class="token number">180</span> GET_ITER
+       <span class="token operator">&gt;&gt;</span>  <span class="token number">182</span> FOR_ITER                <span class="token number">34</span> <span class="token punctuation">(</span>to <span class="token number">218</span><span class="token punctuation">)</span>
+           <span class="token number">184</span> STORE_NAME               <span class="token number">9</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+
+   <span class="token comment"># for i in range(len(magic)):</span>
+
+<span class="token number">18</span>         <span class="token number">186</span> LOAD_NAME               <span class="token number">10</span> <span class="token punctuation">(</span>check<span class="token punctuation">)</span>
+           <span class="token number">188</span> LOAD_NAME                <span class="token number">9</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+           <span class="token number">190</span> BINARY_SUBSCR
+           <span class="token number">192</span> LOAD_NAME                <span class="token number">0</span> <span class="token punctuation">(</span>magic<span class="token punctuation">)</span>
+           <span class="token number">194</span> LOAD_NAME                <span class="token number">9</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+           <span class="token number">196</span> BINARY_SUBSCR
+           <span class="token number">198</span> COMPARE_OP               <span class="token number">3</span> <span class="token punctuation">(</span><span class="token operator">!=</span><span class="token punctuation">)</span>
+           <span class="token number">200</span> POP_JUMP_IF_FALSE      <span class="token number">182</span>
+
+   <span class="token comment">#   if(check[i] != magic[i]):</span>
+
+<span class="token number">19</span>         <span class="token number">202</span> LOAD_NAME                <span class="token number">6</span> <span class="token punctuation">(</span><span class="token keyword">print</span><span class="token punctuation">)</span>
+           <span class="token number">204</span> LOAD_CONST               <span class="token number">2</span> <span class="token punctuation">(</span><span class="token string">'qwq'</span><span class="token punctuation">)</span>
+           <span class="token number">206</span> CALL_FUNCTION            <span class="token number">1</span>
+           <span class="token number">208</span> POP_TOP
+
+   <span class="token comment">#       print("qwq")</span>
+
+<span class="token number">20</span>         <span class="token number">210</span> LOAD_NAME                <span class="token number">7</span> <span class="token punctuation">(</span>exit<span class="token punctuation">)</span>
+           <span class="token number">212</span> CALL_FUNCTION            <span class="token number">0</span>
+           <span class="token number">214</span> POP_TOP
+           <span class="token number">216</span> JUMP_ABSOLUTE          <span class="token number">182</span>
+
+   <span class="token comment">#       exit()</span>
+
+<span class="token number">22</span>     <span class="token operator">&gt;&gt;</span>  <span class="token number">218</span> LOAD_NAME                <span class="token number">6</span> <span class="token punctuation">(</span><span class="token keyword">print</span><span class="token punctuation">)</span>
+           <span class="token number">220</span> LOAD_CONST               <span class="token number">6</span> <span class="token punctuation">(</span><span class="token string">'happy new year!'</span><span class="token punctuation">)</span>
+           <span class="token number">222</span> CALL_FUNCTION            <span class="token number">1</span>
+           <span class="token number">224</span> POP_TOP
+           <span class="token number">226</span> LOAD_CONST               <span class="token number">7</span> <span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+           <span class="token number">228</span> RETURN_VALUE
+
+   <span class="token comment"># print("happy new year!")</span>
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>之后写个jio本解密就行了.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">enc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">178</span><span class="token punctuation">,</span> <span class="token number">184</span><span class="token punctuation">,</span> <span class="token number">185</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">182</span><span class="token punctuation">,</span> <span class="token number">165</span><span class="token punctuation">,</span> <span class="token number">174</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span>
+       <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">183</span><span class="token punctuation">,</span> <span class="token number">187</span><span class="token punctuation">,</span> <span class="token number">176</span><span class="token punctuation">,</span> <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">169</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">167</span><span class="token punctuation">,</span> <span class="token number">163</span><span class="token punctuation">]</span>
+dec <span class="token operator">=</span> <span class="token string">""</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>enc<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    enc<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> enc<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">^</span> <span class="token number">222</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>enc<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    dec <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>enc<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    dec <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>enc<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>flag{hapi_new_ya</code>, 记得补上 <code>}</code></p>
+<h2 id="0x01-FlareOn4-IgniteMe"><a href="#0x01-FlareOn4-IgniteMe" class="headerlink" title="0x01 FlareOn4 IgniteMe"></a>0x01 FlareOn4 IgniteMe</h2><p><code>die</code>查壳, 确认 32 位 pe 文件, 没壳, IDA 打开, 定位到入口点 <code>start</code>函数.</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> __noreturn <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  DWORD NumberOfBytesWritten<span class="token punctuation">;</span> <span class="token comment">// [esp+0h] [ebp-4h] BYREF</span>
+
+  NumberOfBytesWritten <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  stdinHandle <span class="token operator">=</span> <span class="token function">GetStdHandle</span><span class="token punctuation">(</span><span class="token number">4294967286u</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// stdin</span>
+  stdoutHandle <span class="token operator">=</span> <span class="token function">GetStdHandle</span><span class="token punctuation">(</span><span class="token number">0xFFFFFFF5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// stdout</span>
+  <span class="token function">WriteFile</span><span class="token punctuation">(</span>stdoutHandle<span class="token punctuation">,</span> aG1v3M3T3hFl4g<span class="token punctuation">,</span> <span class="token number">0x13u</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>NumberOfBytesWritten<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">praseInput</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token function">sub_401050</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+    <span class="token function">WriteFile</span><span class="token punctuation">(</span>stdoutHandle<span class="token punctuation">,</span> aG00dJ0b<span class="token punctuation">,</span> <span class="token number">0xAu</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>NumberOfBytesWritten<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span>
+    <span class="token function">WriteFile</span><span class="token punctuation">(</span>stdoutHandle<span class="token punctuation">,</span> aN0tT00H0tRWe7r<span class="token punctuation">,</span> <span class="token number">0x24u</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>NumberOfBytesWritten<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">ExitProcess</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>GetStdHandle</code>函数没见过, 查了一下<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/console/getstdhandle">文档</a>, 是获得设备句柄, 参数决定是标准 输入/输出/错误 设备.</p>
+<p>在第 8 行输出提示之后调用了一个函数, 推测是解析输入 - 同时确定的输入缓冲区的第一个零字节的位置作为结尾. 然后在第 10 行调用<code>sub_401050</code>检验 flag, </p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">sub_401050</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> v1<span class="token punctuation">;</span> <span class="token comment">// [esp+0h] [ebp-Ch]</span>
+  <span class="token keyword">int</span> i<span class="token punctuation">;</span> <span class="token comment">// [esp+4h] [ebp-8h]</span>
+  <span class="token keyword">unsigned</span> <span class="token keyword">int</span> j<span class="token punctuation">;</span> <span class="token comment">// [esp+4h] [ebp-8h]</span>
+  <span class="token keyword">char</span> key<span class="token punctuation">;</span> <span class="token comment">// [esp+Bh] [ebp-1h]</span>
+
+  v1 <span class="token operator">=</span> <span class="token function">getFirstZeroBytePos</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>prasedInput<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  key <span class="token operator">=</span> <span class="token function">sub_401000</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                           <span class="token comment">// 0x4</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> i <span class="token operator">=</span> v1 <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token operator">--</span>i <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    encIn<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> key <span class="token operator">^</span> prasedInput<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    key <span class="token operator">=</span> prasedInput<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">39</span><span class="token punctuation">;</span> <span class="token operator">++</span>j <span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> encIn<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> __int8<span class="token punctuation">)</span>enc<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>是一个简单的循环异或加密, 不过注意是反向的, 初始的<code>key</code>是<code>0x4</code>. 写个jio本解密, 拿到 flag.</p>
+<p><code>flag{R_y0u_H0t_3n0ugH_t0_1gn1t3@flare-on.com}</code></p>
+<p><del>还真是晚上做的…</del></p>
+<h2 id="0x02-BUUCTF-Firmware"><a href="#0x02-BUUCTF-Firmware" class="headerlink" title="0x02 BUUCTF Firmware"></a>0x02 BUUCTF Firmware</h2><p>看题目是一个路由器固件的分析, 用 binwalk 扫描一下, 得到了文件系统的位置, 也就是提取出来的<code>120200.squashfs</code>文件.</p>
+<p><img src="/2021/01/27/Strong-Reversers/image-20210210230050652.png" srcset="/img/loading.gif" alt="image-20210210230050652"></p>
+<p>用 <code>file</code>命令确认了一下, 是 squashfs 文件系统, 不过不能直接用<code>mount</code>挂载 - 可能是因为有 lzma 压缩了….</p>
+<p>在网上搜索了一下, 得知 <a target="_blank" rel="noopener" href="https://github.com/mirror/firmware-mod-kit">firmware-mod-kit</a> (简称 fmk) 可以从 squashfs 提取文件, 不过在我这里总是提取失败, 或者返回成功但是啥也没提取出来… 也许是因为 fmk 从 2013 年之后没更新过吧…</p>
+<p>最后用 <code>unsquashfs</code> 提取成功 (是 <a target="_blank" rel="noopener" href="https://github.com/plougher/squashfs-tools">squashfs-tools</a> 下的一个工具), 在 <code>/tmp</code>下发现一个 <code>backdoor</code> 文件…<del>还好这名字挺明显…</del></p>
+<p>确认是 32 位的 ARM ELF 文件, die 检查发现 upx 壳, 脱壳之后 IDA 打开, 定位到 <code>main</code>.</p>
+<p>在前面获取 MAC 等等之后, 这个 <code>initConnection</code>函数引起了我们的注意, 尤其是这里.</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">while</span> <span class="token punctuation">(</span> <span class="token number">1</span> <span class="token punctuation">)</span>
+ <span class="token punctuation">{</span>
+   <span class="token keyword">while</span> <span class="token punctuation">(</span> <span class="token function">initConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+   <span class="token punctuation">{</span>
+     <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"Failed to connect..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">5u</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+    
+   <span class="token comment">// do some other things</span>
+    
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在<code>initConnextion</code>返回不为零时, 会等待五秒再重来 - 这里应该就是回连服务器了. 进去看看, 确定地址<code>echo.byethost51.com</code>, 端口<code>36667</code>.</p>
+<p><code>MD5(echo.byethost51.com:36667) == 33a422c45d551ac6e4756f59812a954b</code></p>
+<p>所以, <code>flag{33a422c45d551ac6e4756f59812a954b}</code></p>
+<h2 id="最后-祝大家新年快乐🍻"><a href="#最后-祝大家新年快乐🍻" class="headerlink" title="最后, 祝大家新年快乐🍻"></a>最后, 祝大家新年快乐🍻</h2>
             </div>
             <hr>
             <div>

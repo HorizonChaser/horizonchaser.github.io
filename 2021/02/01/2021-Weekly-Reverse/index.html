@@ -187,7 +187,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      410 字
+      2k 字
     </span>
   
 
@@ -197,7 +197,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      36
        分钟
     </span>
   
@@ -239,7 +239,7 @@
             
               <p class="note note-info">
                 
-                  最后更新：2021年2月4日 周四 16:11:21
+                  最后更新：2021年2月10日 周三 15:27:10
                 
               </p>
             
@@ -293,6 +293,260 @@
 <p>把 <code>Destination[]</code>的内容进行反移位, 得到<code>e2lfbDB2ZV95b3V9</code>, base64 解码后得到 <code>{i_l0ve_you}</code></p>
 <p><code>flag{i_l0ve_you}</code></p>
 <p><del>另外题中的”right”打错了…</del></p>
+<h3 id="SimpleRev"><a href="#SimpleRev" class="headerlink" title="SimpleRev"></a>SimpleRev</h3><p>DIE 检查, 发现是一个 x64 ELF 文件. IDA 打开, 定位到 <code>main</code>.</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">int __cdecl __noreturn main(int argc, const char **argv, const char **envp)
+{
+  int v3; // eax
+  char v4; // [rsp+Fh] [rbp-1h]
+
+  while ( 1 )
+  {
+    while ( 1 )
+    {
+      printf("Welcome to CTF game!\nPlease input d/D to start or input q/Q to quit this program: ");
+      v4 = getchar();
+      if ( v4 != 'd' &amp;&amp; v4 != 'D' )
+        break;
+      Decry();
+    }
+    if ( v4 == 'q' || v4 == 'Q' )
+      Exit("Welcome to CTF game!\nPlease input d/D to start or input q/Q to quit this program: ", argv);
+    puts("Input fault format!");
+    v3 = getchar();
+    putchar(v3);
+  }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>明显, 在 <code>Decry</code> 函数中进行了 flag 的验证….</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">unsigned __int64 Decry()
+{
+  char currChar; // [rsp+Fh] [rbp-51h]
+  int v2; // [rsp+10h] [rbp-50h]
+  int v3; // [rsp+14h] [rbp-4Ch]
+  int i; // [rsp+18h] [rbp-48h]
+  int keyLen; // [rsp+1Ch] [rbp-44h]
+  char src[8]; // [rsp+20h] [rbp-40h] BYREF
+  __int64 v7; // [rsp+28h] [rbp-38h]
+  int v8; // [rsp+30h] [rbp-30h]
+  char *v9; // [rsp+40h] [rbp-20h] BYREF
+  __int64 v10; // [rsp+48h] [rbp-18h]
+  int v11; // [rsp+50h] [rbp-10h]
+  unsigned __int64 v12; // [rsp+58h] [rbp-8h]
+
+  v12 = __readfsqword(0x28u);
+  *(_QWORD *)src = 'SLCDN';
+  v7 = 0LL;
+  v8 = 0;
+  v9 = (char *)'wodah';
+  v10 = 0LL;
+  v11 = 0;
+  text = join(key3, (const char *)&amp;v9);         // text == killshadow
+  strcpy(key, key1);                            // key == ASDFK
+  strcat(key, src);                             // key == ASDFKNDCLS
+  v2 = 0;
+  v3 = 0;
+  getchar();
+  keyLen = strlen(key);
+  for ( i = 0; i &lt; keyLen; ++i )
+  {
+    if ( key[v3 % keyLen] &gt; '@' &amp;&amp; key[v3 % keyLen] &lt;= 'Z' )
+      key[i] = key[v3 % keyLen] + 32;
+    ++v3;
+  }
+  printf("Please input your flag:");
+  while ( 1 )
+  {
+    currChar = getchar();
+    if ( currChar == '\n' )
+      break;
+    if ( currChar == ' ' )
+    {
+      ++v2;
+    }
+    else
+    {
+      if ( currChar &lt;= 96 || currChar &gt; 122 )   // NOT lower case
+      {
+        if ( currChar &gt; '@' &amp;&amp; currChar &lt;= 'Z' )// upper case
+        {
+          str2[v2] = (currChar - 39 - key[v3 % keyLen] + 97) % 26 + 97;
+          ++v3;
+        }
+      }
+      else
+      {
+        str2[v2] = (currChar - 39 - key[v3 % keyLen] + 97) % 26 + 97;
+        ++v3;
+      }
+      if ( !(v3 % keyLen) )
+        putchar(' ');
+      ++v2;
+    }
+  }
+  if ( !strcmp(text, str2) )
+    puts("Congratulation!\n");
+  else
+    puts("Try again!\n");
+  return __readfsqword(0x28u) ^ v12;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在 37 行的 <code>while</code> 循环后, 通过计算 <code>str2[]</code>的值并判断是否与<code>text</code>相等来确定 flag 正确与否, 写个脚本爆破即可.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">upperTable<span class="token operator">=</span><span class="token string">'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>
+lowerTable <span class="token operator">=</span> upperTable<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+key<span class="token operator">=</span><span class="token builtin">list</span><span class="token punctuation">(</span><span class="token string">'ADSFKNDCLS'</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+klens<span class="token operator">=</span><span class="token builtin">len</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+
+text<span class="token operator">=</span><span class="token string">'killshadow'</span>
+flag<span class="token operator">=</span><span class="token string">''</span>
+flag2<span class="token operator">=</span><span class="token string">''</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    str2<span class="token operator">=</span>text<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+    <span class="token keyword">for</span> c <span class="token keyword">in</span> upperTable<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> str2<span class="token operator">==</span> <span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">39</span> <span class="token operator">-</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>key<span class="token punctuation">[</span>i  <span class="token operator">%</span> klens<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">97</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">26</span> <span class="token operator">+</span> <span class="token number">97</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            flag<span class="token operator">+=</span>c
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    str2<span class="token operator">=</span>text<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+    <span class="token keyword">for</span> c <span class="token keyword">in</span> lowerTable<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> str2<span class="token operator">==</span> <span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">39</span> <span class="token operator">-</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>key<span class="token punctuation">[</span>i  <span class="token operator">%</span> klens<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">97</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">26</span> <span class="token operator">+</span> <span class="token number">97</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            flag2<span class="token operator">+=</span>c
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'flag{'</span><span class="token operator">+</span>flag<span class="token operator">+</span><span class="token string">'}'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'flag{'</span><span class="token operator">+</span>flag2<span class="token operator">+</span><span class="token string">'}'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因为并未对大小写进行限定, 所以大小写理论上均可…大概, 总之大写是可以的.</p>
+<p><code>flag{KLDQCUDFZO}</code></p>
+<h2 id="Week-6-02-07-02-14-BUUCTF"><a href="#Week-6-02-07-02-14-BUUCTF" class="headerlink" title="Week 6, 02/07 - 02/14, BUUCTF"></a>Week 6, 02/07 - 02/14, BUUCTF</h2><h3 id="CrackRTF"><a href="#CrackRTF" class="headerlink" title="CrackRTF"></a>CrackRTF</h3><p>看题目说明, 在文件中藏了一个 rtf 文件, 不过用 binwalk 扫描没发现什么. 可能是加密了…</p>
+<p>用 IDA 打开, 定位到 <code>main_0</code>, 发现需要两个密码, 长度均为 6 个字符, 其中第一个为纯数字, 与 <code>@DBApp</code> 链接后计算一个哈希值, 与 <code>6E32D0943418C2C33385BC35A1470250DD8923A9</code> 比较.</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">int __cdecl main_0(int argc, const char **argv, const char **envp)
+{
+  DWORD v3; // eax
+  DWORD v4; // eax
+  char Str[260]; // [esp+4Ch] [ebp-310h] BYREF
+  int v7; // [esp+150h] [ebp-20Ch]
+  char String1[260]; // [esp+154h] [ebp-208h] BYREF
+  char Destination[260]; // [esp+258h] [ebp-104h] BYREF
+
+  memset(Destination, 0, sizeof(Destination));
+  memset(String1, 0, sizeof(String1));
+  v7 = 0;
+  printf("pls input the first passwd(1): ");
+  scanf("%s", Destination);
+  if ( strlen(Destination) != 6 )
+  {
+    printf("Must be 6 characters!\n");
+    ExitProcess(0);
+  }
+  v7 = atoi(Destination);
+  if ( v7 &lt; 100000 )
+    ExitProcess(0);
+  strcat(Destination, "@DBApp");
+  v3 = strlen(Destination);
+  getSHA1((BYTE *)Destination, v3, String1);
+  if ( !_strcmpi(String1, "6E32D0943418C2C33385BC35A1470250DD8923A9") )
+  {
+    printf("continue...\n\n");                  // Destination == 123321@DBApp
+    printf("pls input the first passwd(2): ");
+    memset(Str, 0, sizeof(Str));
+    scanf("%s", Str);
+    if ( strlen(Str) != 6 )
+    {
+      printf("Must be 6 characters!\n");
+      ExitProcess(0);
+    }
+    strcat(Str, Destination);
+    memset(String1, 0, sizeof(String1));
+    v4 = strlen(Str);
+    getMD5((BYTE *)Str, v4, String1);
+    if ( !_strcmpi("27019e688a4e62a649fd99cadaafdb4e", String1) )
+    {
+      if ( !(unsigned __int8)sub_40100F(Str) )
+      {
+        printf("Error!!\n");
+        ExitProcess(0);
+      }
+      printf("bye ~~\n");
+    }
+  }
+  return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<p>进入 <code>sub_401230</code>, 定位到 <code>CryptCreateHash(phProv, 0x8004u, 0, 0, &amp;phHash)</code>, 搜一下这个函数的<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/seccrypto/alg-id">文档</a>, 发现第二个参数控制了计算的哈希种类, <code>0x8004</code>是 SHA1, <code>0x8003</code>是 MD5. 由此我们可以对在 [100000, 1000000) 的前半部分进行爆破, 写个脚本.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> hashlib
+
+prefix <span class="token operator">=</span> <span class="token string">""</span>
+postfix <span class="token operator">=</span> <span class="token string">"@DBApp"</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100000</span><span class="token punctuation">,</span> <span class="token number">1000000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    prefix <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+    shaObj <span class="token operator">=</span> hashlib<span class="token punctuation">.</span>sha1<span class="token punctuation">(</span><span class="token builtin">bytes</span><span class="token punctuation">(</span>prefix <span class="token operator">+</span> postfix<span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment"># print(shaObj.hexdigest())</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>shaObj<span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"6E32D0943418C2C33385BC35A1470250DD8923A9"</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>prefix <span class="token operator">+</span> postfix<span class="token punctuation">)</span>
+     <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样, 我们得到了第一个密码 <code>1233321</code>, 这时 <code>Destination == "123321@DBApp"</code>, 输入的第二个密码后面会连接 <code>Destination</code>, 然后计算 MD5 值, 和 <code>27019e688a4e62a649fd99cadaafdb4e</code>比较, 判断是否正确.</p>
+<p>需要注意的是, 第二个密码只限制了长度, 没有限制是纯数字…<del>没注意到的话你可能就会和我一样卡住了</del></p>
+<p>到这里, 我们有两种方法.</p>
+<h4 id="充分利用你电脑的计算能力"><a href="#充分利用你电脑的计算能力" class="headerlink" title="充分利用你电脑的计算能力"></a>充分利用你电脑的计算能力</h4><p>我们已知第二个 MD5 原文的后半部分和前半部分的长度, 相当于一个加盐的 MD5 爆破 - <a target="_blank" rel="noopener" href="https://github.com/hashcat/hashcat">HashCat </a>很适合干这个事儿, 特别是你的 GPU 比较强的时候.</p>
+<p>用如下的命令行进行一次 <code>md5($pass.$salt)</code>掩码攻击. <del>其实就是暴力穷举, 不过更高级一点, 大概</del></p>
+<p><code>.\hashcat.exe -m 10  "27019e688a4e62a649fd99cadaafdb4e:123321@DBApp" -a 3 ?a?a?a?a?a?a</code></p>
+<p>在我的电脑上, 大概十秒就得到了结果…</p>
+<p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210207140651360.png" srcset="/img/loading.gif" alt="image-20210207140651360"></p>
+<p>前半部分是 <code>~!3a@0</code>, 把俩密码输入程序, 得到一个 RTF 文档, 打开就是 flag.</p>
+<p><del>不过, 我认为这应该不是出题人的最初想法吧</del></p>
+<h4 id="充分利用你自己的-计算能力-解题能力"><a href="#充分利用你自己的-计算能力-解题能力" class="headerlink" title="充分利用你自己的 计算能力 解题能力"></a>充分利用你自己的 <del>计算能力</del> 解题能力</h4><p>在 <code>main_0</code> 的 44 行, 我们发现在两个密码验证正确后, 调用了 <code>sub_40400F</code>, 参数是 <code>Str</code>. </p>
+<p><code>sub_40400F</code>会再调用 <code>sub_4014D0</code>, 参数变为 <code>LPCSTR</code>类型.</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> __cdecl <span class="token function">sub_4014D0</span><span class="token punctuation">(</span>LPCSTR lpString<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  LPCVOID lpBuffer<span class="token punctuation">;</span> <span class="token comment">// [esp+50h] [ebp-1Ch]</span>
+  DWORD NumberOfBytesWritten<span class="token punctuation">;</span> <span class="token comment">// [esp+58h] [ebp-14h] BYREF</span>
+  DWORD nNumberOfBytesToWrite<span class="token punctuation">;</span> <span class="token comment">// [esp+5Ch] [ebp-10h]</span>
+  HGLOBAL hResData<span class="token punctuation">;</span> <span class="token comment">// [esp+60h] [ebp-Ch]</span>
+  HRSRC hResInfo<span class="token punctuation">;</span> <span class="token comment">// [esp+64h] [ebp-8h]</span>
+  HANDLE hFile<span class="token punctuation">;</span> <span class="token comment">// [esp+68h] [ebp-4h]</span>
+
+  hFile <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  hResData <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  nNumberOfBytesToWrite <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  NumberOfBytesWritten <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  hResInfo <span class="token operator">=</span> <span class="token function">FindResourceA</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>LPCSTR<span class="token punctuation">)</span><span class="token number">0x65</span><span class="token punctuation">,</span> <span class="token string">"AAA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span>hResInfo <span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  nNumberOfBytesToWrite <span class="token operator">=</span> <span class="token function">SizeofResource</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> hResInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  hResData <span class="token operator">=</span> <span class="token function">LoadResource</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> hResInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span>hResData <span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  lpBuffer <span class="token operator">=</span> <span class="token function">LockResource</span><span class="token punctuation">(</span>hResData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">sub_401005</span><span class="token punctuation">(</span>lpString<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>lpBuffer<span class="token punctuation">,</span> nNumberOfBytesToWrite<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  hFile <span class="token operator">=</span> <span class="token function">CreateFileA</span><span class="token punctuation">(</span><span class="token string">"dbapp.rtf"</span><span class="token punctuation">,</span> <span class="token number">0x10000000u</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2u</span><span class="token punctuation">,</span> <span class="token number">0x80u</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> hFile <span class="token operator">==</span> <span class="token punctuation">(</span>HANDLE<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span><span class="token function">WriteFile</span><span class="token punctuation">(</span>hFile<span class="token punctuation">,</span> lpBuffer<span class="token punctuation">,</span> nNumberOfBytesToWrite<span class="token punctuation">,</span> <span class="token operator">&amp;</span>NumberOfBytesWritten<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token function">CloseHandle</span><span class="token punctuation">(</span>hFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>首先是 <code>FindResourceA</code>这个函数, 从<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-findresourcea">文档</a>来看, 它会尝试寻找名称为 <code>0x65</code>, 类型为 <code>AAA</code> 的资源, 然后通过<code>SizeofResource</code>计算长度, 通过<code>LoadResource</code>加载到<code>lpBuffer</code>中并上锁, 之后调用了<code>sub_401005</code>进行了什么操作, 然后创建<code>dbapp.rtf</code>并写文件, 最后关闭.</p>
+<p>看来<code>sub_401005</code>就是解密函数了.</p>
+<p><code>sub_401005</code>会继续调用<code>sub_401420</code>, 主要是一个异或的循环…</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">unsigned int __cdecl sub_401420(LPCSTR key, int fileContentOffset, int a3)
+{
+  unsigned int result; // eax
+  unsigned int i; // [esp+4Ch] [ebp-Ch]
+  unsigned int keyLen; // [esp+54h] [ebp-4h]
+
+  keyLen = lstrlenA(key);
+  for ( i = 0; ; ++i )
+  {
+    result = i;
+    if ( i &gt;= a3 )
+      break;
+    *(_BYTE *)(i + fileContentOffset) ^= key[i % keyLen];
+  }
+  return result;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在这里, 会将现有数据的每一位和密钥进行异或作为解密, 而原文件是一个 RTF 格式的文件, 文件头是 <a target="_blank" rel="noopener" href="https://www.filesignatures.net/index.php?page=search&amp;search=7B5C72746631&amp;mode=SIG"><code>7B 5C 72 74 66 31</code></a>, 正好六个字节, 和第二段密码一样长.</p>
+<p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43786458/article/details/102488408">这篇题解</a>, 用 ResourceHacker 看一下资源,果然找到了这个. (0x65 == 101)</p>
+<p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210207150448312.png" srcset="/img/loading.gif" alt="image-20210207150448312"></p>
+<p>加密后的文件头是 <code>05 7D 41 15 26 01 </code>, 把它和原来的文件头进行异或就得到了第二段密码: <code>~!3a@0</code></p>
+<p><code>flag{N0_M0re_Free_Bugs}</code></p>
 
             </div>
             <hr>
