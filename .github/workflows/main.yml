@@ -30,7 +30,7 @@ jobs:
       with:
         version: ${{ matrix.node_version }}
 
-    - name: Setup hexo
+    - name: Setup hexo env
       env:
         ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_PRI }}
       run: |
@@ -42,10 +42,12 @@ jobs:
         git config --global user.name "HorizonChaser"
         npm install hexo-cli -g
         npm install
+        npm install hexo-bilibili-bangumi --save
 
-    - name: Hexo deploy
+    - name: Hexo update bangumi and deploy
       run: |
         hexo clean
+        hexo bangumi -u
         hexo d 
     
     - name: Sync to Gitee

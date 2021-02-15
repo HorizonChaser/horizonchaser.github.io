@@ -124,3 +124,16 @@ githubEmojis:
   unicode: false
   styles:
   localEmojis:
+
+bangumi:
+  enable: true
+  path:
+  vmid: 107935620
+  title: 'Bangumi List'
+  quote: '"从某个角度来说, 大概和读书列表有着相同之处"'
+  show: 1
+  loading:
+  metaColor: '#595857'
+  color:
+  webp:
+  progress:
