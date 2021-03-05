@@ -412,3 +412,205 @@ int sub_401050()
 
 
 ## 最后, 祝大家新年快乐🍻
+
+
+
+# 2021 Week 6 - 03/05
+
+~前两周因为题不会(好多知识盲区.jpg)+准备返校，只做出来了两道...不过看题解学到了很多，继续努力~
+
+## 0×00 Hacking with Google 2020 Beginner
+
+已经大体理解了整个过程, 不过还没有拿到 flag... angr 也没有跑出来正确的结果, 可能是没能正确识别 SSE 的函数...?
+
+等我再研究研究
+
+## 0×01 V&N 公开赛 CSRe
+
+看题目是混淆过的 C#, 查了一下, 可以用 [detdot的修改版](https://github.com/CodingGuru1989/de4dot) 反混淆, 之后再用 [ILSpy](https://github.com/icsharpcode/ILSpy) 反编译. 
+
+一个类一个类地找, 很快就能发现 `Class3.Main` 方法, 如下.
+
+```C#
+// Class3
+using System;
+using System.Security.Cryptography;
+using System.Text;
+
+internal sealed class Class3
+{
+	public string method_0(string string_0, string string_1)
+	{
+		string text = string.Empty;
+		char[] array = string_0.ToCharArray();
+		char[] array2 = string_1.ToCharArray();
+		int num = ((array.Length < array2.Length) ? array.Length : array2.Length);
+		for (int i = 0; i < num; i++)
+		{
+			text += array[i] ^ array2[i];
+		}
+		return text;
+	}
+
+	public static string smethod_0(string string_0)
+	{
+		byte[] bytes = Encoding.UTF8.GetBytes(string_0);
+		byte[] array = SHA1.Create().ComputeHash(bytes);
+		StringBuilder stringBuilder = new StringBuilder();
+		byte[] array2 = array;
+		foreach (byte b in array2)
+		{
+			stringBuilder.Append(b.ToString("X2"));
+		}
+		return stringBuilder.ToString();
+	}
+
+	private static void Main(string[] args)
+	{
+		if (!Class1.smethod_1())
+		{
+			return;
+		}
+		bool flag = true;
+		Class3 @class = new Class3();
+		string text = Console.ReadLine();
+		if (smethod_0("3" + text + "9") != "B498BFA2498E21325D1178417BEA459EB2CD28F8")
+		{
+			flag = false;
+		}
+		string text2 = Console.ReadLine();
+		string string_ = smethod_0("re" + text2);
+		string text3 = @class.method_0(string_, "63143B6F8007B98C53CA2149822777B3566F9241");
+		for (int i = 0; i < text3.Length; i++)
+		{
+			if (text3[i] != '0')
+			{
+				flag = false;
+			}
+		}
+		if (flag)
+		{
+			Console.WriteLine("flag{" + text + text2 + "}");
+		}
+	}
+}
+```
+
+flag 一共有两端, 其中`text`直接就是`B498BFA2498E21325D1178417BEA459EB2CD28F8`的 SHA1 原文. 
+
+对于 `text2`, 观察`method_0`, 发现它会返回两个 string 类型参数的异或值, 而之后的 for 循环会比较异或后的字符串每个字符是否均为`"0"` - 很明显, `x ^ x == 0`, 所以`"re" + text2`的 SHA1 值就是 `63143B6F8007B98C53CA2149822777B3566F9241`.
+
+cmd5 上查询, 得到 `text = "1415"`, `text2 = "turn"`, 最后得到 flag.
+
+`flag{1415turn}`
+
+## 0×02 Zer0pts2020 easy-strcmp
+
+> "有时候你看见的不一定是真实的"
+>
+> ​                                                -- RX
+
+IDA64 打开, 定位到`main`函数, 发现 flag 就摆在眼前 (误
+
+```C++
+__int64 __fastcall main(int a1, char **a2, char **a3)
+{
+  if ( a1 > 1 )
+  {
+    if ( !strcmp(a2[1], "zer0pts{********CENSORED********}") )
+      puts("Correct!");
+    else
+      puts("Wrong!");
+  }
+  else
+  {
+    printf("Usage: %s <FLAG>\n", *a2);
+  }
+  return 0LL;
+}
+```
+
+~~怎么看第五行的那东西都不能是 flag 吧~~
+
+我们发现它确实调用了一个`strcmp`比较`argv[0]`和那东西 (就叫假 flag 吧) 的值, 但是它又确实不是 flag.... 看看左侧, 发现还有两个奇怪的函数 `sub_6EA`和`sub_795`.
+
+```C
+// write access to const memory has been detected, the output may be wrong!
+int (**sub_795())(const char *s1, const char *s2)
+{
+  int (**result)(const char *, const char *); // rax
+
+  result = &strcmp;
+  strcmp_pointer = (__int64 (__fastcall *)(_QWORD, _QWORD))&strcmp;
+  off_201028 = sub_6EA;
+  return result;
+}
+```
+
+(`srecmp_pointer`是我重命名的)
+
+```C
+__int64 __fastcall sub_6EA(__int64 a1, __int64 a2)
+{
+  int i; // [rsp+18h] [rbp-8h]
+  int v4; // [rsp+18h] [rbp-8h]
+  int j; // [rsp+1Ch] [rbp-4h]
+
+  for ( i = 0; *(_BYTE *)(i + a1); ++i )
+    ;
+  v4 = (i >> 3) + 1;
+  for ( j = 0; j < v4; ++j )
+    *(_QWORD *)(8 * j + a1) -= qword_201060[j];
+  return strcmp_pointer(a1, a2);
+}
+```
+
+但是我们并没有在`main`中看到这两个函数的调用, 看一下交叉引用, 发现这两个函数都在`.init_array`段里 - 会在`main`前就执行.
+
+`sub_795`会把在`.got.plt`段中原先正常的`strcmp`的地址替换成`sub_6EA`的地址, 而`sub_6EA`会把第一个参数按照每 8 个字符一组, 减去`qword_201060[j]`后再和第二个参数进行真正的`strcmp`...
+
+既然这样, 写个 jio 本 - 看上去是这样.
+
+```python
+key = [0x42, 0x09, 0x4A, 0x49, 0x35, 0x43, 0x0A, 0x41,
+       0xF0, 0x19, 0xE6, 0x0B, 0xF5, 0xF2, 0x0E, 0x0B,
+       0x2B, 0x28, 0x35, 0x4A, 0x06, 0x3A, 0x0A, 0x4F]
+enc = "********CENSORED********"
+dec = ""
+
+for i in range(len(enc)):
+    print(c % 256, end=" ")
+    dec = dec + str(chr(c % 256))
+print("")
+print(dec)
+dec = ""
+```
+
+得到的结果是`l3ts_m4k3^4^DDSOUR_t0d4y`, 中间部分看上去不太对... 原因在于, 原程序是将整个`QWORD`作为一个整体进行加减, 但我们的 exp 是对每一个字节进行的计算, 这样进位不会影响到前一位.
+
+进位影响的是 9 11 13 14 这几个位置, 手动加一就好.
+
+```python
+key = [0x42, 0x09, 0x4A, 0x49, 0x35, 0x43, 0x0A, 0x41,
+       0xF0, 0x19, 0xE6, 0x0B, 0xF5, 0xF2, 0x0E, 0x0B,
+       0x2B, 0x28, 0x35, 0x4A, 0x06, 0x3A, 0x0A, 0x4F]
+enc = "********CENSORED********"
+dec = ""
+
+for i in range(len(enc)):
+    if i in (9, 11, 13, 14):
+      c = ord(enc[i]) + key[i] + 1
+    else:
+        c = ord(enc[i]) + key[i]
+    print(c % 256, end=" ")
+    dec = dec + str(chr(c % 256))
+    
+print("")
+print(dec)
+dec = ""
+
+```
+
+`zer0pts{l3ts_m4k3_4_DETOUR_t0d4y}`
+
+不过在平台上提交的时候应该是`flag{l3ts_m4k3_4_DETOUR_t0d4y}`

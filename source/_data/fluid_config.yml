@@ -137,6 +137,9 @@ navbar:
     - { key: 'archive', link: '/archives/', icon: 'iconfont icon-archive-fill' }
     # - { key: 'category', link: '/categories/', icon: 'iconfont icon-category-fill' }
     - { key: 'tag', link: '/tags/', icon: 'iconfont icon-tags-fill' }
+
+    - { key: 'Bangumi', link: '/bangumis/index.html', icon: 'iconfont icon-bilibili-fill', name: 'Bangumi' }
+
     - { key: 'about', link: '/about/', icon: 'iconfont icon-user-fill' }
     - { key: 'links', link: '/links/', icon: 'iconfont icon-friends' }  # 友链页，把前面#去掉即可展示
 
@@ -187,7 +190,14 @@ index:
   post_default_img: '/img/default_post_banner.png' # 默认的文章封面图，当没有指定 index_img 时会使用该图片，若都为空则不显示任何图片
   slogan:  # 首页副标题的独立设置
     enable: true  # 为 false 则不显示任何内容
-    text: 'A place to record and relax'  # 为空则按 hexo config.subtitle 显示
+    text: '这里应该有一条一言来着, 不过看来没加载出来...'  # 为空则按 hexo config.subtitle 显示
+    
+    api:
+      enable: true
+      url: "https://international.v1.hitokoto.cn/?c=a&c=b&c=c&c=d&c=e&c=i&c=j&c=k"
+      method: "GET"
+      headers: {}
+      keys: ["hitokoto"]
   auto_excerpt:
     enable: false
   post_url_target: _self  # available: _blank | _self
@@ -216,26 +226,26 @@ post:  # 部分配置同时控制自定义页面，注意备注
       enable: false
     date:  # 文章日期，优先根据 front-matter 里 date 字段，其次是 md 文件日期
       enable: true
-      format: "YYYY年MMMDo ddd H:m:s"  # 格式参照 ISO-8601 日期格式化，可参照 http://momentjs.cn/docs/#/parsing/string-format/
+      format: " YYYY年MMMDo ddd H:m:s"  # 格式参照 ISO-8601 日期格式化，可参照 http://momentjs.cn/docs/#/parsing/string-format/
     wordcount:  # 字数统计
       enable: true
       format: "{} 字"  # 显示的文本，{}是数字的占位符（必须包含)，下同
     min2read:  # 阅读时间
       enable: true
-      format: "{} 分钟"
-      words: 85  # 每分钟阅读多少字，如果是技术文章，建议降低
+      format: "大概 {} 分钟"
+      words: 90  # 每分钟阅读多少字，如果是技术文章，建议降低
     views:  # 阅读次数
       enable: true
       source: "busuanzi"  # 统计数据来源，可选：busuanzi | leancloud，使用 leancloud 需要在 web_analytics 中设置 api 参数，使用 busuanzi 注意可能间歇抽风
       format: "{} 次"
   updated:  # 在文章开头显示文章更新时间，该时间默认是 md 文件更新时间，可通过 front-matter 中 `updated` 手动指定（和 date 一样格式）
     enable: true
-    content: 最后更新：  # 描述文字
+    content: Last Update @  # 描述文字
     relative: false  # 是否使用相对时间表示，比如："3 天前"
   toc:  # 文章右侧目录
     enable: true
     headingSelector: h1,h2,h3,h4,h5,h6
-    collapseDepth: 0  # 层级的折叠深度，0 是全部折叠，6 是全部不折叠
+    collapseDepth: 3  # 层级的折叠深度，0 是全部折叠，6 是全部不折叠
   copyright:  # 版权声明
     enable: true
     content: '本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处'
@@ -395,6 +405,7 @@ about:  # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.co
   icons: # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，class 代表图标的 css class
     - { class: 'iconfont icon-github-fill', link: 'https://github.com/HorizonChaser', tip: 'GitHub' }
     - { class: 'iconfont icon-mail', link: 'mailto:ahorizonchaser@gmail.com', tip: 'Gmail' }
+    - { class: 'iconfont icon-telegram-fill', link: 'https://t.me/horizon_chaser', tip: 'Telegram' }
     # - { class: 'iconfont icon-wechat-fill', qrcode: '/img/favicon.png' }  # 添加 qrcode 后，点击不再跳转，而是悬浮二维码，需要指定 image
 
 
@@ -403,7 +414,7 @@ about:  # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.co
 # 404 Page
 #---------------------------
 page404:
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
   banner_img_height: 85  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
   subtitle: 'Page Not Found'  # 打字机内容
@@ -414,7 +425,7 @@ page404:
 # Links Page
 #---------------------------
 links:
-  banner_img: /img/default.png
+  banner_img: /img/default.jpg
   banner_img_height: 60  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
   subtitle:  # 打字机内容
