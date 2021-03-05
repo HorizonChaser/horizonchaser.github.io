@@ -188,7 +188,7 @@
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
       <time datetime="2021-01-27 14:39" pubdate>
-        2021年1月27日 周三 14:39:10
+         2021年1月27日 周三 14:39:10
       </time>
     </span>
   
@@ -199,7 +199,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.4k 字
+      3.4k 字
     </span>
   
 
@@ -208,8 +208,8 @@
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
-      
-      39
+      大概 
+      54
        分钟
     </span>
   
@@ -251,7 +251,7 @@
             
               <p class="note note-info">
                 
-                  最后更新：2021年2月15日 周一 5:53:56
+                  Last Update @ 2021年3月5日 周五 7:2:16
                 
               </p>
             
@@ -559,7 +559,161 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 <p>在<code>initConnextion</code>返回不为零时, 会等待五秒再重来 - 这里应该就是回连服务器了. 进去看看, 确定地址<code>echo.byethost51.com</code>, 端口<code>36667</code>.</p>
 <p><code>MD5(echo.byethost51.com:36667) == 33a422c45d551ac6e4756f59812a954b</code></p>
 <p>所以, <code>flag{33a422c45d551ac6e4756f59812a954b}</code></p>
-<h2 id="最后-祝大家新年快乐🍻"><a href="#最后-祝大家新年快乐🍻" class="headerlink" title="最后, 祝大家新年快乐🍻"></a>最后, 祝大家新年快乐🍻</h2>
+<h2 id="最后-祝大家新年快乐🍻"><a href="#最后-祝大家新年快乐🍻" class="headerlink" title="最后, 祝大家新年快乐🍻"></a>最后, 祝大家新年快乐🍻</h2><h1 id="2021-Week-6-03-05"><a href="#2021-Week-6-03-05" class="headerlink" title="2021 Week 6 - 03/05"></a>2021 Week 6 - 03/05</h1><p><del>前两周因为题不会(好多知识盲区.jpg)+准备返校，只做出来了两道…不过看题解学到了很多，继续努力</del></p>
+<h2 id="0×00-Hacking-with-Google-2020-Beginner"><a href="#0×00-Hacking-with-Google-2020-Beginner" class="headerlink" title="0×00 Hacking with Google 2020 Beginner"></a>0×00 Hacking with Google 2020 Beginner</h2><p>已经大体理解了整个过程, 不过还没有拿到 flag… angr 也没有跑出来正确的结果, 可能是没能正确识别 SSE 的函数…?</p>
+<p>等我再研究研究</p>
+<h2 id="0×01-V-amp-N-公开赛-CSRe"><a href="#0×01-V-amp-N-公开赛-CSRe" class="headerlink" title="0×01 V&amp;N 公开赛 CSRe"></a>0×01 V&amp;N 公开赛 CSRe</h2><p>看题目是混淆过的 C#, 查了一下, 可以用 <a target="_blank" rel="noopener" href="https://github.com/CodingGuru1989/de4dot">detdot的修改版</a> 反混淆, 之后再用 <a target="_blank" rel="noopener" href="https://github.com/icsharpcode/ILSpy">ILSpy</a> 反编译. </p>
+<p>一个类一个类地找, 很快就能发现 <code>Class3.Main</code> 方法, 如下.</p>
+<pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">// Class3
+using System;
+using System.Security.Cryptography;
+using System.Text;
+
+internal sealed class Class3
+{
+	public string method_0(string string_0, string string_1)
+	{
+		string text = string.Empty;
+		char[] array = string_0.ToCharArray();
+		char[] array2 = string_1.ToCharArray();
+		int num = ((array.Length &lt; array2.Length) ? array.Length : array2.Length);
+		for (int i = 0; i &lt; num; i++)
+		{
+			text += array[i] ^ array2[i];
+		}
+		return text;
+	}
+
+	public static string smethod_0(string string_0)
+	{
+		byte[] bytes = Encoding.UTF8.GetBytes(string_0);
+		byte[] array = SHA1.Create().ComputeHash(bytes);
+		StringBuilder stringBuilder = new StringBuilder();
+		byte[] array2 = array;
+		foreach (byte b in array2)
+		{
+			stringBuilder.Append(b.ToString("X2"));
+		}
+		return stringBuilder.ToString();
+	}
+
+	private static void Main(string[] args)
+	{
+		if (!Class1.smethod_1())
+		{
+			return;
+		}
+		bool flag = true;
+		Class3 @class = new Class3();
+		string text = Console.ReadLine();
+		if (smethod_0("3" + text + "9") != "B498BFA2498E21325D1178417BEA459EB2CD28F8")
+		{
+			flag = false;
+		}
+		string text2 = Console.ReadLine();
+		string string_ = smethod_0("re" + text2);
+		string text3 = @class.method_0(string_, "63143B6F8007B98C53CA2149822777B3566F9241");
+		for (int i = 0; i &lt; text3.Length; i++)
+		{
+			if (text3[i] != '0')
+			{
+				flag = false;
+			}
+		}
+		if (flag)
+		{
+			Console.WriteLine("flag{" + text + text2 + "}");
+		}
+	}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>flag 一共有两端, 其中<code>text</code>直接就是<code>B498BFA2498E21325D1178417BEA459EB2CD28F8</code>的 SHA1 原文. </p>
+<p>对于 <code>text2</code>, 观察<code>method_0</code>, 发现它会返回两个 string 类型参数的异或值, 而之后的 for 循环会比较异或后的字符串每个字符是否均为<code>"0"</code> - 很明显, <code>x ^ x == 0</code>, 所以<code>"re" + text2</code>的 SHA1 值就是 <code>63143B6F8007B98C53CA2149822777B3566F9241</code>.</p>
+<p>cmd5 上查询, 得到 <code>text = "1415"</code>, <code>text2 = "turn"</code>, 最后得到 flag.</p>
+<p><code>flag{1415turn}</code></p>
+<h2 id="0×02-Zer0pts2020-easy-strcmp"><a href="#0×02-Zer0pts2020-easy-strcmp" class="headerlink" title="0×02 Zer0pts2020 easy-strcmp"></a>0×02 Zer0pts2020 easy-strcmp</h2><blockquote>
+<p>“有时候你看见的不一定是真实的”</p>
+<p>​                                                – RX</p>
+</blockquote>
+<p>IDA64 打开, 定位到<code>main</code>函数, 发现 flag 就摆在眼前 (误</p>
+<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">__int64 __fastcall main(int a1, char **a2, char **a3)
+{
+  if ( a1 &gt; 1 )
+  {
+    if ( !strcmp(a2[1], "zer0pts{********CENSORED********}") )
+      puts("Correct!");
+    else
+      puts("Wrong!");
+  }
+  else
+  {
+    printf("Usage: %s &lt;FLAG&gt;\n", *a2);
+  }
+  return 0LL;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><del>怎么看第五行的那东西都不能是 flag 吧</del></p>
+<p>我们发现它确实调用了一个<code>strcmp</code>比较<code>argv[0]</code>和那东西 (就叫假 flag 吧) 的值, 但是它又确实不是 flag…. 看看左侧, 发现还有两个奇怪的函数 <code>sub_6EA</code>和<code>sub_795</code>.</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">// write access to const memory has been detected, the output may be wrong!
+int (**sub_795())(const char *s1, const char *s2)
+{
+  int (**result)(const char *, const char *); // rax
+
+  result = &amp;strcmp;
+  strcmp_pointer = (__int64 (__fastcall *)(_QWORD, _QWORD))&amp;strcmp;
+  off_201028 = sub_6EA;
+  return result;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>(<code>srecmp_pointer</code>是我重命名的)</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">__int64 __fastcall sub_6EA(__int64 a1, __int64 a2)
+{
+  int i; // [rsp+18h] [rbp-8h]
+  int v4; // [rsp+18h] [rbp-8h]
+  int j; // [rsp+1Ch] [rbp-4h]
+
+  for ( i = 0; *(_BYTE *)(i + a1); ++i )
+    ;
+  v4 = (i &gt;&gt; 3) + 1;
+  for ( j = 0; j &lt; v4; ++j )
+    *(_QWORD *)(8 * j + a1) -= qword_201060[j];
+  return strcmp_pointer(a1, a2);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>但是我们并没有在<code>main</code>中看到这两个函数的调用, 看一下交叉引用, 发现这两个函数都在<code>.init_array</code>段里 - 会在<code>main</code>前就执行.</p>
+<p><code>sub_795</code>会把在<code>.got.plt</code>段中原先正常的<code>strcmp</code>的地址替换成<code>sub_6EA</code>的地址, 而<code>sub_6EA</code>会把第一个参数按照每 8 个字符一组, 减去<code>qword_201060[j]</code>后再和第二个参数进行真正的<code>strcmp</code>…</p>
+<p>既然这样, 写个 jio 本 - 看上去是这样.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">key <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0x42</span><span class="token punctuation">,</span> <span class="token number">0x09</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x49</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x43</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x41</span><span class="token punctuation">,</span>
+       <span class="token number">0xF0</span><span class="token punctuation">,</span> <span class="token number">0x19</span><span class="token punctuation">,</span> <span class="token number">0xE6</span><span class="token punctuation">,</span> <span class="token number">0x0B</span><span class="token punctuation">,</span> <span class="token number">0xF5</span><span class="token punctuation">,</span> <span class="token number">0xF2</span><span class="token punctuation">,</span> <span class="token number">0x0E</span><span class="token punctuation">,</span> <span class="token number">0x0B</span><span class="token punctuation">,</span>
+       <span class="token number">0x2B</span><span class="token punctuation">,</span> <span class="token number">0x28</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x06</span><span class="token punctuation">,</span> <span class="token number">0x3A</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x4F</span><span class="token punctuation">]</span>
+enc <span class="token operator">=</span> <span class="token string">"********CENSORED********"</span>
+dec <span class="token operator">=</span> <span class="token string">""</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>enc<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>c <span class="token operator">%</span> <span class="token number">256</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">)</span>
+    dec <span class="token operator">=</span> dec <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span>c <span class="token operator">%</span> <span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span>
+dec <span class="token operator">=</span> <span class="token string">""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>得到的结果是<code>l3ts_m4k3^4^DDSOUR_t0d4y</code>, 中间部分看上去不太对… 原因在于, 原程序是将整个<code>QWORD</code>作为一个整体进行加减, 但我们的 exp 是对每一个字节进行的计算, 这样进位不会影响到前一位.</p>
+<p>进位影响的是 9 11 13 14 这几个位置, 手动加一就好.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">key <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0x42</span><span class="token punctuation">,</span> <span class="token number">0x09</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x49</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x43</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x41</span><span class="token punctuation">,</span>
+       <span class="token number">0xF0</span><span class="token punctuation">,</span> <span class="token number">0x19</span><span class="token punctuation">,</span> <span class="token number">0xE6</span><span class="token punctuation">,</span> <span class="token number">0x0B</span><span class="token punctuation">,</span> <span class="token number">0xF5</span><span class="token punctuation">,</span> <span class="token number">0xF2</span><span class="token punctuation">,</span> <span class="token number">0x0E</span><span class="token punctuation">,</span> <span class="token number">0x0B</span><span class="token punctuation">,</span>
+       <span class="token number">0x2B</span><span class="token punctuation">,</span> <span class="token number">0x28</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x06</span><span class="token punctuation">,</span> <span class="token number">0x3A</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x4F</span><span class="token punctuation">]</span>
+enc <span class="token operator">=</span> <span class="token string">"********CENSORED********"</span>
+dec <span class="token operator">=</span> <span class="token string">""</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>enc<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> i <span class="token keyword">in</span> <span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+      c <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>enc<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> key<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        c <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>enc<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> key<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>c <span class="token operator">%</span> <span class="token number">256</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">" "</span><span class="token punctuation">)</span>
+    dec <span class="token operator">=</span> dec <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span>c <span class="token operator">%</span> <span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span>
+dec <span class="token operator">=</span> <span class="token string">""</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>zer0pts{l3ts_m4k3_4_DETOUR_t0d4y}</code></p>
+<p>不过在平台上提交的时候应该是<code>flag{l3ts_m4k3_4_DETOUR_t0d4y}</code></p>
+
             </div>
             <hr>
             <div>
@@ -767,7 +921,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
         listClass: 'tocbot-list',
         isCollapsedClass: 'tocbot-is-collapsed',
         collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
+        collapseDepth: 3,
         scrollSmooth: true,
         headingsOffset: -boardTop
       });
