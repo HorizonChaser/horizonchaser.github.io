@@ -199,7 +199,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      2.4k 字
     </span>
   
 
@@ -209,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      34
+      41
        分钟
     </span>
   
@@ -251,7 +251,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年3月5日 周五 7:2:16
+                  Last Update @ 2021年3月18日 周四 12:10:15
                 
               </p>
             
@@ -559,6 +559,60 @@ postfix <span class="token operator">=</span> <span class="token string">"@DBApp
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210207150448312.png" srcset="/img/loading.gif" alt="image-20210207150448312"></p>
 <p>加密后的文件头是 <code>05 7D 41 15 26 01 </code>, 把它和原来的文件头进行异或就得到了第二段密码: <code>~!3a@0</code></p>
 <p><code>flag{N0_M0re_Free_Bugs}</code></p>
+<h2 id="Week-11-03-14-03-20-BUUCTF"><a href="#Week-11-03-14-03-20-BUUCTF" class="headerlink" title="Week 11, 03/14 - 03/20, BUUCTF"></a>Week 11, 03/14 - 03/20, BUUCTF</h2><h3 id="SUCTF2019-SignIn"><a href="#SUCTF2019-SignIn" class="headerlink" title="[SUCTF2019]SignIn"></a>[SUCTF2019]SignIn</h3><p><del>好像摸鱼摸的太狠了… 从开学到现在啥也没干…</del></p>
+<p>IDA 打开, 定位到<code>main</code>, 发现两个大整数.</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">__int64 __fastcall <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> a1<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>a2<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>a3<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">char</span> v4<span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [rsp+0h] [rbp-4A0h] BYREF</span>
+  <span class="token keyword">char</span> v5<span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [rsp+10h] [rbp-490h] BYREF</span>
+  <span class="token keyword">char</span> v6<span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [rsp+20h] [rbp-480h] BYREF</span>
+  <span class="token keyword">char</span> v7<span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [rsp+30h] [rbp-470h] BYREF</span>
+  <span class="token keyword">char</span> input<span class="token punctuation">[</span><span class="token number">112</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [rsp+40h] [rbp-460h] BYREF</span>
+  <span class="token keyword">char</span> coded<span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [rsp+B0h] [rbp-3F0h] BYREF</span>
+  <span class="token keyword">unsigned</span> __int64 v10<span class="token punctuation">;</span> <span class="token comment">// [rsp+498h] [rbp-8h]</span>
+
+  v10 <span class="token operator">=</span> <span class="token function">__readfsqword</span><span class="token punctuation">(</span><span class="token number">0x28u</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"[sign in]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"[input your flag]: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">__isoc99_scanf</span><span class="token punctuation">(</span><span class="token string">"%99s"</span><span class="token punctuation">,</span> input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">sub_96A</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> coded<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">__gmpz_init_set_str</span><span class="token punctuation">(</span>v7<span class="token punctuation">,</span> <span class="token string">"ad939ff59f6e70bcbfad406f2494993757eee98b91bc244184a377520d06fc35"</span><span class="token punctuation">,</span> <span class="token number">16LL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">__gmpz_init_set_str</span><span class="token punctuation">(</span>v6<span class="token punctuation">,</span> coded<span class="token punctuation">,</span> <span class="token number">16LL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">__gmpz_init_set_str</span><span class="token punctuation">(</span>v4<span class="token punctuation">,</span> <span class="token string">"103461035900816914121390101299049044413950405173712170434161686539878160984549"</span><span class="token punctuation">,</span> <span class="token number">10LL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">__gmpz_init_set_str</span><span class="token punctuation">(</span>v5<span class="token punctuation">,</span> <span class="token string">"65537"</span><span class="token punctuation">,</span> <span class="token number">10LL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">__gmpz_powm</span><span class="token punctuation">(</span>v6<span class="token punctuation">,</span> v6<span class="token punctuation">,</span> v5<span class="token punctuation">,</span> v4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token function">__gmpz_cmp</span><span class="token punctuation">(</span>v6<span class="token punctuation">,</span> v7<span class="token punctuation">)</span> <span class="token punctuation">)</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"GG!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">else</span>
+    <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"TTTTTTTTTTql!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0LL</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>sub_96A</code>会把输入进行处理, 得到 16 进制字符串. 之后的<code>__gmpz_</code>系列函数是 GNU 的高精度计算库.</p>
+<p>16 ~ 19 行初始化了四个整数, 查看<a target="_blank" rel="noopener" href="https://gmplib.org/manual/Integer-Exponentiation">文档</a>发现<code>__gmpz_powm(mpz_t rop, const mpz_t base, const mpz_t exp, const mpz_t mod)</code>实际上等价于<code>rop = (base ^ exp) % mod</code>. 另外, 据说这个函数经常在 RSA 算法中出现…</p>
+<p>RSA! 这些大整数正好就是 RSA 中会用到的! 对应一下, <code>v7</code>是密文, <code>v6</code>是明文, <code>v5</code>是<code>e</code>, <code>v4</code>就是<code>n</code>. 把<code>v4</code>放到 <a target="_blank" rel="noopener" href="http://factordb.com/index.php">factor.db</a>分解一下, 得到了<code>p</code>和<code>q</code>.</p>
+<p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210318200048244.png" srcset="/img/loading.gif" alt="image-20210318200048244"></p>
+<p>这样, RSA 算法的所有变量我们都拿到了, 直接写个脚本解密就能拿到 flag 了.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> gmpy2
+<span class="token keyword">import</span> binascii
+
+n <span class="token operator">=</span> <span class="token number">103461035900816914121390101299049044413950405173712170434161686539878160984549</span>
+
+p <span class="token operator">=</span> gmpy2<span class="token punctuation">.</span>mpz<span class="token punctuation">(</span><span class="token number">282164587459512124844245113950593348271</span><span class="token punctuation">)</span>
+q <span class="token operator">=</span> gmpy2<span class="token punctuation">.</span>mpz<span class="token punctuation">(</span><span class="token number">366669102002966856876605669837014229419</span><span class="token punctuation">)</span>
+e <span class="token operator">=</span> gmpy2<span class="token punctuation">.</span>mpz<span class="token punctuation">(</span><span class="token number">65537</span><span class="token punctuation">)</span>
+eula <span class="token operator">=</span> <span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span>q<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+d <span class="token operator">=</span> gmpy2<span class="token punctuation">.</span>invert<span class="token punctuation">(</span>e<span class="token punctuation">,</span> eula<span class="token punctuation">)</span>
+c <span class="token operator">=</span> gmpy2<span class="token punctuation">.</span>mpz<span class="token punctuation">(</span><span class="token number">0xad939ff59f6e70bcbfad406f2494993757eee98b91bc244184a377520d06fc35</span><span class="token punctuation">)</span>
+
+dec <span class="token operator">=</span> gmpy2<span class="token punctuation">.</span>powmod<span class="token punctuation">(</span>c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> n<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"十进制:\n%s"</span><span class="token operator">%</span>dec<span class="token punctuation">)</span>
+dec_hex <span class="token operator">=</span> <span class="token builtin">hex</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"十六进制:\n%s"</span><span class="token operator">%</span><span class="token punctuation">(</span>dec_hex<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"ascii:\n%s"</span><span class="token operator">%</span><span class="token punctuation">(</span>binascii<span class="token punctuation">.</span>a2b_hex<span class="token punctuation">(</span>dec_hex<span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span>encoding<span class="token operator">=</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>由于<code>gmpy2</code>在我的 Windows 下装不上 (需要<code>gmp</code> <code>mpfr </code> <code>mpc</code>), 因此我在 Ubuntu 虚拟机下面装了.</p>
+<p>拿到结果.</p>
+<p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210318200810904.png" srcset="/img/loading.gif" alt="image-20210318200810904"></p>
+<p>flag: <code>suctf{Pwn_@_hundred_years}</code></p>
 
             </div>
             <hr>
