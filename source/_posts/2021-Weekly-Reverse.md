@@ -394,3 +394,104 @@ unsigned int __cdecl sub_401420(LPCSTR key, int fileContentOffset, int a3)
 
 `flag{N0_M0re_Free_Bugs}`
 
+
+
+## Week 11, 03/14 - 03/20, BUUCTF
+
+### [SUCTF2019]SignIn
+
+~~好像摸鱼摸的太狠了... 从开学到现在啥也没干...~~
+
+IDA 打开, 定位到`main`, 发现两个大整数.
+
+```c
+__int64 __fastcall main(int a1, char **a2, char **a3)
+{
+  char v4[16]; // [rsp+0h] [rbp-4A0h] BYREF
+  char v5[16]; // [rsp+10h] [rbp-490h] BYREF
+  char v6[16]; // [rsp+20h] [rbp-480h] BYREF
+  char v7[16]; // [rsp+30h] [rbp-470h] BYREF
+  char input[112]; // [rsp+40h] [rbp-460h] BYREF
+  char coded[1000]; // [rsp+B0h] [rbp-3F0h] BYREF
+  unsigned __int64 v10; // [rsp+498h] [rbp-8h]
+
+  v10 = __readfsqword(0x28u);
+  puts("[sign in]");
+  printf("[input your flag]: ");
+  __isoc99_scanf("%99s", input);
+  sub_96A(input, coded);
+  __gmpz_init_set_str(v7, "ad939ff59f6e70bcbfad406f2494993757eee98b91bc244184a377520d06fc35", 16LL);
+  __gmpz_init_set_str(v6, coded, 16LL);
+  __gmpz_init_set_str(v4, "103461035900816914121390101299049044413950405173712170434161686539878160984549", 10LL);
+  __gmpz_init_set_str(v5, "65537", 10LL);
+  __gmpz_powm(v6, v6, v5, v4);
+  if ( (unsigned int)__gmpz_cmp(v6, v7) )
+    puts("GG!");
+  else
+    puts("TTTTTTTTTTql!");
+  return 0LL;
+}
+```
+
+`sub_96A`会把输入进行处理, 得到 16 进制字符串. 之后的`__gmpz_`系列函数是 GNU 的高精度计算库.
+
+16 ~ 19 行初始化了四个整数, 查看[文档](https://gmplib.org/manual/Integer-Exponentiation)发现`__gmpz_powm(mpz_t rop, const mpz_t base, const mpz_t exp, const mpz_t mod)`实际上等价于`rop = (base ^ exp) % mod`. 另外, 据说这个函数经常在 RSA 算法中出现...
+
+RSA! 这些大整数正好就是 RSA 中会用到的! 对应一下, `v7`是密文, `v6`是明文, `v5`是`e`, `v4`就是`n`. 把`v4`放到 [factor.db](http://factordb.com/index.php)分解一下, 得到了`p`和`q`.
+
+![image-20210318200048244](2021-Weekly-Reverse/image-20210318200048244.png)
+
+这样, RSA 算法的所有变量我们都拿到了, 直接写个脚本解密就能拿到 flag 了.
+
+```python
+import gmpy2
+import binascii
+
+n = 103461035900816914121390101299049044413950405173712170434161686539878160984549
+
+p = gmpy2.mpz(282164587459512124844245113950593348271)
+q = gmpy2.mpz(366669102002966856876605669837014229419)
+e = gmpy2.mpz(65537)
+eula = (p-1)*(q-1)
+d = gmpy2.invert(e, eula)
+c = gmpy2.mpz(0xad939ff59f6e70bcbfad406f2494993757eee98b91bc244184a377520d06fc35)
+
+dec = gmpy2.powmod(c, d, n)
+print("十进制:\n%s"%dec)
+dec_hex = hex(dec)[2:]
+print("十六进制:\n%s"%(dec_hex,))
+print("ascii:\n%s"%(binascii.a2b_hex(dec_hex).decode(encoding="utf8")))
+```
+
+由于`gmpy2`在我的 Windows 下装不上 (需要`gmp` `mpfr ` `mpc`), 因此我在 Ubuntu 虚拟机下面装了.
+
+拿到结果.
+
+![image-20210318200810904](2021-Weekly-Reverse/image-20210318200810904.png)
+
+
+
+flag: `suctf{Pwn_@_hundred_years}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

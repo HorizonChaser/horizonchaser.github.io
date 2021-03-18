@@ -421,9 +421,13 @@ int sub_401050()
 
 ## 0×00 Hacking with Google 2020 Beginner
 
-已经大体理解了整个过程, 不过还没有拿到 flag... angr 也没有跑出来正确的结果, 可能是没能正确识别 SSE 的函数...?
+已经理解了整个过程, 不过还没有拿到 flag... angr 也没有跑出来正确的结果, 可能是没能正确识别 SSE 的函数...?
 
-等我再研究研究
+跑出来是这样...
+
+![image-20210305182332107](Strong-Reversers/image-20210305182332107.png)
+
+等我再研究研究, 或许直接用 z3 会比较适合?
 
 ## 0×01 V&N 公开赛 CSRe
 
@@ -512,7 +516,7 @@ cmd5 上查询, 得到 `text = "1415"`, `text2 = "turn"`, 最后得到 flag.
 
 IDA64 打开, 定位到`main`函数, 发现 flag 就摆在眼前 (误
 
-```C++
+```c
 __int64 __fastcall main(int a1, char **a2, char **a3)
 {
   if ( a1 > 1 )
@@ -534,7 +538,7 @@ __int64 __fastcall main(int a1, char **a2, char **a3)
 
 我们发现它确实调用了一个`strcmp`比较`argv[0]`和那东西 (就叫假 flag 吧) 的值, 但是它又确实不是 flag.... 看看左侧, 发现还有两个奇怪的函数 `sub_6EA`和`sub_795`.
 
-```C
+```c
 // write access to const memory has been detected, the output may be wrong!
 int (**sub_795())(const char *s1, const char *s2)
 {
@@ -549,7 +553,7 @@ int (**sub_795())(const char *s1, const char *s2)
 
 (`srecmp_pointer`是我重命名的)
 
-```C
+```c
 __int64 __fastcall sub_6EA(__int64 a1, __int64 a2)
 {
   int i; // [rsp+18h] [rbp-8h]
@@ -567,7 +571,7 @@ __int64 __fastcall sub_6EA(__int64 a1, __int64 a2)
 
 但是我们并没有在`main`中看到这两个函数的调用, 看一下交叉引用, 发现这两个函数都在`.init_array`段里 - 会在`main`前就执行.
 
-`sub_795`会把在`.got.plt`段中原先正常的`strcmp`的地址替换成`sub_6EA`的地址, 而`sub_6EA`会把第一个参数按照每 8 个字符一组, 减去`qword_201060[j]`后再和第二个参数进行真正的`strcmp`...
+`sub_795`会把在`.got.plt`段中原先正常的`strcmp`的地址替换成`sub_6EA`的地址, 而`sub_6EA`会把第一个参数按照每 8 个字符一组, 减去`qword_201060[j]`后再和假 flag 进行真正的`strcmp`...
 
 既然这样, 写个 jio 本 - 看上去是这样.
 
