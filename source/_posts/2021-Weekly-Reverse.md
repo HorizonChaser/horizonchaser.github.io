@@ -437,7 +437,7 @@ __int64 __fastcall main(int a1, char **a2, char **a3)
 
 16 ~ 19 行初始化了四个整数, 查看[文档](https://gmplib.org/manual/Integer-Exponentiation)发现`__gmpz_powm(mpz_t rop, const mpz_t base, const mpz_t exp, const mpz_t mod)`实际上等价于`rop = (base ^ exp) % mod`. 另外, 据说这个函数经常在 RSA 算法中出现...
 
-RSA! 这些大整数正好就是 RSA 中会用到的! 对应一下, `v7`是密文, `v6`是明文, `v5`是`e`, `v4`就是`n`. 把`v4`放到 [factor.db](http://factordb.com/index.php)分解一下, 得到了`p`和`q`.
+RSA! 这些大整数正好就是 RSA 中会用到的! 对应一下, `v7`是密文, `v6`是明文, `v5`是`e`, `v4`就是`n`. 把`v4`放到 [factor.db](http://factordb.com/index.php) 分解一下, 得到了`p`和`q`.
 
 ![image-20210318200048244](2021-Weekly-Reverse/image-20210318200048244.png)
 
@@ -473,21 +473,277 @@ print("ascii:\n%s"%(binascii.a2b_hex(dec_hex).decode(encoding="utf8")))
 
 flag: `suctf{Pwn_@_hundred_years}`
 
+## Week 13, 03/28 - 04/03, BUUCTF
+
+### [FlareOn6] Overlong
+
+PE32 程序, 没发现有壳, 直接用 IDA 打开, 只有三个函数, 而且没有 `.init_array`和`.fini_array`段, 没有发现有价值的明文字符串 - 也就是说有某种形式的加解密.
+
+![image-20210402231014192](2021-Weekly-Reverse/image-20210402231014192.png)
+
+运行一下试试, 注意到下图最后是个冒号.... 推测应该是长度限制了.
+
+![image-20210402231001573](2021-Weekly-Reverse/image-20210402231001573.png)
+
+IDA 打开`start`函数, 很容易定位到解密函数, 它的第二个参数是密文, 第三个参数就是长度.
+
+```c
+int __stdcall start(int a1, int a2, int a3, int a4)
+{
+  CHAR Text[128]; // [esp+0h] [ebp-84h] BYREF
+  int v6; // [esp+80h] [ebp-4h]
+
+  v6 = sub_401160(Text, &unk_402008, 28);       // 解密函数
+  Text[v6] = 0;
+  MessageBoxA(0, Text, Caption, 0);
+  return 0;
+}
+```
+
+```assembly
+.text:004011C0 start           proc near
+.text:004011C0
+.text:004011C0 Text            = byte ptr -84h
+.text:004011C0 var_4           = dword ptr -4
+.text:004011C0
+.text:004011C0                 push    ebp
+.text:004011C1                 mov     ebp, esp
+.text:004011C3                 sub     esp, 84h
+.text:004011C9                 push    1Ch
+.text:004011CB                 push    offset unk_402008
+.text:004011D0                 lea     eax, [ebp+Text]
+.text:004011D6                 push    eax
+.text:004011D7                 call    sub_401160
+.text:004011DC                 add     esp, 0Ch
+.text:004011DF                 mov     [ebp+var_4], eax
+.text:004011E2                 mov     ecx, [ebp+var_4]
+.text:004011E5                 mov     [ebp+ecx+Text], 0
+.text:004011ED                 push    0               ; uType
+.text:004011EF                 push    offset Caption  ; "Output"
+.text:004011F4                 lea     edx, [ebp+Text]
+.text:004011FA                 push    edx             ; lpText
+.text:004011FB                 push    0               ; hWnd
+.text:004011FD                 call    ds:MessageBoxA
+.text:00401203                 xor     eax, eax
+.text:00401205                 mov     esp, ebp
+.text:00401207                 pop     ebp
+.text:00401208                 retn    10h
+.text:00401208 start           endp
+```
 
 
 
 
 
+`unk_402008`的长度是 `0xAF`, 尝试修改一下. **但是由于某些原因, 在用 KeyPatch 修改`push 1Ch`的时候会干扰下一条指令...**
+
+用动态调试, 在`0x4011C9`下个断点, 在 push 之后直接把栈上数据改成 `0xAF`, 如下图.
+
+![image-20210402232605263](2021-Weekly-Reverse/image-20210402232605263.png)
+
+然后继续执行, 看到了 ~~好康的~~ 答案.
+
+![image-20210402232658068](2021-Weekly-Reverse/image-20210402232658068.png)
 
 
 
+`flag{I_a_M_t_h_e_e_n_C_o_D_i_n_g@flare-on.com}`
 
+## [GXYCTF2019] simple CPP
 
+~~果然题面里有 simple 的不是送分题就是送命题~~
 
+IDA打开, 按顺序把`main`分成三部分
 
+#### 第一部分 异或加密
 
+```c
+  v3 = 0;
+  v40 = 0i64;
+  v41 = 15i64;
+  LOBYTE(Block[0]) = 0;
+  v4 = std::operator<<<std::char_traits<char>>(
+         std::cout,
+         (__int64)"I'm a first timer of Logic algebra , how about you?");
+  std::ostream::operator<<(v4, std::endl<char,std::char_traits<char>>);
+  std::operator<<<std::char_traits<char>>(std::cout, (__int64)"Let's start our game,Please input your flag:");
+  std::operator>><char>(std::cin, (std::string *)Block);
+  std::ostream::operator<<(std::cout, std::endl<char,std::char_traits<char>>);
+  if ( v40 - 5 > 25 ) //v40 is len of input str
+  {
+    v35 = std::operator<<<std::char_traits<char>>(std::cout, (__int64)"Wrong input ,no GXY{} in input words");
+    std::ostream::operator<<(v35, std::endl<char,std::char_traits<char>>);
+    goto LABEL_41;
+  }
+  v5 = (unsigned __int8 *)operator new(0x20ui64);
+  v6 = v5;
+  if ( v5 )
+  {
+    *(_QWORD *)v5 = 0i64;
+    *((_QWORD *)v5 + 1) = 0i64;
+    *((_QWORD *)v5 + 2) = 0i64;
+    *((_QWORD *)v5 + 3) = 0i64;
+  }
+  else
+  {
+    v6 = 0i64;
+  }
+  v7 = 0;
+  if ( v40 )
+  {
+    v8 = 0i64;
+    do
+    {
+      v9 = Block;
+      if ( v41 >= 0x10 )
+        v9 = (void **)Block[0];
+      v10 = &qword_7FF73C476048;
+      if ( (unsigned __int64)qword_7FF73C476060 >= 0x10 )// qword -> xor key
+        v10 = (void **)qword_7FF73C476048;
+      v6[v8] = *((_BYTE *)v9 + v8) ^ *((_BYTE *)v10 + v7 % 27);
+      ++v7;
+      ++v8;
+    }
+    while ( v7 < v40 );
+  }
+```
 
+这里会首先对输入进行一次异或加密并保存在`v6`, key 是 `*qword_7FF73C476060`, 实际内容未知, 等到动态调试时再确定.
 
+#### 第二部分 分组
+
+```c
+  v11 = 0i64;
+  v12 = 0i64;
+  v13 = 0i64;
+  v14 = 0i64;
+  if ( (int)v40 > 30 )
+    goto LABEL_27;
+  v15 = 0;
+  if ( (int)v40 <= 0 )
+    goto LABEL_27;
+  v16 = v6; //v16 points to input str
+  do
+  {
+    v17 = *v16 + v11;
+    ++v15;
+    ++v16;
+    switch ( v15 )
+    {
+      case 8:
+        v14 = v17;
+        goto LABEL_23;
+      case 16:
+        v13 = v17;
+        goto LABEL_23;
+      case 24:
+        v12 = v17;
+LABEL_23:
+        v17 = 0i64;
+        break;
+      case 32:
+        std::operator<<<std::char_traits<char>>(std::cout, (__int64)"ERRO,out of range");
+        exit(1);
+    }
+    v11 = v17 << 8;
+  }
+  while ( v15 < (int)v40 );
+```
+
+在这里把输入按照 8 个字符为一组 (正好 64 位)分开, 分别赋给`v14` `v13` `v12` `v11`.
+
+#### 第三部分 校验
+
+```c
+  if ( v14 )
+  {
+    v18 = (__int64 *)operator new(0x20ui64);
+    *v18 = v14;
+    v18[1] = v13;
+    v18[2] = v12;
+    v18[3] = v11;
+    goto LABEL_28;
+  }
+LABEL_27:
+  v18 = 0i64;
+LABEL_28:
+  v38 = v18[2]; //v12
+  v19 = v18[1]; //v13
+  v20 = *v18; //v14
+  v21 = (__int64 *)operator new(0x20ui64);
+  v22 = v19 & v20; //v13&v14
+  *v21 = v19 & v20;
+  v23 = v38 & ~v20; 
+  v21[1] = v23;
+  v24 = ~v19;
+  v25 = v38 & v24;
+  v21[2] = v38 & v24;
+  v26 = v20 & v24;
+  v21[3] = v26;
+  if ( v23 != 0x11204161012i64 )
+  {
+    v21[1] = 0i64;
+    v23 = 0i64;
+  }
+  v27 = v23 | v22 | v25 | v26;
+  v28 = v18[1];
+  v29 = v18[2];
+  v30 = v25 & *v18 | v29 & (v22 | v28 & ~*v18 | ~(v28 | *v18));
+  v31 = 0;
+  if ( v30 == 0x8020717153E3013i64 )
+    v31 = v27 == 0x3E3A4717373E7F1Fi64;
+  if ( (v27 ^ v18[3]) == 0x3E3A4717050F791Fi64 )
+    v3 = v31;
+  if ( (v23 | v22 | v28 & v29) == (~*v18 & v29 | 0xC00020130082C0Ci64) && v3 )
+  {
+    v32 = std::operator<<<std::char_traits<char>>(std::cout, (__int64)"Congratulations!flag is GXY{");
+	//...... other things ......
+  }
+```
+
+所以我们可以得到如下的方程组...
+
+```c
+z & ~x == 1176889593874
+z & ~x | y & x | z & ~y | x & ~y == 4483974544037412639
+z & ~y &x | z &(y & x | y & ~x | ~(y | x)) == 577031497978884115
+(z & ~x | y & x | z & ~y | x & ~y) ^ w == 4483974543195470111
+```
+
+用 z3 解之, 得到
+
+```c
+w = 842073600
+y = 290580315766788
+x = 4483973367147818765
+z = 577031497978884115
+```
+
+`v6`就是`x y z w`按顺序连接得到的加密后的 flag.
+
+#### 最后一击
+
+接下来我们在`0x13DF`的位置下个断点, 观察一下`qword_7FF73C476048`指向的内容.
+
+```assembly
+.data:00007FF73C476048 qword_7FF73C476048 dq 1D5FD108F30h      ; DATA XREF: main+DF↑o
+```
+
+选中`0x1D5FD108F30h`处的数据, Edit - Strings, 得到`i_will_check_is_debug_or_not`
+
+```python
+enc =[0x3e,0x3a,0x46,0x05,0x33,0x28,0x6f,0x0d,0x1,0x08,0x48,0x00,0x00,0x80,0x00,0x04,0x8,0x02,0x07,0x17,0x15,0x3e,0x30,0x13,0x32,0x31,0x06,0x00]
+key = "i_will_check_is_debug_or_not"
+flag = ""
+
+for i in range(len(enc)-1):
+	flag += chr((ord(key[i%27])) ^ enc[i])
+print(flag)
+```
+
+用`y`手动修正一下, 得到 flag.
+
+`flag{We1l_D0ne!P0or_algebra_am_i}`
 
 
 
