@@ -549,7 +549,7 @@ int __stdcall start(int a1, int a2, int a3, int a4)
 
 `flag{I_a_M_t_h_e_e_n_C_o_D_i_n_g@flare-on.com}`
 
-## [GXYCTF2019] simple CPP
+### [GXYCTF2019] simple CPP
 
 ~~果然题面里有 simple 的不是送分题就是送命题~~
 
