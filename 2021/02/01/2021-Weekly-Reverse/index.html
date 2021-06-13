@@ -64,7 +64,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
@@ -255,7 +255,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月13日 周日 13:18:12
+                  Last Update @ 2021年6月13日 周日 13:44:29
                 
               </p>
             
@@ -271,9 +271,9 @@
 <h3 id="reverse3"><a href="#reverse3" class="headerlink" title="reverse3"></a>reverse3</h3><p>IDA, 找到 <code>main</code>之后 F5, 大概修改一些名称之后得到如下.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __cdecl <span class="token function">main_0</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>envp<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-  size_t StrLen<span class="token punctuation">;</span> <span class="token comment">// eax</span>
+  <span class="token class-name">size_t</span> StrLen<span class="token punctuation">;</span> <span class="token comment">// eax</span>
   <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>v4<span class="token punctuation">;</span> <span class="token comment">// eax</span>
-  size_t destLen2<span class="token punctuation">;</span> <span class="token comment">// eax</span>
+  <span class="token class-name">size_t</span> destLen2<span class="token punctuation">;</span> <span class="token comment">// eax</span>
   <span class="token keyword">char</span> v7<span class="token punctuation">;</span> <span class="token comment">// [esp+0h] [ebp-188h]</span>
   <span class="token keyword">char</span> v8<span class="token punctuation">;</span> <span class="token comment">// [esp+0h] [ebp-188h]</span>
   <span class="token keyword">signed</span> <span class="token keyword">int</span> j<span class="token punctuation">;</span> <span class="token comment">// [esp+DCh] [ebp-ACh]</span>
@@ -304,6 +304,7 @@
     <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"wrong flag!\n"</span><span class="token punctuation">,</span> v8<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在得到输入之后, <code>sub_4110BE</code>对输入的 <code>Str</code>进行了一些处理, 同时 27 行的 <code>for</code> 循环也对 <code>Destination[]</code> 进行了移位, 之后两者比较判断是否正确.</p>
 <p>观察 <code>sub_4110BE</code>, 发现其中调用了一个 base64 的编码表, 结合行为确定是对输入进行 base64 编码.</p>
 <p>把 <code>Destination[]</code>的内容进行反移位, 得到<code>e2lfbDB2ZV95b3V9</code>, base64 解码后得到 <code>{i_l0ve_you}</code></p>
@@ -332,6 +333,7 @@
     putchar(v3);
   }
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>明显, 在 <code>Decry</code> 函数中进行了 flag 的验证….</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">unsigned __int64 Decry()
 {
@@ -404,6 +406,7 @@
     puts("Try again!\n");
   return __readfsqword(0x28u) ^ v12;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在 37 行的 <code>while</code> 循环后, 通过计算 <code>str2[]</code>的值并判断是否与<code>text</code>相等来确定 flag 正确与否, 写个脚本爆破即可.</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">upperTable<span class="token operator">=</span><span class="token string">'ABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>
 lowerTable <span class="token operator">=</span> upperTable<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -426,6 +429,7 @@ flag2<span class="token operator">=</span><span class="token string">''</span>
             flag2<span class="token operator">+=</span>c
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'flag{'</span><span class="token operator">+</span>flag<span class="token operator">+</span><span class="token string">'}'</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'flag{'</span><span class="token operator">+</span>flag2<span class="token operator">+</span><span class="token string">'}'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>因为并未对大小写进行限定, 所以大小写理论上均可…大概, 总之大写是可以的.</p>
 <p><code>flag{KLDQCUDFZO}</code></p>
 <h2 id="Week-6-02-07-02-14-BUUCTF"><a href="#Week-6-02-07-02-14-BUUCTF" class="headerlink" title="Week 6, 02/07 - 02/14, BUUCTF"></a>Week 6, 02/07 - 02/14, BUUCTF</h2><h3 id="CrackRTF"><a href="#CrackRTF" class="headerlink" title="CrackRTF"></a>CrackRTF</h3><p>看题目说明, 在文件中藏了一个 rtf 文件, 不过用 binwalk 扫描没发现什么. 可能是加密了…</p>
@@ -484,6 +488,7 @@ flag2<span class="token operator">=</span><span class="token string">''</span>
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
+
 <p>进入 <code>sub_401230</code>, 定位到 <code>CryptCreateHash(phProv, 0x8004u, 0, 0, &amp;phHash)</code>, 搜一下这个函数的<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/seccrypto/alg-id">文档</a>, 发现第二个参数控制了计算的哈希种类, <code>0x8004</code>是 SHA1, <code>0x8003</code>是 MD5. 由此我们可以对在 [100000, 1000000) 的前半部分进行爆破, 写个脚本.</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> hashlib
 
@@ -497,6 +502,7 @@ postfix <span class="token operator">=</span> <span class="token string">"@DBApp
     <span class="token keyword">if</span><span class="token punctuation">(</span>shaObj<span class="token punctuation">.</span>hexdigest<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"6E32D0943418C2C33385BC35A1470250DD8923A9"</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
         <span class="token keyword">print</span><span class="token punctuation">(</span>prefix <span class="token operator">+</span> postfix<span class="token punctuation">)</span>
      <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>这样, 我们得到了第一个密码 <code>1233321</code>, 这时 <code>Destination == "123321@DBApp"</code>, 输入的第二个密码后面会连接 <code>Destination</code>, 然后计算 MD5 值, 和 <code>27019e688a4e62a649fd99cadaafdb4e</code>比较, 判断是否正确.</p>
 <p>需要注意的是, 第二个密码只限制了长度, 没有限制是纯数字…<del>没注意到的话你可能就会和我一样卡住了</del></p>
 <p>到这里, 我们有两种方法.</p>
@@ -539,6 +545,7 @@ postfix <span class="token operator">=</span> <span class="token string">"@DBApp
   <span class="token function">CloseHandle</span><span class="token punctuation">(</span>hFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>首先是 <code>FindResourceA</code>这个函数, 从<a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-findresourcea">文档</a>来看, 它会尝试寻找名称为 <code>0x65</code>, 类型为 <code>AAA</code> 的资源, 然后通过<code>SizeofResource</code>计算长度, 通过<code>LoadResource</code>加载到<code>lpBuffer</code>中并上锁, 之后调用了<code>sub_401005</code>进行了什么操作, 然后创建<code>dbapp.rtf</code>并写文件, 最后关闭.</p>
 <p>看来<code>sub_401005</code>就是解密函数了.</p>
 <p><code>sub_401005</code>会继续调用<code>sub_401420</code>, 主要是一个异或的循环…</p>
@@ -558,6 +565,7 @@ postfix <span class="token operator">=</span> <span class="token string">"@DBApp
   }
   return result;
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在这里, 会将现有数据的每一位和密钥进行异或作为解密, 而原文件是一个 RTF 格式的文件, 文件头是 <a target="_blank" rel="noopener" href="https://www.filesignatures.net/index.php?page=search&amp;search=7B5C72746631&amp;mode=SIG"><code>7B 5C 72 74 66 31</code></a>, 正好六个字节, 和第二段密码一样长.</p>
 <p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43786458/article/details/102488408">这篇题解</a>, 用 ResourceHacker 看一下资源,果然找到了这个. (0x65 == 101)</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210207150448312.png" srcset="/img/loading.gif" alt="image-20210207150448312"></p>
@@ -591,6 +599,7 @@ postfix <span class="token operator">=</span> <span class="token string">"@DBApp
     <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"TTTTTTTTTTql!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token number">0LL</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><code>sub_96A</code>会把输入进行处理, 得到 16 进制字符串. 之后的<code>__gmpz_</code>系列函数是 GNU 的高精度计算库.</p>
 <p>16 ~ 19 行初始化了四个整数, 查看<a target="_blank" rel="noopener" href="https://gmplib.org/manual/Integer-Exponentiation">文档</a>发现<code>__gmpz_powm(mpz_t rop, const mpz_t base, const mpz_t exp, const mpz_t mod)</code>实际上等价于<code>rop = (base ^ exp) % mod</code>. 另外, 据说这个函数经常在 RSA 算法中出现…</p>
 <p>RSA! 这些大整数正好就是 RSA 中会用到的! 对应一下, <code>v7</code>是密文, <code>v6</code>是明文, <code>v5</code>是<code>e</code>, <code>v4</code>就是<code>n</code>. 把<code>v4</code>放到 <a target="_blank" rel="noopener" href="http://factordb.com/index.php">factor.db</a> 分解一下, 得到了<code>p</code>和<code>q</code>.</p>
@@ -613,6 +622,7 @@ dec <span class="token operator">=</span> gmpy2<span class="token punctuation">.
 dec_hex <span class="token operator">=</span> <span class="token builtin">hex</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"十六进制:\n%s"</span><span class="token operator">%</span><span class="token punctuation">(</span>dec_hex<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"ascii:\n%s"</span><span class="token operator">%</span><span class="token punctuation">(</span>binascii<span class="token punctuation">.</span>a2b_hex<span class="token punctuation">(</span>dec_hex<span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span>encoding<span class="token operator">=</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>由于<code>gmpy2</code>在我的 Windows 下装不上 (需要<code>gmp</code> <code>mpfr </code> <code>mpc</code>), 因此我在 Ubuntu 虚拟机下面装了.</p>
 <p>拿到结果.</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210318200810904.png" srcset="/img/loading.gif" alt="image-20210318200810904"></p>
@@ -632,6 +642,7 @@ dec_hex <span class="token operator">=</span> <span class="token builtin">hex</s
   <span class="token function">MessageBoxA</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> Text<span class="token punctuation">,</span> Caption<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">.text:004011C0 start           proc near
 .text:004011C0
 .text:004011C0 Text            = byte ptr -84h
@@ -660,6 +671,7 @@ dec_hex <span class="token operator">=</span> <span class="token builtin">hex</s
 .text:00401207                 pop     ebp
 .text:00401208                 retn    10h
 .text:00401208 start           endp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
 
 
@@ -720,6 +732,7 @@ v7 <span class="token operator">=</span> <span class="token number">0</span><spa
   <span class="token punctuation">}</span>
   <span class="token keyword">while</span> <span class="token punctuation">(</span> v7 <span class="token operator">&lt;</span> v40 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>这里会首先对输入进行一次异或加密并保存在<code>v6</code>, key 是 <code>*qword_7FF73C476060</code>, 实际内容未知, 等到动态调试时再确定.</p>
 <h4 id="第二部分-分组"><a href="#第二部分-分组" class="headerlink" title="第二部分 分组"></a>第二部分 分组</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c">  v11 <span class="token operator">=</span> <span class="token number">0</span>i64<span class="token punctuation">;</span>
   v12 <span class="token operator">=</span> <span class="token number">0</span>i64<span class="token punctuation">;</span>
@@ -756,6 +769,7 @@ LABEL_23<span class="token operator">:</span>
     v11 <span class="token operator">=</span> v17 <span class="token operator">&lt;&lt;</span> <span class="token number">8</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
   <span class="token keyword">while</span> <span class="token punctuation">(</span> v15 <span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>v40 <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在这里把输入按照 8 个字符为一组 (正好 64 位)分开, 分别赋给<code>v14</code> <code>v13</code> <code>v12</code> <code>v11</code>.</p>
 <h4 id="第三部分-校验"><a href="#第三部分-校验" class="headerlink" title="第三部分 校验"></a>第三部分 校验</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c">  <span class="token keyword">if</span> <span class="token punctuation">(</span> v14 <span class="token punctuation">)</span>
   <span class="token punctuation">{</span>
@@ -801,19 +815,23 @@ LABEL_28<span class="token operator">:</span>
     v32 <span class="token operator">=</span> std<span class="token operator">::</span>operator<span class="token operator">&lt;&lt;</span><span class="token operator">&lt;</span>std<span class="token operator">::</span>char_traits<span class="token operator">&lt;</span><span class="token keyword">char</span><span class="token operator">&gt;&gt;</span><span class="token punctuation">(</span>std<span class="token operator">::</span>cout<span class="token punctuation">,</span> <span class="token punctuation">(</span>__int64<span class="token punctuation">)</span><span class="token string">"Congratulations!flag is GXY{"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token comment">//...... other things ......</span>
   <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>所以我们可以得到如下的方程组…</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">z <span class="token operator">&amp;</span> <span class="token operator">~</span>x <span class="token operator">==</span> <span class="token number">1176889593874</span>
 z <span class="token operator">&amp;</span> <span class="token operator">~</span>x <span class="token operator">|</span> y <span class="token operator">&amp;</span> x <span class="token operator">|</span> z <span class="token operator">&amp;</span> <span class="token operator">~</span>y <span class="token operator">|</span> x <span class="token operator">&amp;</span> <span class="token operator">~</span>y <span class="token operator">==</span> <span class="token number">4483974544037412639</span>
 z <span class="token operator">&amp;</span> <span class="token operator">~</span>y <span class="token operator">&amp;</span>x <span class="token operator">|</span> z <span class="token operator">&amp;</span><span class="token punctuation">(</span>y <span class="token operator">&amp;</span> x <span class="token operator">|</span> y <span class="token operator">&amp;</span> <span class="token operator">~</span>x <span class="token operator">|</span> <span class="token operator">~</span><span class="token punctuation">(</span>y <span class="token operator">|</span> x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">577031497978884115</span>
 <span class="token punctuation">(</span>z <span class="token operator">&amp;</span> <span class="token operator">~</span>x <span class="token operator">|</span> y <span class="token operator">&amp;</span> x <span class="token operator">|</span> z <span class="token operator">&amp;</span> <span class="token operator">~</span>y <span class="token operator">|</span> x <span class="token operator">&amp;</span> <span class="token operator">~</span>y<span class="token punctuation">)</span> <span class="token operator">^</span> w <span class="token operator">==</span> <span class="token number">4483974543195470111</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>用 z3 解之, 得到</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">w <span class="token operator">=</span> <span class="token number">842073600</span>
 y <span class="token operator">=</span> <span class="token number">290580315766788</span>
 x <span class="token operator">=</span> <span class="token number">4483973367147818765</span>
 z <span class="token operator">=</span> <span class="token number">577031497978884115</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><code>v6</code>就是<code>x y z w</code>按顺序连接得到的加密后的 flag.</p>
 <h4 id="最后一击"><a href="#最后一击" class="headerlink" title="最后一击"></a>最后一击</h4><p>接下来我们在<code>0x13DF</code>的位置下个断点, 观察一下<code>qword_7FF73C476048</code>指向的内容.</p>
 <pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">.data:00007FF73C476048 qword_7FF73C476048 dq 1D5FD108F30h      ; DATA XREF: main+DF↑o<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
 <p>选中<code>0x1D5FD108F30h</code>处的数据, Edit - Strings, 得到<code>i_will_check_is_debug_or_not</code></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">enc <span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0x3e</span><span class="token punctuation">,</span><span class="token number">0x3a</span><span class="token punctuation">,</span><span class="token number">0x46</span><span class="token punctuation">,</span><span class="token number">0x05</span><span class="token punctuation">,</span><span class="token number">0x33</span><span class="token punctuation">,</span><span class="token number">0x28</span><span class="token punctuation">,</span><span class="token number">0x6f</span><span class="token punctuation">,</span><span class="token number">0x0d</span><span class="token punctuation">,</span><span class="token number">0x1</span><span class="token punctuation">,</span><span class="token number">0x08</span><span class="token punctuation">,</span><span class="token number">0x48</span><span class="token punctuation">,</span><span class="token number">0x00</span><span class="token punctuation">,</span><span class="token number">0x00</span><span class="token punctuation">,</span><span class="token number">0x80</span><span class="token punctuation">,</span><span class="token number">0x00</span><span class="token punctuation">,</span><span class="token number">0x04</span><span class="token punctuation">,</span><span class="token number">0x8</span><span class="token punctuation">,</span><span class="token number">0x02</span><span class="token punctuation">,</span><span class="token number">0x07</span><span class="token punctuation">,</span><span class="token number">0x17</span><span class="token punctuation">,</span><span class="token number">0x15</span><span class="token punctuation">,</span><span class="token number">0x3e</span><span class="token punctuation">,</span><span class="token number">0x30</span><span class="token punctuation">,</span><span class="token number">0x13</span><span class="token punctuation">,</span><span class="token number">0x32</span><span class="token punctuation">,</span><span class="token number">0x31</span><span class="token punctuation">,</span><span class="token number">0x06</span><span class="token punctuation">,</span><span class="token number">0x00</span><span class="token punctuation">]</span>
 key <span class="token operator">=</span> <span class="token string">"i_will_check_is_debug_or_not"</span>
@@ -822,6 +840,7 @@ flag <span class="token operator">=</span> <span class="token string">""</span>
 <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>enc<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
 	flag <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>key<span class="token punctuation">[</span>i<span class="token operator">%</span><span class="token number">27</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">^</span> enc<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>用<code>y</code>手动修正一下, 得到 flag.</p>
 <p><code>flag{We1l_D0ne!P0or_algebra_am_i}</code></p>
 

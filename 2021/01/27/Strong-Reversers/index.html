@@ -64,7 +64,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.3.0">
+<meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
 
@@ -255,7 +255,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月13日 周日 13:18:12
+                  Last Update @ 2021年6月13日 周日 13:44:29
                 
               </p>
             
@@ -307,6 +307,7 @@ flag <span class="token operator">=</span> simgr<span class="token punctuation">
 <span class="token keyword">print</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>经过漫长的运行( VMWare Ubuntu + Docker angr/angr 大概 30 分钟? ), 我们得到了如下输出 (<code>fg</code>是因为我之前误以为写错了, 于是挂起去检查脚本了…)</p>
 <p><img src="https://i.loli.net/2021/01/27/id16RHAoK5TBpW3.png" srcset="/img/loading.gif" alt="image-20210127140006667"></p>
 <p>放到源程序里检查一下, 看来没毛病. </p>
@@ -486,6 +487,7 @@ flag <span class="token operator">=</span> simgr<span class="token punctuation">
    <span class="token comment"># print("happy new year!")</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>之后写个jio本解密就行了.</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">enc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">178</span><span class="token punctuation">,</span> <span class="token number">184</span><span class="token punctuation">,</span> <span class="token number">185</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">182</span><span class="token punctuation">,</span> <span class="token number">165</span><span class="token punctuation">,</span> <span class="token number">174</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span>
        <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">183</span><span class="token punctuation">,</span> <span class="token number">187</span><span class="token punctuation">,</span> <span class="token number">176</span><span class="token punctuation">,</span> <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">169</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">167</span><span class="token punctuation">,</span> <span class="token number">163</span><span class="token punctuation">]</span>
@@ -499,6 +501,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
     dec <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>enc<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
 
 <span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><code>flag{hapi_new_ya</code>, 记得补上 <code>}</code></p>
 <h2 id="0x01-FlareOn4-IgniteMe"><a href="#0x01-FlareOn4-IgniteMe" class="headerlink" title="0x01 FlareOn4 IgniteMe"></a>0x01 FlareOn4 IgniteMe</h2><p><code>die</code>查壳, 确认 32 位 pe 文件, 没壳, IDA 打开, 定位到入口点 <code>start</code>函数.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> __noreturn <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -516,6 +519,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
     <span class="token function">WriteFile</span><span class="token punctuation">(</span>stdoutHandle<span class="token punctuation">,</span> aN0tT00H0tRWe7r<span class="token punctuation">,</span> <span class="token number">0x24u</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>NumberOfBytesWritten<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token function">ExitProcess</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><code>GetStdHandle</code>函数没见过, 查了一下<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/console/getstdhandle">文档</a>, 是获得设备句柄, 参数决定是标准 输入/输出/错误 设备.</p>
 <p>在第 8 行输出提示之后调用了一个函数, 推测是解析输入 - 同时确定的输入缓冲区的第一个零字节的位置作为结尾. 然后在第 10 行调用<code>sub_401050</code>检验 flag, </p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">sub_401050</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -539,6 +543,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>是一个简单的循环异或加密, 不过注意是反向的, 初始的<code>key</code>是<code>0x4</code>. 写个jio本解密, 拿到 flag.</p>
 <p><code>flag{R_y0u_H0t_3n0ugH_t0_1gn1t3@flare-on.com}</code></p>
 <p><del>还真是晚上做的…</del></p>
@@ -560,6 +565,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
    <span class="token comment">// do some other things</span>
     
   <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>在<code>initConnextion</code>返回不为零时, 会等待五秒再重来 - 这里应该就是回连服务器了. 进去看看, 确定地址<code>echo.byethost51.com</code>, 端口<code>36667</code>.</p>
 <p><code>MD5(echo.byethost51.com:36667) == 33a422c45d551ac6e4756f59812a954b</code></p>
 <p>所以, <code>flag{33a422c45d551ac6e4756f59812a954b}</code></p>
@@ -632,6 +638,7 @@ internal sealed class Class3
 		}
 	}
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>flag 一共有两端, 其中<code>text</code>直接就是<code>B498BFA2498E21325D1178417BEA459EB2CD28F8</code>的 SHA1 原文. </p>
 <p>对于 <code>text2</code>, 观察<code>method_0</code>, 发现它会返回两个 string 类型参数的异或值, 而之后的 for 循环会比较异或后的字符串每个字符是否均为<code>"0"</code> - 很明显, <code>x ^ x == 0</code>, 所以<code>"re" + text2</code>的 SHA1 值就是 <code>63143B6F8007B98C53CA2149822777B3566F9241</code>.</p>
 <p>cmd5 上查询, 得到 <code>text = "1415"</code>, <code>text2 = "turn"</code>, 最后得到 flag.</p>
@@ -656,6 +663,7 @@ internal sealed class Class3
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> <span class="token number">0LL</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><del>怎么看第五行的那东西都不能是 flag 吧</del></p>
 <p>我们发现它确实调用了一个<code>strcmp</code>比较<code>argv[0]</code>和那东西 (就叫假 flag 吧) 的值, 但是它又确实不是 flag…. 看看左侧, 发现还有两个奇怪的函数 <code>sub_6EA</code>和<code>sub_795</code>.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// write access to const memory has been detected, the output may be wrong!</span>
@@ -668,6 +676,7 @@ internal sealed class Class3
   off_201028 <span class="token operator">=</span> sub_6EA<span class="token punctuation">;</span>
   <span class="token keyword">return</span> result<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>(<code>srecmp_pointer</code>是我重命名的)</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">__int64 __fastcall <span class="token function">sub_6EA</span><span class="token punctuation">(</span>__int64 a1<span class="token punctuation">,</span> __int64 a2<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -682,6 +691,7 @@ internal sealed class Class3
     <span class="token operator">*</span><span class="token punctuation">(</span>_QWORD <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">8</span> <span class="token operator">*</span> j <span class="token operator">+</span> a1<span class="token punctuation">)</span> <span class="token operator">-=</span> qword_201060<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token function">strcmp_pointer</span><span class="token punctuation">(</span>a1<span class="token punctuation">,</span> a2<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>但是我们并没有在<code>main</code>中看到这两个函数的调用, 看一下交叉引用, 发现这两个函数都在<code>.init_array</code>段里 - 会在<code>main</code>前就执行.</p>
 <p><code>sub_795</code>会把在<code>.got.plt</code>段中原先正常的<code>strcmp</code>的地址替换成<code>sub_6EA</code>的地址, 而<code>sub_6EA</code>会把第一个参数按照每 8 个字符一组, 减去<code>qword_201060[j]</code>后再和假 flag 进行真正的<code>strcmp</code>…</p>
 <p>既然这样, 写个 jio 本 - 看上去是这样.</p>
@@ -697,6 +707,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span>
 dec <span class="token operator">=</span> <span class="token string">""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>得到的结果是<code>l3ts_m4k3^4^DDSOUR_t0d4y</code>, 中间部分看上去不太对… 原因在于, 原程序是将整个<code>QWORD</code>作为一个整体进行加减, 但我们的 exp 是对每一个字节进行的计算, 这样进位不会影响到前一位.</p>
 <p>进位影响的是 9 11 13 14 这几个位置, 手动加一就好.</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">key <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0x42</span><span class="token punctuation">,</span> <span class="token number">0x09</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x49</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x43</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x41</span><span class="token punctuation">,</span>
@@ -717,6 +728,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span>
 dec <span class="token operator">=</span> <span class="token string">""</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><code>zer0pts{l3ts_m4k3_4_DETOUR_t0d4y}</code></p>
 <p>不过在平台上提交的时候应该是<code>flag{l3ts_m4k3_4_DETOUR_t0d4y}</code></p>
 
