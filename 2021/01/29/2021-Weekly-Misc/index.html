@@ -255,39 +255,47 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月14日 周一 14:11:51
+                  Last Update @ 2021年6月14日 周一 14:23:24
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h2 id="Week-4-01-24-01-30-BUUCTF"><a href="#Week-4-01-24-01-30-BUUCTF" class="headerlink" title="Week 4, 01/24 - 01/30 BUUCTF"></a>Week 4, 01/24 - 01/30 BUUCTF</h2><h3 id="被偷走的文件"><a href="#被偷走的文件" class="headerlink" title="被偷走的文件"></a>被偷走的文件</h3><p>打开流量包, 发现一些FTP协议的包, 用<code>ftp or ftp-data</code>筛选出来, 结果如下.</p>
+              <h2 id="week-4-0124-0130-buuctf"><a class="markdownIt-Anchor" href="#week-4-0124-0130-buuctf"></a> Week 4, 01/24 - 01/30 BUUCTF</h2>
+<h3 id="被偷走的文件"><a class="markdownIt-Anchor" href="#被偷走的文件"></a> 被偷走的文件</h3>
+<p>打开流量包, 发现一些FTP协议的包, 用<code>ftp or ftp-data</code>筛选出来, 结果如下.</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130110430119.png" srcset="/img/loading.gif" alt="image-20210130110430119"></p>
 <p>55 号包就是服务器返回的包含 flag.rar 的数据包, 右键详情中的 FTP Data 分组, 导出分组字节流. 从文件头的<code>Rar!</code>可以判定, 这是一个 rar 文件.</p>
 <p>打开导出的文件, 发现需要密码, 用 ARCHPR 爆破, 得到四位密码<code>5790</code>, 进而得到 flag.</p>
 <p><code>flag{6fe99a5d03fb01f833ec3caa80358fa3}</code></p>
-<h4 id="另一种提取数据的做法"><a href="#另一种提取数据的做法" class="headerlink" title="另一种提取数据的做法"></a>另一种提取数据的做法</h4><p>从 <a target="_blank" rel="noopener" href="https://pcapng.github.io/pcapng/draft-tuexen-opsawg-pcapng.html">pcapng 的规范</a>中, 我们可以发现数据包在捕获文件中是明文存储的, 同时 FTP 的数据也是明文传输的, 所以我们可以直接使用 binwalk 或者 foremost 从 pcapng 中提取文件.</p>
+<h4 id="另一种提取数据的做法"><a class="markdownIt-Anchor" href="#另一种提取数据的做法"></a> 另一种提取数据的做法</h4>
+<p>从 <a target="_blank" rel="noopener" href="https://pcapng.github.io/pcapng/draft-tuexen-opsawg-pcapng.html">pcapng 的规范</a>中, 我们可以发现数据包在捕获文件中是明文存储的, 同时 FTP 的数据也是明文传输的, 所以我们可以直接使用 binwalk 或者 foremost 从 pcapng 中提取文件.</p>
 <p>如果提取出的文件太多的话, 也可以先导出指定的数据包再尝试提取.</p>
-<h3 id="BJDCTF2020-认真你就输了"><a href="#BJDCTF2020-认真你就输了" class="headerlink" title="[BJDCTF2020] 认真你就输了"></a>[BJDCTF2020] 认真你就输了</h3><p>打开, 是一个 xls 文件, 但不能正常显示.</p>
+<h3 id="bjdctf2020-认真你就输了"><a class="markdownIt-Anchor" href="#bjdctf2020-认真你就输了"></a> [BJDCTF2020] 认真你就输了</h3>
+<p>打开, 是一个 xls 文件, 但不能正常显示.</p>
 <p>不过 xls 文件本身也是一个 zip 压缩包, 直接解压, 在 xl/charts 下面发现一个 flag.txt, 打开就是 flag…</p>
 <p><code>flag{M9eVfi2Pcs#}</code></p>
-<h3 id="BJDCTF2020-藏藏藏"><a href="#BJDCTF2020-藏藏藏" class="headerlink" title="[BJDCTF2020]藏藏藏"></a>[BJDCTF2020]藏藏藏</h3><p>打开, 是张 jpg 图片, 用 stegsolve 看一下 File Format…</p>
+<h3 id="bjdctf2020藏藏藏"><a class="markdownIt-Anchor" href="#bjdctf2020藏藏藏"></a> [BJDCTF2020]藏藏藏</h3>
+<p>打开, 是张 jpg 图片, 用 stegsolve 看一下 File Format…</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130121745206.png" srcset="/img/loading.gif" alt="image-20210130121745206"></p>
 <p>看来文件末尾藏了点东西, 熟悉的 <code>50 4B 03 04</code> - 应该是个 zip . 比较奇怪的是, 用 binwalk 没能识别到 zip 头, 只识别到了结尾…</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130122312148.png" srcset="/img/loading.gif" alt="image-20210130122312148"></p>
 <p>不过关系不大, 用 UltraEdit (或者别的什么十六进制编辑器)打开, 定位到 zip 文件头, 在<code>0xC7EE</code>的位置, 写个 python 脚本从这里切分就行.</p>
 <p>打开切分得到的 zip 文件, 里面是个 docx 文件, 打开扫码, 得到flag.</p>
 <p><code>flag{you are the best!}</code></p>
-<h3 id="GXYCTF2019-佛系青年"><a href="#GXYCTF2019-佛系青年" class="headerlink" title="[GXYCTF2019] 佛系青年"></a>[GXYCTF2019] 佛系青年</h3><p>打开压缩包, 里面有一张图, 一个 txt, 后者是加密的.</p>
+<h3 id="gxyctf2019-佛系青年"><a class="markdownIt-Anchor" href="#gxyctf2019-佛系青年"></a> [GXYCTF2019] 佛系青年</h3>
+<p>打开压缩包, 里面有一张图, 一个 txt, 后者是加密的.</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130151231685.png" srcset="/img/loading.gif" alt="image-20210130151231685"></p>
-<p>到这里, 会产生两种想法: </p>
+<p>到这里, 会产生两种想法:</p>
 <ul>
 <li>压缩包的密码在图里, 得先把密码找到 (错了)</li>
 <li><strong>压缩包是伪加密的</strong> (这才是对的…)</li>
 </ul>
-<h4 id="错误示范"><a href="#错误示范" class="headerlink" title="错误示范"></a>错误示范</h4><p>用 stegsolve 尝试无果, 尝试用 zsteg 检测隐写方式, 发现不支持 - 文件头是 <code>FF D8 FF D9</code>…原来是个 jpg  <del>又被出题人套路了,下次一定注意先用file确认一下</del></p>
+<h4 id="错误示范"><a class="markdownIt-Anchor" href="#错误示范"></a> 错误示范</h4>
+<p>用 stegsolve 尝试无果, 尝试用 zsteg 检测隐写方式, 发现不支持 - 文件头是 <code>FF D8 FF D9</code>…原来是个 jpg  <s>又被出题人套路了,下次一定注意先用file确认一下</s></p>
 <p>用 stegdetect 检测, 系数为 10.0, 报告可能是 jphide, 用 stegbreak 跑字典, 未果.</p>
 <p>至此发现, 此路不通…😭</p>
-<h4 id="正解"><a href="#正解" class="headerlink" title="正解"></a>正解</h4><p>因为存在未加密的文件, 因此一定不是全局伪加密, 可能是单独设置了每一个文件记录的加密位.</p>
+<h4 id="正解"><a class="markdownIt-Anchor" href="#正解"></a> 正解</h4>
+<p>因为存在未加密的文件, 因此一定不是全局伪加密, 可能是单独设置了每一个文件记录的加密位.</p>
 <p>用 010 Editor 打开, 定位到 dirEntry[1], 也就是 fo.txt 对应的记录的位置, 发现 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8e4209bca4af"><code>deFlags</code></a>是<code>09 00</code>, 存在伪加密, 修改为<code>00 00</code>, 正常解压出了 fo.txt.</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130152220026.png" srcset="/img/loading.gif" alt="image-20210130152220026"></p>
 <p>在最下面我们发现了这么一串东西.</p>
@@ -296,34 +304,40 @@
 </blockquote>
 <p>在<a target="_blank" rel="noopener" href="http://www.keyfc.net/bbs/tools/tudoucode.aspx">这里</a>解密, 得到 flag.</p>
 <p><code>flag{w0_fo_ci_Be1}</code></p>
-<p><del>所以那张图真的没有用啊….</del></p>
-<h3 id="秘密文件"><a href="#秘密文件" class="headerlink" title="秘密文件"></a>秘密文件</h3><p>打开流量包, 发现大量 FTP 协议流量, 跟踪.</p>
+<p><s>所以那张图真的没有用啊…</s></p>
+<h3 id="秘密文件"><a class="markdownIt-Anchor" href="#秘密文件"></a> 秘密文件</h3>
+<p>打开流量包, 发现大量 FTP 协议流量, 跟踪.</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130153937974.png" srcset="/img/loading.gif" alt="image-20210130153937974"></p>
 <p>发现一个 rar 文件, binwalk 分离, 发现有密码, 爆破, 得口令为<code>1903</code>, 解压得 flag.</p>
 <p><code>flag{d72e5a671aa50fa5f400e5d10eedeaa5}</code></p>
-<p><del>我一开始还以为密码是ctf来着…</del></p>
-<h3 id="BJDCTF2020-你猜我是个啥"><a href="#BJDCTF2020-你猜我是个啥" class="headerlink" title="[BJDCTF2020] 你猜我是个啥"></a>[BJDCTF2020] 你猜我是个啥</h3><p>下载附件, 打开, 提示不是个有效的压缩文件…</p>
+<p><s>我一开始还以为密码是ctf来着…</s></p>
+<h3 id="bjdctf2020-你猜我是个啥"><a class="markdownIt-Anchor" href="#bjdctf2020-你猜我是个啥"></a> [BJDCTF2020] 你猜我是个啥</h3>
+<p>下载附件, 打开, 提示不是个有效的压缩文件…</p>
 <p>010 Editor, 发现是个 png, 打开发现是一个二维码, 在文件尾有明文 flag.</p>
 <p><code>flag{i_am_fl@g}</code></p>
-<h3 id="BJDCTF-2nd-EasyBaBa"><a href="#BJDCTF-2nd-EasyBaBa" class="headerlink" title="[BJDCTF 2nd] EasyBaBa"></a>[BJDCTF 2nd] EasyBaBa</h3><p>下载, 得到一个 19.9 MB 的 454x427 的 jpg 文件…这大小显然不对啊…</p>
+<h3 id="bjdctf-2nd-easybaba"><a class="markdownIt-Anchor" href="#bjdctf-2nd-easybaba"></a> [BJDCTF 2nd] EasyBaBa</h3>
+<p>下载, 得到一个 19.9 MB 的 454x427 的 jpg 文件…这大小显然不对啊…</p>
 <p>binwalk 分离, 发现 zip 结尾, 从 <code>0x6E43</code>手动分离 zip, 得到了这个</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210130223536091.png" srcset="/img/loading.gif" alt="image-20210130223536091"></p>
 <p>查看文件头, 发现是一个 avi 视频, 打开, 在里面发现几个隐藏的一闪而过的二维码, 截图, 用 QR Research 解码, 拼接得flag.</p>
 <p><code>flag{imagin_love_Y1ng}</code></p>
-<h2 id="Week-5-01-31-02-06-BUUCTF"><a href="#Week-5-01-31-02-06-BUUCTF" class="headerlink" title="Week 5, 01/31 - 02/06, BUUCTF"></a>Week 5, 01/31 - 02/06, BUUCTF</h2><h3 id="SWPU2019-神奇的二维码"><a href="#SWPU2019-神奇的二维码" class="headerlink" title="[SWPU2019] 神奇的二维码"></a>[SWPU2019] 神奇的二维码</h3><p>下载附件, 打开, 用 binwalk 分离一下, 得到四个 rar 压缩包.</p>
+<h2 id="week-5-0131-0206-buuctf"><a class="markdownIt-Anchor" href="#week-5-0131-0206-buuctf"></a> Week 5, 01/31 - 02/06, BUUCTF</h2>
+<h3 id="swpu2019-神奇的二维码"><a class="markdownIt-Anchor" href="#swpu2019-神奇的二维码"></a> [SWPU2019] 神奇的二维码</h3>
+<p>下载附件, 打开, 用 binwalk 分离一下, 得到四个 rar 压缩包.</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210131162556648.png" srcset="/img/loading.gif" alt="image-20210131162556648"></p>
 <p>先看第一个<code>7104.rar</code>, 里面有一个 <code>encode.txt</code>, 打开是一段 base64: <code>YXNkZmdoamtsMTIzNDU2Nzg5MA==</code>, 解码得<code>asdfghjkl1234567890</code>.</p>
 <p>对于<code>716A.rar</code>, 有一张图片和压缩包, 内层压缩包需要密码 - 也就是我们刚刚拿到的解码后的内容…不过解压之后检查, 并没发现 flag…</p>
-<p><del>看看flag在不在里面?</del></p>
-<p><del>不在😡</del></p>
-<p>在<code>17012.rar</code>中, 我们发现了一个 flag.doc, 里面有一段很长的, 看上去是 base64 的东西, 解码一下, 变成了另一段 base64… <del>有点意思</del></p>
+<p><s>看看flag在不在里面?</s></p>
+<p><s>不在😡</s></p>
+<p>在<code>17012.rar</code>中, 我们发现了一个 flag.doc, 里面有一段很长的, 看上去是 base64 的东西, 解码一下, 变成了另一段 base64… <s>有点意思</s></p>
 <p>重复解码多次之后, 我们得到了<code>comEON_YOuAreSOSoS0great</code>, 用这个解压 <code>18394.rar</code>, 有一段音频.</p>
-<p>放到 Audacity 里看一下, 明显是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/摩尔斯电码">摩尔斯电码</a>, 用<a target="_blank" rel="noopener" href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html">这个</a>解码一下(或者自己来也行), 得到 flag.</p>
+<p>放到 Audacity 里看一下, 明显是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%91%A9%E5%B0%94%E6%96%AF%E7%94%B5%E7%A0%81">摩尔斯电码</a>, 用<a target="_blank" rel="noopener" href="https://morsecode.world/international/decoder/audio-decoder-adaptive.html">这个</a>解码一下(或者自己来也行), 得到 flag.</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210131164320704.png" srcset="/img/loading.gif" alt="image-20210131164320704"></p>
 <p>flag: <code>flag{morseisveryveryeasy}</code></p>
 <p>BTW, 直接扫描二维码会告诉你 <code>flag is not here</code>…</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210131164506602.png" srcset="/img/loading.gif" alt="image-20210131164506602"></p>
-<h3 id="BJDCTF2020-一叶障目"><a href="#BJDCTF2020-一叶障目" class="headerlink" title="[BJDCTF2020] 一叶障目"></a>[BJDCTF2020] 一叶障目</h3><p>下载打开, 发现 Honeyview 打不开图片, 但是资源管理器能显示预览图 - 显然图的某些东西是被改过了.</p>
+<h3 id="bjdctf2020-一叶障目"><a class="markdownIt-Anchor" href="#bjdctf2020-一叶障目"></a> [BJDCTF2020] 一叶障目</h3>
+<p>下载打开, 发现 Honeyview 打不开图片, 但是资源管理器能显示预览图 - 显然图的某些东西是被改过了.</p>
 <p>用 010 Editor 打开, 报了 CRC 校验错误, 结合之前看到的条状图案, 怀疑是宽高被改了.</p>
 <p>对于 <a target="_blank" rel="noopener" href="https://dev.gameres.com/Program/Visual/Other/PNGFormat.htm">PNG 图片</a>, 宽高这些信息保存在 IHDR 中, 作为第一个数据块紧接着文件头之后. IHDR 长 13 字节, 定义如下.</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210201205712447.png" srcset="/img/loading.gif" alt="image-20210201205712447"></p>
@@ -371,13 +385,14 @@ time_end<span class="token operator">=</span>time<span class="token punctuation"
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>查看修复后的图片, 得到 flag.</p>
 <p><code>flag{66666}</code></p>
-<h3 id="BJDCTF-2nd-Real-EasyBaBa"><a href="#BJDCTF-2nd-Real-EasyBaBa" class="headerlink" title="[BJDCTF 2nd] Real_EasyBaBa"></a>[BJDCTF 2nd] Real_EasyBaBa</h3><p>查看图片, 发现是 jpg 格式, 并且有一定损坏…</p>
+<h3 id="bjdctf-2nd-real_easybaba"><a class="markdownIt-Anchor" href="#bjdctf-2nd-real_easybaba"></a> [BJDCTF 2nd] Real_EasyBaBa</h3>
+<p>查看图片, 发现是 jpg 格式, 并且有一定损坏…</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210204221540876.png" srcset="/img/loading.gif" alt="image-20210204221540876"></p>
 <p>binwalk 扫描一下, 发现 zip 文件尾但是没发现文件头. 检查发现文件头被修改为 <code>50 4B FF FF</code> , 修改后分离得到一个包含 <code>hint</code> 文件的 zip 压缩包, 打开后…是一个二维码…</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210204223726793.png" srcset="/img/loading.gif" alt="image-20210204223726793"></p>
 <p>缩小之后扫描, 得到一行指令 <code>od -vtx1 ./draw.png | head -56 | tail -28</code>, 执行后发现输出的是这里对应的 16 进制内容</p>
 <p><img src="/2021/01/29/2021-Weekly-Misc/image-20210204224728710.png" srcset="/img/loading.gif" alt="image-20210204224728710"></p>
-<p>仔细看, 能看到对应的字符画….<del>这也太坑了吧</del></p>
+<p>仔细看, 能看到对应的字符画…<s>这也太坑了吧</s></p>
 <p><code>flag{572154976}</code></p>
 
             </div>

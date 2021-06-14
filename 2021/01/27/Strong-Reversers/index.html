@@ -255,39 +255,45 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月14日 周一 14:11:51
+                  Last Update @ 2021年6月14日 周一 14:23:24
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="2021-Week-2-01-26"><a href="#2021-Week-2-01-26" class="headerlink" title="2021 Week 2 - 01/26"></a>2021 Week 2 - 01/26</h1><h2 id="0x00-DDCTF-Android-Easy"><a href="#0x00-DDCTF-Android-Easy" class="headerlink" title="0x00 DDCTF-Android Easy"></a>0x00 DDCTF-Android Easy</h2><p><del>接触到的第二道安卓逆向题</del></p>
+              <h1 id="2021-week-2-0126"><a class="markdownIt-Anchor" href="#2021-week-2-0126"></a> 2021 Week 2 - 01/26</h1>
+<h2 id="0x00-ddctf-android-easy"><a class="markdownIt-Anchor" href="#0x00-ddctf-android-easy"></a> 0x00 DDCTF-Android Easy</h2>
+<p><s>接触到的第二道安卓逆向题</s></p>
 <p>下载, 发现是个 zip , 但是有 apk 的目录结构, 用 jadx-gui 打开可以看到如下的结构</p>
 <p><img src="https://i.loli.net/2021/01/27/Jd8H6ITzRl5NYsO.png" srcset="/img/loading.gif" alt="image-20210127124159278"></p>
 <p>很明显, 重点在 FlagActivity 类里面, <code>i()</code>中将<code>p</code> <code>q</code> 两个byte数组进行一系列操作后得到解密后的<code>byte[] bArr2</code>, 作为<code>String()</code>的参数返回.  之后在<code>onClickTest()</code>中通过将输入的字符串同<code>i()</code>的返回值进行比较, 判定 flag 是否正确.</p>
 <p>那就很显然, <code>i()</code>的返回值就是正确的 flag. 把<code>i()</code>运行一次, 得到返回值<code>DDCTF-3ad60811d87c4a2dba0ef651b2d93476@didichuxing.com</code>, 用<code>flag{ }</code>包裹提交.</p>
 <p><code>flag{DDCTF-3ad60811d87c4a2dba0ef651b2d93476@didichuxing.com}</code></p>
-<h2 id="0x01-WELCOME-TO-JNI"><a href="#0x01-WELCOME-TO-JNI" class="headerlink" title="0x01 WELCOME TO JNI"></a>0x01 WELCOME TO JNI</h2><blockquote>
+<h2 id="0x01-welcome-to-jni"><a class="markdownIt-Anchor" href="#0x01-welcome-to-jni"></a> 0x01 WELCOME TO JNI</h2>
+<blockquote>
 <p>“JNI是什么？”</p>
-<p><strong>JNI</strong> （<strong>Java Native Interface，Java本地接口</strong>）是一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=编程框架&amp;action=edit&amp;redlink=1">编程框架</a>，使得<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Java虚拟机">Java虚拟机</a>中的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Java">Java</a>程序可以调用本地应用/或库，也可以被其他程序调用。 本地程序一般是用其它语言（<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/C语言">C</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/C%2B%2B">C++</a>或<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/汇编语言">汇编语言</a>等）编写的，并且被编译为基于本机硬件和操作系统的程序。</p>
-<p>— Wikipedia</p>
+</blockquote>
+<blockquote>
+<p><strong>JNI</strong> （<strong>Java Native Interface，Java本地接口</strong>）是一种<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/w/index.php?title=%E7%BC%96%E7%A8%8B%E6%A1%86%E6%9E%B6&amp;action=edit&amp;redlink=1">编程框架</a>，使得<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Java%E8%99%9A%E6%8B%9F%E6%9C%BA">Java虚拟机</a>中的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Java">Java</a>程序可以调用本地应用/或库，也可以被其他程序调用。 本地程序一般是用其它语言（<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/C%E8%AF%AD%E8%A8%80">C</a>、<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/C%2B%2B">C++</a>或<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80">汇编语言</a>等）编写的，并且被编译为基于本机硬件和操作系统的程序。</p>
+<p>– Wikipedia</p>
 </blockquote>
 <p>简单的来说, JNI 可以让 Java 调用其他语言的库.</p>
-<p>用 jadx-gui 打开 apk 文件, 定位到 Main Activity —在<code>com.reverier.xdsec_re_20200126</code>下面</p>
+<p>用 jadx-gui 打开 apk 文件, 定位到 Main Activity --在<code>com.reverier.xdsec_re_20200126</code>下面</p>
 <p><img src="https://i.loli.net/2021/01/27/hwg4BSpNfiFO8DH.png" srcset="/img/loading.gif" alt="image-20210127131115411"></p>
-<p>在<code>MainActivity</code>类中, 可以看到声明了一个 native 方法 - <code>loginUtils()</code>, 从名字推测是 <del>检查 flag</del> 登陆验证, 加载了一个本地库<code>native-lib</code>, 它对应的文件在<code>/lib</code>下面, 对应不同的架构.</p>
+<p>在<code>MainActivity</code>类中, 可以看到声明了一个 native 方法 - <code>loginUtils()</code>, 从名字推测是 <s>检查 flag</s> 登陆验证, 加载了一个本地库<code>native-lib</code>, 它对应的文件在<code>/lib</code>下面, 对应不同的架构.</p>
 <p>在 33 行可以看到, <code>loginUtil()</code>接受了输入的字符串作为参数, 然后返回一个布尔值作为结果, 控制输出<code>Right</code>和<code>Wrong</code> - 这就是重点了.</p>
 <p>从 apk 中提取出 x86 架构对应的<code>native-lib.so</code>, IDA 打开, 找到对应的方法<code>Java_com_reverier_xdsec_1re_120200126_MainActivity_loginUtils()</code>, 反编译如下.</p>
 <p><img src="https://i.loli.net/2021/01/27/7UM1xOPLB3RTIFK.png" srcset="/img/loading.gif" alt="image-20210127132734025"></p>
-<p>第 8 行开始, <code>v6</code>保存了作为参数的字符串的长度, <code>v5</code>则保存了另一个字符串的长度, <code>v4</code>保存了参数字符串. 第 11 行比较两个字符串的长度, 若相等则再通过<code>strncmp()</code>比较. </p>
+<p>第 8 行开始, <code>v6</code>保存了作为参数的字符串的长度, <code>v5</code>则保存了另一个字符串的长度, <code>v4</code>保存了参数字符串. 第 11 行比较两个字符串的长度, 若相等则再通过<code>strncmp()</code>比较.</p>
 <p>综上, <code>off_1FD4 + 5972</code>应该就指向了flag. <code>0x1FD4 + 5972d == 0x880</code>, 跳转过去, 发现果然保存着flag.</p>
 <p><img src="https://i.loli.net/2021/01/27/shcxbOGXJ2U6DFV.png" srcset="/img/loading.gif" alt="image-20210127133107771"></p>
 <p><code>flag{welcome_to_naive_lib!}</code></p>
 <p>做完了才意识到, 其实当时直接从 IDA 的 Strings window 能直接看到这个明文字符串…</p>
-<h2 id="0×02-Codegate-CTF-2018-RedVelvet"><a href="#0×02-Codegate-CTF-2018-RedVelvet" class="headerlink" title="0×02 Codegate CTF 2018 RedVelvet"></a>0×02 Codegate CTF 2018 RedVelvet</h2><p>IDA 打开, 跳转到<code>main()</code>, 发现了一大串<code>funcX()</code>的调用.  <del>有点壮观(x</del></p>
-<p>观察结构发现, 在 48 行, <code>`fgets()</code>接受了 28 个字节的输入(包含末尾的<code>\n</code>), 保存到<code>s</code>中. 而<code>funcX()</code>并未改变<code>s</code>的值, 而是进行了一些验证, 比如<code>func7()</code>: </p>
+<h2 id="002-codegate-ctf-2018-redvelvet"><a class="markdownIt-Anchor" href="#002-codegate-ctf-2018-redvelvet"></a> 0×02 Codegate CTF 2018 RedVelvet</h2>
+<p>IDA 打开, 跳转到<code>main()</code>, 发现了一大串<code>funcX()</code>的调用.  <s>有点壮观(x</s></p>
+<p>观察结构发现, 在 48 行, ``fgets()<code>接受了 28 个字节的输入(包含末尾的</code>\n<code>), 保存到</code>s<code>中. 而</code>funcX()<code>并未改变</code>s<code>的值, 而是进行了一些验证, 比如</code>func7()`:</p>
 <p><img src="https://i.loli.net/2021/01/27/fuRYoAhm31TjLzw.png" srcset="/img/loading.gif" alt="image-20210127134648665"></p>
 <p>这 15 个<code>funcX()</code>共同对<code>s</code>进行了一系列的检查, 然后计算<code>s</code>的 SHA256 值, 并和<code>0a435f46288bb5a764d13fca6c901d3750cee73fd7689ce79ef6dc0ff8f380e5</code>比较, 确定 flag 正确与否.</p>
-<p><del>所以直接用 hashcat 穷举破解理论上倒也可行</del></p>
+<p><s>所以直接用 hashcat 穷举破解理论上倒也可行</s></p>
 <p>接下来就是 angr 发挥威力的时候了, 我们不需要将程序执行完, 只需要找到一个输入, 能够满足这十五个<code>funcX()</code>的约束, 使程序运行到<code>SHA256_Init()</code>前即可 - 对应的地址是<code>0x401534</code>.</p>
 <p>同时, 我们还需要避免进入<code>funcX()</code>中的<code>exit(1)</code>的分支, 以<code>func1()</code>为例.</p>
 <p><img src="https://i.loli.net/2021/01/27/Mu2QcKWZ81dfzFR.png" srcset="/img/loading.gif" alt="image-20210127135526675"></p>
@@ -307,18 +313,21 @@ flag <span class="token operator">=</span> simgr<span class="token punctuation">
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>经过漫长的运行( VMWare Ubuntu + Docker angr/angr 大概 30 分钟? ), 我们得到了如下输出 (<code>fg</code>是因为我之前误以为写错了, 于是挂起去检查脚本了…)</p>
 <p><img src="https://i.loli.net/2021/01/27/id16RHAoK5TBpW3.png" srcset="/img/loading.gif" alt="image-20210127140006667"></p>
-<p>放到源程序里检查一下, 看来没毛病. </p>
+<p>放到源程序里检查一下, 看来没毛病.</p>
 <p><img src="https://i.loli.net/2021/01/27/DeuYsaXi3ZW4mMt.png" srcset="/img/loading.gif" alt="image-20210127140226953"></p>
 <p><code>flag{What_You_Wanna_Be?:)_la_la}</code></p>
-<h3 id="Something-Else"><a href="#Something-Else" class="headerlink" title="Something Else"></a>Something Else</h3><ol>
-<li>RedVelvet依赖 1.0.0 版本的 libcrypto.so, 但是包含它的老版本的 openssl 已经过时了, 最后用<code>apt-file</code>查到英伟达的<code>nslight-system</code>还带这东西, 于是安装之后手动复制出来…</li>
+<h3 id="something-else"><a class="markdownIt-Anchor" href="#something-else"></a> Something Else</h3>
+<ol>
+<li>RedVelvet依赖 1.0.0 版本的 <a target="_blank" rel="noopener" href="http://libcrypto.so">libcrypto.so</a>, 但是包含它的老版本的 openssl 已经过时了, 最后用<code>apt-file</code>查到英伟达的<code>nslight-system</code>还带这东西, 于是安装之后手动复制出来…</li>
 <li>理论上通过 15 个<code>funcX()</code>中的约束条件, 可以直接求出来满足的输入值, 就像<code>z3</code>那样</li>
 <li>如果限定输入长度与范围( ASCII 可见字符) 的话, 应当能够跑的更快, 学习中</li>
-<li>关于原题: 暂时没找到….</li>
+<li>关于原题: 暂时没找到…</li>
 </ol>
-<h1 id="2021-Week-3-02-10"><a href="#2021-Week-3-02-10" class="headerlink" title="2021 Week 3 - 02/10"></a>2021 Week 3 - 02/10</h1><h2 id="0x00-PyDis"><a href="#0x00-PyDis" class="headerlink" title="0x00 PyDis"></a>0x00 PyDis</h2><p>一道 Python 逆向题, 本来想直接用 uncompyle6 来着, 不过它目前只能支持到 3.8 …</p>
-<p>不过我们总是可以自己手动来解决 √ <del>从零开始, 半天过去了</del></p>
-<p>根据提示, 用 <code>marshal</code> 解析 pyc 文件, 提取出指令部分, 然后用 <code>dis</code> 反编译, 拿到字节码指令. 根据 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/dis.html">Python文档</a>, 我们可以写出同义的代码, 如下. </p>
+<h1 id="2021-week-3-0210"><a class="markdownIt-Anchor" href="#2021-week-3-0210"></a> 2021 Week 3 - 02/10</h1>
+<h2 id="0x00-pydis"><a class="markdownIt-Anchor" href="#0x00-pydis"></a> 0x00 PyDis</h2>
+<p>一道 Python 逆向题, 本来想直接用 uncompyle6 来着, 不过它目前只能支持到 3.8 …</p>
+<p>不过我们总是可以自己手动来解决 √ <s>从零开始, 半天过去了</s></p>
+<p>根据提示, 用 <code>marshal</code> 解析 pyc 文件, 提取出指令部分, 然后用 <code>dis</code> 反编译, 拿到字节码指令. 根据 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/dis.html">Python文档</a>, 我们可以写出同义的代码, 如下.</p>
 <p>(<code>#</code>开头的是我们推测出的每行对应的源代码, 缩进一致)</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"> <span class="token number">1</span>           <span class="token number">0</span> BUILD_LIST               <span class="token number">0</span>
              <span class="token number">2</span> LOAD_CONST               <span class="token number">0</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">178</span><span class="token punctuation">,</span> <span class="token number">184</span><span class="token punctuation">,</span> <span class="token number">185</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">182</span><span class="token punctuation">,</span> <span class="token number">165</span><span class="token punctuation">,</span> <span class="token number">174</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">183</span><span class="token punctuation">,</span> <span class="token number">187</span><span class="token punctuation">,</span> <span class="token number">176</span><span class="token punctuation">,</span> <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">169</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">167</span><span class="token punctuation">,</span> <span class="token number">163</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -498,7 +507,8 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 
 <span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>flag{hapi_new_ya</code>, 记得补上 <code>}</code></p>
-<h2 id="0x01-FlareOn4-IgniteMe"><a href="#0x01-FlareOn4-IgniteMe" class="headerlink" title="0x01 FlareOn4 IgniteMe"></a>0x01 FlareOn4 IgniteMe</h2><p><code>die</code>查壳, 确认 32 位 pe 文件, 没壳, IDA 打开, 定位到入口点 <code>start</code>函数.</p>
+<h2 id="0x01-flareon4-igniteme"><a class="markdownIt-Anchor" href="#0x01-flareon4-igniteme"></a> 0x01 FlareOn4 IgniteMe</h2>
+<p><code>die</code>查壳, 确认 32 位 pe 文件, 没壳, IDA 打开, 定位到入口点 <code>start</code>函数.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> __noreturn <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
   DWORD NumberOfBytesWritten<span class="token punctuation">;</span> <span class="token comment">// [esp+0h] [ebp-4h] BYREF</span>
@@ -515,7 +525,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
   <span class="token function">ExitProcess</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>GetStdHandle</code>函数没见过, 查了一下<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/console/getstdhandle">文档</a>, 是获得设备句柄, 参数决定是标准 输入/输出/错误 设备.</p>
-<p>在第 8 行输出提示之后调用了一个函数, 推测是解析输入 - 同时确定的输入缓冲区的第一个零字节的位置作为结尾. 然后在第 10 行调用<code>sub_401050</code>检验 flag, </p>
+<p>在第 8 行输出提示之后调用了一个函数, 推测是解析输入 - 同时确定的输入缓冲区的第一个零字节的位置作为结尾. 然后在第 10 行调用<code>sub_401050</code>检验 flag,</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">sub_401050</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
   <span class="token keyword">int</span> v1<span class="token punctuation">;</span> <span class="token comment">// [esp+0h] [ebp-Ch]</span>
@@ -539,12 +549,13 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>是一个简单的循环异或加密, 不过注意是反向的, 初始的<code>key</code>是<code>0x4</code>. 写个jio本解密, 拿到 flag.</p>
 <p><code>flag{R_y0u_H0t_3n0ugH_t0_1gn1t3@flare-on.com}</code></p>
-<p><del>还真是晚上做的…</del></p>
-<h2 id="0x02-BUUCTF-Firmware"><a href="#0x02-BUUCTF-Firmware" class="headerlink" title="0x02 BUUCTF Firmware"></a>0x02 BUUCTF Firmware</h2><p>看题目是一个路由器固件的分析, 用 binwalk 扫描一下, 得到了文件系统的位置, 也就是提取出来的<code>120200.squashfs</code>文件.</p>
+<p><s>还真是晚上做的…</s></p>
+<h2 id="0x02-buuctf-firmware"><a class="markdownIt-Anchor" href="#0x02-buuctf-firmware"></a> 0x02 BUUCTF Firmware</h2>
+<p>看题目是一个路由器固件的分析, 用 binwalk 扫描一下, 得到了文件系统的位置, 也就是提取出来的<code>120200.squashfs</code>文件.</p>
 <p><img src="/2021/01/27/Strong-Reversers/image-20210210230050652.png" srcset="/img/loading.gif" alt="image-20210210230050652"></p>
-<p>用 <code>file</code>命令确认了一下, 是 squashfs 文件系统, 不过不能直接用<code>mount</code>挂载 - 可能是因为有 lzma 压缩了….</p>
+<p>用 <code>file</code>命令确认了一下, 是 squashfs 文件系统, 不过不能直接用<code>mount</code>挂载 - 可能是因为有 lzma 压缩了…</p>
 <p>在网上搜索了一下, 得知 <a target="_blank" rel="noopener" href="https://github.com/mirror/firmware-mod-kit">firmware-mod-kit</a> (简称 fmk) 可以从 squashfs 提取文件, 不过在我这里总是提取失败, 或者返回成功但是啥也没提取出来… 也许是因为 fmk 从 2013 年之后没更新过吧…</p>
-<p>最后用 <code>unsquashfs</code> 提取成功 (是 <a target="_blank" rel="noopener" href="https://github.com/plougher/squashfs-tools">squashfs-tools</a> 下的一个工具), 在 <code>/tmp</code>下发现一个 <code>backdoor</code> 文件…<del>还好这名字挺明显…</del></p>
+<p>最后用 <code>unsquashfs</code> 提取成功 (是 <a target="_blank" rel="noopener" href="https://github.com/plougher/squashfs-tools">squashfs-tools</a> 下的一个工具), 在 <code>/tmp</code>下发现一个 <code>backdoor</code> 文件…<s>还好这名字挺明显…</s></p>
 <p>确认是 32 位的 ARM ELF 文件, die 检查发现 upx 壳, 脱壳之后 IDA 打开, 定位到 <code>main</code>.</p>
 <p>在前面获取 MAC 等等之后, 这个 <code>initConnection</code>函数引起了我们的注意, 尤其是这里.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">while</span> <span class="token punctuation">(</span> <span class="token number">1</span> <span class="token punctuation">)</span>
@@ -561,12 +572,16 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 <p>在<code>initConnextion</code>返回不为零时, 会等待五秒再重来 - 这里应该就是回连服务器了. 进去看看, 确定地址<code>echo.byethost51.com</code>, 端口<code>36667</code>.</p>
 <p><code>MD5(echo.byethost51.com:36667) == 33a422c45d551ac6e4756f59812a954b</code></p>
 <p>所以, <code>flag{33a422c45d551ac6e4756f59812a954b}</code></p>
-<h2 id="最后-祝大家新年快乐🍻"><a href="#最后-祝大家新年快乐🍻" class="headerlink" title="最后, 祝大家新年快乐🍻"></a>最后, 祝大家新年快乐🍻</h2><h1 id="2021-Week-6-03-05"><a href="#2021-Week-6-03-05" class="headerlink" title="2021 Week 6 - 03/05"></a>2021 Week 6 - 03/05</h1><p>~前两周因为题不会(好多知识盲区.jpg)+准备返校，只做出来了两道…不过看题解学到了很多，继续努力~</p>
-<h2 id="0×00-Hacking-with-Google-2020-Beginner"><a href="#0×00-Hacking-with-Google-2020-Beginner" class="headerlink" title="0×00 Hacking with Google 2020 Beginner"></a>0×00 Hacking with Google 2020 Beginner</h2><p>已经理解了整个过程, 不过还没有拿到 flag… angr 也没有跑出来正确的结果, 可能是没能正确识别 SSE 的函数…?</p>
+<h2 id="最后-祝大家新年快乐"><a class="markdownIt-Anchor" href="#最后-祝大家新年快乐"></a> 最后, 祝大家新年快乐🍻</h2>
+<h1 id="2021-week-6-0305"><a class="markdownIt-Anchor" href="#2021-week-6-0305"></a> 2021 Week 6 - 03/05</h1>
+<p><sub>前两周因为题不会(好多知识盲区.jpg)+准备返校，只做出来了两道…不过看题解学到了很多，继续努力</sub></p>
+<h2 id="000-hacking-with-google-2020-beginner"><a class="markdownIt-Anchor" href="#000-hacking-with-google-2020-beginner"></a> 0×00 Hacking with Google 2020 Beginner</h2>
+<p>已经理解了整个过程, 不过还没有拿到 flag… angr 也没有跑出来正确的结果, 可能是没能正确识别 SSE 的函数…?</p>
 <p>跑出来是这样…</p>
 <p><img src="/2021/01/27/Strong-Reversers/image-20210305182332107.png" srcset="/img/loading.gif" alt="image-20210305182332107"></p>
 <p>等我再研究研究, 或许直接用 z3 会比较适合?</p>
-<h2 id="0×01-V-amp-N-公开赛-CSRe"><a href="#0×01-V-amp-N-公开赛-CSRe" class="headerlink" title="0×01 V&amp;N 公开赛 CSRe"></a>0×01 V&amp;N 公开赛 CSRe</h2><p>看题目是混淆过的 C#, 查了一下, 可以用 <a target="_blank" rel="noopener" href="https://github.com/CodingGuru1989/de4dot">detdot的修改版</a> 反混淆, 之后再用 <a target="_blank" rel="noopener" href="https://github.com/icsharpcode/ILSpy">ILSpy</a> 反编译. </p>
+<h2 id="001-vn-公开赛-csre"><a class="markdownIt-Anchor" href="#001-vn-公开赛-csre"></a> 0×01 V&amp;N 公开赛 CSRe</h2>
+<p>看题目是混淆过的 C#, 查了一下, 可以用 <a target="_blank" rel="noopener" href="https://github.com/CodingGuru1989/de4dot">detdot的修改版</a> 反混淆, 之后再用 <a target="_blank" rel="noopener" href="https://github.com/icsharpcode/ILSpy">ILSpy</a> 反编译.</p>
 <p>一个类一个类地找, 很快就能发现 <code>Class3.Main</code> 方法, 如下.</p>
 <pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">// Class3
 using System;
@@ -630,13 +645,14 @@ internal sealed class Class3
 		}
 	}
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>flag 一共有两端, 其中<code>text</code>直接就是<code>B498BFA2498E21325D1178417BEA459EB2CD28F8</code>的 SHA1 原文. </p>
+<p>flag 一共有两端, 其中<code>text</code>直接就是<code>B498BFA2498E21325D1178417BEA459EB2CD28F8</code>的 SHA1 原文.</p>
 <p>对于 <code>text2</code>, 观察<code>method_0</code>, 发现它会返回两个 string 类型参数的异或值, 而之后的 for 循环会比较异或后的字符串每个字符是否均为<code>"0"</code> - 很明显, <code>x ^ x == 0</code>, 所以<code>"re" + text2</code>的 SHA1 值就是 <code>63143B6F8007B98C53CA2149822777B3566F9241</code>.</p>
 <p>cmd5 上查询, 得到 <code>text = "1415"</code>, <code>text2 = "turn"</code>, 最后得到 flag.</p>
 <p><code>flag{1415turn}</code></p>
-<h2 id="0×02-Zer0pts2020-easy-strcmp"><a href="#0×02-Zer0pts2020-easy-strcmp" class="headerlink" title="0×02 Zer0pts2020 easy-strcmp"></a>0×02 Zer0pts2020 easy-strcmp</h2><blockquote>
+<h2 id="002-zer0pts2020-easy-strcmp"><a class="markdownIt-Anchor" href="#002-zer0pts2020-easy-strcmp"></a> 0×02 Zer0pts2020 easy-strcmp</h2>
+<blockquote>
 <p>“有时候你看见的不一定是真实的”</p>
-<p>​                                                — RX</p>
+<p>​                                                – RX</p>
 </blockquote>
 <p>IDA64 打开, 定位到<code>main</code>函数, 发现 flag 就摆在眼前 (误</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">__int64 __fastcall <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> a1<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>a2<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>a3<span class="token punctuation">)</span>
@@ -654,8 +670,8 @@ internal sealed class Class3
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> <span class="token number">0LL</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><del>怎么看第五行的那东西都不能是 flag 吧</del></p>
-<p>我们发现它确实调用了一个<code>strcmp</code>比较<code>argv[0]</code>和那东西 (就叫假 flag 吧) 的值, 但是它又确实不是 flag…. 看看左侧, 发现还有两个奇怪的函数 <code>sub_6EA</code>和<code>sub_795</code>.</p>
+<p><s>怎么看第五行的那东西都不能是 flag 吧</s></p>
+<p>我们发现它确实调用了一个<code>strcmp</code>比较<code>argv[0]</code>和那东西 (就叫假 flag 吧) 的值, 但是它又确实不是 flag… 看看左侧, 发现还有两个奇怪的函数 <code>sub_6EA</code>和<code>sub_795</code>.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// write access to const memory has been detected, the output may be wrong!</span>
 <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token operator">*</span><span class="token function">sub_795</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s1<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s2<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>

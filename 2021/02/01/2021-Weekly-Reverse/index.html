@@ -213,7 +213,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      63
+      64
        分钟
     </span>
   
@@ -255,20 +255,23 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月14日 周一 14:11:51
+                  Last Update @ 2021年6月14日 周一 14:23:24
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h2 id="Week-5-01-31-02-06-BUUCTF"><a href="#Week-5-01-31-02-06-BUUCTF" class="headerlink" title="Week 5, 01/31 - 02/06, BUUCTF"></a>Week 5, 01/31 - 02/06, BUUCTF</h2><h3 id="reverse1"><a href="#reverse1" class="headerlink" title="reverse1"></a>reverse1</h3><p>用 ExeinfoPE 看一下, 是一个 x64 程序.</p>
+              <h2 id="week-5-0131-0206-buuctf"><a class="markdownIt-Anchor" href="#week-5-0131-0206-buuctf"></a> Week 5, 01/31 - 02/06, BUUCTF</h2>
+<h3 id="reverse1"><a class="markdownIt-Anchor" href="#reverse1"></a> reverse1</h3>
+<p>用 ExeinfoPE 看一下, 是一个 x64 程序.</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210201212113576.png" srcset="/img/loading.gif" alt="image-20210201212113576"></p>
-<p>IDA, 入口是<code>sub_140012170</code>, 一路跟踪下去到<code>sub_140012190</code>,  <del>然后分析不能</del></p>
+<p>IDA, 入口是<code>sub_140012170</code>, 一路跟踪下去到<code>sub_140012190</code>,  <s>然后分析不能</s></p>
 <p>从 Strings window 看一下, 发现一条明显的提示语 <code>wrong flag</code>, 看一下, 是<code>sub_1400118C0</code>引用了它, 跳过去康康.</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210201212247636.png" srcset="/img/loading.gif" alt="image-20210201212247636"></p>
 <p>第18行的 <code>for</code>循环中, 把 <code>Str2[]</code>中的<code>o</code>全部替换为了<code>0</code>, 然后和输入的<code>Str1</code>进行比较, 判断是否正确.</p>
 <p><code>Str2[]</code>的内容是<code>{hello_world}</code>, 替换后输入程序检查, 确定正确.</p>
 <p><code>flag{hell0_w0rld}</code></p>
-<h3 id="reverse3"><a href="#reverse3" class="headerlink" title="reverse3"></a>reverse3</h3><p>IDA, 找到 <code>main</code>之后 F5, 大概修改一些名称之后得到如下.</p>
+<h3 id="reverse3"><a class="markdownIt-Anchor" href="#reverse3"></a> reverse3</h3>
+<p>IDA, 找到 <code>main</code>之后 F5, 大概修改一些名称之后得到如下.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __cdecl <span class="token function">main_0</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>envp<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
   <span class="token class-name">size_t</span> StrLen<span class="token punctuation">;</span> <span class="token comment">// eax</span>
@@ -308,8 +311,9 @@
 <p>观察 <code>sub_4110BE</code>, 发现其中调用了一个 base64 的编码表, 结合行为确定是对输入进行 base64 编码.</p>
 <p>把 <code>Destination[]</code>的内容进行反移位, 得到<code>e2lfbDB2ZV95b3V9</code>, base64 解码后得到 <code>{i_l0ve_you}</code></p>
 <p><code>flag{i_l0ve_you}</code></p>
-<p><del>另外题中的”right”打错了…</del></p>
-<h3 id="SimpleRev"><a href="#SimpleRev" class="headerlink" title="SimpleRev"></a>SimpleRev</h3><p>DIE 检查, 发现是一个 x64 ELF 文件. IDA 打开, 定位到 <code>main</code>.</p>
+<p><s>另外题中的"right"打错了…</s></p>
+<h3 id="simplerev"><a class="markdownIt-Anchor" href="#simplerev"></a> SimpleRev</h3>
+<p>DIE 检查, 发现是一个 x64 ELF 文件. IDA 打开, 定位到 <code>main</code>.</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">int __cdecl __noreturn main(int argc, const char **argv, const char **envp)
 {
   int v3; // eax
@@ -332,7 +336,7 @@
     putchar(v3);
   }
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>明显, 在 <code>Decry</code> 函数中进行了 flag 的验证….</p>
+<p>明显, 在 <code>Decry</code> 函数中进行了 flag 的验证…</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">unsigned __int64 Decry()
 {
   char currChar; // [rsp+Fh] [rbp-51h]
@@ -428,7 +432,9 @@ flag2<span class="token operator">=</span><span class="token string">''</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'flag{'</span><span class="token operator">+</span>flag2<span class="token operator">+</span><span class="token string">'}'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>因为并未对大小写进行限定, 所以大小写理论上均可…大概, 总之大写是可以的.</p>
 <p><code>flag{KLDQCUDFZO}</code></p>
-<h2 id="Week-6-02-07-02-14-BUUCTF"><a href="#Week-6-02-07-02-14-BUUCTF" class="headerlink" title="Week 6, 02/07 - 02/14, BUUCTF"></a>Week 6, 02/07 - 02/14, BUUCTF</h2><h3 id="CrackRTF"><a href="#CrackRTF" class="headerlink" title="CrackRTF"></a>CrackRTF</h3><p>看题目说明, 在文件中藏了一个 rtf 文件, 不过用 binwalk 扫描没发现什么. 可能是加密了…</p>
+<h2 id="week-6-0207-0214-buuctf"><a class="markdownIt-Anchor" href="#week-6-0207-0214-buuctf"></a> Week 6, 02/07 - 02/14, BUUCTF</h2>
+<h3 id="crackrtf"><a class="markdownIt-Anchor" href="#crackrtf"></a> CrackRTF</h3>
+<p>看题目说明, 在文件中藏了一个 rtf 文件, 不过用 binwalk 扫描没发现什么. 可能是加密了…</p>
 <p>用 IDA 打开, 定位到 <code>main_0</code>, 发现需要两个密码, 长度均为 6 个字符, 其中第一个为纯数字, 与 <code>@DBApp</code> 链接后计算一个哈希值, 与 <code>6E32D0943418C2C33385BC35A1470250DD8923A9</code> 比较.</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">int __cdecl main_0(int argc, const char **argv, const char **envp)
 {
@@ -496,16 +502,18 @@ postfix <span class="token operator">=</span> <span class="token string">"@DBApp
         <span class="token keyword">print</span><span class="token punctuation">(</span>prefix <span class="token operator">+</span> postfix<span class="token punctuation">)</span>
      <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这样, 我们得到了第一个密码 <code>1233321</code>, 这时 <code>Destination == "123321@DBApp"</code>, 输入的第二个密码后面会连接 <code>Destination</code>, 然后计算 MD5 值, 和 <code>27019e688a4e62a649fd99cadaafdb4e</code>比较, 判断是否正确.</p>
-<p>需要注意的是, 第二个密码只限制了长度, 没有限制是纯数字…<del>没注意到的话你可能就会和我一样卡住了</del></p>
+<p>需要注意的是, 第二个密码只限制了长度, 没有限制是纯数字…<s>没注意到的话你可能就会和我一样卡住了</s></p>
 <p>到这里, 我们有两种方法.</p>
-<h4 id="充分利用你电脑的计算能力"><a href="#充分利用你电脑的计算能力" class="headerlink" title="充分利用你电脑的计算能力"></a>充分利用你电脑的计算能力</h4><p>我们已知第二个 MD5 原文的后半部分和前半部分的长度, 相当于一个加盐的 MD5 爆破 - <a target="_blank" rel="noopener" href="https://github.com/hashcat/hashcat">HashCat </a>很适合干这个事儿, 特别是你的 GPU 比较强的时候.</p>
-<p>用如下的命令行进行一次 <code>md5($pass.$salt)</code>掩码攻击. <del>其实就是暴力穷举, 不过更高级一点, 大概</del></p>
-<p><code>.\hashcat.exe -m 10  "27019e688a4e62a649fd99cadaafdb4e:123321@DBApp" -a 3 ?a?a?a?a?a?a</code></p>
+<h4 id="充分利用你电脑的计算能力"><a class="markdownIt-Anchor" href="#充分利用你电脑的计算能力"></a> 充分利用你电脑的计算能力</h4>
+<p>我们已知第二个 MD5 原文的后半部分和前半部分的长度, 相当于一个加盐的 MD5 爆破 - <a target="_blank" rel="noopener" href="https://github.com/hashcat/hashcat">HashCat </a>很适合干这个事儿, 特别是你的 GPU 比较强的时候.</p>
+<p>用如下的命令行进行一次 <code>md5($pass.$salt)</code>掩码攻击. <s>其实就是暴力穷举, 不过更高级一点, 大概</s></p>
+<p><code>.\hashcat.exe -m 10 "27019e688a4e62a649fd99cadaafdb4e:123321@DBApp" -a 3 ?a?a?a?a?a?a</code></p>
 <p>在我的电脑上, 大概十秒就得到了结果…</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210207140651360.png" srcset="/img/loading.gif" alt="image-20210207140651360"></p>
 <p>前半部分是 <code>~!3a@0</code>, 把俩密码输入程序, 得到一个 RTF 文档, 打开就是 flag.</p>
-<p><del>不过, 我认为这应该不是出题人的最初想法吧</del></p>
-<h4 id="充分利用你自己的-计算能力-解题能力"><a href="#充分利用你自己的-计算能力-解题能力" class="headerlink" title="充分利用你自己的 计算能力 解题能力"></a>充分利用你自己的 <del>计算能力</del> 解题能力</h4><p>在 <code>main_0</code> 的 44 行, 我们发现在两个密码验证正确后, 调用了 <code>sub_40400F</code>, 参数是 <code>Str</code>. </p>
+<p><s>不过, 我认为这应该不是出题人的最初想法吧</s></p>
+<h4 id="充分利用你自己的-计算能力-解题能力"><a class="markdownIt-Anchor" href="#充分利用你自己的-计算能力-解题能力"></a> 充分利用你自己的 <s>计算能力</s> 解题能力</h4>
+<p>在 <code>main_0</code> 的 44 行, 我们发现在两个密码验证正确后, 调用了 <code>sub_40400F</code>, 参数是 <code>Str</code>.</p>
 <p><code>sub_40400F</code>会再调用 <code>sub_4014D0</code>, 参数变为 <code>LPCSTR</code>类型.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">char</span> __cdecl <span class="token function">sub_4014D0</span><span class="token punctuation">(</span>LPCSTR lpString<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -561,7 +569,9 @@ postfix <span class="token operator">=</span> <span class="token string">"@DBApp
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210207150448312.png" srcset="/img/loading.gif" alt="image-20210207150448312"></p>
 <p>加密后的文件头是 <code>05 7D 41 15 26 01</code>, 把它和原来的文件头进行异或就得到了第二段密码: <code>~!3a@0</code></p>
 <p><code>flag{N0_M0re_Free_Bugs}</code></p>
-<h2 id="Week-11-03-14-03-20-BUUCTF"><a href="#Week-11-03-14-03-20-BUUCTF" class="headerlink" title="Week 11, 03/14 - 03/20, BUUCTF"></a>Week 11, 03/14 - 03/20, BUUCTF</h2><h3 id="SUCTF2019-SignIn"><a href="#SUCTF2019-SignIn" class="headerlink" title="[SUCTF2019]SignIn"></a>[SUCTF2019]SignIn</h3><p><del>好像摸鱼摸的太狠了… 从开学到现在啥也没干…</del></p>
+<h2 id="week-11-0314-0320-buuctf"><a class="markdownIt-Anchor" href="#week-11-0314-0320-buuctf"></a> Week 11, 03/14 - 03/20, BUUCTF</h2>
+<h3 id="suctf2019signin"><a class="markdownIt-Anchor" href="#suctf2019signin"></a> [SUCTF2019]SignIn</h3>
+<p><s>好像摸鱼摸的太狠了… 从开学到现在啥也没干…</s></p>
 <p>IDA 打开, 定位到<code>main</code>, 发现两个大整数.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">__int64 __fastcall <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> a1<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>a2<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>a3<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -615,9 +625,11 @@ dec_hex <span class="token operator">=</span> <span class="token builtin">hex</s
 <p>拿到结果.</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210318200810904.png" srcset="/img/loading.gif" alt="image-20210318200810904"></p>
 <p>flag: <code>suctf{Pwn_@_hundred_years}</code></p>
-<h2 id="Week-13-03-28-04-03-BUUCTF"><a href="#Week-13-03-28-04-03-BUUCTF" class="headerlink" title="Week 13, 03/28 - 04/03, BUUCTF"></a>Week 13, 03/28 - 04/03, BUUCTF</h2><h3 id="FlareOn6-Overlong"><a href="#FlareOn6-Overlong" class="headerlink" title="[FlareOn6] Overlong"></a>[FlareOn6] Overlong</h3><p>PE32 程序, 没发现有壳, 直接用 IDA 打开, 只有三个函数, 而且没有 <code>.init_array</code>和<code>.fini_array</code>段, 没有发现有价值的明文字符串 - 也就是说有某种形式的加解密.</p>
+<h2 id="week-13-0328-0403-buuctf"><a class="markdownIt-Anchor" href="#week-13-0328-0403-buuctf"></a> Week 13, 03/28 - 04/03, BUUCTF</h2>
+<h3 id="flareon6-overlong"><a class="markdownIt-Anchor" href="#flareon6-overlong"></a> [FlareOn6] Overlong</h3>
+<p>PE32 程序, 没发现有壳, 直接用 IDA 打开, 只有三个函数, 而且没有 <code>.init_array</code>和<code>.fini_array</code>段, 没有发现有价值的明文字符串 - 也就是说有某种形式的加解密.</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210402231014192.png" srcset="/img/loading.gif" alt="image-20210402231014192"></p>
-<p>运行一下试试, 注意到下图最后是个冒号…. 推测应该是长度限制了.</p>
+<p>运行一下试试, 注意到下图最后是个冒号… 推测应该是长度限制了.</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210402231001573.png" srcset="/img/loading.gif" alt="image-20210402231001573"></p>
 <p>IDA 打开<code>start</code>函数, 很容易定位到解密函数, 它的第二个参数是密文, 第三个参数就是长度.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __stdcall <span class="token function">start</span><span class="token punctuation">(</span><span class="token keyword">int</span> a1<span class="token punctuation">,</span> <span class="token keyword">int</span> a2<span class="token punctuation">,</span> <span class="token keyword">int</span> a3<span class="token punctuation">,</span> <span class="token keyword">int</span> a4<span class="token punctuation">)</span>
@@ -661,12 +673,14 @@ dec_hex <span class="token operator">=</span> <span class="token builtin">hex</s
 <p><code>unk_402008</code>的长度是 <code>0xAF</code>, 尝试修改一下. <strong>但是由于某些原因, 在用 KeyPatch 修改<code>push 1Ch</code>的时候会干扰下一条指令…</strong></p>
 <p>用动态调试, 在<code>0x4011C9</code>下个断点, 在 push 之后直接把栈上数据改成 <code>0xAF</code>, 如下图.</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210402232605263.png" srcset="/img/loading.gif" alt="image-20210402232605263"></p>
-<p>然后继续执行, 看到了 <del>好康的</del> 答案.</p>
+<p>然后继续执行, 看到了 <s>好康的</s> 答案.</p>
 <p><img src="/2021/02/01/2021-Weekly-Reverse/image-20210402232658068.png" srcset="/img/loading.gif" alt="image-20210402232658068"></p>
 <p><code>flag{I_a_M_t_h_e_e_n_C_o_D_i_n_g@flare-on.com}</code></p>
-<h3 id="GXYCTF2019-simple-CPP"><a href="#GXYCTF2019-simple-CPP" class="headerlink" title="[GXYCTF2019] simple CPP"></a>[GXYCTF2019] simple CPP</h3><p><del>果然题面里有 simple 的不是送分题就是送命题</del></p>
+<h3 id="gxyctf2019-simple-cpp"><a class="markdownIt-Anchor" href="#gxyctf2019-simple-cpp"></a> [GXYCTF2019] simple CPP</h3>
+<p><s>果然题面里有 simple 的不是送分题就是送命题</s></p>
 <p>IDA打开, 按顺序把<code>main</code>分成三部分</p>
-<h4 id="第一部分-异或加密"><a href="#第一部分-异或加密" class="headerlink" title="第一部分 异或加密"></a>第一部分 异或加密</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c">v3 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<h4 id="第一部分-异或加密"><a class="markdownIt-Anchor" href="#第一部分-异或加密"></a> 第一部分 异或加密</h4>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">v3 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 v40 <span class="token operator">=</span> <span class="token number">0</span>i64<span class="token punctuation">;</span>
 v41 <span class="token operator">=</span> <span class="token number">15</span>i64<span class="token punctuation">;</span>
 <span class="token function">LOBYTE</span><span class="token punctuation">(</span>Block<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
@@ -715,7 +729,8 @@ v7 <span class="token operator">=</span> <span class="token number">0</span><spa
   <span class="token keyword">while</span> <span class="token punctuation">(</span> v7 <span class="token operator">&lt;</span> v40 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这里会首先对输入进行一次异或加密并保存在<code>v6</code>, key 是 <code>*qword_7FF73C476060</code>, 实际内容未知, 等到动态调试时再确定.</p>
-<h4 id="第二部分-分组"><a href="#第二部分-分组" class="headerlink" title="第二部分 分组"></a>第二部分 分组</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c">  v11 <span class="token operator">=</span> <span class="token number">0</span>i64<span class="token punctuation">;</span>
+<h4 id="第二部分-分组"><a class="markdownIt-Anchor" href="#第二部分-分组"></a> 第二部分 分组</h4>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">  v11 <span class="token operator">=</span> <span class="token number">0</span>i64<span class="token punctuation">;</span>
   v12 <span class="token operator">=</span> <span class="token number">0</span>i64<span class="token punctuation">;</span>
   v13 <span class="token operator">=</span> <span class="token number">0</span>i64<span class="token punctuation">;</span>
   v14 <span class="token operator">=</span> <span class="token number">0</span>i64<span class="token punctuation">;</span>
@@ -751,7 +766,8 @@ LABEL_23<span class="token operator">:</span>
   <span class="token punctuation">}</span>
   <span class="token keyword">while</span> <span class="token punctuation">(</span> v15 <span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>v40 <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>在这里把输入按照 8 个字符为一组 (正好 64 位)分开, 分别赋给<code>v14</code> <code>v13</code> <code>v12</code> <code>v11</code>.</p>
-<h4 id="第三部分-校验"><a href="#第三部分-校验" class="headerlink" title="第三部分 校验"></a>第三部分 校验</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c">  <span class="token keyword">if</span> <span class="token punctuation">(</span> v14 <span class="token punctuation">)</span>
+<h4 id="第三部分-校验"><a class="markdownIt-Anchor" href="#第三部分-校验"></a> 第三部分 校验</h4>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">  <span class="token keyword">if</span> <span class="token punctuation">(</span> v14 <span class="token punctuation">)</span>
   <span class="token punctuation">{</span>
     v18 <span class="token operator">=</span> <span class="token punctuation">(</span>__int64 <span class="token operator">*</span><span class="token punctuation">)</span>operator <span class="token function">new</span><span class="token punctuation">(</span><span class="token number">0x20u</span>i64<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token operator">*</span>v18 <span class="token operator">=</span> v14<span class="token punctuation">;</span>
@@ -806,7 +822,8 @@ y <span class="token operator">=</span> <span class="token number">2905803157667
 x <span class="token operator">=</span> <span class="token number">4483973367147818765</span>
 z <span class="token operator">=</span> <span class="token number">577031497978884115</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>v6</code>就是<code>x y z w</code>按顺序连接得到的加密后的 flag.</p>
-<h4 id="最后一击"><a href="#最后一击" class="headerlink" title="最后一击"></a>最后一击</h4><p>接下来我们在<code>0x13DF</code>的位置下个断点, 观察一下<code>qword_7FF73C476048</code>指向的内容.</p>
+<h4 id="最后一击"><a class="markdownIt-Anchor" href="#最后一击"></a> 最后一击</h4>
+<p>接下来我们在<code>0x13DF</code>的位置下个断点, 观察一下<code>qword_7FF73C476048</code>指向的内容.</p>
 <pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">.data:00007FF73C476048 qword_7FF73C476048 dq 1D5FD108F30h      ; DATA XREF: main+DF↑o<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>选中<code>0x1D5FD108F30h</code>处的数据, Edit - Strings, 得到<code>i_will_check_is_debug_or_not</code></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">enc <span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0x3e</span><span class="token punctuation">,</span><span class="token number">0x3a</span><span class="token punctuation">,</span><span class="token number">0x46</span><span class="token punctuation">,</span><span class="token number">0x05</span><span class="token punctuation">,</span><span class="token number">0x33</span><span class="token punctuation">,</span><span class="token number">0x28</span><span class="token punctuation">,</span><span class="token number">0x6f</span><span class="token punctuation">,</span><span class="token number">0x0d</span><span class="token punctuation">,</span><span class="token number">0x1</span><span class="token punctuation">,</span><span class="token number">0x08</span><span class="token punctuation">,</span><span class="token number">0x48</span><span class="token punctuation">,</span><span class="token number">0x00</span><span class="token punctuation">,</span><span class="token number">0x00</span><span class="token punctuation">,</span><span class="token number">0x80</span><span class="token punctuation">,</span><span class="token number">0x00</span><span class="token punctuation">,</span><span class="token number">0x04</span><span class="token punctuation">,</span><span class="token number">0x8</span><span class="token punctuation">,</span><span class="token number">0x02</span><span class="token punctuation">,</span><span class="token number">0x07</span><span class="token punctuation">,</span><span class="token number">0x17</span><span class="token punctuation">,</span><span class="token number">0x15</span><span class="token punctuation">,</span><span class="token number">0x3e</span><span class="token punctuation">,</span><span class="token number">0x30</span><span class="token punctuation">,</span><span class="token number">0x13</span><span class="token punctuation">,</span><span class="token number">0x32</span><span class="token punctuation">,</span><span class="token number">0x31</span><span class="token punctuation">,</span><span class="token number">0x06</span><span class="token punctuation">,</span><span class="token number">0x00</span><span class="token punctuation">]</span>

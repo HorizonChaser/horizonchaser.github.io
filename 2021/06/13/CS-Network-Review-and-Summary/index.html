@@ -203,7 +203,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.2k 字
+      3.4k 字
     </span>
   
 
@@ -213,7 +213,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      37
+      40
        分钟
     </span>
   
@@ -255,88 +255,118 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月14日 周一 14:11:51
+                  Last Update @ 2021年6月14日 周一 14:23:24
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="Part-1-概述"><a href="#Part-1-概述" class="headerlink" title="Part 1 概述"></a>Part 1 概述</h1><h2 id="Chapter-1-绪论"><a href="#Chapter-1-绪论" class="headerlink" title="Chapter 1 绪论"></a>Chapter 1 绪论</h2><h3 id="数据通信的概念"><a href="#数据通信的概念" class="headerlink" title="数据通信的概念"></a>数据通信的概念</h3><ul>
+              <h1 id="part-1-概述"><a class="markdownIt-Anchor" href="#part-1-概述"></a> Part 1 概述</h1>
+<h2 id="chapter-1-绪论"><a class="markdownIt-Anchor" href="#chapter-1-绪论"></a> Chapter 1 绪论</h2>
+<h3 id="数据通信的概念"><a class="markdownIt-Anchor" href="#数据通信的概念"></a> 数据通信的概念</h3>
+<ul>
 <li>四个关键因素: 传递性 准确性 及时性 抖动性</li>
 <li>五个组成部分: 报文 发送方 接收方 传输介质 协议</li>
 </ul>
-<h3 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h3><ul>
+<h3 id="数据流"><a class="markdownIt-Anchor" href="#数据流"></a> 数据流</h3>
+<ul>
 <li>单工: 通信是单方向的</li>
 <li>半双工: 通信是双向的, 但不能同时收发</li>
 <li>全双工: 双向通信, 可同时收发</li>
 </ul>
-<h3 id="连接类型"><a href="#连接类型" class="headerlink" title="连接类型"></a>连接类型</h3><ul>
+<h3 id="连接类型"><a class="markdownIt-Anchor" href="#连接类型"></a> 连接类型</h3>
+<ul>
 <li>点到点: 两设备间的专用线路</li>
 <li>多点连接: 两台以上的设备共用单一链路</li>
 </ul>
-<h3 id="物理拓扑结构"><a href="#物理拓扑结构" class="headerlink" title="物理拓扑结构"></a>物理拓扑结构</h3><ul>
-<li>网状: 任意两设备间都有专用的点到点线路, $n$台设备需要$\frac{n*(n-1)}{2}$条双工链路</li>
+<h3 id="物理拓扑结构"><a class="markdownIt-Anchor" href="#物理拓扑结构"></a> 物理拓扑结构</h3>
+<ul>
+<li>网状: 任意两设备间都有专用的点到点线路, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>台设备需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mi>n</mi><mo>∗</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{n*(n-1)}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.355em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">∗</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>条双工链路</li>
 <li>星型: 每台设备仅拥有一条与中央控制器 (被称为集线器, hub) 相连的点到点线路</li>
 <li>总线: 用一条较长的线缆作为主干来连接网络上的所有设备, 各设备通过引出线连接到主干</li>
 <li>环状: 每台设备只与两侧设备有一条专用的点到点连接, 信号以一个方向在环中传输, 每台设备均有中继器 (可再生并转发收到的所有信号)</li>
 <li>混合型</li>
 </ul>
-<h3 id="网络分类"><a href="#网络分类" class="headerlink" title="网络分类"></a>网络分类</h3><ul>
+<h3 id="网络分类"><a class="markdownIt-Anchor" href="#网络分类"></a> 网络分类</h3>
+<ul>
 <li>局域网 (local area network, LAN): 小范围内的共享, 例如一间办公室或一所学校, 通常仅采用一种传输介质</li>
-<li>广域网 (wide area network, WAN):<ul>
+<li>广域网 (wide area network, WAN):
+<ul>
 <li>交换广域网: 将不同的网络连接起来, 通常包含至少一个网际互联设备 (例如路由器)</li>
 <li>点到点广域网: 将一台设备连接到广域网, 例如 ISP (Internet service provider, 网络服务提供商) 提供的网络服务</li>
 </ul>
 </li>
 <li>城域网 (metropolitian area network, MAN): 规模介于 LAN 和 WAN 之间, 覆盖范围通常是一个乡镇 / 城市</li>
 </ul>
-<h3 id="协议和标准"><a href="#协议和标准" class="headerlink" title="协议和标准"></a>协议和标准</h3><h4 id="协议三要素"><a href="#协议三要素" class="headerlink" title="协议三要素"></a>协议三要素</h4><ul>
+<h3 id="协议和标准"><a class="markdownIt-Anchor" href="#协议和标准"></a> 协议和标准</h3>
+<h4 id="协议三要素"><a class="markdownIt-Anchor" href="#协议三要素"></a> 协议三要素</h4>
+<ul>
 <li>语法: 数据的结构或格式, 即数据是以何种顺序表示的</li>
 <li>语义: 每一个位片段的含义, 即如何理解每一个位置上的位的含义</li>
 <li>时序: 报文发送的时间和发送的速率</li>
 </ul>
-<h4 id="标准"><a href="#标准" class="headerlink" title="标准"></a>标准</h4><ul>
+<h4 id="标准"><a class="markdownIt-Anchor" href="#标准"></a> 标准</h4>
+<ul>
 <li>事实标准: 未经团体或组织承认但已经带广泛使用中的标准</li>
 <li>法定标准: 有官方认可的组织制定的标准</li>
 </ul>
-<h2 id="Chapter-2-网络模型"><a href="#Chapter-2-网络模型" class="headerlink" title="Chapter 2 网络模型"></a>Chapter 2 网络模型</h2><h3 id="OSI模型"><a href="#OSI模型" class="headerlink" title="OSI模型"></a>OSI模型</h3><p>OSI (Open System Interconnection, 开放系统互连) 模型, <strong>不是协议, 也不是 ISO 那个组织</strong></p>
-<h4 id="分层的概念与层间连接"><a href="#分层的概念与层间连接" class="headerlink" title="分层的概念与层间连接"></a>分层的概念与层间连接</h4><ul>
+<h2 id="chapter-2-网络模型"><a class="markdownIt-Anchor" href="#chapter-2-网络模型"></a> Chapter 2 网络模型</h2>
+<h3 id="osi模型"><a class="markdownIt-Anchor" href="#osi模型"></a> OSI模型</h3>
+<p>OSI (Open System Interconnection, 开放系统互连) 模型, <strong>不是协议, 也不是 ISO 那个组织</strong></p>
+<h4 id="分层的概念与层间连接"><a class="markdownIt-Anchor" href="#分层的概念与层间连接"></a> 分层的概念与层间连接</h4>
+<ul>
 <li>对等过程: 设备间同一层次的通信过程, 例如物理层 - 物理层, 传输层 - 传输层</li>
 <li>层间接口: 每层的接口都定义了本层向上下两层提供的服务, 无关层内的具体实现, 便于修改</li>
-<li>封装: 第$N-1$层的分组中的数据部分是第$N$层的完整分组, 后者被$N-1$层视为一个完整的数据单元, 不关心内部结构</li>
+<li>封装: 第<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">N-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>层的分组中的数据部分是第<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>层的完整分组, 后者被<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">N-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>层视为一个完整的数据单元, 不关心内部结构</li>
 </ul>
-<h4 id="各层功能"><a href="#各层功能" class="headerlink" title="各层功能"></a>各层功能</h4><h5 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h5><p><strong>负责位从一个节点到另一个节点的传递</strong>, 定义了接口和介质的物理特性, <strong>不对数据进行任何改动</strong></p>
-<h6 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h6><ul>
+<h4 id="各层功能"><a class="markdownIt-Anchor" href="#各层功能"></a> 各层功能</h4>
+<h5 id="物理层"><a class="markdownIt-Anchor" href="#物理层"></a> 物理层</h5>
+<p><strong>负责位从一个节点到另一个节点的传递</strong>, 定义了接口和介质的物理特性, <strong>不对数据进行任何改动</strong></p>
+<h6 id="功能"><a class="markdownIt-Anchor" href="#功能"></a> 功能</h6>
+<ul>
 <li>位的表示 (把0 1转换为对应种类的信号)</li>
 <li>传输速率 (发送位的速度, 每一位持续的时间)</li>
 <li>位同步, 线路配置, 物理拓扑结构, 传输方式等等</li>
 </ul>
-<h5 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h5><p><strong>负责帧从一个节点 (node, 通常也被称作一跳, one hop)到下一个节点 (即下一跳) 的传递, 在同一个网络内部</strong>, 将物理层变为可靠的链路</p>
-<h6 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h6><ul>
+<h5 id="数据链路层"><a class="markdownIt-Anchor" href="#数据链路层"></a> 数据链路层</h5>
+<p><strong>负责帧从一个节点 (node, 通常也被称作一跳, one hop)到下一个节点 (即下一跳) 的传递, 在同一个网络内部</strong>, 将物理层变为可靠的链路</p>
+<h6 id="功能-2"><a class="markdownIt-Anchor" href="#功能-2"></a> 功能</h6>
+<ul>
 <li>成帧: 将来自网络层的位流分割为帧 (frame)</li>
 <li>物理寻址: <strong>在本地网络范围内</strong>, 按照网络设备的物理地址寻找接收者, 例如 MAC 地址</li>
 <li>流量控制: 协调发送速率, 防止过载</li>
 <li>差错控制: 检测与重发损坏与丢失的帧, 并防止重复的帧</li>
 <li>访问控制: 并发访问同一条链路时决定访问的顺序</li>
 </ul>
-<h5 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h5><p><strong>负责将各个分组从源地址传送到目的地址 (源端到目的端, 即端到端), 可以跨网络传送</strong>, 但不保证报文间的到达顺序 - <del>所以叫网络层(个人理解)</del></p>
-<h6 id="功能-2"><a href="#功能-2" class="headerlink" title="功能"></a>功能</h6><ul>
+<h5 id="网络层"><a class="markdownIt-Anchor" href="#网络层"></a> 网络层</h5>
+<p><strong>负责将各个分组从源地址传送到目的地址 (源端到目的端, 即端到端), 可以跨网络传送</strong>, 但不保证报文间的到达顺序 - <s>所以叫网络层(个人理解)</s></p>
+<h6 id="功能-3"><a class="markdownIt-Anchor" href="#功能-3"></a> 功能</h6>
+<ul>
 <li>逻辑寻址: 与物理寻址相对, 可以跨网络</li>
 <li>路由选择: 提供在网络间传递分组的路径</li>
 </ul>
-<h5 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h5><p><strong>负责报文的进程到进程传递</strong>, 保证报文间的<strong>顺序</strong>与内容正确并提供给相应的进程</p>
-<h6 id="功能-3"><a href="#功能-3" class="headerlink" title="功能"></a>功能</h6><ul>
+<h5 id="传输层"><a class="markdownIt-Anchor" href="#传输层"></a> 传输层</h5>
+<p><strong>负责报文的进程到进程传递</strong>, 保证报文间的<strong>顺序</strong>与内容正确并提供给相应的进程</p>
+<h6 id="功能-4"><a class="markdownIt-Anchor" href="#功能-4"></a> 功能</h6>
+<ul>
 <li>服务点寻址: 也叫端口寻址, 把报文送到对应端口的进程中</li>
 <li>分段和组装: 将进程发来的长报文进行切分并标上序号, 保证数据的顺序正确且不会丢失</li>
 <li>连接控制: 传输层可以是面向连接或者无连接的, 对前者在数据开始传输前需要建立连接</li>
 <li>流量控制: 和数据链路层类似, 但是是端口到端口级别的</li>
 <li>差错控制: 和数据链路层类似, 但是是端口到端口级别的</li>
 </ul>
-<h5 id="会话层"><a href="#会话层" class="headerlink" title="会话层"></a>会话层</h5><p>负责对话控制 (半双工或者全双工) 与同步 (增加检查点以便快速恢复)</p>
-<h5 id="表示层"><a href="#表示层" class="headerlink" title="表示层"></a>表示层</h5><p>负责翻译, 压缩与加密数据, 是两个系统间交换信息的语义和语法</p>
-<h5 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h5><p><strong>使用户可以访问网络</strong>, 提供了服务支持, 例如文件传输, 邮件服务, 虚拟终端等</p>
-<h3 id="TCP-IP-协议族"><a href="#TCP-IP-协议族" class="headerlink" title="TCP/IP 协议族"></a>TCP/IP 协议族</h3><p>TCP/IP 协议族在 OSI 模型之前开发, 有四个层次, 两者并不严格对应</p>
-<h4 id="各层功能-1"><a href="#各层功能-1" class="headerlink" title="各层功能"></a>各层功能</h4><h5 id="主机到网络层"><a href="#主机到网络层" class="headerlink" title="主机到网络层"></a>主机到网络层</h5><p><strong>相当于 OSI 的物理层和数据链路层</strong>, TCP/IP 支持所有的标准与专用协议, 没有在这一层进行任何定义</p>
-<h5 id="互联网层"><a href="#互联网层" class="headerlink" title="互联网层"></a>互联网层</h5><p><strong>相当于 OSI 的网络层</strong>, TCP/IP 支持网际协议 (即IP), 后者使用四个支持协议: ARP, RARP, ICMP, IGMP</p>
+<h5 id="会话层"><a class="markdownIt-Anchor" href="#会话层"></a> 会话层</h5>
+<p>负责对话控制 (半双工或者全双工) 与同步 (增加检查点以便快速恢复)</p>
+<h5 id="表示层"><a class="markdownIt-Anchor" href="#表示层"></a> 表示层</h5>
+<p>负责翻译, 压缩与加密数据, 是两个系统间交换信息的语义和语法</p>
+<h5 id="应用层"><a class="markdownIt-Anchor" href="#应用层"></a> 应用层</h5>
+<p><strong>使用户可以访问网络</strong>, 提供了服务支持, 例如文件传输, 邮件服务, 虚拟终端等</p>
+<h3 id="tcpip-协议族"><a class="markdownIt-Anchor" href="#tcpip-协议族"></a> TCP/IP 协议族</h3>
+<p>TCP/IP 协议族在 OSI 模型之前开发, 有四个层次, 两者并不严格对应</p>
+<h4 id="各层功能-2"><a class="markdownIt-Anchor" href="#各层功能-2"></a> 各层功能</h4>
+<h5 id="主机到网络层"><a class="markdownIt-Anchor" href="#主机到网络层"></a> 主机到网络层</h5>
+<p><strong>相当于 OSI 的物理层和数据链路层</strong>, TCP/IP 支持所有的标准与专用协议, 没有在这一层进行任何定义</p>
+<h5 id="互联网层"><a class="markdownIt-Anchor" href="#互联网层"></a> 互联网层</h5>
+<p><strong>相当于 OSI 的网络层</strong>, TCP/IP 支持网际协议 (即IP), 后者使用四个支持协议: ARP, RARP, ICMP, IGMP</p>
 <ul>
 <li>IP: 网际协议, 是无连接, 不可靠的尽力传递服务, 无差错检测</li>
 <li>ARP: 逻辑地址 -&gt; 物理地址</li>
@@ -344,19 +374,33 @@
 <li>ICMP: 因特网控制报文协议</li>
 <li>IGMP: 因特网组报文协议, 实现一个报文同时发送给一组接收者</li>
 </ul>
-<h5 id="传输层-1"><a href="#传输层-1" class="headerlink" title="传输层"></a>传输层</h5><p><strong>相当于 OSI 的传输层</strong>, 有三个协议: TCP ,UDP 和 SCTP (流传输控制协议)<br>TCP 是有连接的可靠的流传输协议, UDP 无连接, 不可靠</p>
-<h5 id="应用层-1"><a href="#应用层-1" class="headerlink" title="应用层"></a>应用层</h5><p><strong>相当于 OSI 的会话层, 表示层和应用层</strong>, 常见的 FTP, HTTP, SMTP 等协议在这一层</p>
-<h3 id="地址与寻址"><a href="#地址与寻址" class="headerlink" title="地址与寻址"></a>地址与寻址</h3><p>地址有物理地址, 逻辑地址, 端口地址, 专用地址</p>
-<h4 id="物理地址"><a href="#物理地址" class="headerlink" title="物理地址"></a>物理地址</h4><p><strong>在物理层+数据链路层</strong>, 最低级的地址, 在本地网络中有效, 不同种类网络可能不同</p>
-<h4 id="逻辑地址"><a href="#逻辑地址" class="headerlink" title="逻辑地址"></a>逻辑地址</h4><p><strong>在网络层</strong>, 与物理地址<strong>无关</strong>, 唯一定义了因特网的一台主机<br>跳到跳时<strong>物理地址改变</strong> (因为通过了不同的网络设备的中继), 但是<strong>逻辑地址不变</strong> (因为预期的收发者对应的主机不变)</p>
+<h5 id="传输层-2"><a class="markdownIt-Anchor" href="#传输层-2"></a> 传输层</h5>
+<p><strong>相当于 OSI 的传输层</strong>, 有三个协议: TCP ,UDP 和 SCTP (流传输控制协议)<br>
+TCP 是有连接的可靠的流传输协议, UDP 无连接, 不可靠</p>
+<h5 id="应用层-2"><a class="markdownIt-Anchor" href="#应用层-2"></a> 应用层</h5>
+<p><strong>相当于 OSI 的会话层, 表示层和应用层</strong>, 常见的 FTP, HTTP, SMTP 等协议在这一层</p>
+<h3 id="地址与寻址"><a class="markdownIt-Anchor" href="#地址与寻址"></a> 地址与寻址</h3>
+<p>地址有物理地址, 逻辑地址, 端口地址, 专用地址</p>
+<h4 id="物理地址"><a class="markdownIt-Anchor" href="#物理地址"></a> 物理地址</h4>
+<p><strong>在物理层+数据链路层</strong>, 最低级的地址, 在本地网络中有效, 不同种类网络可能不同</p>
+<h4 id="逻辑地址"><a class="markdownIt-Anchor" href="#逻辑地址"></a> 逻辑地址</h4>
+<p><strong>在网络层</strong>, 与物理地址<strong>无关</strong>, 唯一定义了因特网的一台主机<br>
+跳到跳时<strong>物理地址改变</strong> (因为通过了不同的网络设备的中继), 但是<strong>逻辑地址不变</strong> (因为预期的收发者对应的主机不变)</p>
 <blockquote>
 <p>在多数协议中, 逻辑源地址在逻辑目的地址之前, 和物理地址刚好相反</p>
 </blockquote>
-<h4 id="端口地址"><a href="#端口地址" class="headerlink" title="端口地址"></a>端口地址</h4><p><strong>在传输层</strong>, 端口对应主机上的进程, 显然在跳到跳传递时端口地址也不变</p>
-<h4 id="专用地址"><a href="#专用地址" class="headerlink" title="专用地址"></a>专用地址</h4><p><strong>在网络层</strong>, 例如电子邮件地址, 统一资源定位符 (URL, 例如网址)<br>由发送计算机转换成对应的端口地址和逻辑地址</p>
-<h1 id="Part-2-物理层与介质"><a href="#Part-2-物理层与介质" class="headerlink" title="Part 2 物理层与介质"></a>Part 2 物理层与介质</h1><p>最核心的两个公式 - 波长 $\lambda$, 波速 $v$, 周期 $T$, 频率 $f$ 之间的关系</p>
-<script type="math/tex; mode=display">\lambda = v \times T = \frac{v}{f}</script><script type="math/tex; mode=display">T = \frac{1}{f}</script><p>国际单位制下的量级表示</p>
-<div class="table-container">
+<h4 id="端口地址"><a class="markdownIt-Anchor" href="#端口地址"></a> 端口地址</h4>
+<p><strong>在传输层</strong>, 端口对应主机上的进程, 显然在跳到跳传递时端口地址也不变</p>
+<h4 id="专用地址"><a class="markdownIt-Anchor" href="#专用地址"></a> 专用地址</h4>
+<p><strong>在网络层</strong>, 例如电子邮件地址, 统一资源定位符 (URL, 例如网址)<br>
+由发送计算机转换成对应的端口地址和逻辑地址</p>
+<h1 id="part-2-物理层与介质"><a class="markdownIt-Anchor" href="#part-2-物理层与介质"></a> Part 2 物理层与介质</h1>
+<p>最核心的两个公式 - 波长 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>, 波速 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span>, 周期 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>, 频率 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 之间的关系</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi><mo>=</mo><mi>v</mi><mo>×</mo><mi>T</mi><mo>=</mo><mfrac><mi>v</mi><mi>f</mi></mfrac></mrow><annotation encoding="application/x-tex">\lambda = v \times T = \frac{v}{f}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.9880000000000002em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.10756em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>=</mo><mfrac><mn>1</mn><mi>f</mi></mfrac></mrow><annotation encoding="application/x-tex">T = \frac{1}{f}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804400000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>国际单位制下的量级表示</p>
 <table>
 <thead>
 <tr>
@@ -368,73 +412,119 @@
 </thead>
 <tbody>
 <tr>
-<td>毫 $m$</td>
-<td>$10^{-3}$</td>
-<td>千 $k$</td>
-<td>$10^{3}$</td>
+<td>毫 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span></td>
+<td>千 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">10^{3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span></td>
 </tr>
 <tr>
-<td>微 $\mu$</td>
-<td>$10^{-6}$</td>
-<td>兆 $M$</td>
-<td>$10^{6}$</td>
+<td>微 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi></mrow><annotation encoding="application/x-tex">\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-6}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></span></td>
+<td>兆 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^{6}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span></span></td>
 </tr>
 <tr>
-<td>纳 $n$</td>
-<td>$10^{-9}$</td>
-<td>吉 $G$</td>
-<td>$10^{9}$</td>
+<td>纳 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span></td>
+<td>吉 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">G</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">10^{9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span></td>
 </tr>
 <tr>
-<td>皮 $p$</td>
-<td>$10^{-12}$</td>
-<td>太 $T$</td>
-<td>$10^{12}$</td>
+<td>皮 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>12</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-12}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></td>
+<td>太 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>12</mn></msup></mrow><annotation encoding="application/x-tex">10^{12}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="Chapter-3-数据与信号"><a href="#Chapter-3-数据与信号" class="headerlink" title="Chapter 3 数据与信号"></a>Chapter 3 数据与信号</h2><h3 id="关于频率-频域与带宽"><a href="#关于频率-频域与带宽" class="headerlink" title="关于频率, 频域与带宽"></a>关于频率, 频域与带宽</h3><p>通过傅里叶分析, 可以将任何复合信号分解为一系列正弦波</p>
+<h2 id="chapter-3-数据与信号"><a class="markdownIt-Anchor" href="#chapter-3-数据与信号"></a> Chapter 3 数据与信号</h2>
+<h3 id="关于频率-频域与带宽"><a class="markdownIt-Anchor" href="#关于频率-频域与带宽"></a> 关于频率, 频域与带宽</h3>
+<p>通过傅里叶分析, 可以将任何复合信号分解为一系列正弦波</p>
 <p>对于周期复合信号, 正弦波的频率是离散的; 对于非周期复合信号, 正弦波的频率是连续的</p>
 <p>将分解后得到的正弦波系列表示到 频率 - 振幅 图上, 即得频域图</p>
 <p>复合信号包含的频率范围称为带宽, 即信号最高频率与最低频率的差值</p>
-<h3 id="数字信号与传输"><a href="#数字信号与传输" class="headerlink" title="数字信号与传输"></a>数字信号与传输</h3><p>数字信号是<strong>带宽无穷大</strong>的复合模拟信号, 每一个电平可以表示多个位</p>
-<script type="math/tex; mode=display">每个电平表示的位的数量 = \log_2{电平数}</script><h4 id="比特率"><a href="#比特率" class="headerlink" title="比特率"></a>比特率</h4><p>一秒钟内发送的位数, 以 bps 表示</p>
-<h4 id="位长"><a href="#位长" class="headerlink" title="位长"></a>位长</h4><p>一个位在传输介质上的持续时间</p>
-<script type="math/tex; mode=display">位长 = 传播速度 \times 位的持续时间</script><h4 id="传输"><a href="#传输" class="headerlink" title="传输"></a>传输</h4><h5 id="基带传输"><a href="#基带传输" class="headerlink" title="基带传输"></a>基带传输</h5><p>通过通道<strong>直接</strong>发送数字信号, 不转换为模拟信号, <strong>需要一个下限频率为0的低通通道</strong></p>
-<h6 id="宽带宽的低通通道"><a href="#宽带宽的低通通道" class="headerlink" title="宽带宽的低通通道"></a>宽带宽的低通通道</h6><p>基本可以保持数字信号的形状, 例如同轴电缆和光纤</p>
-<h6 id="有限带宽的低通通道"><a href="#有限带宽的低通通道" class="headerlink" title="有限带宽的低通通道"></a>有限带宽的低通通道</h6><p>发送的数字信号需要近似成模拟信号,比特率为 $N$ 的数字信号传输最小需要的带宽 $B<em>{min}$ 满足 $$B</em>{min} = \frac{N}{2}$$</p>
+<h3 id="数字信号与传输"><a class="markdownIt-Anchor" href="#数字信号与传输"></a> 数字信号与传输</h3>
+<p>数字信号是<strong>带宽无穷大</strong>的复合模拟信号, 每一个电平可以表示多个位</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">每</mi><mi mathvariant="normal">个</mi><mi mathvariant="normal">电</mi><mi mathvariant="normal">平</mi><mi mathvariant="normal">表</mi><mi mathvariant="normal">示</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">位</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">量</mi><mo>=</mo><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mrow><mi mathvariant="normal">电</mi><mi mathvariant="normal">平</mi><mi mathvariant="normal">数</mi></mrow></mrow><annotation encoding="application/x-tex">每个电平表示的位的数量 = \log_2{电平数}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">每</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">电</span><span class="mord cjk_fallback">平</span><span class="mord cjk_fallback">表</span><span class="mord cjk_fallback">示</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">位</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">量</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord cjk_fallback">电</span><span class="mord cjk_fallback">平</span><span class="mord cjk_fallback">数</span></span></span></span></span></span></p>
+<h4 id="比特率"><a class="markdownIt-Anchor" href="#比特率"></a> 比特率</h4>
+<p>一秒钟内发送的位数, 以 bps 表示</p>
+<h4 id="位长"><a class="markdownIt-Anchor" href="#位长"></a> 位长</h4>
+<p>一个位在传输介质上的持续时间</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">位</mi><mi mathvariant="normal">长</mi><mo>=</mo><mi mathvariant="normal">传</mi><mi mathvariant="normal">播</mi><mi mathvariant="normal">速</mi><mi mathvariant="normal">度</mi><mo>×</mo><mi mathvariant="normal">位</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">持</mi><mi mathvariant="normal">续</mi><mi mathvariant="normal">时</mi><mi mathvariant="normal">间</mi></mrow><annotation encoding="application/x-tex">位长 = 传播速度 \times 位的持续时间
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">位</span><span class="mord cjk_fallback">长</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">播</span><span class="mord cjk_fallback">速</span><span class="mord cjk_fallback">度</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mord cjk_fallback">位</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">持</span><span class="mord cjk_fallback">续</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">间</span></span></span></span></span></p>
+<h4 id="传输"><a class="markdownIt-Anchor" href="#传输"></a> 传输</h4>
+<h5 id="基带传输"><a class="markdownIt-Anchor" href="#基带传输"></a> 基带传输</h5>
+<p>通过通道<strong>直接</strong>发送数字信号, 不转换为模拟信号, <strong>需要一个下限频率为0的低通通道</strong></p>
+<h6 id="宽带宽的低通通道"><a class="markdownIt-Anchor" href="#宽带宽的低通通道"></a> 宽带宽的低通通道</h6>
+<p>基本可以保持数字信号的形状, 例如同轴电缆和光纤</p>
+<h6 id="有限带宽的低通通道"><a class="markdownIt-Anchor" href="#有限带宽的低通通道"></a> 有限带宽的低通通道</h6>
+<p>发送的数字信号需要近似成模拟信号,比特率为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> 的数字信号传输最小需要的带宽 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>B</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">B_{min}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 满足 $$B_{min} = \frac{N}{2}$$</p>
 <p>通过增加更多谐波可以更好地近似</p>
-<h5 id="宽带传输"><a href="#宽带传输" class="headerlink" title="宽带传输"></a>宽带传输</h5><p>通过调制把数字信号转换成模拟信号传输, 可以使用带通通道 (带宽不从零开始的通道)</p>
-<h4 id="传输减损"><a href="#传输减损" class="headerlink" title="传输减损"></a>传输减损</h4><h5 id="衰减"><a href="#衰减" class="headerlink" title="衰减"></a>衰减</h5><p>能量的损失, 可以使用放大器来补偿</p>
-<h6 id="分贝"><a href="#分贝" class="headerlink" title="分贝"></a>分贝</h6><p>定义了信号损失或者增益的相对强度, 可以直接加减, 若 $P_1$ $P_2$ 为信号在两点处的<strong>功率</strong>, 则</p>
-<script type="math/tex; mode=display">dB = 10 * \log_{10}\frac{P_2}{P_1}</script><p>需要记住的结论:</p>
+<h5 id="宽带传输"><a class="markdownIt-Anchor" href="#宽带传输"></a> 宽带传输</h5>
+<p>通过调制把数字信号转换成模拟信号传输, 可以使用带通通道 (带宽不从零开始的通道)</p>
+<h4 id="传输减损"><a class="markdownIt-Anchor" href="#传输减损"></a> 传输减损</h4>
+<h5 id="衰减"><a class="markdownIt-Anchor" href="#衰减"></a> 衰减</h5>
+<p>能量的损失, 可以使用放大器来补偿</p>
+<h6 id="分贝"><a class="markdownIt-Anchor" href="#分贝"></a> 分贝</h6>
+<p>定义了信号损失或者增益的相对强度, 可以直接加减, 若 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">P_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">P_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 为信号在两点处的<strong>功率</strong>, 则</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>B</mi><mo>=</mo><mn>10</mn><mo>∗</mo><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>10</mn></msub><mfrac><msub><mi>P</mi><mn>2</mn></msub><msub><mi>P</mi><mn>1</mn></msub></mfrac></mrow><annotation encoding="application/x-tex">dB = 10 * \log_{10}\frac{P_2}{P_1}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.19633em;vertical-align:-0.8360000000000001em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>需要记住的结论:</p>
 <ul>
 <li>衰减为负, 放大为正</li>
-<li>$-3dB$ 或者 $3dB$ 衰减说明信号的功率衰减了一半</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>3</mn><mi>d</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">-3dB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">3</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 或者 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mi>d</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">3dB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 衰减说明信号的功率衰减了一半</li>
 </ul>
-<p>分贝有时候也被用作以毫瓦计量信号功率的单位, 这时称作 $dB<em>m$, $dB_m = 10 \times \log</em>{10}P_m$</p>
-<h5 id="失真"><a href="#失真" class="headerlink" title="失真"></a>失真</h5><p>信号改变了形态或形状, 产生在有不同频率成分的复合信号中</p>
-<h5 id="噪声"><a href="#噪声" class="headerlink" title="噪声"></a>噪声</h5><p>信号在传输过程中被掺杂的非信号成分</p>
-<h6 id="信噪比"><a href="#信噪比" class="headerlink" title="信噪比"></a>信噪比</h6><p>信号功率与噪声功率的比值, 用 $SNR$ 表示</p>
-<script type="math/tex; mode=display">SNR = \frac{平均信号功率}{平均噪声功率}</script><p>使用分贝单位描述信噪比, 被称为 ${SNR}_{dB}$</p>
-<h3 id="数据速率限制"><a href="#数据速率限制" class="headerlink" title="数据速率限制"></a>数据速率限制</h3><p>取决于三个因素: 有效带宽, 使用的信号电平数, 信道的质量 (噪声有多大)</p>
-<p>下面 $B$ 表示带宽, $N$ 表示比特率, $L$ 表示使用的信号电平的数量, $SNR$ 表示信噪比</p>
-<h4 id="无噪声通道-奈奎斯特比特率"><a href="#无噪声通道-奈奎斯特比特率" class="headerlink" title="无噪声通道: 奈奎斯特比特率"></a>无噪声通道: 奈奎斯特比特率</h4><p>对无噪声通道, 奈奎斯特比特率公式给出了理论上的最大比特率: <script type="math/tex">N = 2 \times B \times \log_{2}L</script></p>
-<p>在带宽一定时, 通过增加 $L$ 可以提高传输速率, 但会让接收方难以区分, 降低可靠性</p>
-<h4 id="有噪声通道-香农容量定理"><a href="#有噪声通道-香农容量定理" class="headerlink" title="有噪声通道: 香农容量定理"></a>有噪声通道: 香农容量定理</h4><p>香农容量定理给出了有噪声通道的通道容量:</p>
-<script type="math/tex; mode=display">通道容量 = B \times \log_{2}{(1 + SNR)}</script><p>公式与 $L$ 无关, 说明无论使用多少电平都无法获得超过通道容量的数据传输速率</p>
-<p>$SNR$ 很大时, 有 $SNR \approx SNR+1$, 所以通道容量可化简为</p>
-<script type="math/tex; mode=display">通道容量 = B \times \frac{ {SNR}_{dB} }{3}</script><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>香农定理给出数据传输速率的上限, 奈奎斯特公式给出所需的信号电平数</p>
-<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><h4 id="带宽"><a href="#带宽" class="headerlink" title="带宽"></a>带宽</h4><p>可以指两个东西: 以频率衡量, 或以 $bps$ 衡量<br>前者表明通道的频率范围, 后者表明每秒能发送的位数</p>
-<h4 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h4><p>衡量通过网络发送数据的快慢, 必定小于等于带宽</p>
-<h4 id="延迟"><a href="#延迟" class="headerlink" title="延迟"></a>延迟</h4><p>第一个位从源端到最后一个位 (即整个报文) 到达目的端的时间, 由四部分组成</p>
-<h5 id="传播时间"><a href="#传播时间" class="headerlink" title="传播时间"></a>传播时间</h5><p>介质中一个位从源端到目标的时间 <script type="math/tex">传播时间 = \frac{距离}{传播速度}</script></p>
-<h5 id="传输时间"><a href="#传输时间" class="headerlink" title="传输时间"></a>传输时间</h5><p>报文的第一个位与最后一个位离开发送方的时间, 也就是发送方把报文加载到介质上所用的时间</p>
-<script type="math/tex; mode=display">传输时间 = \frac{报文长度}{带宽}</script><h5 id="排队时间"><a href="#排队时间" class="headerlink" title="排队时间"></a>排队时间</h5><p>网络上每个中间设备在收到本报文后, 处理本报文前的时间 (因为有其他先到的报文等待处理)</p>
-<h5 id="处理延迟"><a href="#处理延迟" class="headerlink" title="处理延迟"></a>处理延迟</h5><p>接收者处理报文所用的时间 (书上不知道为啥没写这点…)</p>
-<h4 id="带宽与延迟的乘积"><a href="#带宽与延迟的乘积" class="headerlink" title="带宽与延迟的乘积"></a>带宽与延迟的乘积</h4><p>充满整个链路的位的个数</p>
-<h2 id="Chapter-4-数字传输"><a href="#Chapter-4-数字传输" class="headerlink" title="Chapter 4 数字传输"></a>Chapter 4 数字传输</h2><blockquote>
+<p>分贝有时候也被用作以毫瓦计量信号功率的单位, 这时称作 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><msub><mi>B</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">dB_m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathdefault">d</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><msub><mi>B</mi><mi>m</mi></msub><mo>=</mo><mn>10</mn><mo>×</mo><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>10</mn></msub><msub><mi>P</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">dB_m = 10 \times \log_{10}P_m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord mathdefault">d</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05017em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<h5 id="失真"><a class="markdownIt-Anchor" href="#失真"></a> 失真</h5>
+<p>信号改变了形态或形状, 产生在有不同频率成分的复合信号中</p>
+<h5 id="噪声"><a class="markdownIt-Anchor" href="#噪声"></a> 噪声</h5>
+<p>信号在传输过程中被掺杂的非信号成分</p>
+<h6 id="信噪比"><a class="markdownIt-Anchor" href="#信噪比"></a> 信噪比</h6>
+<p>信号功率与噪声功率的比值, 用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>N</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">SNR</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span> 表示</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>N</mi><mi>R</mi><mo>=</mo><mfrac><mrow><mi mathvariant="normal">平</mi><mi mathvariant="normal">均</mi><mi mathvariant="normal">信</mi><mi mathvariant="normal">号</mi><mi mathvariant="normal">功</mi><mi mathvariant="normal">率</mi></mrow><mrow><mi mathvariant="normal">平</mi><mi mathvariant="normal">均</mi><mi mathvariant="normal">噪</mi><mi mathvariant="normal">声</mi><mi mathvariant="normal">功</mi><mi mathvariant="normal">率</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">SNR = \frac{平均信号功率}{平均噪声功率}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.363em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.677em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">平</span><span class="mord cjk_fallback">均</span><span class="mord cjk_fallback">噪</span><span class="mord cjk_fallback">声</span><span class="mord cjk_fallback">功</span><span class="mord cjk_fallback">率</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">平</span><span class="mord cjk_fallback">均</span><span class="mord cjk_fallback">信</span><span class="mord cjk_fallback">号</span><span class="mord cjk_fallback">功</span><span class="mord cjk_fallback">率</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>使用分贝单位描述信噪比, 被称为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mrow><mi>S</mi><mi>N</mi><mi>R</mi></mrow><mrow><mi>d</mi><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">{SNR}_{dB}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
+<h3 id="数据速率限制"><a class="markdownIt-Anchor" href="#数据速率限制"></a> 数据速率限制</h3>
+<p>取决于三个因素: 有效带宽, 使用的信号电平数, 信道的质量 (噪声有多大)</p>
+<p>下面 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 表示带宽, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> 表示比特率, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> 表示使用的信号电平的数量, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>N</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">SNR</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span> 表示信噪比</p>
+<h4 id="无噪声通道-奈奎斯特比特率"><a class="markdownIt-Anchor" href="#无噪声通道-奈奎斯特比特率"></a> 无噪声通道: 奈奎斯特比特率</h4>
+<p>对无噪声通道, 奈奎斯特比特率公式给出了理论上的最大比特率: $$N = 2 \times B \times \log_{2}L$$</p>
+<p>在带宽一定时, 通过增加 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> 可以提高传输速率, 但会让接收方难以区分, 降低可靠性</p>
+<h4 id="有噪声通道-香农容量定理"><a class="markdownIt-Anchor" href="#有噪声通道-香农容量定理"></a> 有噪声通道: 香农容量定理</h4>
+<p>香农容量定理给出了有噪声通道的通道容量:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">通</mi><mi mathvariant="normal">道</mi><mi mathvariant="normal">容</mi><mi mathvariant="normal">量</mi><mo>=</mo><mi>B</mi><mo>×</mo><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mrow><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>S</mi><mi>N</mi><mi>R</mi><mo stretchy="false">)</mo></mrow></mrow><annotation encoding="application/x-tex">通道容量 = B \times \log_{2}{(1 + SNR)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">通</span><span class="mord cjk_fallback">道</span><span class="mord cjk_fallback">容</span><span class="mord cjk_fallback">量</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mclose">)</span></span></span></span></span></span></p>
+<p>公式与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> 无关, 说明无论使用多少电平都无法获得超过通道容量的数据传输速率</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>N</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">SNR</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span> 很大时, 有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mi>N</mi><mi>R</mi><mo>≈</mo><mi>S</mi><mi>N</mi><mi>R</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">SNR \approx SNR+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>, 所以通道容量可化简为</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">通</mi><mi mathvariant="normal">道</mi><mi mathvariant="normal">容</mi><mi mathvariant="normal">量</mi><mo>=</mo><mi>B</mi><mo>×</mo><mfrac><msub><mrow><mi>S</mi><mi>N</mi><mi>R</mi></mrow><mrow><mi>d</mi><mi>B</mi></mrow></msub><mn>3</mn></mfrac></mrow><annotation encoding="application/x-tex">通道容量 = B \times \frac{ {SNR}_{dB} }{3}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">通</span><span class="mord cjk_fallback">道</span><span class="mord cjk_fallback">容</span><span class="mord cjk_fallback">量</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h4 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h4>
+<p>香农定理给出数据传输速率的上限, 奈奎斯特公式给出所需的信号电平数</p>
+<h3 id="性能"><a class="markdownIt-Anchor" href="#性能"></a> 性能</h3>
+<h4 id="带宽"><a class="markdownIt-Anchor" href="#带宽"></a> 带宽</h4>
+<p>可以指两个东西: 以频率衡量, 或以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>b</mi><mi>p</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">bps</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">p</span><span class="mord mathdefault">s</span></span></span></span> 衡量<br>
+前者表明通道的频率范围, 后者表明每秒能发送的位数</p>
+<h4 id="吞吐量"><a class="markdownIt-Anchor" href="#吞吐量"></a> 吞吐量</h4>
+<p>衡量通过网络发送数据的快慢, 必定小于等于带宽</p>
+<h4 id="延迟"><a class="markdownIt-Anchor" href="#延迟"></a> 延迟</h4>
+<p>第一个位从源端到最后一个位 (即整个报文) 到达目的端的时间, 由四部分组成</p>
+<h5 id="传播时间"><a class="markdownIt-Anchor" href="#传播时间"></a> 传播时间</h5>
+<p>介质中一个位从源端到目标的时间</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">传</mi><mi mathvariant="normal">播</mi><mi mathvariant="normal">时</mi><mi mathvariant="normal">间</mi><mo>=</mo><mfrac><mrow><mi mathvariant="normal">距</mi><mi mathvariant="normal">离</mi></mrow><mrow><mi mathvariant="normal">传</mi><mi mathvariant="normal">播</mi><mi mathvariant="normal">速</mi><mi mathvariant="normal">度</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">传播时间 = \frac{距离}{传播速度}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">播</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">间</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.363em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.677em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">播</span><span class="mord cjk_fallback">速</span><span class="mord cjk_fallback">度</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">距</span><span class="mord cjk_fallback">离</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h5 id="传输时间"><a class="markdownIt-Anchor" href="#传输时间"></a> 传输时间</h5>
+<p>报文的第一个位与最后一个位离开发送方的时间, 也就是发送方把报文加载到介质上所用的时间</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">传</mi><mi mathvariant="normal">输</mi><mi mathvariant="normal">时</mi><mi mathvariant="normal">间</mi><mo>=</mo><mfrac><mrow><mi mathvariant="normal">报</mi><mi mathvariant="normal">文</mi><mi mathvariant="normal">长</mi><mi mathvariant="normal">度</mi></mrow><mrow><mi mathvariant="normal">带</mi><mi mathvariant="normal">宽</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">传输时间 = \frac{报文长度}{带宽}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">输</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">间</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.363em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.677em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">带</span><span class="mord cjk_fallback">宽</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">报</span><span class="mord cjk_fallback">文</span><span class="mord cjk_fallback">长</span><span class="mord cjk_fallback">度</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<h5 id="排队时间"><a class="markdownIt-Anchor" href="#排队时间"></a> 排队时间</h5>
+<p>网络上每个中间设备在收到本报文后, 处理本报文前的时间 (因为有其他先到的报文等待处理)</p>
+<h5 id="处理延迟"><a class="markdownIt-Anchor" href="#处理延迟"></a> 处理延迟</h5>
+<p>接收者处理报文所用的时间 (书上不知道为啥没写这点…)</p>
+<h4 id="带宽与延迟的乘积"><a class="markdownIt-Anchor" href="#带宽与延迟的乘积"></a> 带宽与延迟的乘积</h4>
+<p>充满整个链路的位的个数</p>
+<h2 id="chapter-4-数字传输"><a class="markdownIt-Anchor" href="#chapter-4-数字传输"></a> Chapter 4 数字传输</h2>
+<blockquote>
 <p>To be finished later…</p>
 </blockquote>
 
@@ -721,40 +811,8 @@
   
 
   
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
-
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.11.1/katex.min.css" />
   
 
 

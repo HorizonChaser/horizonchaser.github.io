@@ -255,40 +255,48 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月14日 周一 14:11:51
+                  Last Update @ 2021年6月14日 周一 14:23:24
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="MoeCTF-2020-Write-Up"><a href="#MoeCTF-2020-Write-Up" class="headerlink" title="MoeCTF 2020 Write Up"></a>MoeCTF 2020 Write Up</h1><p><strong><em>By Horizon Chaser, aka. Horizon</em></strong></p>
+              <h1 id="moectf-2020-write-up"><a class="markdownIt-Anchor" href="#moectf-2020-write-up"></a> MoeCTF 2020 Write Up</h1>
+<p><em><strong>By Horizon Chaser, aka. Horizon</strong></em></p>
 <p>第一次参加CTF, 现学现用, 会做的题实在有限😂, 先把自己会的或者有思路的部分题写下来, 以供参考</p>
-<p><del>其他不会的题就等各位巨佬的Write Up辽</del></p>
-<p><del>龟速</del>更新记录</p>
+<p><s>其他不会的题就等各位巨佬的Write Up辽</s></p>
+<p><s>龟速</s>更新记录</p>
 <ul>
 <li>10.14 Misc + Reverse.Rxencode</li>
 <li>10.16 Reverse</li>
 <li>10.18 Algorithm + Classical Crypto</li>
 </ul>
-<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><p>Misc, 全程Miscellaneous, 本意是”杂项”. 在CTF中大概是指多个领域 <del>脑洞</del> 的混合. 因此做起来还是很有意思的.</p>
-<h3 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h3><p>Misc入门题, 附件profession.jpg. 打开, 发现是专业团队, 仔细一看右下角有黑白色块, 觉得可能是在jpg文件末端添加了内容.</p>
+<h2 id="misc"><a class="markdownIt-Anchor" href="#misc"></a> Misc</h2>
+<p>Misc, 全程Miscellaneous, 本意是"杂项". 在CTF中大概是指多个领域 <s>脑洞</s> 的混合. 因此做起来还是很有意思的.</p>
+<h3 id="welcome"><a class="markdownIt-Anchor" href="#welcome"></a> Welcome</h3>
+<p>Misc入门题, 附件profession.jpg. 打开, 发现是专业团队, 仔细一看右下角有黑白色块, 觉得可能是在jpg文件末端添加了内容.</p>
 <p>使用binwalk分析, 未发现隐写的文件, 有点疑惑.</p>
 <p>使用16进制编辑器打开, 发现flag就在末尾😂</p>
 <p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/image-20201012183142831.png" srcset="/img/loading.gif" alt="welcome"></p>
-<h3 id="hey-fxck-you"><a href="#hey-fxck-you" class="headerlink" title="hey fxck you!"></a>hey fxck you!</h3><p>附件good_morning_my_neighbors.png, 表达了诚挚的问候(大雾)</p>
+<h3 id="hey-fxck-you"><a class="markdownIt-Anchor" href="#hey-fxck-you"></a> hey fxck you!</h3>
+<p>附件good_morning_my_neighbors.png, 表达了诚挚的问候(大雾)</p>
 <p>除了最下方被裁剪了, 图片没有发现什么问题, 使用binwalk分析, 发现末尾有一个zip文件, 解压得fk u.txt, 内容如下</p>
 <blockquote>
-<p>++++++++[&gt;&gt;++&gt;++++&gt;++++++&gt;++++++++&gt;++++++++++&gt;++++++++++++&gt;++++++++++++++&gt;++++++++++++++++&gt;++++++++++++++++++&gt;++++++++++++++++++++&gt;++++++++++++++++++++++&gt;++++++++++++++++++++++++&gt;++++++++++++++++++++++++++&gt;++++++++++++++++++++++++++++&gt;++++++++++++++++++++++++++++++&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;—-.++.&lt;+++++.—.&gt;+++++.&lt;+++.&gt;&gt;——-.—.&lt;&lt;-.&gt;-.&lt;&lt;&lt;&lt;&lt;+.&gt;&gt;&gt;&gt;&gt;&gt;.&lt;&lt;.&gt;.&lt;&lt;&lt;&lt;&lt;.&gt;&gt;&gt;&gt;+.+++++.——————.&lt;+++++.&gt;.&lt;&lt;&lt;++.&lt;.&gt;&gt;&gt;&gt;&gt;&gt;++++.</p>
+<p><ins><ins><ins><ins>[&gt;&gt;</ins>&gt;</ins></ins>&gt;</ins><ins><ins>&gt;</ins></ins><ins><ins>&gt;</ins></ins><ins><ins><ins>&gt;</ins></ins></ins><ins><ins><ins>&gt;</ins></ins></ins><ins><ins><ins><ins>&gt;</ins></ins></ins></ins><ins><ins><ins><ins>&gt;</ins></ins></ins></ins><ins><ins><ins><ins><ins>&gt;</ins></ins></ins></ins></ins><ins><ins><ins><ins><ins>&gt;</ins></ins></ins></ins></ins><ins><ins><ins><ins><ins><ins>&gt;</ins></ins></ins></ins></ins></ins><ins><ins><ins><ins><ins><ins>&gt;</ins></ins></ins></ins></ins></ins><ins><ins><ins><ins><ins><ins><ins>&gt;</ins></ins></ins></ins></ins></ins></ins><ins><ins><ins><ins><ins><ins><ins>&gt;</ins></ins></ins></ins></ins></ins></ins><ins><ins><ins><ins><ins><ins><ins><ins>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;-]&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;—.</ins>.&lt;</ins></ins>+.–.&gt;</ins></ins>+.&lt;</ins>+.&gt;&gt;-----.–.&lt;&lt;-.&gt;-.&lt;&lt;&lt;&lt;&lt;+.&gt;&gt;&gt;&gt;&gt;&gt;.&lt;&lt;.&gt;.&lt;&lt;&lt;&lt;&lt;.&gt;&gt;&gt;&gt;+.</ins></ins>+.------------.&lt;+<ins><ins>.&gt;.&lt;&lt;&lt;</ins>.&lt;.&gt;&gt;&gt;&gt;&gt;&gt;</ins>++.</p>
 </blockquote>
 <p>搜索, 得知这是BrainFuck语言, 解密得到flag <code>moectf{yes!yes!fk_U_2!}</code></p>
-<p><del>这是对此前问候的友好回应(确信)</del></p>
-<h3 id="base64？¿"><a href="#base64？¿" class="headerlink" title="base64？¿"></a>base64？¿</h3><p>题面是一个以等号结尾的字符串  <code>0H9MJjCNPiMgJHMQJNtfyEJgIjtS1Ig=</code>, 结合名称, 确定是base64编码的文本.</p>
+<p><s>这是对此前问候的友好回应(确信)</s></p>
+<h3 id="base64"><a class="markdownIt-Anchor" href="#base64"></a> base64？¿</h3>
+<p>题面是一个以等号结尾的字符串  <code>0H9MJjCNPiMgJHMQJNtfyEJgIjtS1Ig=</code>, 结合名称, 确定是base64编码的文本.</p>
 <p>按照标准的字符表无法解密, 查看hint, 得到字符表为<code>vwxrstuopq34567ABCDEFGHIJyz012PQRSTKLMNOZabcdUVWXYefghijklmn89+/</code>, 按照这个字符表解码, 得到flag<code>moectf{itai_base64_qaq}</code></p>
-<h3 id="A3FXCK"><a href="#A3FXCK" class="headerlink" title="A3FXCK"></a>A3FXCK</h3><p><del>所以a3又干啥了这是</del></p>
+<h3 id="a3fxck"><a class="markdownIt-Anchor" href="#a3fxck"></a> A3FXCK</h3>
+<p><s>所以a3又干啥了这是</s></p>
 <p>题面是一个jpg, binwalk分析, 得到隐藏的A3FXCK.txt, 打开, 发现内容可被拆分为两类: <code>luoqXan</code>与<code>arttnbaX</code>, X为1~6的正整数.</p>
 <p>结合首行的<code>123456[]()+!</code>, 推测1~6的值分别代表<code>[]()+!</code>, 替换后得到一坨奇怪的东西, 尝试按照JavaScript运行后得到flag <code>moectf{J5Fxck_1s_1nt3res7in9!}</code></p>
 <p>新知识: <a target="_blank" rel="noopener" href="https://github.com/aemkei/jsfuck">JSFuck</a>是将(小段的)JS代码加密为仅包含<code>[]()+!</code>的文本, 但是会造成严重的体积膨胀. 所以替换后得到的那一坨解密之后也只是一行<code>alert('moectf{J5Fxck_1s_1nt3res7in9!}'</code></p>
-<p><del>由此得知, JS确实是最强大的编程语言</del></p>
-<h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="Welcome-To-Re"><a href="#Welcome-To-Re" class="headerlink" title="Welcome To Re!"></a>Welcome To Re!</h3><p>签到题, 也是第一道我做出来的逆向的题😂</p>
+<p><s>由此得知, JS确实是最强大的编程语言</s></p>
+<h2 id="reverse"><a class="markdownIt-Anchor" href="#reverse"></a> Reverse</h2>
+<h3 id="welcome-to-re"><a class="markdownIt-Anchor" href="#welcome-to-re"></a> Welcome To Re!</h3>
+<p>签到题, 也是第一道我做出来的逆向的题😂</p>
 <p>下载附件, 打开, 按照入门指南和Hint提示, 使用IDA64分析SignIn.exe, 在左侧定位main函数, 双击跳转到对应位置, 按下F5反汇编, 得到伪代码如下</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __cdecl <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>envp<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -307,9 +315,10 @@
   <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在main函数中, 首先将flag内容复制到str2中, 然后输出提示信息并将输入保存到Str1中. 之后通过strcmp比较输入的Str2与保存的Str1的值是否一致. 由此我们得出, Str2的值就是flag<code>moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}</code>. <del>虽然说是显然的, 但是该分析还是要分析的</del></p>
+<p>在main函数中, 首先将flag内容复制到str2中, 然后输出提示信息并将输入保存到Str1中. 之后通过strcmp比较输入的Str2与保存的Str1的值是否一致. 由此我们得出, Str2的值就是flag<code>moectf{W3lc0me-T0_th3-W0rld_Of_R3v3rsE!}</code>. <s>虽然说是显然的, 但是该分析还是要分析的</s></p>
 <p>总之, Welcome to the World of Reverse 🍻!</p>
-<h3 id="RxEncode"><a href="#RxEncode" class="headerlink" title="RxEncode"></a>RxEncode</h3><p>这道题当时没有做出来 <del>, 然后就变成了面试作业</del></p>
+<h3 id="rxencode"><a class="markdownIt-Anchor" href="#rxencode"></a> RxEncode</h3>
+<p>这道题当时没有做出来 <s>, 然后就变成了面试作业</s></p>
 <p>使用IDA反汇编, 观察main函数, 发现程序将输入的内容作为RxEncode函数的参数, 再将返回值s1同s2进行比较确定flag正确与否.</p>
 <p>双击RxEncode并反汇编, 得伪代码如下.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token operator">*</span>__fastcall <span class="token function">RxEncode</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>a1<span class="token punctuation">,</span> <span class="token keyword">int</span> a2<span class="token punctuation">)</span>
@@ -392,7 +401,7 @@
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> result<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>注意到 ‘=’ 的ASCII码是61, 结合面试时的提示<strong>“将flag进行</strong>(类似)<strong>base64解码”</strong>, 仔细分析RxEncode的逻辑后, 得出这个函数的作用就是将内容进行类似base64的解码.</p>
+<p>注意到 ‘=’ 的ASCII码是61, 结合面试时的提示**"将flag进行**(类似)<strong>base64解码"</strong>, 仔细分析RxEncode的逻辑后, 得出这个函数的作用就是将内容进行类似base64的解码.</p>
 <p>由此我们得出, s2保存的应当就是解码后的flag内容, 将变量的值转为16进制后结果如下.</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">  char s2[8]; // [rsp+10h] [rbp-60h]
  __int64 v15; // [rsp+18h] [rbp-58h]
@@ -405,17 +414,19 @@
  *(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
  v15 = 0xCBEBFDFA6CED0BFELL;
  v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>结合s2 v15 v16在main的栈帧中相邻存放这一点, 我们推测s2实际的长度应当不止为8, 而是24. </p>
+<p>结合s2 v15 v16在main的栈帧中相邻存放这一点, 我们推测s2实际的长度应当不止为8, 而是24.</p>
 <p>事实上, 我认为v15 v16的__int64类型也是IDA的推测(它并不确定真实类型是什么) - 因为在栈帧中将s2的类型由默认的char []改为char [24]后, 三个变量变成了这样.</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">*(_QWORD *)s2 = 0x4AD158FEB59C879ALL;
 *(_QWORD *)v15 = 0xCBEBFDFA6CED0BFELL;
 *(_QWORD *)v16 = 0x7A47A38E43A334E8LL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>考虑到x86的小端序, 实际的字节顺序应当是 <code>9A 87 9C B5 FE 58</code>这样. 获得解码的flag后, 尝试进行base64编码. </p>
+<p>考虑到x86的小端序, 实际的字节顺序应当是 <code>9A 87 9C B5 FE 58</code>这样. 获得解码的flag后, 尝试进行base64编码.</p>
 <p>考虑到flag中含有标准编码表不包含的<code>{ }</code>, 因此我们可以认为这个表不同于标准的编码表.</p>
 <p>观察发现, RxEncode中调用了一个名为find_pos的函数, 它的作用应当是在编码表中查找字符的位置, 进入该函数, 得到编码表<code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234{}789+/=</code>.</p>
 <p>对先前得到的字节按照编码表进行编码, 可以得到flag<code>moectf{Y0Ur+C+1s+v3ry+g0o0OOo0d}</code>.</p>
-<p><del>No my C is very poooooooor /(ㄒoㄒ)/</del>~~</p>
-<h4 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h4><p>在分析时我不小心改错了s2的类型, 却又改不回去, 而IDA本身又不支持撤销…<br>当时我通过菜单栏的New Instance新打开了一个IDA实例重新分析, 得到的main函数中解码后的flag的相关内容变成了这样, 栈帧也发生了相应的改变…</p>
+<p><s>No my C is very poooooooor /(ㄒoㄒ)/</s>~~</p>
+<h4 id="题外话"><a class="markdownIt-Anchor" href="#题外话"></a> 题外话</h4>
+<p>在分析时我不小心改错了s2的类型, 却又改不回去, 而IDA本身又不支持撤销…<br>
+当时我通过菜单栏的New Instance新打开了一个IDA实例重新分析, 得到的main函数中解码后的flag的相关内容变成了这样, 栈帧也发生了相应的改变…</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">Str2 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">98</span><span class="token punctuation">;</span>
 v11 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">101</span><span class="token punctuation">;</span>
 v12 <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">100</span><span class="token punctuation">;</span>
@@ -450,8 +461,9 @@ v40 <span class="token operator">=</span> <span class="token number">0</span><sp
 v41 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 v42 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>不过除此之外整体的结构并未发生过多改变, 其余内容一样.</p>
-<h3 id="Simple-Re"><a href="#Simple-Re" class="headerlink" title="Simple Re"></a>Simple Re</h3><p>下载解压, 拖入IDA中反汇编, 得到伪代码. 观察发现, main中会将输入的字符串作为参数调用enc()函数.    </p>
-<p>双击跳转进该函数, 反汇编后得到伪代码如下. </p>
+<h3 id="simple-re"><a class="markdownIt-Anchor" href="#simple-re"></a> Simple Re</h3>
+<p>下载解压, 拖入IDA中反汇编, 得到伪代码. 观察发现, main中会将输入的字符串作为参数调用enc()函数.</p>
+<p>双击跳转进该函数, 反汇编后得到伪代码如下.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __fastcall <span class="token function">enc</span><span class="token punctuation">(</span><span class="token keyword">char</span> <span class="token operator">*</span>a1<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
   <span class="token keyword">int</span> result<span class="token punctuation">;</span> <span class="token comment">// eax</span>
@@ -501,10 +513,11 @@ v42 <span class="token operator">=</span> <span class="token number">0</span><sp
     result <span class="token operator">=</span> <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"no...Don't Give up!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> result<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>可以看到, 它是将输入依次对 0x17 0x39 0x4A …… 0x37 进行异或, 然后将运算结果out与aim进行比较. 双击aim变量名, 跳转到栈帧中, 得到aim的值<code>rpz|kydKw^qTl@Y/m2f/J-@o^k.,qkb</code>.</p>
-<p>由 <code>a^b^b == a</code>, 不难发现将aim依次同 0x37 0x49 …… 0x39 0x17 进行异或即可得到flag<code>moectf{ThAnKs_F0r-y0U2_pAt13nt}</code></p>
-<p><del>是挺需要耐心的…</del></p>
-<h3 id="Protection"><a href="#Protection" class="headerlink" title="Protection"></a>Protection</h3><p>下载文件, 根据提示, 程序应该是加了个壳… 检测一下, 是一个UPX的壳, 根据 <a target="_blank" rel="noopener" href="https://linux.die.net/man/1/upx">UPX的文档</a>, 我们可以使用<code>-d</code>选项解压缩.</p>
+<p>可以看到, 它是将输入依次对 0x17 0x39 0x4A … 0x37 进行异或, 然后将运算结果out与aim进行比较. 双击aim变量名, 跳转到栈帧中, 得到aim的值<code>rpz|kydKw^qTl@Y/m2f/J-@o^k.,qkb</code>.</p>
+<p>由 <code>a^b^b == a</code>, 不难发现将aim依次同 0x37 0x49 … 0x39 0x17 进行异或即可得到flag<code>moectf{ThAnKs_F0r-y0U2_pAt13nt}</code></p>
+<p><s>是挺需要耐心的…</s></p>
+<h3 id="protection"><a class="markdownIt-Anchor" href="#protection"></a> Protection</h3>
+<p>下载文件, 根据提示, 程序应该是加了个壳… 检测一下, 是一个UPX的壳, 根据 <a target="_blank" rel="noopener" href="https://linux.die.net/man/1/upx">UPX的文档</a>, 我们可以使用<code>-d</code>选项解压缩.</p>
 <p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/image-20201017215239958.png" srcset="/img/loading.gif" alt="image-20201017215239958"></p>
 <p>去掉UPX壳之后, 又到了IDA大显神通的时间了. 我们得到main函数的伪代码如下.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __cdecl <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>envp<span class="token punctuation">)</span>
@@ -527,15 +540,18 @@ v42 <span class="token operator">=</span> <span class="token number">0</span><sp
   <span class="token function">puts</span><span class="token punctuation">(</span><span class="token string">"right!"</span><span class="token punctuation">,</span> v5<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>不难看出, 这里是将输入和 x 进行逐个字符异或后再同 y 比较. 用同样的方法, 我们得到<code>x = aouv#@!V08asdozpnma&amp;*#%!$^&amp;*</code>, <code>y ={0x0c, 0x0, 0x10, 0x15, 0x57, 0x26, 0x5a, 0x23, 0x40, 0x40, 0x3e, 0x42, 0x37, 0x30, 0x9, 0x19, 0x3, 0x1d, 0x50, 0x43, 0x7, 0x57, 0x15, 0x7e, 0x51, 0x6d, 0x43, 0x57, 0, 0, 0, 0}</code>. </p>
-<p>写个Java脚本 <del>暂时还不会py</del> 异或之后得到 flag <code>moectf{upx_1S_simp1e-t0_u3e}</code></p>
-<p><del>UPX是挺好用的</del></p>
-<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>算法题, 据说在正式的CTF比赛中不会出现…</p>
-<h3 id="mess"><a href="#mess" class="headerlink" title="mess"></a>mess</h3><p><del>What a mess !</del></p>
+<p>不难看出, 这里是将输入和 x 进行逐个字符异或后再同 y 比较. 用同样的方法, 我们得到<code>x = aouv#@!V08asdozpnma&amp;*#%!$^&amp;*</code>, <code>y ={0x0c, 0x0, 0x10, 0x15, 0x57, 0x26, 0x5a, 0x23, 0x40, 0x40, 0x3e, 0x42, 0x37, 0x30, 0x9, 0x19, 0x3, 0x1d, 0x50, 0x43, 0x7, 0x57, 0x15, 0x7e, 0x51, 0x6d, 0x43, 0x57, 0, 0, 0, 0}</code>.</p>
+<p>写个Java脚本 <s>暂时还不会py</s> 异或之后得到 flag <code>moectf{upx_1S_simp1e-t0_u3e}</code></p>
+<p><s>UPX是挺好用的</s></p>
+<h2 id="algorithm"><a class="markdownIt-Anchor" href="#algorithm"></a> Algorithm</h2>
+<p>算法题, 据说在正式的CTF比赛中不会出现…</p>
+<h3 id="mess"><a class="markdownIt-Anchor" href="#mess"></a> mess</h3>
+<p><s>What a mess !</s></p>
 <p>查看Python脚本, 发现是将flag转为ASCII码之后, 再向其中随机插入字母.</p>
 <p>解法也简单, 去掉字母后将相邻的两个(或三个数字, 范围是 20~126 )转换为该ASCII码对应的字符.</p>
 <p>flag: <code>moectf{pyth0n_1s_s0_s1mple}</code></p>
-<h3 id="曲奇饼"><a href="#曲奇饼" class="headerlink" title="曲奇饼"></a>曲奇饼</h3><p>统计非重复子串的最大长度.</p>
+<h3 id="曲奇饼"><a class="markdownIt-Anchor" href="#曲奇饼"></a> 曲奇饼</h3>
+<p>统计非重复子串的最大长度.</p>
 <p>简单的滑动窗口即可解决, 细节参见代码.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstdio&gt;</span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;iostream&gt;</span></span>
@@ -578,39 +594,49 @@ using namespace std<span class="token punctuation">;</span>
     <span class="token function">getline</span><span class="token punctuation">(</span>cin<span class="token punctuation">,</span> inStr<span class="token punctuation">)</span><span class="token punctuation">;</span>
     cout <span class="token operator">&lt;&lt;</span> <span class="token function">getMaxSubStrLeng</span><span class="token punctuation">(</span>inStr<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Frank-amp-赤道企鹅-永远的神"><a href="#Frank-amp-赤道企鹅-永远的神" class="headerlink" title="Frank &amp; 赤道企鹅, 永远的神"></a>Frank &amp; 赤道企鹅, 永远的神</h3><p>这两道题解法相似, 都是统计文件内容, 可参见repo中对应的FrankCounter.java 与EquatorCounter.java</p>
+<h3 id="frank-赤道企鹅-永远的神"><a class="markdownIt-Anchor" href="#frank-赤道企鹅-永远的神"></a> Frank &amp; 赤道企鹅, 永远的神</h3>
+<p>这两道题解法相似, 都是统计文件内容, 可参见repo中对应的FrankCounter.java 与EquatorCounter.java</p>
 <p>其余略😜</p>
-<h2 id="Classic-Crypto"><a href="#Classic-Crypto" class="headerlink" title="Classic Crypto"></a>Classic Crypto</h2><blockquote>
-<p>“古典密码在现代的CTF比赛中已经很少出现”    — FAQ</p>
+<h2 id="classic-crypto"><a class="markdownIt-Anchor" href="#classic-crypto"></a> Classic Crypto</h2>
+<blockquote>
+<p>“古典密码在现代的CTF比赛中已经很少出现”    – FAQ</p>
 </blockquote>
-<h3 id="大帝的征程-1-amp-2"><a href="#大帝的征程-1-amp-2" class="headerlink" title="大帝的征程 #1 &amp; #2"></a>大帝的征程 #1 &amp; #2</h3><p>凯撒密码是一种经典的移位密码, 由flag格式, 得前六个字符为<code>moectf</code>, 然后在此基础上计算密文相对于已知明文的偏移量即可</p>
-<p><del>已知明文攻击 (大概)</del></p>
-<h3 id="大帝的征程-3"><a href="#大帝的征程-3" class="headerlink" title="大帝的征程 #3"></a>大帝的征程 #3</h3><p>由上述经验, 我们推测偏移量应该为 +47(注意由于ASCII码的范围为0~127, 我们需要对127取余作为结果), 写个java脚本解密, 我们得到了<code>moectf{cnquer_th_X#S$"}</code>…</p>
+<h3 id="大帝的征程-1-2"><a class="markdownIt-Anchor" href="#大帝的征程-1-2"></a> 大帝的征程 #1 &amp; #2</h3>
+<p>凯撒密码是一种经典的移位密码, 由flag格式, 得前六个字符为<code>moectf</code>, 然后在此基础上计算密文相对于已知明文的偏移量即可</p>
+<p><s>已知明文攻击 (大概)</s></p>
+<h3 id="大帝的征程-3"><a class="markdownIt-Anchor" href="#大帝的征程-3"></a> 大帝的征程 #3</h3>
+<p>由上述经验, 我们推测偏移量应该为 +47(注意由于ASCII码的范围为0~127, 我们需要对127取余作为结果), 写个java脚本解密, 我们得到了<code>moectf{cnquer_th_X#S$"}</code>…</p>
 <p>看起来大部分是正确的, 只是有一些字符没有正确的解出来. 结合之前的经验, 我们推测<code>cnquer</code> 应该是<code>c0nquer</code>, <code>th</code>应该是<code>th3</code>. 计算可得这时的偏移量是-47, 再计算一次, 我们得到了全部明文: flag <code>moectf{c0nquer_th3_XDSEC}</code></p>
-<p><del>I’m afraid I’m too vegetable to do that 😭</del></p>
-<h3 id="大帝的征程-维吉尼亚-amp-维吉尼亚Ex"><a href="#大帝的征程-维吉尼亚-amp-维吉尼亚Ex" class="headerlink" title="大帝的征程 维吉尼亚 &amp; 维吉尼亚Ex"></a>大帝的征程 维吉尼亚 &amp; 维吉尼亚Ex</h3><h4 id="背景知识-维吉尼亚密码"><a href="#背景知识-维吉尼亚密码" class="headerlink" title="背景知识: 维吉尼亚密码"></a>背景知识: 维吉尼亚密码</h4><p>维吉尼亚密码由凯撒密码扩展而来，引入了密钥的概念。即根据密钥来决定用哪一行的密表(或者你也可以理解成偏移量…)来进行替换，以此来对抗字频统计。</p>
+<p><s>I’m afraid I’m too vegetable to do that 😭</s></p>
+<h3 id="大帝的征程-维吉尼亚-维吉尼亚ex"><a class="markdownIt-Anchor" href="#大帝的征程-维吉尼亚-维吉尼亚ex"></a> 大帝的征程 维吉尼亚 &amp; 维吉尼亚Ex</h3>
+<h4 id="背景知识-维吉尼亚密码"><a class="markdownIt-Anchor" href="#背景知识-维吉尼亚密码"></a> 背景知识: 维吉尼亚密码</h4>
+<p>维吉尼亚密码由凯撒密码扩展而来，引入了密钥的概念。即根据密钥来决定用哪一行的密表(或者你也可以理解成偏移量…)来进行替换，以此来对抗字频统计。</p>
 <p>也就是说, 实际上, 维吉尼亚分解之后还是相当于多个凯撒密码的组合…</p>
 <p>那现在(至少相邻字符的)偏移量不再固定, 我们应该怎么做呢…?</p>
-<h4 id="Friedman测试法确定密钥长度"><a href="#Friedman测试法确定密钥长度" class="headerlink" title="Friedman测试法确定密钥长度"></a>Friedman测试法确定密钥长度</h4><p>我们知道, 不同字母在同一文本的出现概率并不相同(至少对于包括英文在内的大多数语言如此). 那么, 我们可以定义一个叫做”重合指数”的量, 来量化两个串之间的对应程度.</p>
+<h4 id="friedman测试法确定密钥长度"><a class="markdownIt-Anchor" href="#friedman测试法确定密钥长度"></a> Friedman测试法确定密钥长度</h4>
+<p>我们知道, 不同字母在同一文本的出现概率并不相同(至少对于包括英文在内的大多数语言如此). 那么, 我们可以定义一个叫做"重合指数"的量, 来量化两个串之间的对应程度.</p>
 <p>设x=x1x2…xn是一条n个字母的串，x的重合指数记为CI，定义为x中两个随机元素相同的概率。</p>
-<p>而通过对大量的英文文本进行统计, 我们得到每个字母的出现概率如下. </p>
+<p>而通过对大量的英文文本进行统计, 我们得到每个字母的出现概率如下.</p>
 <p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/b91e4e49c93c2db554922f8ecb22f56a_thumb.png" srcset="/img/loading.gif" alt="【密码学】维吉尼亚密码加解密原理及其破解算法Java实现"></p>
 <p>由此, 我们可以得到英文文本的重合指数为 <strong>0.065</strong>(我们假定明文的重合指数大致也是这个值).</p>
-<p>结合之前的”维吉尼亚密码相当于多个凯撒密码的组合”这一特点, 我们就可以把长为n的密文先分为m组, 按照列的形式组成一个 m*(n/m)的矩阵, 然后检测每一组密文的重合指数. </p>
+<p>结合之前的"维吉尼亚密码相当于多个凯撒密码的组合"这一特点, 我们就可以把长为n的密文先分为m组, 按照列的形式组成一个 m*(n/m)的矩阵, 然后检测每一组密文的重合指数.</p>
 <p>如果m正好就是密钥的长度, 那么每一组的CI值应当大致也是0.065; 如果不是的话, 那么分组后的密文看起来应该很随机. 而对于一个随机串, 重合指数约为 <strong>0.038</strong>.</p>
 <p>综上, 我们就通过Friedman测试法得到了密钥的最可能长度.</p>
-<h4 id="字母频度分析确定密钥"><a href="#字母频度分析确定密钥" class="headerlink" title="字母频度分析确定密钥"></a>字母频度分析确定密钥</h4><p>有了密钥长度m, 我们就可以将密文按照密钥长度分解为k = n/m组, 每一组都是凯撒密码, 然后用类似上图的字母频度分析即可解密.</p>
+<h4 id="字母频度分析确定密钥"><a class="markdownIt-Anchor" href="#字母频度分析确定密钥"></a> 字母频度分析确定密钥</h4>
+<p>有了密钥长度m, 我们就可以将密文按照密钥长度分解为k = n/m组, 每一组都是凯撒密码, 然后用类似上图的字母频度分析即可解密.</p>
 <blockquote>
 <p>由上面的分析可知, 要破解维吉尼亚密码, 还是需要收集到大量的密文的. 不过这两道题的密文都很长, 足够破解了.</p>
 </blockquote>
-<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p>其实Android我之前也没接触过, 这里就简单的记录一下简单的Android逆向过程吧.</p>
-<p> <del>“你之前到底接触过啥??” “啥也没接触过….”</del></p>
+<h2 id="android"><a class="markdownIt-Anchor" href="#android"></a> Android</h2>
+<p>其实Android我之前也没接触过, 这里就简单的记录一下简单的Android逆向过程吧.</p>
+<p><s>“你之前到底接触过啥??” “啥也没接触过…”</s></p>
 <p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/5442499-52cadc4569714633.png" srcset="/img/loading.gif" alt="img"></p>
 <p>借一张图(来自<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d29c37dda256">这里</a>)说明apk的打包过程.</p>
 <p>我们看到, java文件在编译后会生成class文件, 然后与其他第三方的class文件与library一起组成dex文件, 然后再经过一些处理, zip压缩, 签名, 对齐后就是我们看到的apk文件了.</p>
-<p>所以, 我们可以直接将apk按照zip解压, 然后获得dex文件. 不过dex是Android的Dalvik虚拟机专用的字节码文件, 我们得把它转成标准的java虚拟机的class文件. </p>
+<p>所以, 我们可以直接将apk按照zip解压, 然后获得dex文件. 不过dex是Android的Dalvik虚拟机专用的字节码文件, 我们得把它转成标准的java虚拟机的class文件.</p>
 <p>幸运的是, 已经有大佬实现了相关的工具: <a target="_blank" rel="noopener" href="https://github.com/pxb1988/dex2jar">dex2jar</a>. 获得jar/class文件后, 我们可以使用<a target="_blank" rel="noopener" href="https://github.com/java-decompiler/jd-gui">jd-gui</a>反编译class文件, 得到源码.</p>
-<h3 id="Baby-Android"><a href="#Baby-Android" class="headerlink" title="Baby Android"></a>Baby Android</h3><p>(稍后再更…)</p>
+<h3 id="baby-android"><a class="markdownIt-Anchor" href="#baby-android"></a> Baby Android</h3>
+<p>(稍后再更…)</p>
 
             </div>
             <hr>
