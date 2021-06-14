@@ -1,4 +1,5 @@
 # horizonchaser.github.io
+
 Horizon Chaser personal blog site
 
 Current Build Status: 

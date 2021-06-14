@@ -7,4 +7,4 @@ public/
 .deploy*/
 github-deploy-key
 github-deploy-key.pub
-local_deploy_test.ps1
+ldt.ps1
