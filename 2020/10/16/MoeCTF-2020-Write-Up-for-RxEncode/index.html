@@ -255,7 +255,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月13日 周日 14:21:45
+                  Last Update @ 2021年6月14日 周一 14:11:51
                 
               </p>
             
@@ -343,8 +343,7 @@
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> result<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>注意到 ‘=’ 的ASCII码是61, 结合面试时的提示**”将flag进行**(类似)<strong>base64解码”</strong>, 仔细分析RxEncode的逻辑后, 得出这个函数的作用就是将内容进行类似base64的解码.</p>
+<p>注意到 ‘=’ 的ASCII码是61, 结合面试时的提示<strong>“将flag进行</strong>(类似)<strong>base64解码”</strong>, 仔细分析RxEncode的逻辑后, 得出这个函数的作用就是将内容进行类似base64的解码.</p>
 <p>由此我们得出, s2保存的应当就是解码后的flag内容, 将变量的值转为16进制后结果如下.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">  <span class="token keyword">char</span> s2<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// [rsp+10h] [rbp-60h]</span>
  __int64 v15<span class="token punctuation">;</span> <span class="token comment">// [rsp+18h] [rbp-58h]</span>
@@ -357,18 +356,16 @@
  <span class="token operator">*</span><span class="token punctuation">(</span>_QWORD <span class="token operator">*</span><span class="token punctuation">)</span>s2 <span class="token operator">=</span> <span class="token number">0x4AD158FEB59C879ALL</span><span class="token punctuation">;</span>
  v15 <span class="token operator">=</span> <span class="token number">0xCBEBFDFA6CED0BFELL</span><span class="token punctuation">;</span>
  v16 <span class="token operator">=</span> <span class="token number">0x7A47A38E43A334E8LL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>结合s2 v15 v16在main的栈帧中相邻存放这一点, 我们推测s2实际的长度应当不止为8, 而是24. </p>
 <p>事实上, 我认为v15 v16的__int64类型也是IDA的推测(它并不确定真实类型是什么) - 因为在栈帧中将s2的类型由默认的char []改为char [24]后, 三个变量变成了这样.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token operator">*</span><span class="token punctuation">(</span>_QWORD <span class="token operator">*</span><span class="token punctuation">)</span>s2 <span class="token operator">=</span> <span class="token number">0x4AD158FEB59C879ALL</span><span class="token punctuation">;</span>
 <span class="token operator">*</span><span class="token punctuation">(</span>_QWORD <span class="token operator">*</span><span class="token punctuation">)</span>v15 <span class="token operator">=</span> <span class="token number">0xCBEBFDFA6CED0BFELL</span><span class="token punctuation">;</span>
 <span class="token operator">*</span><span class="token punctuation">(</span>_QWORD <span class="token operator">*</span><span class="token punctuation">)</span>v16 <span class="token operator">=</span> <span class="token number">0x7A47A38E43A334E8LL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
 <p>考虑到x86的小端序, 实际的字节顺序应当是 <code>9A 87 9C B5 FE 58</code>这样. 获得解码的flag后, 尝试进行base64编码. </p>
 <p>考虑到flag中含有标准编码表不包含的<code>{ }</code>, 因此我们可以认为这个表不同于标准的编码表.</p>
 <p>观察发现, RxEncode中调用了一个名为find_pos的函数, 它的作用应当是在编码表中查找字符的位置, 进入该函数, 得到编码表<code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234{}789+/=</code>.</p>
 <p>对先前得到的字节按照编码表进行编码, 可以得到flag<code>moectf{Y0Ur+C+1s+v3ry+g0o0OOo0d}</code>.</p>
-<p>~~No my C is very poooooooor /(ㄒoㄒ)/~~~~</p>
+<p><del>No my C is very poooooooor /(ㄒoㄒ)/</del>~~</p>
 
             </div>
             <hr>
