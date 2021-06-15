@@ -66,6 +66,7 @@
   <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Horizon Blog" type="application/atom+xml">
 </head>
 
 
@@ -203,7 +204,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      198 字
+      311 字
     </span>
   
 
@@ -213,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      2
+      4
        分钟
     </span>
   
@@ -255,22 +256,34 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月14日 周一 14:23:24
+                  Last Update @ 2021年6月15日 周二 13:6:30
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="the-beginning-of-everything"><a class="markdownIt-Anchor" href="#the-beginning-of-everything"></a> The Beginning of Everything</h1>
-<p>其实很早之前就想在Github Pages上搭一个个人博客了, CSDN总是让人很难受</p>
+              <h2 id="the-beginning-of-everything"><a class="markdownIt-Anchor" href="#the-beginning-of-everything"></a> The Beginning of Everything</h2>
+<p>其实很早之前就想在 Github Pages 上搭一个个人博客了, CSDN 总是让人很难受</p>
 <p><s>但是拖延症晚期的我现在才搭完hhh</s></p>
-<p>言归正传, 基于Hexo和Travis CI的Pages并不难部署, 只是基于YMAL的主题配置写起来有点麻烦, 向Markdown中插入图片也是一件麻烦事儿…</p>
-<p>博客在 <a target="_blank" rel="noopener" href="https://horizonchaser.gitee.io/">Gitee Pages</a> 上有一份镜像, <s>不过在我搞定Github的workflow之前, Gitee的更新可能不是很及时😂</s>已经搞定了🍻</p>
+<p>言归正传, 基于 Hexo 和 Travis CI 的 Pages 并不难部署, 只是基于 YMAL 的主题配置写起来有点麻烦, 向 Markdown 中插入图片也是一件麻烦事儿…</p>
+<p>博客在 <a target="_blank" rel="noopener" href="https://horizonchaser.gitee.io/">Gitee Pages</a> 上有一份镜像, <s>不过在我搞定 Github 的 workflow 之前, Gitee 的更新可能不是很及时😂</s>已经搞定了🍻</p>
 <p>就这样吧, 欢迎大家来玩儿~</p>
-<h1 id="update-210131"><a class="markdownIt-Anchor" href="#update-210131"></a> Update 21/01/31</h1>
+<h2 id="develop-plan"><a class="markdownIt-Anchor" href="#develop-plan"></a> Develop Plan</h2>
+<p>开发计划 <s>挖坑计划</s></p>
+<ul>
+<li>[ ] 添加一个 Live2D 看板娘</li>
+<li>[ ] 魔改一下 <code>hexo-bilibili-bangumi</code>, 加个进度提示</li>
+<li>[ ] 加个音乐播放器</li>
+</ul>
+<h2 id="更新日志"><a class="markdownIt-Anchor" href="#更新日志"></a> 更新日志</h2>
+<h3 id="update-20210131"><a class="markdownIt-Anchor" href="#update-20210131"></a> Update 2021/01/31</h3>
 <p>把博客的 CI 从 Travis 迁移到 Github Actions 上了, 前者太慢了, 排队能排半个小时…</p>
-<h1 id="update-210205"><a class="markdownIt-Anchor" href="#update-210205"></a> Update 21/02/05</h1>
+<h3 id="update-20210205"><a class="markdownIt-Anchor" href="#update-20210205"></a> Update 2021/02/05</h3>
 <p>从 <a target="_blank" rel="noopener" href="https://www.bfcounter.vip/">蝴蝶计数器</a> 拿到了一个统计的小工具, 放到这里</p>
-<p><img src="https://www.bfcounter.vip/generatepic?userid=d582efcb-3c8b-49de-8f01-e9da8bb7be3e" srcset="/img/loading.gif" alt=""></p>
+<p><img src="https://www.bfcounter.vip/generatepic?userid=d582efcb-3c8b-49de-8f01-e9da8bb7be3e" srcset="/img/loading.gif" alt="访客国籍计数器"></p>
+<p><s>看起来并没有多少人看…</s></p>
+<h3 id="update-20210614"><a class="markdownIt-Anchor" href="#update-20210614"></a> Update 2021/06/14</h3>
+<p>把 hexo 升级到了 hexo 5, 主题和其他依赖包也一并升级了下</p>
+<p>为了<s>更好看地</s>用 LaTex 写公式, 把渲染器换成了 <code>hexo-renderer-markdown-it-plus</code>, 并用 <code>katex</code> 作为解析器</p>
 
             </div>
             <hr>
@@ -282,6 +295,8 @@
                     <i class="iconfont icon-tags"></i>
                     
                       <a class="hover-with-bg" href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Develop/">Develop</a>
                     
                   </div>
                 
