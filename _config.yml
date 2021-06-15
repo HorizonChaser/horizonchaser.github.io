@@ -137,3 +137,15 @@ bangumi:
   color:
   webp:
   progress:
+
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: avatar.png
+  autodiscovery: true
