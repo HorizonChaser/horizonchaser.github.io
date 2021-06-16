@@ -147,5 +147,5 @@ feed:
   content_limit: 140
   content_limit_delim: ' '
   order_by: -date
-  icon: avatar.png
+  icon: avatar_small_round.png
   autodiscovery: true
