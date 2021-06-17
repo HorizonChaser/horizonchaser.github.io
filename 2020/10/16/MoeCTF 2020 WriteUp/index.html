@@ -42,6 +42,8 @@
   
 
   
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.6.2/gitalk.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -256,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月16日 周三 11:14:0
+                  Last Update @ 2021年6月17日 周四 11:52:56
                 
               </p>
             
@@ -692,6 +694,38 @@ using namespace std<span class="token punctuation">;</span>
               
             </div>
 
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    function loadGitalk() {
+      addScript('https://cdn.staticfile.org/blueimp-md5/2.13.0/js/md5.min.js');
+      addScript('https://cdn.staticfile.org/gitalk/1.6.2/gitalk.min.js', function () {
+        var gitalk = new Gitalk({
+          clientID: '3d9d508e12d68104e7e7',
+          clientSecret: 'cb441dd114622850fa93f43abcfe8c0497154926',
+          repo: 'horizonchaser.github.io',
+          owner: 'HorizonChaser',
+          admin: "HorizonChaser",
+          id: md5(location.pathname),
+          language: 'zh-CN',
+          labels: ["Gitalk"],
+          perPage: 20,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
+        });
+        gitalk.render('gitalk-container');
+      });
+    }
+    waitElementVisible('gitalk-container', loadGitalk);
+  </script>
+
+
+              </article>
             
           </article>
         </div>

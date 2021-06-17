@@ -42,6 +42,8 @@
   
 
   
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.6.2/gitalk.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -204,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.4k 字
+      6.1k 字
     </span>
   
 
@@ -214,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      67
+      76
        分钟
     </span>
   
@@ -256,13 +258,13 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月16日 周三 11:14:0
+                  Last Update @ 2021年6月17日 周四 11:52:56
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <h1 id="说明-食用方法"><a class="markdownIt-Anchor" href="#说明-食用方法"></a> 说明 &amp; 食用方法</h1>
-<p>个人按照计网老师发的重点提纲从书上总结的重点 (这话有点重复…)</p>
+<p>个人按照计网老师发的提纲从书上总结的重点 (这话有点重复…)</p>
 <p>标题后标有 <code>[IMP]</code> 的为提纲上加粗的, 大概就是重点中的重点了吧<br>
 <s>还没标</s></p>
 <h1 id="part-1-概述"><a class="markdownIt-Anchor" href="#part-1-概述"></a> Part 1 概述</h1>
@@ -311,7 +313,7 @@
 </ul>
 <h4 id="标准"><a class="markdownIt-Anchor" href="#标准"></a> 标准</h4>
 <ul>
-<li>事实标准: 未经团体或组织承认但已经带广泛使用中的标准</li>
+<li>事实标准: 未经团体或组织承认但已经在广泛使用中的标准</li>
 <li>法定标准: 有官方认可的组织制定的标准</li>
 </ul>
 <h2 id="chapter-2-网络模型"><a class="markdownIt-Anchor" href="#chapter-2-网络模型"></a> Chapter 2 网络模型</h2>
@@ -722,8 +724,117 @@ TCP 是有连接的可靠的流传输协议, UDP 无连接, 不可靠</p>
 <h3 id="模拟信号调制"><a class="markdownIt-Anchor" href="#模拟信号调制"></a> 模拟信号调制</h3>
 <p>AM, FM, PM, 提纲完全没提, 自己看一下书 p99 ~ p102 就行</p>
 <h2 id="chapter-6-带宽利用"><a class="markdownIt-Anchor" href="#chapter-6-带宽利用"></a> Chapter 6 带宽利用</h2>
+<h3 id="fdm-频分复用-imp"><a class="markdownIt-Anchor" href="#fdm-频分复用-imp"></a> FDM (频分复用) [IMP]</h3>
+<ul>
+<li>在同一介质上使用不同的频率传输信号</li>
+<li>是模拟复用技术 (直接发送的是模拟信号, 因此数字信号需要先调制)</li>
+<li>在分离时通过特定频段的滤波器实现通道分离</li>
+<li>复用的要求
+<ul>
+<li>链路带宽大于要传输的信号带宽之和</li>
+<li>载波信号之间的频率差必须能容纳调制信号的带宽 (不发生重叠)</li>
+<li>载波频率不影响原始的数据频率</li>
+</ul>
+</li>
+</ul>
+<h3 id="tdm-时分复用-imp"><a class="markdownIt-Anchor" href="#tdm-时分复用-imp"></a> TDM (时分复用) [IMP]</h3>
+<ul>
+<li>数字化复用过程</li>
+<li>每个连接占用链路的一个时间段</li>
+</ul>
+<h4 id="同步-tdm"><a class="markdownIt-Anchor" href="#同步-tdm"></a> 同步 TDM</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617185037.png" srcset="/img/loading.gif" alt="S-TDM"></p>
+<ul>
+<li>每个输入的数据流划分为多个数据单元</li>
+<li>所有输入的数据单元按照顺序组合成一个帧, 每个数据单元占一个<strong>时隙</strong></li>
+<li>若有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个输入, 一帧的持续时间为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>:
+<ul>
+<li>一帧中有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个时隙</li>
+<li>每个时隙的持续时间是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi mathvariant="normal">/</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">T/n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord">/</span><span class="mord mathdefault">n</span></span></span></span></li>
+<li>链路速率是每个连接数据速率的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 倍</li>
+</ul>
+</li>
+<li>需要在每帧开始的时候添加一些用来同步的<strong>帧指示位</strong></li>
+<li>缺点: 当某个连接无数据发送时会出现<strong>空时隙</strong></li>
+</ul>
+<h5 id="t-1-帧"><a class="markdownIt-Anchor" href="#t-1-帧"></a> T-1 帧</h5>
+<ul>
+<li>将 24 路语音信号通过 TDM 组合为 1 路</li>
+<li>采样: 每秒 8000 次, 每样本 8 位</li>
+<li>每秒发送 8000 帧, 链路带宽 1.544 Mbps</li>
+</ul>
+<p>帧大小: 193位, 其中 1 位用于同步</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover><mover><mn>24</mn><mo stretchy="true">⏞</mo></mover><mrow><mi mathvariant="normal">通</mi><mi mathvariant="normal">道</mi><mi mathvariant="normal">数</mi></mrow></mover><mo>×</mo><mover><mover><mn>8</mn><mo stretchy="true">⏞</mo></mover><mrow><mi mathvariant="normal">样</mi><mi mathvariant="normal">本</mi><mi mathvariant="normal">大</mi><mi mathvariant="normal">小</mi></mrow></mover><mo>+</mo><mover><mover><mn>1</mn><mo stretchy="true">⏞</mo></mover><mrow><mi mathvariant="normal">同</mi><mi mathvariant="normal">步</mi><mi mathvariant="normal">位</mi></mrow></mover><mo>=</mo><mn>193</mn></mrow><annotation encoding="application/x-tex">\overbrace{24}^{通道数} \times \overbrace{8}^{样本大小} + \overbrace{1}^{同步位} = 193
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.57577em;vertical-align:-0.08333em;"></span><span class="mord mover"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.49244em;"><span style="top:-3.29244em;"><span class="pstrut" style="height:3.29244em;"></span><span class="mord mover"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.29244em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">4</span></span></span><span class="svg-align" style="top:-3.74444em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.548em;min-width:1.6em;"><span class="brace-left" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMinYMin slice"><path d="M6 548l-6-6v-35l6-11c56-104 135.3-181.3 238-232 57.3-28.7 117
+-45 179-50h399577v120H403c-43.3 7-81 15-113 26-100.7 33-179.7 91-237 174-2.7
+ 5-6 9-10 13-.7 1-7.3 1-20 1H6z"></path></svg></span><span class="brace-center" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMidYMin slice"><path d="M200428 334
+c-100.7-8.3-195.3-44-280-108-55.3-42-101.7-93-139-153l-9-14c-2.7 4-5.7 8.7-9 14
+-53.3 86.7-123.7 153-211 199-66.7 36-137.3 56.3-212 62H0V214h199568c178.3-11.7
+ 311.7-78.3 403-201 6-8 9.7-12 11-12 .7-.7 6.7-1 18-1s17.3.3 18 1c1.3 0 5 4 11
+ 12 44.7 59.3 101.3 106.3 170 141s145.3 54.3 229 60h199572v120z"></path></svg></span><span class="brace-right" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMaxYMin slice"><path d="M400000 542l
+-6 6h-17c-12.7 0-19.3-.3-20-1-4-4-7.3-8.3-10-13-35.3-51.3-80.8-93.8-136.5-127.5
+s-117.2-55.8-184.5-66.5c-.7 0-2-.3-4-1-18.7-2.7-76-4.3-172-5H0V214h399571l6 1
+c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z"></path></svg></span></span></span></span></span></span></span></span><span style="top:-4.78488em;"><span class="pstrut" style="height:3.29244em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">通</span><span class="mord cjk_fallback mtight">道</span><span class="mord cjk_fallback mtight">数</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.57577em;vertical-align:-0.08333em;"></span><span class="mord mover"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.49244em;"><span style="top:-3.29244em;"><span class="pstrut" style="height:3.29244em;"></span><span class="mord mover"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.29244em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span></span></span><span class="svg-align" style="top:-3.74444em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.548em;min-width:1.6em;"><span class="brace-left" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMinYMin slice"><path d="M6 548l-6-6v-35l6-11c56-104 135.3-181.3 238-232 57.3-28.7 117
+-45 179-50h399577v120H403c-43.3 7-81 15-113 26-100.7 33-179.7 91-237 174-2.7
+ 5-6 9-10 13-.7 1-7.3 1-20 1H6z"></path></svg></span><span class="brace-center" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMidYMin slice"><path d="M200428 334
+c-100.7-8.3-195.3-44-280-108-55.3-42-101.7-93-139-153l-9-14c-2.7 4-5.7 8.7-9 14
+-53.3 86.7-123.7 153-211 199-66.7 36-137.3 56.3-212 62H0V214h199568c178.3-11.7
+ 311.7-78.3 403-201 6-8 9.7-12 11-12 .7-.7 6.7-1 18-1s17.3.3 18 1c1.3 0 5 4 11
+ 12 44.7 59.3 101.3 106.3 170 141s145.3 54.3 229 60h199572v120z"></path></svg></span><span class="brace-right" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMaxYMin slice"><path d="M400000 542l
+-6 6h-17c-12.7 0-19.3-.3-20-1-4-4-7.3-8.3-10-13-35.3-51.3-80.8-93.8-136.5-127.5
+s-117.2-55.8-184.5-66.5c-.7 0-2-.3-4-1-18.7-2.7-76-4.3-172-5H0V214h399571l6 1
+c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z"></path></svg></span></span></span></span></span></span></span></span><span style="top:-4.78488em;"><span class="pstrut" style="height:3.29244em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">样</span><span class="mord cjk_fallback mtight">本</span><span class="mord cjk_fallback mtight">大</span><span class="mord cjk_fallback mtight">小</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.49244em;vertical-align:0em;"></span><span class="mord mover"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.49244em;"><span style="top:-3.29244em;"><span class="pstrut" style="height:3.29244em;"></span><span class="mord mover"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.29244em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span><span class="svg-align" style="top:-3.74444em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.548em;min-width:1.6em;"><span class="brace-left" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMinYMin slice"><path d="M6 548l-6-6v-35l6-11c56-104 135.3-181.3 238-232 57.3-28.7 117
+-45 179-50h399577v120H403c-43.3 7-81 15-113 26-100.7 33-179.7 91-237 174-2.7
+ 5-6 9-10 13-.7 1-7.3 1-20 1H6z"></path></svg></span><span class="brace-center" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMidYMin slice"><path d="M200428 334
+c-100.7-8.3-195.3-44-280-108-55.3-42-101.7-93-139-153l-9-14c-2.7 4-5.7 8.7-9 14
+-53.3 86.7-123.7 153-211 199-66.7 36-137.3 56.3-212 62H0V214h199568c178.3-11.7
+ 311.7-78.3 403-201 6-8 9.7-12 11-12 .7-.7 6.7-1 18-1s17.3.3 18 1c1.3 0 5 4 11
+ 12 44.7 59.3 101.3 106.3 170 141s145.3 54.3 229 60h199572v120z"></path></svg></span><span class="brace-right" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMaxYMin slice"><path d="M400000 542l
+-6 6h-17c-12.7 0-19.3-.3-20-1-4-4-7.3-8.3-10-13-35.3-51.3-80.8-93.8-136.5-127.5
+s-117.2-55.8-184.5-66.5c-.7 0-2-.3-4-1-18.7-2.7-76-4.3-172-5H0V214h399571l6 1
+c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z"></path></svg></span></span></span></span></span></span></span></span><span style="top:-4.78488em;"><span class="pstrut" style="height:3.29244em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">同</span><span class="mord cjk_fallback mtight">步</span><span class="mord cjk_fallback mtight">位</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">9</span><span class="mord">3</span></span></span></span></span></p>
+<p>带宽: 1.544 Mbps</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>193</mn><mtext>&nbsp;</mtext><mi>b</mi><mi>p</mi><mi>s</mi><mo>×</mo><mover><mover><mn>8000</mn><mo stretchy="true">⏞</mo></mover><mrow><mi mathvariant="normal">每</mi><mi mathvariant="normal">秒</mi><mi mathvariant="normal">帧</mi><mi mathvariant="normal">数</mi></mrow></mover><mo>=</mo><mn>1.544</mn><mtext>&nbsp;</mtext><mi>M</mi><mi>b</mi><mi>p</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">193 \ bps \times \overbrace{8000}^{每秒帧数} = 1.544 \ Mbps
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">9</span><span class="mord">3</span><span class="mspace">&nbsp;</span><span class="mord mathdefault">b</span><span class="mord mathdefault">p</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.49244em;vertical-align:0em;"></span><span class="mord mover"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.49244em;"><span style="top:-3.29244em;"><span class="pstrut" style="height:3.29244em;"></span><span class="mord mover"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.29244em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span><span class="svg-align" style="top:-3.74444em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.548em;min-width:1.6em;"><span class="brace-left" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMinYMin slice"><path d="M6 548l-6-6v-35l6-11c56-104 135.3-181.3 238-232 57.3-28.7 117
+-45 179-50h399577v120H403c-43.3 7-81 15-113 26-100.7 33-179.7 91-237 174-2.7
+ 5-6 9-10 13-.7 1-7.3 1-20 1H6z"></path></svg></span><span class="brace-center" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMidYMin slice"><path d="M200428 334
+c-100.7-8.3-195.3-44-280-108-55.3-42-101.7-93-139-153l-9-14c-2.7 4-5.7 8.7-9 14
+-53.3 86.7-123.7 153-211 199-66.7 36-137.3 56.3-212 62H0V214h199568c178.3-11.7
+ 311.7-78.3 403-201 6-8 9.7-12 11-12 .7-.7 6.7-1 18-1s17.3.3 18 1c1.3 0 5 4 11
+ 12 44.7 59.3 101.3 106.3 170 141s145.3 54.3 229 60h199572v120z"></path></svg></span><span class="brace-right" style="height:0.548em;"><svg width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMaxYMin slice"><path d="M400000 542l
+-6 6h-17c-12.7 0-19.3-.3-20-1-4-4-7.3-8.3-10-13-35.3-51.3-80.8-93.8-136.5-127.5
+s-117.2-55.8-184.5-66.5c-.7 0-2-.3-4-1-18.7-2.7-76-4.3-172-5H0V214h399571l6 1
+c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z"></path></svg></span></span></span></span></span></span></span></span><span style="top:-4.78488em;"><span class="pstrut" style="height:3.29244em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord cjk_fallback mtight">每</span><span class="mord cjk_fallback mtight">秒</span><span class="mord cjk_fallback mtight">帧</span><span class="mord cjk_fallback mtight">数</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">5</span><span class="mord">4</span><span class="mord">4</span><span class="mspace">&nbsp;</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault">b</span><span class="mord mathdefault">p</span><span class="mord mathdefault">s</span></span></span></span></span></p>
+<h5 id="e-线路"><a class="markdownIt-Anchor" href="#e-线路"></a> E 线路</h5>
+<p>T 线路的欧洲版本, 原理与概念相同, 但是容量不同</p>
+<h4 id="统计-tdm"><a class="markdownIt-Anchor" href="#统计-tdm"></a> 统计 TDM</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617191722.png" srcset="/img/loading.gif" alt="Stat-TDM"></p>
+<ul>
+<li>循环检测每个输入, 若某输入无数据则不分配时隙 -&gt; 避免了空时隙</li>
+<li>每个时隙需要添加地址, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个输入需要 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mo><mi>log</mi><mo>⁡</mo></mo><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log_2{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93858em;vertical-align:-0.24414em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">n</span></span></span></span></span> 位地址</li>
+<li><strong>没有同步位, 因为统计 TDM 不依赖时间同步来拆分数据</strong></li>
+<li>链路容量可以小于输入的带宽之和 (因为无数据就不分配时隙了)</li>
+</ul>
+<h3 id="wdm-波分复用"><a class="markdownIt-Anchor" href="#wdm-波分复用"></a> WDM (波分复用)</h3>
+<p>以光线为介质, 通过不同波长的频率实现复用, 和 FDM 类似</p>
+<h3 id="扩频"><a class="markdownIt-Anchor" href="#扩频"></a> 扩频</h3>
+<h4 id="跳频扩频-fhss"><a class="markdownIt-Anchor" href="#跳频扩频-fhss"></a> 跳频扩频 (FHSS)</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617192640.png" srcset="/img/loading.gif" alt="FHSS"></p>
+<ul>
+<li>通过伪随机噪声在频率表中选择一个频率</li>
+<li>在一段时间内 (称为跳), 将源信号使用选出的频率进行调制</li>
+<li>伪随机噪声周期性重复</li>
+<li>通过多频率FSK可以实现带宽共享</li>
+</ul>
+<h4 id="直接序列扩频"><a class="markdownIt-Anchor" href="#直接序列扩频"></a> 直接序列扩频</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617193003.png" srcset="/img/loading.gif" alt="DSSS"></p>
+<ul>
+<li>使用固定的扩频码对源信号进行调制</li>
+<li>每个数据位使用扩频码的n位代替</li>
+</ul>
+<h2 id="chapter-7-传输介质"><a class="markdownIt-Anchor" href="#chapter-7-传输介质"></a> Chapter 7 传输介质</h2>
 <blockquote>
-<p>先写模电去了…</p>
+<p>🕊🕊🕊</p>
 </blockquote>
 
             </div>
@@ -765,6 +876,38 @@ TCP 是有连接的可靠的流传输协议, UDP 无连接, 不可靠</p>
               
             </div>
 
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    function loadGitalk() {
+      addScript('https://cdn.staticfile.org/blueimp-md5/2.13.0/js/md5.min.js');
+      addScript('https://cdn.staticfile.org/gitalk/1.6.2/gitalk.min.js', function () {
+        var gitalk = new Gitalk({
+          clientID: '3d9d508e12d68104e7e7',
+          clientSecret: 'cb441dd114622850fa93f43abcfe8c0497154926',
+          repo: 'horizonchaser.github.io',
+          owner: 'HorizonChaser',
+          admin: "HorizonChaser",
+          id: md5(location.pathname),
+          language: 'zh-CN',
+          labels: ["Gitalk"],
+          perPage: 20,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
+        });
+        gitalk.render('gitalk-container');
+      });
+    }
+    waitElementVisible('gitalk-container', loadGitalk);
+  </script>
+
+
+              </article>
             
           </article>
         </div>
