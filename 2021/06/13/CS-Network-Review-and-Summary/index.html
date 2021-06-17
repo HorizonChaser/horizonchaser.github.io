@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.1k 字
+      7.3k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      76
+      89
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月17日 周四 11:52:56
+                  Last Update @ 2021年6月17日 周四 14:4:1
                 
               </p>
             
@@ -833,6 +833,138 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z"></path></svg></sp
 <li>每个数据位使用扩频码的n位代替</li>
 </ul>
 <h2 id="chapter-7-传输介质"><a class="markdownIt-Anchor" href="#chapter-7-传输介质"></a> Chapter 7 传输介质</h2>
+<h3 id="有向介质"><a class="markdownIt-Anchor" href="#有向介质"></a> 有向介质</h3>
+<ul>
+<li>在设备间提供通路的介质</li>
+<li>包括双绞线, 同轴电缆, 光缆</li>
+</ul>
+<h4 id="双绞线-imp"><a class="markdownIt-Anchor" href="#双绞线-imp"></a> 双绞线 [IMP]</h4>
+<ul>
+<li>由两条导线缠绕在一起组成</li>
+<li>通过缠绕可以保证两条线受到的外部影响 (例如噪声) 一致, 故绞合密度越高质量越高</li>
+<li>分为非屏蔽双绞线 (UTP) 和屏蔽双绞线 (STP), 前者更常用, 后者用金属屏蔽层包裹每一对双绞线</li>
+<li>最常用的连接器是 RJ45 (就是最常见的那个网线接头, 8根线)</li>
+</ul>
+<h4 id="同轴线缆"><a class="markdownIt-Anchor" href="#同轴线缆"></a> 同轴线缆</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617210129.png" srcset="/img/loading.gif" alt="CCable"></p>
+<ul>
+<li>仅使用中央的一根实心 (或者是多股绞合的金属丝) 导体, 外面有金属屏蔽层</li>
+<li>使用 BNC 连接器, 带宽高但衰减大</li>
+</ul>
+<h4 id="光纤"><a class="markdownIt-Anchor" href="#光纤"></a> 光纤</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617210412.png" srcset="/img/loading.gif" alt="Fiber"></p>
+<ul>
+<li>通过传导光实现通信, 带宽很大</li>
+<li>分为单模光纤和多模光纤
+<ul>
+<li>单模: 光束接近水平, 几乎均沿中间传播</li>
+<li>多模: 多个光束沿着不同路径, 依赖折射</li>
+</ul>
+</li>
+</ul>
+<h3 id="无线通信"><a class="markdownIt-Anchor" href="#无线通信"></a> 无线通信</h3>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617210557.png" srcset="/img/loading.gif" alt="ElecSpectrum"></p>
+<ul>
+<li>无线电波: 3 kHz ~ 1 GHz, 大部分全方向</li>
+<li>微波: 1 GHz ~ 300 GHz, 指向性强, 使用单向天线 (定向天线)</li>
+<li>红外: 300 GHz ~ 400 THz, 视线传播, 太阳会干扰</li>
+</ul>
+<h2 id="chapter-8-交换"><a class="markdownIt-Anchor" href="#chapter-8-交换"></a> Chapter 8 交换</h2>
+<h3 id="电路交换-imp"><a class="markdownIt-Anchor" href="#电路交换-imp"></a> 电路交换 [IMP]</h3>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617211550.png" srcset="/img/loading.gif" alt="CircuitExchange"></p>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617211411.png" srcset="/img/loading.gif" alt="CircuitExchange"></p>
+<ul>
+<li>在物理层, 由物理链路连接的一组交换机组成, 链路会被复用</li>
+<li>在通信开始前要预先建立通道, 在整个传输过程中一直保留, 直到最后的拆除阶段</li>
+<li>数据传输期间无需寻址, 建立时需要端到端的寻址</li>
+<li>延迟:
+<ul>
+<li>源计算机请求信息到目标计算机</li>
+<li>目标计算机确认信息到源计算机</li>
+<li>数据传输时间</li>
+<li>拆除信息从一端到另一端的时间</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据报交换-imp"><a class="markdownIt-Anchor" href="#数据报交换-imp"></a> 数据报交换 [IMP]</h3>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617212244.png" srcset="/img/loading.gif" alt="DatagramExchange"></p>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617212312.png" srcset="/img/loading.gif" alt="DatagramExchange"></p>
+<ul>
+<li>在网络层, <strong>是因特网在网络层采用的交换方法</strong></li>
+<li>不需要建立连接, 也不需要拆除 (也被称作无连接网络, 交换机不保存连接信息), 按需分配资源, 先来先服务</li>
+<li>各分组单独处理 (即使某个分组是某个多分组传输的一部分), 到达同一目的地的路径可能不一致
+<ul>
+<li>可能会出现分组丢失或错序, 由上层协议负责修正</li>
+</ul>
+</li>
+<li>交换机使用基于目的地址的路由表, 它记载了目的地址和交换机端口的对应关系</li>
+<li>延迟:
+<ul>
+<li>各交换机的排队与处理延迟</li>
+<li>传输时间</li>
+</ul>
+</li>
+</ul>
+<h3 id="虚电路网络-imp"><a class="markdownIt-Anchor" href="#虚电路网络-imp"></a> 虚电路网络 [IMP]</h3>
+<blockquote>
+<p>建议看书, p143 ~ p147, 提纲仅作为总结</p>
+</blockquote>
+<ul>
+<li>结合了电路交换与数据报交换</li>
+<li>通常在数据链路层实现, 但未来可能变化</li>
+<li>需要在数据传输前建立连接</li>
+</ul>
+<h4 id="编址"><a class="markdownIt-Anchor" href="#编址"></a> 编址</h4>
+<ul>
+<li>全局编址: 源端和目的端的地址, 广域网唯一</li>
+<li>虚电路标识符: 仅在两交换机间有效, 作为帧前的标识符</li>
+<li>交换机的表: 不是路由表, 有四列: 输入端口, 输入VCI, 输出端口, 输出VCI</li>
+</ul>
+<h4 id="连接建立"><a class="markdownIt-Anchor" href="#连接建立"></a> 连接建立</h4>
+<p>设源端为 A, 目的端为 B</p>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617214418.png" srcset="/img/loading.gif" alt="setup1"></p>
+<ol>
+<li>A 向交换机 1 发送建立连接帧</li>
+<li>交换机1从端口1接受帧, 分配一个VCI, 通过路由表得到应发往端口3, 但输出VCI留空</li>
+<li>交换机2~3相同</li>
+</ol>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617214431.png" srcset="/img/loading.gif" alt="setup2"></p>
+<ol start="4">
+<li>B 收到建立连接帧, 给从 A 来的帧分配一个VCI, 发给交换机3</li>
+<li>交换机3接受, 得到表中缺失的VCI项, 发给交换机2</li>
+<li>交换机1~2相同, A 收到确认, 之后向 B 发送的帧使用交换机1指定的VCI, 连接建立</li>
+</ol>
+<h4 id="连接拆除"><a class="markdownIt-Anchor" href="#连接拆除"></a> 连接拆除</h4>
+<p>同样是请求 - 确认两步</p>
+<h4 id="延迟-2"><a class="markdownIt-Anchor" href="#延迟-2"></a> 延迟</h4>
+<p>类似数据报交换, 建立 + 传输 + 拆除, 如果预留资源的话没有等待延迟</p>
+<h3 id="交换机结构"><a class="markdownIt-Anchor" href="#交换机结构"></a> 交换机结构</h3>
+<p>提纲没有, 看两眼书就行</p>
+<h3 id="chapter-9-使用电话网和有线电视网进行数据传输"><a class="markdownIt-Anchor" href="#chapter-9-使用电话网和有线电视网进行数据传输"></a> Chapter 9 使用电话网和有线电视网进行数据传输</h3>
+<h4 id="信令的概念-imp"><a class="markdownIt-Anchor" href="#信令的概念-imp"></a> 信令的概念 [IMP]</h4>
+<blockquote>
+<p>信令: 指为使通信网中各种设备协调运作，在设备之间传递的有关控制信息<br>
+- 来自维基百科</p>
+</blockquote>
+<p>简单来说, 信令就是用来控制设备的指令信息</p>
+<ul>
+<li>带内信令: 用和数据通信同一链路传递的信令</li>
+<li>带外信令: 和数据通信用不同链路传递的信令, 是现代电话网采用的方式</li>
+</ul>
+<h4 id="调制与解调"><a class="markdownIt-Anchor" href="#调制与解调"></a> 调制与解调</h4>
+<ul>
+<li>调制: 从二进制数据生成带通模拟信号</li>
+<li>解调: 👆 反过来</li>
+<li>调制解调器: 调制器 + 解调器, modem</li>
+</ul>
+<h4 id="adsl-非对称数字用户线路"><a class="markdownIt-Anchor" href="#adsl-非对称数字用户线路"></a> ADSL (非对称数字用户线路)</h4>
+<ul>
+<li>属于 DSL 技术之一</li>
+<li>下行速率比上行快 (所以是非对称)</li>
+<li>需要调制解调器</li>
+</ul>
+<h1 id="part-3-数据链路层"><a class="markdownIt-Anchor" href="#part-3-数据链路层"></a> Part 3 数据链路层</h1>
+<h2 id="chapter-10-检错与纠错"><a class="markdownIt-Anchor" href="#chapter-10-检错与纠错"></a> Chapter 10 检错与纠错</h2>
 <blockquote>
 <p>🕊🕊🕊</p>
 </blockquote>
