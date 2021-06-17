@@ -18,6 +18,10 @@ tags:
 
 就这样吧, 欢迎大家来玩儿~
 
+## Known Issue
+
+- [ ] Gitalk 由于 Github 的 CORS 限制无法使用
+
 ## Develop Plan
 
 开发计划 ~~挖坑计划~~
