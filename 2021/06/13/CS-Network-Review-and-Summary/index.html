@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      11.3k 字
+      12.1k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      140
+      150
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月19日 周六 13:44:33
+                  Last Update @ 2021年6月19日 周六 15:31:31
                 
               </p>
             
@@ -1421,8 +1421,102 @@ Flag: 标记</p>
 <p>看 PPT 吧, ch13 那个, 提纲上没加粗, 请自行把握 🐶</p>
 </blockquote>
 <h2 id="chapter-14-无线局域网"><a class="markdownIt-Anchor" href="#chapter-14-无线局域网"></a> Chapter 14 无线局域网</h2>
+<h3 id="ieee-80211"><a class="markdownIt-Anchor" href="#ieee-80211"></a> IEEE 802.11</h3>
+<h4 id="体系结构"><a class="markdownIt-Anchor" href="#体系结构"></a> 体系结构</h4>
+<h5 id="基本服务集-bss"><a class="markdownIt-Anchor" href="#基本服务集-bss"></a> 基本服务集 (BSS)</h5>
+<ul>
+<li>无线局域网的基本组成部分</li>
+<li>分为特别网络和基础设施网络
+<ul>
+<li>特别网络: 不带 AP (access point, 访问点/接入点)</li>
+<li>基础设施网络: 有一个 AP, 也称作基础网络</li>
+</ul>
+</li>
+</ul>
+<h5 id="扩展服务集-ess"><a class="markdownIt-Anchor" href="#扩展服务集-ess"></a> 扩展服务集 (ESS)</h5>
+<ul>
+<li>由两个或更多个带有 AP 的 BSS 组成</li>
+<li>通过分布式系统连接各 AP, 连接方式为任意的 IEEE 局域网, 例如以太网</li>
+<li>移动站点: 普通的站点; 固定站点: AP</li>
+<li>同 BSS 内可以直接通信, 但不同 BSS 下不能直接通信</li>
+<li>移动站点可以同时属于多个 BSS</li>
+</ul>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619230019.png" srcset="/img/loading.gif" alt="ESS"></p>
+<h5 id="站点类型"><a class="markdownIt-Anchor" href="#站点类型"></a> 站点类型</h5>
+<ul>
+<li>不迁移: 不动或者仅在一个 BSS 内部移动</li>
+<li>BSS 迁移: 在同一个 ESS 下, 可以在 BSS 间移动</li>
+<li>ESS 迁移: 可以在不同的 ESS 间迁移, 但不保证连续</li>
+</ul>
+<h4 id="mac层"><a class="markdownIt-Anchor" href="#mac层"></a> MAC层</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619230043.png" srcset="/img/loading.gif" alt="MAC Layer"></p>
+<h5 id="分布式协调功能-dcf"><a class="markdownIt-Anchor" href="#分布式协调功能-dcf"></a> 分布式协调功能 (DCF)</h5>
 <blockquote>
-<p>🕊🕊🕊</p>
+<p>DCF: Distributed Coordination Function</p>
+</blockquote>
+<ul>
+<li>采用 CSMA/CA 作为访问方式, 原因:
+<ul>
+<li>否则需要发送时同时侦听, 提高成本</li>
+<li>由于隐藏站点可能无法检测冲突</li>
+<li>站点间距导致的信号衰减可能会使两端无法检测到对方的冲突</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619230422.png" srcset="/img/loading.gif" alt="CSMA/CA Flowchart"></p>
+<h5 id="点协调功能-pcf"><a class="markdownIt-Anchor" href="#点协调功能-pcf"></a> 点协调功能 (PCF)</h5>
+<blockquote>
+<p>PCF: Point Coordination Function</p>
+</blockquote>
+<ul>
+<li>集中式无竞争轮询</li>
+<li>优先级高于 DCF, 主动权在 AP</li>
+<li>主要用于对时间敏感数据的传输</li>
+</ul>
+<h5 id="帧格式-2"><a class="markdownIt-Anchor" href="#帧格式-2"></a> 帧格式</h5>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619230923.png" srcset="/img/loading.gif" alt="Frame"></p>
+<ul>
+<li>9 个字段: 帧控制 (FC), D, 地址 (有四个), 序列号, 帧主题, FCS (帧校验和, CRC-32)</li>
+<li>三种类型: 管理帧, 控制帧, 数据帧</li>
+</ul>
+<h5 id="寻址机制"><a class="markdownIt-Anchor" href="#寻址机制"></a> 寻址机制</h5>
+<ul>
+<li>四种情况: 站点间, AP 间, 站点和 AP 之间 (双向)</li>
+<li>通过 FC 中的 To DS (发往分布式系统, 差不多就是某个 AP) 和 From DS (来自分布式系统, 如前) 确定具体情况, 见下</li>
+</ul>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619231301.png" srcset="/img/loading.gif" alt="Situations"></p>
+<ol>
+<li>该帧既不是发往一个分布式系统，也不是来自于一个分布式系统，而是从同一个BSS中的一个站点到另外一个站点，不经过DS，需要给原始发送站回送ACK帧</li>
+<li>该帧来自于分布式系统，从一个AP来，到一个站点去，ACK帧将被回送给AP</li>
+<li>该帧要发送给一个分布式系统，从一个站点发往AP，ACK帧将被发送到原始站点</li>
+<li>暗示分布式系统也是无线的，从一个DS的AP发送到另外一个DS的AP；<br>
+因为如果其中一个DS是一个有线局域网，则这里就不需要定义地址</li>
+</ol>
+<h5 id="隐藏站点"><a class="markdownIt-Anchor" href="#隐藏站点"></a> 隐藏站点</h5>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619231646.png" srcset="/img/loading.gif" alt="Hidden Station"></p>
+<ul>
+<li>若 B -&gt; A, C -&gt; A, 由于 B C 之间相互隐藏, 不知道对方存在, 因此会造成冲突</li>
+<li>解决方法: 使用握手帧 (RTS 和 CTS, 请求发送和允许发送)</li>
+</ul>
+<h5 id="暴露站点"><a class="markdownIt-Anchor" href="#暴露站点"></a> 暴露站点</h5>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619232117.png" srcset="/img/loading.gif" alt="Exposed Station"></p>
+<ul>
+<li>若 A -&gt; B, 开始后 C -&gt; D, 由于前者干扰导致后者必须等待 (即使 D 不在 A 范围)</li>
+</ul>
+<h4 id="物理层-2"><a class="markdownIt-Anchor" href="#物理层-2"></a> 物理层</h4>
+<blockquote>
+<p>各协议细节建议看书 p288 ~ p289</p>
+</blockquote>
+<ul>
+<li>除红外线外, 均在 ISM 频带: 902~928 MHz, 2.4~4.835 GHz, 5.725~5.850 GHz
+<ul>
+<li>ISM: 工业的, 科学的, 医学的</li>
+</ul>
+</li>
+</ul>
+<h3 id="chapter-15-连接局域网-主干网和虚拟局域网"><a class="markdownIt-Anchor" href="#chapter-15-连接局域网-主干网和虚拟局域网"></a> Chapter 15 连接局域网、主干网和虚拟局域网</h3>
+<blockquote>
+<p><em>0619 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer</em></p>
 </blockquote>
 
             </div>
