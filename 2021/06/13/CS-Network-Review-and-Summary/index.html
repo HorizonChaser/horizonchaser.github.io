@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      10.3k 字
+      11.3k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      128
+      140
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月18日 周五 16:14:42
+                  Last Update @ 2021年6月19日 周六 13:44:33
                 
               </p>
             
@@ -1278,7 +1278,7 @@ Flag: 标记</p>
 <ul>
 <li>将时间划分为时隙, 每一个时隙内在发送前需要先在预约帧中进行预约</li>
 <li>对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> 个子站点, 预约帧中会有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> 个预约子时隙, 想发送数据的各站点在自己对应的子时隙中进行标记</li>
-<li>然后进行了预约的各站点按照编号逐个发送数据</li>
+<li>然后进行了预约的各站点按照编号顺序逐个发送数据</li>
 </ul>
 <h4 id="轮询"><a class="markdownIt-Anchor" href="#轮询"></a> 轮询</h4>
 <ul>
@@ -1292,6 +1292,135 @@ Flag: 标记</p>
 <li>各个站点轮流持有令牌, 构成一个逻辑环</li>
 </ul>
 <h2 id="chapter-13-有线局域网以太网"><a class="markdownIt-Anchor" href="#chapter-13-有线局域网以太网"></a> Chapter 13 有线局域网：以太网</h2>
+<h3 id="ieee-标准"><a class="markdownIt-Anchor" href="#ieee-标准"></a> IEEE 标准</h3>
+<ul>
+<li>将数据链路层划分为 LLC (逻辑链路控制层) 和 MAC子层 (介质访问控制层), 前者在后者上面</li>
+<li>LLC 对所有的IEEE局域网均适用(使MAC子层变得透明), 定义了一个协议数据单元, 提供流量控制和差错控制</li>
+<li>MAC子层为每种相应的局域网协议定义了网络方法和成帧格式</li>
+</ul>
+<h3 id="标准以太网的mac子层"><a class="markdownIt-Anchor" href="#标准以太网的mac子层"></a> 标准以太网的MAC子层</h3>
+<p>标准以太网: 10Mbps</p>
+<h4 id="帧格式"><a class="markdownIt-Anchor" href="#帧格式"></a> 帧格式</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619205903.png" srcset="/img/loading.gif" alt="Frame"></p>
+<ul>
+<li>由七部分组成: 前导符, 起始帧分界符(SFD), 目的地址, 源地址, 长度/类型, 数据, CRC-32</li>
+<li>帧的最小长度: 512 位, 对应数据为 64 字节 (不包含前导符和SFD)</li>
+<li>帧的最大长度: 1518 字节, 对应数据为 1500 字节 (不包含前导符和SFD)</li>
+</ul>
+<h4 id="mac-地址"><a class="markdownIt-Anchor" href="#mac-地址"></a> MAC 地址</h4>
+<ul>
+<li>48 位, 即 6 个字节, 采用 12 个十六进制数表示, 两两一组, 冒号分隔</li>
+<li>单播, 多播与广播地址:
+<ul>
+<li>第一个字节的最低位若为 0, 则为单播地址; 为 1, 则为多播地址</li>
+<li>广播地址的每一位都是 1, 是多播的特例</li>
+</ul>
+</li>
+<li>发送顺序: 每个字节的低位在前, 逐字节发送
+<ul>
+<li>例如 <code>47:20</code>, 发送顺序为 <code>111100010 000001000</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="csmacd-最短帧长"><a class="markdownIt-Anchor" href="#csmacd-最短帧长"></a> CSMA/CD 最短帧长</h4>
+<ul>
+<li>时隙: 一个帧最大的往返时间加上发送干扰信号所需的时间
+<ul>
+<li>对以太网, 定义为发送一个 512 位的帧(最小帧)所需的时间, 10Mbps 下为 51.2us</li>
+</ul>
+</li>
+<li>网络最大长度:
+<ul>
+<li>理论上最大长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">传</mi><mi mathvariant="normal">播</mi><mi mathvariant="normal">速</mi><mi mathvariant="normal">度</mi><mo>×</mo><mo stretchy="false">(</mo><mi mathvariant="normal">时</mi><mi mathvariant="normal">隙</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>8</mn></msup><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mn>51.2</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>6</mn></mrow></msup><mi mathvariant="normal">/</mi><mn>2</mn><mo stretchy="false">)</mo><mo>=</mo><mn>5120</mn><mtext>&nbsp;</mtext><mi>m</mi></mrow><annotation encoding="application/x-tex">传播速度 \times (时隙/2) = (2 \times 10^8) \times (51.2 \times 10^{-6}/2) = 5120 \ m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord cjk_fallback">传</span><span class="mord cjk_fallback">播</span><span class="mord cjk_fallback">速</span><span class="mord cjk_fallback">度</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">隙</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">5</span><span class="mord">1</span><span class="mord">.</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">1</span><span class="mord">2</span><span class="mord">0</span><span class="mspace">&nbsp;</span><span class="mord mathdefault">m</span></span></span></span></li>
+<li>实际上为 2500m, 由于中继器等延迟</li>
+</ul>
+</li>
+</ul>
+<h4 id="编码与解码"><a class="markdownIt-Anchor" href="#编码与解码"></a> 编码与解码</h4>
+<ul>
+<li>所有标准都使用 10Mbps 的数字信号</li>
+<li>采用曼彻斯特编码</li>
+</ul>
+<h4 id="标准以太网的分类"><a class="markdownIt-Anchor" href="#标准以太网的分类"></a> 标准以太网的分类</h4>
+<ul>
+<li>10Base5: 总线型 同轴电缆 粗缆</li>
+<li>10Base2: 总线型 同轴电缆 细缆</li>
+<li>10Base-T: 星形 UTP, 双绞线在站点和集线器间形成了两条通路, 冲突在集线器中</li>
+<li>10Base-F: 星形 光纤, 两条</li>
+</ul>
+<h3 id="桥接以太网"><a class="markdownIt-Anchor" href="#桥接以太网"></a> 桥接以太网</h3>
+<ul>
+<li>通过网桥连接两个以太网</li>
+<li>网桥在每个网中作为一个站点</li>
+<li>网桥作用:
+<ul>
+<li>提高带宽 (有限的总带宽不变, 但是由于划分共享的站点数少了)</li>
+<li>划分冲突域</li>
+</ul>
+</li>
+</ul>
+<h3 id="交换式以太网"><a class="markdownIt-Anchor" href="#交换式以太网"></a> 交换式以太网</h3>
+<ul>
+<li>通过二层交换机连接 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> 个以太网, 相当于一个多口网桥</li>
+<li>带宽仅有站点和交换机之间共享</li>
+<li>冲突域也划分为了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span> 个</li>
+</ul>
+<h3 id="全双工以太网"><a class="markdownIt-Anchor" href="#全双工以太网"></a> 全双工以太网</h3>
+<ul>
+<li>站点和交换机间点对点, 不需要共享, 没有冲突, 也就不需要 CSMA/CD 等</li>
+<li>使用两条线路, 一收一发</li>
+<li>为提供流量控制和差错控制, 在 LLC 和 MAC子层 之间增加了新的 MAC控制子层</li>
+</ul>
+<h3 id="快速以太网"><a class="markdownIt-Anchor" href="#快速以太网"></a> 快速以太网</h3>
+<ul>
+<li>100Mbps</li>
+<li>不触及 MAC子层</li>
+<li>取消总线拓扑, 仅保留星型拓扑</li>
+<li>不需要 CSMA/CD, 但为了兼容保留</li>
+<li>支持自动协商速率</li>
+<li>类型:
+<ul>
+<li>100Base-TX: 两条五类双绞线, MLT-3 编码</li>
+<li>100Base-FX: 两条双光纤, NRZ-I 编码</li>
+<li>100Base-T4: 四条三类UTP, 8B/6T 编码</li>
+</ul>
+</li>
+</ul>
+<h3 id="千兆以太网"><a class="markdownIt-Anchor" href="#千兆以太网"></a> 千兆以太网</h3>
+<ul>
+<li>1000Mbps</li>
+<li>修改了 MAC子层</li>
+<li>半双工与全双工方法:
+<ul>
+<li>半双工方法:
+<ul>
+<li>使用集线器而不是交换机</li>
+<li>传统方法: 相同的最小帧长 (512位)</li>
+<li>载波扩展方法: 最小帧长 512 字节, 4096 位</li>
+<li>帧突发方法: 发送成倍的帧, 类似一个大型帧</li>
+</ul>
+</li>
+<li>全双工方法:
+<ul>
+<li>使用交换机, 不需要 CSMA/CD</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>类型:
+<ul>
+<li>1000Base-SX: 两条短波光纤</li>
+<li>1000Base-LX: 两条长波光纤</li>
+<li>1000Base-CS: 两条铜管线 STP</li>
+<li>1000Base-T: 四条 UTP</li>
+</ul>
+</li>
+</ul>
+<h3 id="总线型以太网的信道利用率简单分析"><a class="markdownIt-Anchor" href="#总线型以太网的信道利用率简单分析"></a> 总线型以太网的信道利用率简单分析</h3>
+<blockquote>
+<p>看 PPT 吧, ch13 那个, 提纲上没加粗, 请自行把握 🐶</p>
+</blockquote>
+<h2 id="chapter-14-无线局域网"><a class="markdownIt-Anchor" href="#chapter-14-无线局域网"></a> Chapter 14 无线局域网</h2>
 <blockquote>
 <p>🕊🕊🕊</p>
 </blockquote>
