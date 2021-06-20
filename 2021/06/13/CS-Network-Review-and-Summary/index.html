@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      13.6k 字
+      14.2k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      168
+      175
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月20日 周日 8:12:27
+                  Last Update @ 2021年6月20日 周日 17:21:33
                 
               </p>
             
@@ -267,7 +267,8 @@
 <p>按照计网老师发的提纲从书上总结的重点</p>
 <p>标题后标有 <code>[IMP]</code> 的为提纲上加粗的, 大概就是重点中的重点了吧<br>
 <s>前面的几章还没标</s></p>
-<p>当前进度: 17 / 27 章, 62.9%</p>
+<p>当前进度: 18 / 27 章, 66.7%<br>
+计划在 06/22 完成所有内容</p>
 <h1 id="part-1-概述"><a class="markdownIt-Anchor" href="#part-1-概述"></a> Part 1 概述</h1>
 <h2 id="chapter-1-绪论"><a class="markdownIt-Anchor" href="#chapter-1-绪论"></a> Chapter 1 绪论</h2>
 <h3 id="数据通信的概念"><a class="markdownIt-Anchor" href="#数据通信的概念"></a> 数据通信的概念</h3>
@@ -1736,6 +1737,101 @@ DLCI: DataLink Connection Identifer</p>
 </blockquote>
 <h1 id="part-4-网络层"><a class="markdownIt-Anchor" href="#part-4-网络层"></a> Part 4 网络层</h1>
 <h2 id="chapter-19-逻辑寻址"><a class="markdownIt-Anchor" href="#chapter-19-逻辑寻址"></a> Chapter 19 逻辑寻址</h2>
+<h3 id="ipv4-地址"><a class="markdownIt-Anchor" href="#ipv4-地址"></a> IPv4 地址</h3>
+<ul>
+<li>32 位长</li>
+<li>在网络中唯一与通用</li>
+<li>使用二进制标记法和点分十进制标记法
+<ul>
+<li>二进制标记法: 二进制表示, 八位一个空格</li>
+<li>点分十进制: 每个字节表示为十进制数, 中间用小数点分割</li>
+</ul>
+</li>
+</ul>
+<h4 id="分类寻址"><a class="markdownIt-Anchor" href="#分类寻址"></a> 分类寻址</h4>
+<ul>
+<li>划分为五类: A ~ E</li>
+<li>通过第一个字节最开始有几个 1 决定分类</li>
+</ul>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621005156.png" srcset="/img/loading.gif" alt="Class"></p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>块的个数</th>
+<th>块长度</th>
+<th>应用类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>128</td>
+<td>16 777 216</td>
+<td>单播</td>
+</tr>
+<tr>
+<td>B</td>
+<td>16 384</td>
+<td>65 536</td>
+<td>单播</td>
+</tr>
+<tr>
+<td>C</td>
+<td>2 097 152</td>
+<td>256</td>
+<td>单播</td>
+</tr>
+<tr>
+<td>D</td>
+<td>1</td>
+<td>268 435 456</td>
+<td>多播</td>
+</tr>
+<tr>
+<td>E</td>
+<td>1</td>
+<td>268 435 456</td>
+<td>保留</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>A B C 类分为网络号和主机号
+<ul>
+<li>网络号各自占 1 2 3 个字节</li>
+</ul>
+</li>
+<li>通过掩码划分, 掩码 32 位</li>
+<li>子网化: 通过延长掩码中 1 的长度来将一个大的地址块儿划分为包含较少主机的子网</li>
+<li>超网化: 通过缩短掩码中 1 的长度来将几个小的地址块儿划分为一个大的子网, 无类寻址不需要 (因为你可以直接划分出来大的地址块儿)</li>
+</ul>
+<h4 id="无类寻址"><a class="markdownIt-Anchor" href="#无类寻址"></a> 无类寻址</h4>
+<ul>
+<li>没有类的概念, 但是仍划分为地址块</li>
+<li>地址块的限制条件
+<ul>
+<li>块中地址必须连续</li>
+<li>块中地址个数必须为 2 的整数次幂</li>
+<li>块的起始地址必须能被块中地址个数整除</li>
+</ul>
+</li>
+<li>通过 CIDR 标记法定义块地址
+<ul>
+<li>x.y.z.t/n</li>
+<li>其中 /n 为掩码, n 为掩码中 1 的位数 (掩码中的 1 必定连续)</li>
+</ul>
+</li>
+<li>起始地址: 通过将块中某个地址的后 32-n 位置为 0 求得 (也就是把地址和掩码进行与运算)</li>
+<li>最后的地址: 通过将块中某个地址的后 32-n 位置为 1 求得</li>
+<li>地址个数: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mrow><mo stretchy="false">(</mo><mn>32</mn><mo>−</mo><mi>n</mi><mo stretchy="false">)</mo></mrow></msup></mrow><annotation encoding="application/x-tex">2^{(32-n)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8879999999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mtight">3</span><span class="mord mtight">2</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">n</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span></span></span></span></li>
+<li>网络地址: 代表整个网络, 通常是块的起始地址</li>
+</ul>
+<h5 id="层次结构"><a class="markdownIt-Anchor" href="#层次结构"></a> 层次结构</h5>
+<ul>
+<li>二级层次结构: 没有子网化, 只有网络前缀 (前 n 位) 和定义主机的后 n 位</li>
+<li>三级层次结构: 有子网化, 通过子网前缀划分子网 -&gt; 增加掩码中 1 长度</li>
+</ul>
 <blockquote>
 <p><em>0620 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer - Completed 🍻</em><br>
 <em>0621 🕊🕊🕊 计划: To Chapter 20 - IP Protocol</em></p>
