@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      12.1k 字
+      13.6k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      150
+      168
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月19日 周六 15:31:31
+                  Last Update @ 2021年6月20日 周日 8:12:27
                 
               </p>
             
@@ -267,7 +267,7 @@
 <p>按照计网老师发的提纲从书上总结的重点</p>
 <p>标题后标有 <code>[IMP]</code> 的为提纲上加粗的, 大概就是重点中的重点了吧<br>
 <s>前面的几章还没标</s></p>
-<p>当前进度: 12 / 27 章, 44.4%</p>
+<p>当前进度: 17 / 27 章, 62.9%</p>
 <h1 id="part-1-概述"><a class="markdownIt-Anchor" href="#part-1-概述"></a> Part 1 概述</h1>
 <h2 id="chapter-1-绪论"><a class="markdownIt-Anchor" href="#chapter-1-绪论"></a> Chapter 1 绪论</h2>
 <h3 id="数据通信的概念"><a class="markdownIt-Anchor" href="#数据通信的概念"></a> 数据通信的概念</h3>
@@ -1152,7 +1152,7 @@ c124.7 8 235 61.7 331 161 31.3 33.3 59.7 72.7 85 118l7 13v35z"></path></svg></sp
 </li>
 </ul>
 <blockquote>
-<p>你看到的这个位置是<a target="_blank" rel="noopener" href="https://github.com/HorizonChaser/horizonchaser.github.io/blob/backup/source/_posts/CS-Network-Review-and-Summary.md#L1000">源 markdown 文件的第 1000 行</a> !</p>
+<p>你看到的这个位置是 <a target="_blank" rel="noopener" href="https://github.com/HorizonChaser/horizonchaser.github.io/blob/backup/source/_posts/CS-Network-Review-and-Summary.md#L1000">源 markdown 文件的第 1000 行</a> !</p>
 </blockquote>
 <ul>
 <li>接收方
@@ -1514,9 +1514,231 @@ Flag: 标记</p>
 </ul>
 </li>
 </ul>
-<h3 id="chapter-15-连接局域网-主干网和虚拟局域网"><a class="markdownIt-Anchor" href="#chapter-15-连接局域网-主干网和虚拟局域网"></a> Chapter 15 连接局域网、主干网和虚拟局域网</h3>
+<h2 id="chapter-15-连接局域网-主干网和虚拟局域网"><a class="markdownIt-Anchor" href="#chapter-15-连接局域网-主干网和虚拟局域网"></a> Chapter 15 连接局域网、主干网和虚拟局域网</h2>
+<h3 id="连接设备-imp"><a class="markdownIt-Anchor" href="#连接设备-imp"></a> 连接设备 [IMP]</h3>
+<ul>
+<li>根据设备在网络中工作的层次划分</li>
+</ul>
+<h4 id="无源集线器"><a class="markdownIt-Anchor" href="#无源集线器"></a> 无源集线器</h4>
+<ul>
+<li>仅仅是一个连接器, 把不同分支物理上连接起来</li>
+<li>是来自不同站点信号的冲突点</li>
+<li>在物理层之下, 作为介质的一部分</li>
+</ul>
+<h4 id="中继器"><a class="markdownIt-Anchor" href="#中继器"></a> 中继器</h4>
+<ul>
+<li>连接同一个局域网的各个分段</li>
+<li>工作在物理层</li>
+<li>通过自己识别信号然后再生, 不会放大噪声</li>
+</ul>
+<h4 id="有源集线器"><a class="markdownIt-Anchor" href="#有源集线器"></a> 有源集线器</h4>
+<ul>
+<li>工作在在物理层</li>
+<li>相当于多端口的中继器</li>
+<li>可以级联, 通常用于星型拓扑结构中</li>
+</ul>
+<h4 id="网桥"><a class="markdownIt-Anchor" href="#网桥"></a> 网桥</h4>
+<ul>
+<li>工作在物理层和数据链路层
+<ul>
+<li>在物理层: 类似中继器, 再生信号</li>
+<li>在数据链路层: 通过物理地址 (例如 MAC) 转发帧</li>
+<li>不改变物理地址</li>
+</ul>
+</li>
+<li>过滤: 通过查阅自己的表 (可以是手工配置的静态表, 也可以是透明网桥自学习的表) 决定向外转发帧的目的端口</li>
+</ul>
+<h5 id="透明网桥"><a class="markdownIt-Anchor" href="#透明网桥"></a> 透明网桥</h5>
+<ul>
+<li>通过学习网络中的帧传输方式生成自己的表
+<ul>
+<li>接收到帧时, 即可记录下该帧的物理地址和接受端口的对应关系</li>
+<li>转发时, 若无包含目的地址的条目, 则从每个端口转发
+<ul>
+<li>可能造成帧泛滥</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在两个 LAN 之间存在多个透明网桥时, 可能会出现循环问题 (同一帧被转发多次)
+<ul>
+<li>使用生成树算法建立无循环的拓扑结构 (因为树必定无环)
+<ul>
+<li>网桥和 LAN 都视为节点</li>
+<li>从网桥到 LAN 的跳数为 1, LAN 到网桥跳数为 0</li>
+<li>网桥广播自己的 ID, 最小的作为树根</li>
+<li>计算根网桥到每个网桥与 LAN 的最小成本的路径</li>
+<li>路径组合即为生成树</li>
+</ul>
+</li>
+<li>属于生成树的为转发端口, 不属于的为阻塞端口 (相当于被禁用了)</li>
+</ul>
+</li>
+</ul>
+<h5 id="源路由网桥"><a class="markdownIt-Anchor" href="#源路由网桥"></a> 源路由网桥</h5>
+<ul>
+<li>通过发送方指定要经过的每一个网桥</li>
+<li>并不普及</li>
+</ul>
+<h4 id="二层交换机"><a class="markdownIt-Anchor" href="#二层交换机"></a> 二层交换机</h4>
+<ul>
+<li>工作在物理层和数据链路层</li>
+<li>端口可以很多, 让每一个站点都有一个端口 -&gt; 没有通信竞争</li>
+<li>通过物理地址转发帧</li>
+</ul>
+<h4 id="路由器"><a class="markdownIt-Anchor" href="#路由器"></a> 路由器</h4>
+<ul>
+<li>工作在物理层, 数据链路层和网络层</li>
+<li>通过逻辑地址转发帧</li>
+<li>使用路由表进行转发决策</li>
+</ul>
+<h4 id="三层交换机"><a class="markdownIt-Anchor" href="#三层交换机"></a> 三层交换机</h4>
+<ul>
+<li>是路由器, 但"更快更复杂"</li>
+<li>书中和 路由器 互换使用</li>
+</ul>
+<h4 id="网关"><a class="markdownIt-Anchor" href="#网关"></a> 网关</h4>
+<ul>
+<li>工作在每一层的计算机</li>
+</ul>
+<h3 id="冲突域与广播域-imp"><a class="markdownIt-Anchor" href="#冲突域与广播域-imp"></a> 冲突域与广播域 [IMP]</h3>
+<h4 id="冲突域"><a class="markdownIt-Anchor" href="#冲突域"></a> 冲突域</h4>
+<ul>
+<li>在物理层, 在同一总线 (或者其他物理网段) 上的站点之和</li>
+<li>因此, 仅工作在物理层或之下的设备无法划分冲突域, 例如
+<ul>
+<li>无源集线器, 有源集线器</li>
+<li>中继器</li>
+</ul>
+</li>
+</ul>
 <blockquote>
-<p><em>0619 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer</em></p>
+<p>是物理层面的概念</p>
+</blockquote>
+<h4 id="广播域"><a class="markdownIt-Anchor" href="#广播域"></a> 广播域</h4>
+<ul>
+<li>能接收到同样广播帧的节点的之和, 在数据链路层</li>
+<li>因此, 仅工作在数据链路层及以下的设备无法划分广播域, 例如
+<ul>
+<li>无法划分冲突域的设备 👆</li>
+<li>二层交换机</li>
+<li>网桥和透明网桥</li>
+</ul>
+</li>
+<li>通过划分 VLAN 可以隔离广播域, 所以每一个 VLAN 都是一个广播域</li>
+</ul>
+<blockquote>
+<p>涉及到了帧, 是数据链路层的概念</p>
+</blockquote>
+<h3 id="vlan-虚拟局域网"><a class="markdownIt-Anchor" href="#vlan-虚拟局域网"></a> VLAN (虚拟局域网)</h3>
+<ul>
+<li>将 LAN 划分为逻辑上的网段</li>
+<li>不同 VLAN 之间不能直接通信, 这就划分了广播域</li>
+<li>可以基于端口, 物理地址, 逻辑地址, 多播地址等划分 VLAN</li>
+</ul>
+<blockquote>
+<p><em>想想计网实验</em></p>
+</blockquote>
+<h2 id="chapter-16-无线-wan移动电话和卫星网络"><a class="markdownIt-Anchor" href="#chapter-16-无线-wan移动电话和卫星网络"></a> Chapter 16 无线 WAN：移动电话和卫星网络</h2>
+<p>仅要求了解, 看书即可</p>
+<h2 id="chapter-17-广域网-sonetsdh"><a class="markdownIt-Anchor" href="#chapter-17-广域网-sonetsdh"></a> Chapter 17 广域网 SONET/SDH</h2>
+<p>仅要求了解 SONET 的基本概念</p>
+<h2 id="chapter-18-虚电路网络帧中继和-atm"><a class="markdownIt-Anchor" href="#chapter-18-虚电路网络帧中继和-atm"></a> Chapter 18 虚电路网络：帧中继和 ATM</h2>
+<h3 id="帧中继"><a class="markdownIt-Anchor" href="#帧中继"></a> 帧中继</h3>
+<h4 id="特征-imp"><a class="markdownIt-Anchor" href="#特征-imp"></a> 特征 [IMP]</h4>
+<ul>
+<li>相对于此前的 X.25 虚电路交换网, 具有更快的速率 (1.544Mbps ~ 44.376Mbps)</li>
+<li>工作在物理层和数据链路层</li>
+<li>允许突发性数据 (速率不均衡, 可按需分配带宽)</li>
+<li>最大帧大小 9000 字节, 支持所有局域网的帧</li>
+<li>仅在数据链路层有错误检测, 无流量与差错控制, 更快</li>
+<li>帧中继中的 VCI (虚电路标识符) 称作 DLCI</li>
+</ul>
+<blockquote>
+<p>VCI: Virtual Circuit Identifer<br>
+DLCI: DataLink Connection Identifer</p>
+</blockquote>
+<h4 id="永久交换虚电路-pvc"><a class="markdownIt-Anchor" href="#永久交换虚电路-pvc"></a> 永久交换虚电路 (PVC)</h4>
+<blockquote>
+<p>PVC: Permanent Virtual Circuit</p>
+</blockquote>
+<ul>
+<li>由管理员为所有的交换机建立统一设置: 源地址分配一个 VCI, 目的地址分配一个 VCI</li>
+<li>缺点:
+<ul>
+<li>花费大, 即使未使用也需一直付费 (因为连接一直存在)</li>
+<li>只能在一个源地址和一个目的地址间建立连接</li>
+</ul>
+</li>
+</ul>
+<h4 id="交换虚电路-svc"><a class="markdownIt-Anchor" href="#交换虚电路-svc"></a> 交换虚电路 (SVC)</h4>
+<blockquote>
+<p>SVC: Switched Virtual Circuit</p>
+</blockquote>
+<ul>
+<li>建立短的, 临时的连接</li>
+<li>需要连接建立和终止阶段</li>
+</ul>
+<h4 id="帧结构"><a class="markdownIt-Anchor" href="#帧结构"></a> 帧结构</h4>
+<p>建议看书 p344</p>
+<h3 id="atm-异步传输模式"><a class="markdownIt-Anchor" href="#atm-异步传输模式"></a> ATM (异步传输模式)</h3>
+<blockquote>
+<p>ATM: Asychoronous Transfer Mode</p>
+</blockquote>
+<h4 id="特征"><a class="markdownIt-Anchor" href="#特征"></a> 特征</h4>
+<ul>
+<li>高速互联, 作为网间主干互联的协议</li>
+<li>面向连接, 提供准确可预测的传输</li>
+<li>是信元网络, 采用固定大小的信元作为数据交换的基本单位
+<ul>
+<li>可以避免多路复用时先到达的大型帧对后到达的小型帧的长时间阻塞</li>
+</ul>
+</li>
+<li>采用异步的时分复用 (TDM) 实现多路复用
+<ul>
+<li>时隙大小为一个信元的大小</li>
+<li>可以存在空时隙</li>
+</ul>
+</li>
+</ul>
+<h4 id="结构"><a class="markdownIt-Anchor" href="#结构"></a> 结构</h4>
+<ul>
+<li>用户设备称为端点</li>
+<li>端点到网络接口: 用户到网络接口, UNI (User-to-Network Interface)</li>
+<li>交换机之间: 网络到网络接口, NNI (Network-to-Network Interface)</li>
+<li>传输路径 TP
+<ul>
+<li>Transmission Path</li>
+<li>是端点与交换机之间, 或两交换机之间的所有物理连接</li>
+<li>类似于连接两个城市的高速公路的集合</li>
+</ul>
+</li>
+<li>虚路径 VP
+<ul>
+<li>Virtual Path</li>
+<li>两个交换机之间的一条或多条连接的集合</li>
+<li>类似于两城市间的一条高速公路</li>
+</ul>
+</li>
+<li>虚电路 VC
+<ul>
+<li>Virtual Circuit</li>
+<li>信元网络基于虚电路</li>
+<li>属于同一报文的所有信元沿着同一条虚电路传输, 同时保持先后次序</li>
+</ul>
+</li>
+<li>通过 VPI 和 VCI 来定义一个虚连接, 前者定义特定 VP, 后者定义特定 VC</li>
+</ul>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210620160805.png" srcset="/img/loading.gif" alt="TP VP VC"></p>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210620160831.png" srcset="/img/loading.gif" alt="TP VP VC"></p>
+<blockquote>
+<p>TP VP VC 间关系</p>
+</blockquote>
+<h1 id="part-4-网络层"><a class="markdownIt-Anchor" href="#part-4-网络层"></a> Part 4 网络层</h1>
+<h2 id="chapter-19-逻辑寻址"><a class="markdownIt-Anchor" href="#chapter-19-逻辑寻址"></a> Chapter 19 逻辑寻址</h2>
+<blockquote>
+<p><em>0620 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer - Completed 🍻</em><br>
+<em>0621 🕊🕊🕊 计划: To Chapter 20 - IP Protocol</em></p>
 </blockquote>
 
             </div>
