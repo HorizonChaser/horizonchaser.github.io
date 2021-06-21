@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      17.4k 字
+      18.2k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      214
+      223
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月21日 周一 16:20:6
+                  Last Update @ 2021年6月21日 周一 16:57:20
                 
               </p>
             
@@ -2165,6 +2165,97 @@ DLCI: DataLink Connection Identifer</p>
 </blockquote>
 <h1 id="part-5-传输层"><a class="markdownIt-Anchor" href="#part-5-传输层"></a> Part 5 传输层</h1>
 <h2 id="chapter-23-udp-tcp-和-sctp"><a class="markdownIt-Anchor" href="#chapter-23-udp-tcp-和-sctp"></a> Chapter 23 UDP、TCP 和 SCTP</h2>
+<h3 id="端口"><a class="markdownIt-Anchor" href="#端口"></a> 端口</h3>
+<ul>
+<li>一个端口号确定了主机上的一个进程</li>
+<li>划分
+<ul>
+<li>1~1023: 熟知端口</li>
+<li>1024~49151: 注册端口, IANA 不分配不控制, 但可以注册来防止重复</li>
+<li>49152~65535: 动态端口, 可以有任何进程使用, 不需注册</li>
+</ul>
+</li>
+<li>套接字地址: 由 IP 地址和端口号组成, 唯一确定了一台主机上的一个进程</li>
+</ul>
+<h3 id="udp"><a class="markdownIt-Anchor" href="#udp"></a> UDP</h3>
+<blockquote>
+<p>UDP: User Datagram Protocol, 用户数据报协议</p>
+</blockquote>
+<h4 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h4>
+<ul>
+<li>无连接 不可靠 传输层协议</li>
+<li>有限的差错检验</li>
+</ul>
+<h4 id="udp-的熟知端口-imp"><a class="markdownIt-Anchor" href="#udp-的熟知端口-imp"></a> UDP 的熟知端口 [IMP]</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622002944.png" srcset="/img/loading.gif" alt="udp port"></p>
+<blockquote>
+<p>可以看书 p468</p>
+</blockquote>
+<h4 id="数据报结构"><a class="markdownIt-Anchor" href="#数据报结构"></a> 数据报结构</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622003102.png" srcset="/img/loading.gif" alt="header"></p>
+<ul>
+<li>头部固定 8 字节</li>
+<li>源端口号: 如果是源主机是客户机, 则大概率是临时端口号; 服务器则大概率是熟知端口号</li>
+<li>目的端口号: 类似上面, 不过反过来</li>
+<li>总长度: 头部 (8 字节) + 数据长度</li>
+<li>校验和</li>
+<li>注意在真正的 UDP 头部中, 没有源地址和目的地址 (这是 IP 头部的东西), 但是校验和会用到它们</li>
+</ul>
+<h4 id="校验和-imp"><a class="markdownIt-Anchor" href="#校验和-imp"></a> 校验和 [IMP]</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622003643.png" srcset="/img/loading.gif" alt="p header"></p>
+<ul>
+<li>实际上是<strong>伪头部</strong>与头部共同的校验和</li>
+<li>伪头部: 类似 IP 头部的最后 12 字节, 见上图</li>
+<li>数据部分通过填充 0 补齐到 16 位的整数倍, 但<strong>在发送时会被移除, 不进行填充</strong></li>
+<li>在计算完校验和后, 伪头部和填充就被移除, 它们不会交给 IP</li>
+<li>计算方法和之前一样, 16 位分组, 求和, 循环进位, 最后取反码</li>
+<li>校验和是可选的, 若不计算则可在这个字段填充全 1 (因为真正的校验和不可能为全 1, 这说明和为 0)</li>
+</ul>
+<h3 id="tcp"><a class="markdownIt-Anchor" href="#tcp"></a> TCP</h3>
+<blockquote>
+<p>TCP: Transmission Control Protocol, 连接控制协议</p>
+</blockquote>
+<h4 id="概念与特点-imp"><a class="markdownIt-Anchor" href="#概念与特点-imp"></a> 概念与特点 [IMP]</h4>
+<ul>
+<li>有连接 可靠 传输层协议</li>
+<li>有流量控制和差错控制</li>
+<li>服务:
+<ul>
+<li>提供进程到进程的通信</li>
+<li>提供流传递服务, 类似于一个假想的管道, 存在缓冲区</li>
+<li>全双工通信</li>
+<li>面向连接</li>
+</ul>
+</li>
+<li>使用序列号 seq, 值为该段包含的第一个(数据)字节的序号</li>
+<li>使用确认号 ack, 值为接收方预期接受的下一个字节的序号</li>
+</ul>
+<h4 id="段格式"><a class="markdownIt-Anchor" href="#段格式"></a> 段格式</h4>
+<blockquote>
+<p>TCP 中的分组被称为"段"</p>
+</blockquote>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622004618.png" srcset="/img/loading.gif" alt="tcp segment"></p>
+<ul>
+<li>源端口地址, 目的端口地址: 和 UDP 中的一样</li>
+<li>序列号 seq: 段中数据的第一个字节的序号, 连接建立时双方各自通过随机数产生初始序列号 (ISN)</li>
+<li>确认号 ack: 段的接收方期望接受的下一个字节号</li>
+<li>头部长度: 单位为<strong>4字节</strong>, 也就是说该字段的值为头部长度除以 4</li>
+<li>保留: 就是保留</li>
+<li>六个控制位
+<ul>
+<li>URG: 紧急指针有效, 见后面</li>
+<li>ACK: 该帧包含确认</li>
+<li>PSH: 请求急迫/发送数据 <s>(其实没啥用)</s></li>
+<li>RST: 连接复位 <s>(GFW经常就靠这个阻断你的连接)</s></li>
+<li>SYN: 同步序列号</li>
+<li>FIN: 终止连接</li>
+</ul>
+</li>
+<li>窗口: 定义了接收窗口 (rwnd, receive window) 的大小, 见阻塞控制</li>
+<li>校验和: 计算方法一样, 也有伪头部, 但是书上没说具体的伪头部是啥</li>
+<li>紧急指针: 指向紧急字节</li>
+</ul>
+<h3 id="连接的建立"><a class="markdownIt-Anchor" href="#连接的建立"></a> 连接的建立</h3>
 <blockquote>
 <p><em>0620 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer</em><br>
 <em>0620 Completed 🍻</em><br>
