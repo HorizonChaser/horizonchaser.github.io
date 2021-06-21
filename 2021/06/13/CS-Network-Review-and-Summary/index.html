@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      16.1k 字
+      16.9k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      198
+      208
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月21日 周一 12:28:53
+                  Last Update @ 2021年6月21日 周一 15:41:18
                 
               </p>
             
@@ -2023,6 +2023,99 @@ DLCI: DataLink Connection Identifer</p>
 <li>由于接收方仅支持 v4, 但发送方使用 v6, 因此在最后转发给接收方前把 v6 的头部转换为 v4 的头部</li>
 </ul>
 </li>
+</ul>
+<h2 id="chapter-21-地址映射-差错报告和多播"><a class="markdownIt-Anchor" href="#chapter-21-地址映射-差错报告和多播"></a> Chapter 21 地址映射、差错报告和多播</h2>
+<h3 id="arp"><a class="markdownIt-Anchor" href="#arp"></a> ARP</h3>
+<blockquote>
+<p>ARP: Address Resolution Protocol, 地址解析协议</p>
+</blockquote>
+<h4 id="概念-imp"><a class="markdownIt-Anchor" href="#概念-imp"></a> 概念 [IMP]</h4>
+<ul>
+<li>逻辑地址到物理地址</li>
+<li><strong>直接封装到数据链路层的帧中</strong></li>
+<li>ARP 查询是广播, ARP 回答是单播 (持有对应逻辑地址的节点返回自己的物理地址)</li>
+<li>支持所有的物理地址与逻辑地址类型</li>
+</ul>
+<h4 id="分组格式"><a class="markdownIt-Anchor" href="#分组格式"></a> 分组格式</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621205627.png" srcset="/img/loading.gif" alt="arp"></p>
+<ul>
+<li>硬件类型: 指定了物理网络的类型, 比如以太网</li>
+<li>协议类型: 指定了使用逻辑地址的高层协议的类型, 比如 IPv4</li>
+<li>两个长度: 字节为单位, 按需求填, 比如以太网物理地址长度是 6, IPv4 协议长度 (就是逻辑地址长度) 为 4</li>
+<li>操作: 分为 ARP 请求和 ARP 回答</li>
+<li>四个地址: 按需填
+<ul>
+<li>注意, 在 ARP 请求中, 目标硬件地址填 0, 因为这时还不知道</li>
+</ul>
+</li>
+</ul>
+<h4 id="操作-imp"><a class="markdownIt-Anchor" href="#操作-imp"></a> 操作 [IMP]</h4>
+<h5 id="流程"><a class="markdownIt-Anchor" href="#流程"></a> 流程</h5>
+<ol>
+<li>发送方想要发送报文, 知道接收方的逻辑地址但不知道物理地址</li>
+<li>发送方产生一个 ARP 请求报文, 目标的物理地址填 0</li>
+<li>请求报文发送给数据链路层, 封装成帧, 目的地址为广播地址</li>
+<li>所有站点都接受到这个请求, 但比对请求报文中的目标逻辑地址后, 仅有相符的那个站点才会产生回应</li>
+<li>相符的站点 (即接收方) 使用 ARP 回应报文, 其中包含了自己的物理地址, 单播</li>
+<li>发送方得知接收方的物理地址, 即可发送报文</li>
+</ol>
+<h3 id="dhcp"><a class="markdownIt-Anchor" href="#dhcp"></a> DHCP</h3>
+<blockquote>
+<p>DHCP: Dynamic Host Configuration Protocol, 动态主机配置协议</p>
+</blockquote>
+<ul>
+<li>通过向服务器请求自动获得逻辑地址</li>
+<li>可以人工配置静态的物理地址和逻辑地址间的对应关系, 也可以在地址池中自动分配</li>
+<li>自动分配的地址为租用地址, 有时间上限, 到期后需要更新或停用</li>
+</ul>
+<h3 id="icmp"><a class="markdownIt-Anchor" href="#icmp"></a> ICMP</h3>
+<blockquote>
+<p>ICMP: Internet Control Message Protocol, 因特网控制报文协议</p>
+</blockquote>
+<h4 id="概念-imp-2"><a class="markdownIt-Anchor" href="#概念-imp-2"></a> 概念 [IMP]</h4>
+<blockquote>
+<p>我觉得不用记功能细节…</p>
+</blockquote>
+<ul>
+<li>提供差错报告报文和查询报文</li>
+<li>ICMP 不能纠正差错, 只能把出错信息发回给原始的源端</li>
+</ul>
+<h4 id="报文格式-imp"><a class="markdownIt-Anchor" href="#报文格式-imp"></a> 报文格式 [IMP]</h4>
+<ul>
+<li>封装在 IP 数据报里面</li>
+<li>头部固定有 8 字节, 数据部分可变长</li>
+<li>头部的前 4 字节固定, 后 4 字节随类型变化</li>
+</ul>
+<h4 id="差错报告-imp"><a class="markdownIt-Anchor" href="#差错报告-imp"></a> 差错报告 [IMP]</h4>
+<ul>
+<li>处理 IP 数据报时出现的问题
+<ul>
+<li>目的端不可达: 找不到对应主机或端口</li>
+<li>时间超时: TTL 到达 0</li>
+<li>源端抑制: 通知源端出现拥塞与丢弃, 开始流量控制</li>
+<li>参数问题: 报文格式不对</li>
+<li>重定向: 主机将报文发送给了绕路的路由器, 该路由器会转发并回送这条差错报告, 可以更新主机的路由表</li>
+</ul>
+</li>
+</ul>
+<h4 id="查询报文"><a class="markdownIt-Anchor" href="#查询报文"></a> 查询报文</h4>
+<ul>
+<li>成对出现, 提供信息交换与查询
+<ul>
+<li>回送请求与回答: ping 命令的那个</li>
+<li>时间戳请求与回答: 测量两主机间往返时间, 可用于时间同步</li>
+<li>地址掩码请求与回答</li>
+<li>路由器询问与通告</li>
+</ul>
+</li>
+</ul>
+<h3 id="igmp"><a class="markdownIt-Anchor" href="#igmp"></a> IGMP</h3>
+<blockquote>
+<p>IGMP: Internet Group Management Protocol, 因特网组管理协议</p>
+</blockquote>
+<ul>
+<li>不是多播路由协议, 而是管理组成员的协议</li>
+<li>为多播路由器 (multicast router) 提供关于连接到网络上的节点成员状态的信息</li>
 </ul>
 <blockquote>
 <p><em>0620 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer</em><br>
