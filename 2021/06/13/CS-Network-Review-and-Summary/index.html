@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      14.2k 字
+      15k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      175
+      185
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月20日 周日 17:21:33
+                  Last Update @ 2021年6月21日 周一 7:46:37
                 
               </p>
             
@@ -1736,7 +1736,7 @@ DLCI: DataLink Connection Identifer</p>
 <p>TP VP VC 间关系</p>
 </blockquote>
 <h1 id="part-4-网络层"><a class="markdownIt-Anchor" href="#part-4-网络层"></a> Part 4 网络层</h1>
-<h2 id="chapter-19-逻辑寻址"><a class="markdownIt-Anchor" href="#chapter-19-逻辑寻址"></a> Chapter 19 逻辑寻址</h2>
+<h2 id="chapter-19-逻辑寻址-imp"><a class="markdownIt-Anchor" href="#chapter-19-逻辑寻址-imp"></a> Chapter 19 逻辑寻址 [IMP]</h2>
 <h3 id="ipv4-地址"><a class="markdownIt-Anchor" href="#ipv4-地址"></a> IPv4 地址</h3>
 <ul>
 <li>32 位长</li>
@@ -1830,7 +1830,113 @@ DLCI: DataLink Connection Identifer</p>
 <h5 id="层次结构"><a class="markdownIt-Anchor" href="#层次结构"></a> 层次结构</h5>
 <ul>
 <li>二级层次结构: 没有子网化, 只有网络前缀 (前 n 位) 和定义主机的后 n 位</li>
-<li>三级层次结构: 有子网化, 通过子网前缀划分子网 -&gt; 增加掩码中 1 长度</li>
+<li>三级层次结构: 有子网化, 通过子网前缀划分子网 -&gt; 增加掩码中 1 长度, 即 n</li>
+</ul>
+<h4 id="nat-网络地址转换"><a class="markdownIt-Anchor" href="#nat-网络地址转换"></a> NAT (网络地址转换)</h4>
+<blockquote>
+<p>NAT: Network Address Translation</p>
+</blockquote>
+<ul>
+<li>使大量主机共享有限的外部地址</li>
+<li>在内部网络分配专用地址, 对外表现为公网地址
+<ul>
+<li>在向外网发送时把分组的源地址替换为公网地址, 同时在表中添加专用地址-公网地址的条目</li>
+<li>接受时通过查表确定对应关系</li>
+<li>可以采用 IP 地址池来对外同时使用多个公网地址</li>
+<li>可以在转换表中同时采用使用 IP 地址和端口号来实现内外网多对多的转换
+<ul>
+<li>表中有五列: 专用地址与端口, 外部地址与端口, 传输协议</li>
+<li>外部的响应报文通过目的地址和目的端口号(和内网中的发起方使用的临时端口相同)确定内网的接收者</li>
+<li>临时端口号必须唯一</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ipv6-地址"><a class="markdownIt-Anchor" href="#ipv6-地址"></a> IPv6 地址</h3>
+<ul>
+<li>16 个字节, 128 位</li>
+<li>采用十六进制冒号标记法
+<ul>
+<li>每两个字节一部分, 作为四个十六进制数字</li>
+<li>每部分之间用冒号分隔</li>
+</ul>
+</li>
+<li>可以缩短, 需要满足
+<ul>
+<li>在两个冒号之间 (所以开头和结尾不能缩短)</li>
+<li>高位的连续的 0 可以缩短</li>
+<li>若有连续的几个部分仅包含 0, 则可以把这些 0 用两个冒号代替, <strong>但这种缩短只能用一次</strong></li>
+<li>例如 FDEC : 0074 : 0000 : 0000 : 0000 : B0FF : 0000 : FFF0
+<ul>
+<li>缩短: FDEC : 74 : 0 : 0 : 0 : B0FF : 0 : FFF0 (去掉了每个部分的前导 0)</li>
+<li>更缩短: FDEC : 74 :: B0FF : 0 : FFF0 (把连续的 0 合并)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>缩短地址的恢复
+<ul>
+<li>将未缩短的部分对齐</li>
+<li>将 0 插入</li>
+</ul>
+</li>
+</ul>
+<h2 id="chapter-20-ip协议"><a class="markdownIt-Anchor" href="#chapter-20-ip协议"></a> Chapter 20 IP协议</h2>
+<h3 id="网际互连"><a class="markdownIt-Anchor" href="#网际互连"></a> 网际互连</h3>
+<ul>
+<li>因特网中的网络层交换采用数据包分组交换
+<ul>
+<li>是无连接的</li>
+<li>各分组之间没有联系</li>
+<li>同一报文的各分组可能采用不同路径</li>
+</ul>
+</li>
+</ul>
+<h3 id="ipv4"><a class="markdownIt-Anchor" href="#ipv4"></a> IPv4</h3>
+<h4 id="数据报格式"><a class="markdownIt-Anchor" href="#数据报格式"></a> 数据报格式</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621151131.png" srcset="/img/loading.gif" alt="ipv4"></p>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621150443.png" srcset="/img/loading.gif" alt="ipv4"></p>
+<blockquote>
+<p>HLEN: Header Length, 头部长度</p>
+</blockquote>
+<ul>
+<li>版本: 定义 IPv4 版本, 若错误则直接丢弃数据报</li>
+<li>头部长度: 数据报头部的总长度<strong>除以4</strong>, 对不含选项的头部, 长度为 20 字节, 值为 5</li>
+<li>服务: 有两种解释方法, 服务类型和差分服务
+<ul>
+<li>服务类型
+<ul>
+<li>前三位指定优先级, 在遇到拥塞时先丢弃低优先级的 (未使用)</li>
+<li>后四位称为 TOS 位, 前三位分别指定低延迟, 最大化吞吐量和最高可靠性, 最后一位没用</li>
+</ul>
+</li>
+<li>差分服务
+<ul>
+<li>后两位不用</li>
+<li>前六位组成码点子字段
+<ul>
+<li>最右侧三位为 0, 则前三位和"服务类型"的解释方式相同</li>
+<li>否则, 定义 64 种服务 (然而具体的分配方式还没定下来, 看看就行)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>总长度: 以字节计算的数据报总长度, 包括头部长度和数据长度
+<ul>
+<li>可以靠这个把数据报和填充分开, 比如以太网最低要求 46 字节的帧</li>
+</ul>
+</li>
+<li>标识, 标记和分段偏移: 和分段有关, 见后面</li>
+<li>生存时间: 能经过路由器转发的数量, 每个路由器收到后先减一, 为 0 时直接丢弃, 并回送一个错误信息</li>
+<li>协议: 指定了该数据报使用的高层协议, 例如 TCP UDP ICMP 等</li>
+<li>校验和: 仅计算头部 (数据部分的校验和由高层协议负责)
+<ul>
+<li>将头部按照 16 位划分为</li>
+</ul>
+</li>
 </ul>
 <blockquote>
 <p><em>0620 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer - Completed 🍻</em><br>
