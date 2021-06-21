@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      16.9k 字
+      17.4k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      208
+      214
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月21日 周一 15:41:18
+                  Last Update @ 2021年6月21日 周一 16:20:6
                 
               </p>
             
@@ -2117,10 +2117,60 @@ DLCI: DataLink Connection Identifer</p>
 <li>不是多播路由协议, 而是管理组成员的协议</li>
 <li>为多播路由器 (multicast router) 提供关于连接到网络上的节点成员状态的信息</li>
 </ul>
+<h2 id="chapter-22-传递-转发和路由选择"><a class="markdownIt-Anchor" href="#chapter-22-传递-转发和路由选择"></a> Chapter 22 传递、转发和路由选择</h2>
+<h3 id="转发技术"><a class="markdownIt-Anchor" href="#转发技术"></a> 转发技术</h3>
+<ul>
+<li>下一条方法: 路由表中仅保存下一跳的地址</li>
+<li>路由方法: 路由表中保存完整的路由信息 (完整的路径)</li>
+<li>特定网络方法: 将连接在整个网络上的主机视为同一个条目</li>
+<li>特定主机方法: 每台主机一个条目</li>
+<li>默认方法: 表里有的按表来, 没有的同一扔到一个端口</li>
+</ul>
+<h3 id="转发过程"><a class="markdownIt-Anchor" href="#转发过程"></a> 转发过程</h3>
+<ul>
+<li>采用无类寻址</li>
+<li>表中包含<strong>掩码</strong>, 网络地址, 下一跳地址, 接口</li>
+<li>过程
+<ul>
+<li>将每个条目的掩码与接收到的分组的目的地址相与, 判断是否符合网络地址
+<ul>
+<li>若不符合, 则比较下一条</li>
+<li>若符合, 准备通过对应的下一跳地址和端口转发, 可能需要 ARP</li>
+<li>若无符合条目, 按默认条目转发</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="地址聚合"><a class="markdownIt-Anchor" href="#地址聚合"></a> 地址聚合</h3>
+<p>对网络的其他部分, 将连续的地址块儿通过缩短掩码的长度来将其是为一个地址</p>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622000936.png" srcset="/img/loading.gif" alt="aggregate"></p>
+<blockquote>
+<p>在 R2 看来, 组织 1~4 是同一个地址, 只占一个条目, 只需要转发到 m0 接口就行<br>
+至于组织 1~4 之间各自的分组转发, 由 R1 负责</p>
+</blockquote>
+<h3 id="最长掩码匹配"><a class="markdownIt-Anchor" href="#最长掩码匹配"></a> 最长掩码匹配</h3>
+<ul>
+<li>在路由表中按照掩码的长短从上到下排序, 长的在上面</li>
+<li>这样每次都从掩码最长的开始匹配</li>
+<li>而掩码最长意味着最"精确", 范围最小</li>
+</ul>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622001259.png" srcset="/img/loading.gif" alt="longest match"></p>
+<blockquote>
+<p>假如目标地址为 140.24.7.200 (属于组织 4) 的分组到达 R2, 会从 m1 转发出去 (第一条的掩码最长且成功匹配)<br>
+之后经过 R3 到达组织 4</p>
+</blockquote>
+<blockquote>
+<p><strong>至于之后的 RIP, OSPF, BGP 等请自行看书…</strong></p>
+</blockquote>
+<h1 id="part-5-传输层"><a class="markdownIt-Anchor" href="#part-5-传输层"></a> Part 5 传输层</h1>
+<h2 id="chapter-23-udp-tcp-和-sctp"><a class="markdownIt-Anchor" href="#chapter-23-udp-tcp-和-sctp"></a> Chapter 23 UDP、TCP 和 SCTP</h2>
 <blockquote>
 <p><em>0620 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer</em><br>
 <em>0620 Completed 🍻</em><br>
-<em>0621 🕊🕊🕊 计划: To Chapter 20 - IP Protocol</em></p>
+<em>0621 🕊🕊🕊 计划: To Chapter 20 - IP Protocol</em><br>
+<em>0621 Finished Chapter 24, end of Part 5 - Network Layer 🍻</em><br>
+<em>0622 🕊🕊🕊 计划: Finish’em ALL</em></p>
 </blockquote>
 
             </div>
