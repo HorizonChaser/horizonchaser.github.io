@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      15k 字
+      16.1k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      185
+      198
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月21日 周一 7:46:37
+                  Last Update @ 2021年6月21日 周一 12:28:53
                 
               </p>
             
@@ -699,7 +699,7 @@ TCP 是有连接的可靠的流传输协议, UDP 无连接, 不可靠</p>
 <li>若仅有两个频率, 则称为 BPSK (二进制 PSK)</li>
 <li>带宽: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>d</mi><mo stretchy="false">)</mo><mo>×</mo><mi>S</mi><mo>+</mo><mn>2</mn><mi>D</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">B=(1+d) \times S + 2Df</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>D</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">2Df</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 为两个载波频率之差, 最小即为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> (此时两个段紧贴)</li>
 </ul>
-<h3 id="相移键控"><a class="markdownIt-Anchor" href="#相移键控"></a> 相移键控</h3>
+<h3 id="相移键控-psk"><a class="markdownIt-Anchor" href="#相移键控-psk"></a> 相移键控 (PSK)</h3>
 <h4 id="二进制psk-bpsk"><a class="markdownIt-Anchor" href="#二进制psk-bpsk"></a> 二进制PSK (BPSK)</h4>
 <p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210616185709.png" srcset="/img/loading.gif" alt="BPSK"></p>
 <ul>
@@ -1894,7 +1894,7 @@ DLCI: DataLink Connection Identifer</p>
 </li>
 </ul>
 <h3 id="ipv4"><a class="markdownIt-Anchor" href="#ipv4"></a> IPv4</h3>
-<h4 id="数据报格式"><a class="markdownIt-Anchor" href="#数据报格式"></a> 数据报格式</h4>
+<h4 id="数据报格式-imp"><a class="markdownIt-Anchor" href="#数据报格式-imp"></a> 数据报格式 [IMP]</h4>
 <p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621151131.png" srcset="/img/loading.gif" alt="ipv4"></p>
 <p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621150443.png" srcset="/img/loading.gif" alt="ipv4"></p>
 <blockquote>
@@ -1934,12 +1934,99 @@ DLCI: DataLink Connection Identifer</p>
 <li>协议: 指定了该数据报使用的高层协议, 例如 TCP UDP ICMP 等</li>
 <li>校验和: 仅计算头部 (数据部分的校验和由高层协议负责)
 <ul>
-<li>将头部按照 16 位划分为</li>
+<li>将头部按照 16 位划分</li>
+<li>对这些数求和, 正常进位, 同时最高位的进位加到最低位上</li>
+<li>对结果取反码</li>
+</ul>
+</li>
+<li>选项: 可选的选项, 看书 p393</li>
+</ul>
+<h4 id="mtu-最大传输单元-与分段"><a class="markdownIt-Anchor" href="#mtu-最大传输单元-与分段"></a> MTU (最大传输单元) 与分段</h4>
+<blockquote>
+<p>MTU: Maximum Transmission Unit</p>
+</blockquote>
+<ul>
+<li>每个数据链路层协议都有自己的帧格式, 也就定义了该协议下最大的数据长度</li>
+<li>为了让 IPv4 协议与物理网络无关, IPv4 数据报的最大长度为 65535 字节, 是常见的网络中最大的 MTU 值</li>
+<li>分段在传输层进行</li>
+<li>数据报在到达最终目的端前, 可能被多次分段</li>
+<li>标识: 一个序列号, 定义了特定的从源端发出的数据报, <strong>分段不改变标识</strong></li>
+<li>标记: 3 位字段
+<ul>
+<li>第一位: 保留不用</li>
+<li>第二位: 不分段位 (DF, Don’t Fragment), 为 1 时强制禁止分段, 若超过 MTU 会导致无法发送并回送错误信息</li>
+<li>第三位: 多分段位, 若为 1 表明这不是最后的分段, 为 0 表示是最后或唯一的分段</li>
+</ul>
+</li>
+<li>分段偏移: 表示了该分段的第一个字节在整个数据报中的相对位置, <strong>单位是 8 字节, 也就是除以 8</strong>
+<ul>
+<li>所以分段时每个分段的长度必须满足使每个分段的第一个字节的位置为 8 的整数倍</li>
+</ul>
+</li>
+<li>重组方法:
+<ul>
+<li>第一个分段的分段偏移为 0</li>
+<li>第一个分段的长度除以 8 得到第二个分段的偏移值</li>
+<li>第一二个分段的长度之和除以 8 得到第三个分段的偏移值</li>
+<li>重复以上过程, 最后一个分段的 多分段位 为 0</li>
+</ul>
+</li>
+</ul>
+<h3 id="ipv6"><a class="markdownIt-Anchor" href="#ipv6"></a> IPv6</h3>
+<h4 id="数据报格式"><a class="markdownIt-Anchor" href="#数据报格式"></a> 数据报格式</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621195449.png" srcset="/img/loading.gif" alt="ipv6"></p>
+<ul>
+<li><strong>基本头部固定 40 字节, 选项等放在扩展头部</strong></li>
+<li>版本: IPv6 的版本号, 为 6</li>
+<li>优先级: 发生拥塞时决定丢弃顺序, 分为可进行拥塞控制的通信量和不可进行…
+<ul>
+<li>可进行拥塞控制: 分 0~7, 0 最低, 不同服务类型的优先级不同</li>
+<li>不可进行拥塞控制: 尚未指定, 8~15, 8 为具有最大冗余度的数据 (就是丢一点儿影响也没那么大的)</li>
+</ul>
+</li>
+<li>流标号: 标识了一个数据报系列, 它们来源于同一个地址, 去往同一个地址, 使用同样的服务</li>
+<li>有效载荷长度: <strong>定义存在冲突, 见下面</strong></li>
+<li>下一个头部: 下一个可选的扩展头部的位置, 或者是上层协议 (比如 UDP/TCP) 的头部</li>
+<li>跳数限制: 类似于 IPv4 中的 TTL (生存时间)</li>
+<li>源地址: 发送方的地址</li>
+<li>目的地址: 若使用了源路由选择, 则为下一个路由器的地址, 否则就是最终目的地的地址</li>
+</ul>
+<h3 id="ipv4-ipv6-头部对比"><a class="markdownIt-Anchor" href="#ipv4-ipv6-头部对比"></a> IPv4 IPv6 头部对比</h3>
+<ul>
+<li>IPv6 取消了头部长度字段, 因为 v6 头部固定 40 字节</li>
+<li>IPv6 取消了服务类型, 用优先级+流标号代替功能</li>
+<li>IPv6 取消了总长度字段, 使用有效载荷长度代替 <strong>这点有点小冲突, 详情看下面</strong></li>
+<li>IPv6 基本头部中取消了标识, 标记和分组偏移, 放在了扩展头部里</li>
+<li>IPv6 将 TTL 称为跳数限制</li>
+<li>协议字段被替换成下一个头部字段</li>
+<li>头部不再包含校验和</li>
+<li>IPv4 中的选项移动到了 IPv6 的扩展头部中</li>
+</ul>
+<blockquote>
+<p><strong>关于 IPv6 的有效载荷长度和 IPv4 的总长度</strong><br>
+按照书上说法, IPv6 的有效载荷长度为 “包括基本头部在内的IP数据报的总长度”, 这个说法其实和 IPv4 的总长度定义一样<br>
+但是老师的 PPT 上和我查的 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/IPv6_packet#Standard_payload_length">Wiki</a> 上都认为 <strong>有效载荷长度为除基本头部之外的数据报长度</strong><br>
+等待查证 0.0</p>
+</blockquote>
+<h3 id="ipv4-ipv6-混合"><a class="markdownIt-Anchor" href="#ipv4-ipv6-混合"></a> IPv4 IPv6 混合</h3>
+<ul>
+<li>双协议栈: 同时支持 IPv4 和 v6</li>
+<li>隧道技术
+<ul>
+<li>v6 -&gt; v4 -&gt; v6</li>
+<li>通过在 v6 分组前添加一个 v4 的头部来让分组通过仅支持 v4 的区域</li>
+</ul>
+</li>
+<li>头部转换
+<ul>
+<li>v6 -&gt; v4</li>
+<li>由于接收方仅支持 v4, 但发送方使用 v6, 因此在最后转发给接收方前把 v6 的头部转换为 v4 的头部</li>
 </ul>
 </li>
 </ul>
 <blockquote>
-<p><em>0620 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer - Completed 🍻</em><br>
+<p><em>0620 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer</em><br>
+<em>0620 Completed 🍻</em><br>
 <em>0621 🕊🕊🕊 计划: To Chapter 20 - IP Protocol</em></p>
 </blockquote>
 
