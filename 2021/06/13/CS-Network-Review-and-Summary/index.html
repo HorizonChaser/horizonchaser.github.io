@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      18.2k 字
+      19.6k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      223
+      240
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年6月21日 周一 16:57:20
+                  Last Update @ 2021年6月22日 周二 5:10:37
                 
               </p>
             
@@ -2251,11 +2251,198 @@ DLCI: DataLink Connection Identifer</p>
 <li>FIN: 终止连接</li>
 </ul>
 </li>
-<li>窗口: 定义了接收窗口 (rwnd, receive window) 的大小, 见阻塞控制</li>
-<li>校验和: 计算方法一样, 也有伪头部, 但是书上没说具体的伪头部是啥</li>
-<li>紧急指针: 指向紧急字节</li>
+<li>窗口: 定义了接收窗口 (rwnd, Receive<strong>r</strong> Window) 的大小, 见阻塞控制</li>
+<li>校验和: 计算方法一样, 也有伪头部, 伪头部 + 头部 + 数据, 但是书上没说 TCP 的伪头部是啥</li>
+<li>紧急指针: 指向紧急字节的最后一个字节, 紧急字节总是位于段的开始, 收到后会被直接送往进程, 无需等待</li>
 </ul>
-<h3 id="连接的建立"><a class="markdownIt-Anchor" href="#连接的建立"></a> 连接的建立</h3>
+<h4 id="连接的建立"><a class="markdownIt-Anchor" href="#连接的建立"></a> 连接的建立</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622104459.png" srcset="/img/loading.gif" alt="tcp establish"></p>
+<ul>
+<li>采用三次握手
+<ul>
+<li>客户端: SYN (仅包含己方 seq, SYN 段不携带数据, 但占用序列号)</li>
+<li>服务器: SYN + ACK (包含服务器的 seq 和 ack, 和单纯的 SYN 一样占用序列号)</li>
+<li>客户端: ACK (若 ACK 段不携带数据, 则不占用序列号)</li>
+</ul>
+</li>
+<li>存在 SYN 洪泛攻击的问题
+<ul>
+<li>攻击方伪造大量的 SYN, 伪装成正常的连接请求</li>
+<li>由于服务器需要为每一个请求分配资源, 因此很快被耗尽</li>
+<li>最终服务器无法接受新的正常用户的请求 -&gt; 拒绝服务攻击 (DoS, Denial of Service)</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>DDoS, Distributed Denial of Service, 就是分布式拒绝服务攻击</p>
+</blockquote>
+<h4 id="连接终止"><a class="markdownIt-Anchor" href="#连接终止"></a> 连接终止</h4>
+<h5 id="三次挥手-imp"><a class="markdownIt-Anchor" href="#三次挥手-imp"></a> 三次挥手 [IMP]</h5>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622105351.png" srcset="/img/loading.gif" alt="3 wave"></p>
+<ul>
+<li>主动方: FIN, 可携带数据, 占用一个序列号</li>
+<li>被动方: FIN+ACK, 可携带数据, 占用一个序列号</li>
+<li>主动方: ACK, 不占用序列号</li>
+</ul>
+<h5 id="四次挥手"><a class="markdownIt-Anchor" href="#四次挥手"></a> 四次挥手</h5>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622105644.png" srcset="/img/loading.gif" alt="4 wave"></p>
+<ul>
+<li>主动方: FIN</li>
+<li>被动方: FIN+ACK
+<ul>
+<li>此时进入<strong>半关闭</strong></li>
+<li>主动方不能够再发送数据, 但可以接收数据</li>
+<li>被动方还能够继续发送数据</li>
+</ul>
+</li>
+<li>被动方: FIN</li>
+<li>主动方: ACK</li>
+</ul>
+<h4 id="差错控制"><a class="markdownIt-Anchor" href="#差错控制"></a> 差错控制</h4>
+<h5 id="校验和-2"><a class="markdownIt-Anchor" href="#校验和-2"></a> 校验和</h5>
+<p>在头部, 校验内容包括伪头部 + 头部 + 数据</p>
+<h5 id="确认-2"><a class="markdownIt-Anchor" href="#确认-2"></a> 确认</h5>
+<p>就是对占用序列号的段回送 ACK -&gt; ACK 本身不占用序列号, 所以不需要确认</p>
+<h5 id="重传"><a class="markdownIt-Anchor" href="#重传"></a> 重传</h5>
+<ul>
+<li>出现损坏, 丢失或延迟时重传段</li>
+<li>在实现中, 分为重传计时器到时和连续收到 3 个 ACK</li>
+<li>重传计时器到时:
+<ul>
+<li>已发送未确认的(占用序列号的)段有一个定时器
+<ul>
+<li>称为 RTO 计时器 (Retransmission Time-Out)</li>
+<li>其值根据往返时间动态更新</li>
+<li>对 ACK 段不设置定时器</li>
+</ul>
+</li>
+<li>定时器到时时重发最早的重要的段</li>
+</ul>
+</li>
+<li>连续收到三个 ACK:
+<ul>
+<li>触发<strong>快速重传</strong></li>
+<li>立即发送缺少的段</li>
+</ul>
+</li>
+<li>失序的段
+<ul>
+<li>暂时保留, 直到缺少的那个段到达</li>
+<li>TCP 保证提交给进程的数据是顺序正确的</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622111546.png" srcset="/img/loading.gif" alt="RTO"></p>
+<blockquote>
+<p>重传计时器超时重传</p>
+</blockquote>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622111612.png" srcset="/img/loading.gif" alt="3 ACK"></p>
+<blockquote>
+<p>快速重传, 重传时 seq 301~400 的计时器还没到时, 但依然重传</p>
+</blockquote>
+<h4 id="tcp-拥塞控制"><a class="markdownIt-Anchor" href="#tcp-拥塞控制"></a> TCP 拥塞控制</h4>
+<ul>
+<li>在这里确定 cwnd 大小 (Congestion Window, 拥塞窗口)</li>
+<li>采用三个阶段: 慢速启动, 拥塞避免, 拥塞检测</li>
+<li>慢速启动: 指数增长
+<ul>
+<li>开始时 cwnd = 1 MSS (最大段长度, 在连接建立时确定, 相当于这时窗口大小为一个段)</li>
+<li>每一个段的确认都会使 cwnd+1, <strong>按照指数规律增长</strong></li>
+<li>到达<strong>阈值</strong>时, 结束慢速启动阶段</li>
+</ul>
+</li>
+<li>拥塞避免: 加性增加
+<ul>
+<li>每次窗口中所有段均被确认后才有 cwnd+1</li>
+<li>直到检测到拥塞</li>
+</ul>
+</li>
+<li>拥塞检测: 乘性减少
+<ul>
+<li>若重传计时器到时, 说明拥塞可能很严重: 段丢失且一直没收到相关信息
+<ul>
+<li>强烈反应
+<ul>
+<li>阈值设置为 cwnd 的一半</li>
+<li>cwnd = 1 MSS</li>
+<li>开始慢速启动阶段</li>
+</ul>
+</li>
+<li>相当于阈值变为实际上限的一半, 然后重启传输 (速度方面)</li>
+</ul>
+</li>
+<li>若接收到三个 ACK, 说明可能有轻度拥塞, 一些段可能已经成功到达, 仅有部分缺失
+<ul>
+<li>轻度反应
+<ul>
+<li>阈值设置为 cwnd 的一半</li>
+<li>cwnd = 阈值 (部分实现是 阈值+3)</li>
+<li>开始拥塞避免阶段 (就是加性增加)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622114245.png" srcset="/img/loading.gif" alt="c-control"></p>
+<blockquote>
+<p>SS: 慢速启动 (指数增长)<br>
+AI: 加性增加<br>
+MD: 乘性减少<br>
+Threshold: 阈值</p>
+</blockquote>
+<h4 id="tcp-流量控制-imp"><a class="markdownIt-Anchor" href="#tcp-流量控制-imp"></a> TCP 流量控制 [IMP]</h4>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622124037.png" srcset="/img/loading.gif" alt="Window"></p>
+<ul>
+<li>采用滑动窗口, 面向字节, 又称信贷滑窗协议</li>
+<li>窗口大小为头部中的接收窗口 (rwnd) 与 cwnd 较小值
+<ul>
+<li>rwnd 表明了接收方当前可用的窗口大小</li>
+</ul>
+</li>
+<li>在窗口中, 左侧为已发送但未确认的, 右侧为可立刻发送的</li>
+<li>在窗口外, 左侧为已发送且已确认的, 右侧为未发送且尚不可发送的</li>
+<li>发送方接收到 ACK 后, 可以合拢窗口: 左侧向右移动</li>
+<li>当 rwnd 或 cwnd 更新时, 可以张开窗口: 右侧向右移动, 但不建议收缩 (右侧向左移动)</li>
+<li>窗口左边沿不能向左移动</li>
+</ul>
+<h2 id="chapter-24-拥塞控制和服务质量"><a class="markdownIt-Anchor" href="#chapter-24-拥塞控制和服务质量"></a> Chapter 24 拥塞控制和服务质量</h2>
+<h3 id="吞吐量和延迟"><a class="markdownIt-Anchor" href="#吞吐量和延迟"></a> 吞吐量和延迟</h3>
+<ul>
+<li>通常是衡量网络性能的因素</li>
+<li>吞吐量:
+<ul>
+<li>单位时间内通过网络的分组数量</li>
+<li>载荷小于网络容量时, 吞吐量随载荷增加成比例增长</li>
+<li>载荷达到网络容量时, 吞吐量会急剧下降 (一些分组被丢弃导致重传)</li>
+</ul>
+</li>
+<li>延迟: 当载荷远小于网络容量时，延迟最小
+<ul>
+<li>最小延迟是由传播延迟和处理延迟所组成的，且都可以忽略不计</li>
+<li>载荷达到网络容量时, 延迟急剧增加 (分组需要排队)</li>
+</ul>
+</li>
+</ul>
+<h3 id="拥塞控制"><a class="markdownIt-Anchor" href="#拥塞控制"></a> 拥塞控制</h3>
+<h4 id="开环拥塞控制"><a class="markdownIt-Anchor" href="#开环拥塞控制"></a> 开环拥塞控制</h4>
+<ul>
+<li>重传 (例如 TCP)</li>
+<li>窗口 (比如选择性重复 ARQ)</li>
+<li>确认 (ACK, 使用一个 ACK 确认多个分组与停止-等待 ARQ)</li>
+<li>丢弃 (按照优先级)</li>
+<li>许可 (虚电路建立连接时检查是否有拥塞, 有则拒绝建立连接)</li>
+</ul>
+<h4 id="闭环拥塞控制"><a class="markdownIt-Anchor" href="#闭环拥塞控制"></a> 闭环拥塞控制</h4>
+<ul>
+<li>背压: 从目的端方向的节点逐个拒绝接受上行节点的数据, 直到源端</li>
+<li>抑制分组: 从发生拥塞的节点发送警告信息到源端</li>
+<li>隐含信令: 进行推测, 例如过长时间没有收到确认</li>
+<li>显示信令: 把信号包含在携带数据的分组中, 分前向信令 (向发生拥塞的方向), 后向信令 (原理发生拥塞的方向)</li>
+</ul>
+<h1 id="part-6-应用层"><a class="markdownIt-Anchor" href="#part-6-应用层"></a> Part 6 应用层</h1>
+<h2 id="chapter-25-域名系统"><a class="markdownIt-Anchor" href="#chapter-25-域名系统"></a> Chapter 25 域名系统</h2>
 <blockquote>
 <p><em>0620 🕊🕊🕊 计划: To Chapter 18, end of Part 3 - Datalink Layer</em><br>
 <em>0620 Completed 🍻</em><br>
