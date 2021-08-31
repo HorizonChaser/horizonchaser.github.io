@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: http://example.com
+url: https://horizonchaser.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -140,8 +140,8 @@ bangumi:
 
 feed:
   enable: true
-  type: atom
-  path: atom.xml
+  type: rss2
+  path: rss2.xml
   limit: 20
   hub:
   content_limit: 140

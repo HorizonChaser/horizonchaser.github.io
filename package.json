@@ -15,7 +15,7 @@
     "@upupming/hexo-renderer-markdown-it-plus": "^2.0.2",
     "hexo": "^5.4.0",
     "hexo-asset-image": "git+https://github.com/CodeFalling/hexo-asset-image.git",
-    "hexo-bilibili-bangumi": "^1.5.4",
+    "hexo-bilibili-bangumi": "^1.6.1",
     "hexo-deployer-git": "^3.0.0",
     "hexo-filter-github-emojis": "^3.0.4",
     "hexo-generator-archive": "^1.0.0",

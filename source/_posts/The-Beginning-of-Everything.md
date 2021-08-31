@@ -30,6 +30,7 @@ tags:
 - [ ] 魔改一下 `hexo-bilibili-bangumi`, 加个进度显示
 - [ ] 加个音乐播放器
 - [ ] 把 RSS 订阅显示的更新日期改成文章的更新日期
+- [ ] 整个随机 Banner
 
 ## 更新日志
 
@@ -45,7 +46,7 @@ Horizon Blog 搭起来了! 👏👏👏
 
 从 [蝴蝶计数器](https://www.bfcounter.vip/) 拿到了一个统计的小工具, 放到这里
 
-![访客国籍计数器](https://www.bfcounter.vip/generatepic?userid=d582efcb-3c8b-49de-8f01-e9da8bb7be3e)
+
 
 ~~看起来并没有多少人看...~~
 
@@ -58,3 +59,7 @@ Horizon Blog 搭起来了! 👏👏👏
 ### Update 2021/06/15
 
 增加了 RSS 订阅支持
+
+### Update 2021/08/31
+
+修好了 RSS 订阅地址, 原来一直是 [example.com](example.com), 还在想为啥, 原来是因为 `_config.yml` 里面的地址忘改了...
