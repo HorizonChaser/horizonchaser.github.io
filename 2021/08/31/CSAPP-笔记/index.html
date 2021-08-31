@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Horizon">
   <meta name="keywords" content="">
-  <title>关于 - Horizon Blog</title>
+  <title>CSAPP 第三章 笔记 - Horizon Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -73,7 +73,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -179,7 +179,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/about_banner.jpg') no-repeat center center;
+         style="background: url('/img/index_banner.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -187,6 +187,51 @@
             <span class="h2" id="subtitle">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-08-31 21:41" pubdate>
+         2021年8月31日 周二 21:41:22
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      682 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      大概 
+      8
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -199,87 +244,222 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.png" srcset="/img/loading.gif"
-                   class="img-fluid" alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">CSAPP 第三章 笔记</h1>
+            
+              <p class="note note-info">
                 
+                  Last Update @ 2021年8月31日 周二 15:39:17
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <blockquote>
+<p>CSAPP 采用的是 x64 ATT 汇编, 然而平时用的 IDA 什么的都是 MASM 汇编… 有点头大<br>
+话说回来, 都会肯定不是坏事… 大概</p>
+</blockquote>
+<h1 id="编译-汇编与反汇编"><a class="markdownIt-Anchor" href="#编译-汇编与反汇编"></a> 编译 汇编与反汇编</h1>
+<h2 id="编译"><a class="markdownIt-Anchor" href="#编译"></a> 编译</h2>
+<p><code>gcc -Og -o [output file] [source files]</code></p>
+<p>包括四个步骤: 预处理, 编译, 汇编, 链接</p>
+<ul>
+<li><strong>预处理</strong>
+<ul>
+<li>把 <code>#</code> 开头的预处理指令展开, 比如头文件展开, 宏展开</li>
+<li>处理完了也是 <code>*.c</code> 或者 <code>*.cpp</code></li>
+<li><code>gcc -E [source files] -o [output file]</code></li>
+</ul>
+</li>
+<li><strong>编译</strong>
+<ul>
+<li>把预处理完的源代码转化成汇编代码</li>
+<li>对于 <code>gcc</code>, 默认是 ATT 格式, 用 <code>-masm=intel</code> 指定采用 Intel 格式</li>
+<li><code>gcc -S &lt;source&gt;.c -o &lt;output&gt;.s</code></li>
+</ul>
+</li>
+<li><strong>汇编</strong>
+<ul>
+<li>把汇编代码转为二进制的目标文件</li>
+<li><code>gcc -c &lt;source&gt;.c -o &lt;output&gt;.o</code></li>
+</ul>
+</li>
+<li><strong>链接</strong>
+<ul>
+<li>将该目标文件与其他目标文件、库文件、启动文件等链接起来生成可执行文件</li>
+<li><code>gcc &lt;object&gt;.o -o &lt;executable&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="反汇编"><a class="markdownIt-Anchor" href="#反汇编"></a> 反汇编</h2>
+<p>用 <code>objdump</code></p>
+<ul>
+<li><code>-d &lt;file(s)&gt;</code>: 将代码段反汇编；</li>
+<li><code>-S &lt;file(s)&gt;</code>: 将代码段反汇编的同时，将反汇编代码与源代码交替显示，编译时需要使用-g- 参数，即需要调试信息；</li>
+<li><code>-C &lt;file(s)&gt;</code>: 将C++符号名逆向解析</li>
+<li><code>-l &lt;file(s)&gt;</code>: 反汇编代码中插入文件名和行号</li>
+<li><code>-j section &lt;file(s)&gt;</code>: 仅反汇编指定的section</li>
+</ul>
+<h1 id="汇编语言-初步"><a class="markdownIt-Anchor" href="#汇编语言-初步"></a> 汇编语言 - 初步</h1>
+<h2 id="数据格式"><a class="markdownIt-Anchor" href="#数据格式"></a> 数据格式</h2>
+<blockquote>
+<p>为什么一个字是两字节?</p>
+<p>实际上, 一个字并不一定是两个字节 - 比如 ARM 的 NEON 指令集下, 一个字就是 32 位 (四字节). 但是在 x86/x64 环境下, 一个字规定为两字节, 从 8086 开始就是这样了<br>
+另外, 一个字节也不一定是 8 位…</p>
+<p>Reference: <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/28066462/how-many-bits-is-a-word">StackOverflow</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>长度 (字节)</th>
+<th>ATT格式后缀</th>
+<th>MASM中的类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字节</td>
+<td>1</td>
+<td>b</td>
+<td>BYTE</td>
+</tr>
+<tr>
+<td>字</td>
+<td>2</td>
+<td>w</td>
+<td>WORD</td>
+</tr>
+<tr>
+<td>双字</td>
+<td>4</td>
+<td>l</td>
+<td>DWORD</td>
+</tr>
+<tr>
+<td>四字</td>
+<td>8</td>
+<td>q</td>
+<td>QWORD</td>
+</tr>
+</tbody>
+</table>
+<h2 id="关于-lea-指令"><a class="markdownIt-Anchor" href="#关于-lea-指令"></a> 关于 LEA 指令</h2>
+<p><code>lea</code> 指令名为 “加载有效地址” (load effective address), 实际上也可以进行简单的四则运算 (利用那些繁杂但必要的寻址方式).</p>
+<p>相对于使用多条<code>add</code> <code>sub</code>指令, 简单的四则运算用 <code>lea</code> 显然更便捷 - 这个时候和地址计算就没任何关系了</p>
+<blockquote>
+<p>这点坑了我半天</p>
+</blockquote>
+<h2 id="条件判断"><a class="markdownIt-Anchor" href="#条件判断"></a> 条件判断</h2>
+<h3 id="cmp-指令"><a class="markdownIt-Anchor" href="#cmp-指令"></a> CMP 指令</h3>
+<p>和 <code>SUB</code> 进行的运算一样, 但不改变操作数寄存器的值</p>
+<h3 id="test-指令"><a class="markdownIt-Anchor" href="#test-指令"></a> TEST 指令</h3>
+<p>和 <code>AND</code> 进行的运算一样, 但不改变操作数寄存器的值</p>
+<p>所以 <code>test %rax, %rax</code> 这类两个操作数相同的指令可以用来<strong>判断其值的正负</strong></p>
+<h2 id="switch-的实现"><a class="markdownIt-Anchor" href="#switch-的实现"></a> switch 的实现</h2>
+<p>在分支较多且数值较为接近的时候<strong>可能</strong>会采用跳转表</p>
+<h1 id="过程控制"><a class="markdownIt-Anchor" href="#过程控制"></a> 过程控制</h1>
+<p>//TODO</p>
 
-<div class="text-center">
-  <div class="about-info">
-    <div class="about-name">Horizon</div>
-    <div class="about-intro">学生, CTF新手, 对很多事情都感兴趣 <del>但是总是三分钟热度</del></div>
-    <div class="about-icons">
-      
-        
-        
-        
-        <a target="_blank" rel="noopener" href="https://github.com/HorizonChaser" class="
-           hint--bottom hint--rounded"
-           aria-label=GitHub
-        >
-          <i class="iconfont icon-github-fill" aria-hidden="true"></i>
-          
-        </a>
-      
-        
-        
-        
-        <a href="mailto:ahorizonchaser@gmail.com" class="
-           hint--bottom hint--rounded"
-           aria-label=Gmail
-        >
-          <i class="iconfont icon-mail" aria-hidden="true"></i>
-          
-        </a>
-      
-        
-        
-        
-        <a target="_blank" rel="noopener" href="https://t.me/horizon_chaser" class="
-           hint--bottom hint--rounded"
-           aria-label=Telegram
-        >
-          <i class="iconfont icon-telegram-fill" aria-hidden="true"></i>
-          
-        </a>
-      
-        
-        
-        
-        <a target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=121530984" class="
-           hint--bottom hint--rounded"
-           aria-label=网易云音乐
-        >
-          <i class="iconfont icon-wangyiyunyinle" aria-hidden="true"></i>
-          
-        </a>
-      
-    </div>
-  </div>
-</div>
-<div class="mt-5 markdown-body">
-  <p>基于Hexo, <a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid">Fluid</a>主题</p>
-<p>代码高亮:</p>
-<p>​    prismjs, soy主题, 开启行数显示</p>
-<p>头像来源:</p>
-<p>​    <a target="_blank" rel="noopener" href="https://www.pixiv.net/artworks/47522338">Prinz Eugen by Hiten from Pixiv</a></p>
-
-</div>
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+                    
+                      <a class="hover-with-bg" href="/tags/CSAPP/">CSAPP</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/13/CS-Network-Review-and-Summary/">
+                        <span class="hidden-mobile">CS Network Review and Summary</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    function loadGitalk() {
+      addScript('https://cdn.staticfile.org/blueimp-md5/2.13.0/js/md5.min.js');
+      addScript('https://cdn.staticfile.org/gitalk/1.6.2/gitalk.min.js', function () {
+        var gitalk = new Gitalk({
+          clientID: '3d9d508e12d68104e7e7',
+          clientSecret: 'cb441dd114622850fa93f43abcfe8c0497154926',
+          repo: 'horizonchaser.github.io',
+          owner: 'HorizonChaser',
+          admin: "HorizonChaser",
+          id: md5(location.pathname),
+          language: 'zh-CN',
+          labels: ["Gitalk"],
+          perPage: 20,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
+        });
+        gitalk.render('gitalk-container');
+      });
+    }
+    waitElementVisible('gitalk-container', loadGitalk);
+  </script>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -407,6 +587,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 3,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -414,7 +619,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "About Horizon&nbsp;",
+        "CSAPP 第三章 笔记&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
@@ -457,6 +662,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
