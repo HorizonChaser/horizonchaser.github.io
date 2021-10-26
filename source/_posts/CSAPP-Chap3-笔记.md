@@ -285,6 +285,8 @@ python -c 'print ("\xeb\x1e\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x5e\xba\x05\
 
 > 大概是还有保护措施没有关掉......
 
+> 关于 x86 系列栈指针寄存器的演进历史, 参见 [StackOverflow](https://stackoverflow.com/a/31425990/13804105)
+
 ## 对抗措施
 
 //TODO
