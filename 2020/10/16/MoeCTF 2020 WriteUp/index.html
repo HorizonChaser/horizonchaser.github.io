@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年12月22日 周三 0:48:28
+                  Last Update @ 2021年12月22日 周三 0:59:40
                 
               </p>
             
@@ -279,7 +279,7 @@
 <p>Misc入门题, 附件profession.jpg. 打开, 发现是专业团队, 仔细一看右下角有黑白色块, 觉得可能是在jpg文件末端添加了内容.</p>
 <p>使用binwalk分析, 未发现隐写的文件, 有点疑惑.</p>
 <p>使用16进制编辑器打开, 发现flag就在末尾😂</p>
-<p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/image-20201012183142831.png" srcset="/img/loading.gif" alt="welcome"></p>
+<p><img src="MoeCTF%202020%20WriteUp/image-20201012183142831.png" srcset="/img/loading.gif" alt="welcome"></p>
 <h3 id="hey-fxck-you"><a class="markdownIt-Anchor" href="#hey-fxck-you"></a> hey fxck you!</h3>
 <p>附件good_morning_my_neighbors.png, 表达了诚挚的问候(大雾)</p>
 <p>除了最下方被裁剪了, 图片没有发现什么问题, 使用binwalk分析, 发现末尾有一个zip文件, 解压得fk u.txt, 内容如下</p>
@@ -521,7 +521,7 @@ v42 <span class="token operator">=</span> <span class="token number">0</span><sp
 <p><s>是挺需要耐心的…</s></p>
 <h3 id="protection"><a class="markdownIt-Anchor" href="#protection"></a> Protection</h3>
 <p>下载文件, 根据提示, 程序应该是加了个壳… 检测一下, 是一个UPX的壳, 根据 <a target="_blank" rel="noopener" href="https://linux.die.net/man/1/upx">UPX的文档</a>, 我们可以使用<code>-d</code>选项解压缩.</p>
-<p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/image-20201017215239958.png" srcset="/img/loading.gif" alt="image-20201017215239958"></p>
+<p><img src="MoeCTF%202020%20WriteUp/image-20201017215239958.png" srcset="/img/loading.gif" alt="image-20201017215239958"></p>
 <p>去掉UPX壳之后, 又到了IDA大显神通的时间了. 我们得到main函数的伪代码如下.</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> __cdecl <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>envp<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -620,7 +620,7 @@ using namespace std<span class="token punctuation">;</span>
 <p>我们知道, 不同字母在同一文本的出现概率并不相同(至少对于包括英文在内的大多数语言如此). 那么, 我们可以定义一个叫做"重合指数"的量, 来量化两个串之间的对应程度.</p>
 <p>设x=x1x2…xn是一条n个字母的串，x的重合指数记为CI，定义为x中两个随机元素相同的概率。</p>
 <p>而通过对大量的英文文本进行统计, 我们得到每个字母的出现概率如下.</p>
-<p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/b91e4e49c93c2db554922f8ecb22f56a_thumb.png" srcset="/img/loading.gif" alt="【密码学】维吉尼亚密码加解密原理及其破解算法Java实现"></p>
+<p><img src="MoeCTF%202020%20WriteUp/b91e4e49c93c2db554922f8ecb22f56a_thumb.png" srcset="/img/loading.gif" alt="【密码学】维吉尼亚密码加解密原理及其破解算法Java实现"></p>
 <p>由此, 我们可以得到英文文本的重合指数为 <strong>0.065</strong>(我们假定明文的重合指数大致也是这个值).</p>
 <p>结合之前的"维吉尼亚密码相当于多个凯撒密码的组合"这一特点, 我们就可以把长为n的密文先分为m组, 按照列的形式组成一个 m*(n/m)的矩阵, 然后检测每一组密文的重合指数.</p>
 <p>如果m正好就是密钥的长度, 那么每一组的CI值应当大致也是0.065; 如果不是的话, 那么分组后的密文看起来应该很随机. 而对于一个随机串, 重合指数约为 <strong>0.038</strong>.</p>
@@ -633,7 +633,7 @@ using namespace std<span class="token punctuation">;</span>
 <h2 id="android"><a class="markdownIt-Anchor" href="#android"></a> Android</h2>
 <p>其实Android我之前也没接触过, 这里就简单的记录一下简单的Android逆向过程吧.</p>
 <p><s>“你之前到底接触过啥??” “啥也没接触过…”</s></p>
-<p><img src="/2020/10/16/MoeCTF%202020%20WriteUp/5442499-52cadc4569714633.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="MoeCTF%202020%20WriteUp/5442499-52cadc4569714633.png" srcset="/img/loading.gif" alt="img"></p>
 <p>借一张图(来自<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d29c37dda256">这里</a>)说明apk的打包过程.</p>
 <p>我们看到, java文件在编译后会生成class文件, 然后与其他第三方的class文件与library一起组成dex文件, 然后再经过一些处理, zip压缩, 签名, 对齐后就是我们看到的apk文件了.</p>
 <p>所以, 我们可以直接将apk按照zip解压, 然后获得dex文件. 不过dex是Android的Dalvik虚拟机专用的字节码文件, 我们得把它转成标准的java虚拟机的class文件.</p>

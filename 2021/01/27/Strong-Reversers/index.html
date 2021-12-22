@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2021年12月22日 周三 0:48:28
+                  Last Update @ 2021年12月22日 周三 0:59:40
                 
               </p>
             
@@ -555,7 +555,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 <p><s>还真是晚上做的…</s></p>
 <h2 id="0x02-buuctf-firmware"><a class="markdownIt-Anchor" href="#0x02-buuctf-firmware"></a> 0x02 BUUCTF Firmware</h2>
 <p>看题目是一个路由器固件的分析, 用 binwalk 扫描一下, 得到了文件系统的位置, 也就是提取出来的<code>120200.squashfs</code>文件.</p>
-<p><img src="/2021/01/27/Strong-Reversers/image-20210210230050652.png" srcset="/img/loading.gif" alt="image-20210210230050652"></p>
+<p><img src="Strong-Reversers/image-20210210230050652.png" srcset="/img/loading.gif" alt="image-20210210230050652"></p>
 <p>用 <code>file</code>命令确认了一下, 是 squashfs 文件系统, 不过不能直接用<code>mount</code>挂载 - 可能是因为有 lzma 压缩了…</p>
 <p>在网上搜索了一下, 得知 <a target="_blank" rel="noopener" href="https://github.com/mirror/firmware-mod-kit">firmware-mod-kit</a> (简称 fmk) 可以从 squashfs 提取文件, 不过在我这里总是提取失败, 或者返回成功但是啥也没提取出来… 也许是因为 fmk 从 2013 年之后没更新过吧…</p>
 <p>最后用 <code>unsquashfs</code> 提取成功 (是 <a target="_blank" rel="noopener" href="https://github.com/plougher/squashfs-tools">squashfs-tools</a> 下的一个工具), 在 <code>/tmp</code>下发现一个 <code>backdoor</code> 文件…<s>还好这名字挺明显…</s></p>
@@ -581,7 +581,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 <h2 id="000-hacking-with-google-2020-beginner"><a class="markdownIt-Anchor" href="#000-hacking-with-google-2020-beginner"></a> 0×00 Hacking with Google 2020 Beginner</h2>
 <p>已经理解了整个过程, 不过还没有拿到 flag… angr 也没有跑出来正确的结果, 可能是没能正确识别 SSE 的函数…?</p>
 <p>跑出来是这样…</p>
-<p><img src="/2021/01/27/Strong-Reversers/image-20210305182332107.png" srcset="/img/loading.gif" alt="image-20210305182332107"></p>
+<p><img src="Strong-Reversers/image-20210305182332107.png" srcset="/img/loading.gif" alt="image-20210305182332107"></p>
 <p>等我再研究研究, 或许直接用 z3 会比较适合?</p>
 <h2 id="001-vn-公开赛-csre"><a class="markdownIt-Anchor" href="#001-vn-公开赛-csre"></a> 0×01 V&amp;N 公开赛 CSRe</h2>
 <p>看题目是混淆过的 C#, 查了一下, 可以用 <a target="_blank" rel="noopener" href="https://github.com/CodingGuru1989/de4dot">detdot的修改版</a> 反混淆, 之后再用 <a target="_blank" rel="noopener" href="https://github.com/icsharpcode/ILSpy">ILSpy</a> 反编译.</p>
