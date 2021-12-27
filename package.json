@@ -14,7 +14,7 @@
   "dependencies": {
     "@upupming/hexo-renderer-markdown-it-plus": "^2.0.2",
     "hexo": "^5.4.0",
-    "hexo-bilibili-bangumi": "^1.6.2",
+    "hexo-bilibili-bangumi": "^1.6.3",
     "hexo-deployer-git": "^3.0.0",
     "hexo-filter-github-emojis": "^3.0.4",
     "hexo-generator-archive": "^1.0.0",
