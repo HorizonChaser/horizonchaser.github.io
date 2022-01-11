@@ -25,10 +25,10 @@ jobs:
         ref: ${{ env.DEPLOY_BRANCH }}
         path: .deploy_git
 
-    - name: Use Node.js ${{ matrix.node_version }}
+    - name: Use Node.js 14
       uses: actions/setup-node@v1
       with:
-        version: ${{ matrix.node_version }}
+        node-version: '14'
 
     - name: Setup hexo env
       env:
