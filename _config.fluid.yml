@@ -452,6 +452,12 @@ links:
       image: '/img/luoq1an.png'
     }
     - {
+      title: '七年',
+      intro: 'AKA 年雨冰季, 巨犇',
+      link: 'https://xduqinian.github.io/',
+      image: '/img/xduqinian.jpg'
+    }
+    - {
       title: 'XDSEC',
       intro: '西安电子科技大学信息安全协会',
       link: 'https://www.xdsec.org/',
