@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Horizon">
   <meta name="keywords" content="">
-  <title>Horizon Blog</title>
+  <title>计算机安全导论 复习笔记 - Horizon Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -194,8 +194,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-17 06:25" pubdate>
-         2022年3月17日 周四 6:25:13
+      <time datetime="2022-03-10 16:57" pubdate>
+         2022年3月10日 周四 16:57:36
       </time>
     </span>
   
@@ -206,7 +206,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8.4k 字
+      9k 字
     </span>
   
 
@@ -216,7 +216,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       大概 
-      102
+      110
        分钟
     </span>
   
@@ -254,16 +254,141 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">计算机安全导论 复习笔记</h1>
             
               <p class="note note-info">
                 
-                  Last Update @ 2022年3月17日 周四 6:25:13
+                  Last Update @ 2022年3月21日 周一 10:12:37
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="计算机安全导论-复习与总结"><a class="markdownIt-Anchor" href="#计算机安全导论-复习与总结"></a> 计算机安全导论 复习与总结</h1>
+              <ul>
+<li><a href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA-%E5%A4%8D%E4%B9%A0%E4%B8%8E%E6%80%BB%E7%BB%93">计算机安全导论 复习与总结</a>
+<ul>
+<li><a href="#chapter-1-%E7%AE%80%E4%BB%8B">Chapter 1 简介</a>
+<ul>
+<li><a href="#11-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">1.1 基本概念</a>
+<ul>
+<li><a href="#imp-cia-%E6%9C%BA%E5%AF%86%E6%80%A7-%E5%AE%8C%E6%95%B4%E6%80%A7%E5%92%8C%E5%8F%AF%E7%94%A8%E6%80%A7-p2">[IMP] C.I.A.: 机密性, 完整性和可用性 [P2]</a></li>
+<li><a href="#imp-aaa-%E4%BF%9D%E8%AF%81-%E7%9C%9F%E5%AE%9E%E6%80%A7-%E5%8C%BF%E5%90%8D-p6">[IMP] A.A.A.: 保证, 真实性, 匿名 [P6]</a></li>
+<li><a href="#%E5%A8%81%E8%83%81%E4%B8%8E%E6%94%BB%E5%87%BB">威胁与攻击</a></li>
+<li><a href="#%E5%8D%81%E5%A4%A7%E5%AE%89%E5%85%A8%E5%8E%9F%E5%88%99">十大安全原则</a></li>
+</ul>
+</li>
+<li><a href="#imp-12-%E5%9B%9B%E7%A7%8D%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9-p11">[IMP] 1.2 四种访问控制模型的优缺点 [P11]</a></li>
+<li><a href="#imp-13-%E5%8A%A0%E5%AF%86%E7%9A%84%E6%A6%82%E5%BF%B5-p16">[IMP] 1.3 加密的概念 [P16]</a>
+<ul>
+<li><a href="#%E5%8A%A0%E5%AF%86">加密</a></li>
+<li><a href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D">数字签名</a></li>
+<li><a href="#%E5%8A%A0%E5%AF%86%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0">加密散列函数</a></li>
+<li><a href="#%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6">数字证书</a></li>
+</ul>
+</li>
+<li><a href="#14-%E5%8F%AF%E7%94%A8%E6%80%A7-%E5%AF%86%E7%A0%81-%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86-%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6">1.4 可用性 密码 字典攻击原理 社会工程学</a>
+<ul>
+<li><a href="#%E5%8F%AF%E7%94%A8%E6%80%A7">可用性</a></li>
+<li><a href="#imp-%E5%AF%86%E7%A0%81%E5%8F%8A%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86-p27">[IMP] 密码及字典攻击原理 [P27]</a></li>
+<li><a href="#%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B">社会工程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#chapter-2-%E7%89%A9%E7%90%86%E5%AE%89%E5%85%A8">Chapter 2 物理安全</a>
+<ul>
+<li><a href="#%E5%BC%B9%E5%AD%90%E9%94%81">弹子锁</a></li>
+<li><a href="#%E7%94%B5%E5%AD%90%E5%AF%86%E7%A0%81%E9%94%81">电子密码锁</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E6%8A%80%E6%9C%AF">常用的身份验证技术</a></li>
+<li><a href="#imp-sim-%E5%8D%A1%E5%AE%89%E5%85%A8%E5%8F%8A%E6%8C%91%E6%88%98%E5%93%8D%E5%BA%94%E5%8D%8F%E8%AE%AE">[IMP] SIM 卡安全及挑战响应协议</a></li>
+<li><a href="#%E9%92%88%E5%AF%B9%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%9B%B4%E6%8E%A5%E6%94%BB%E5%87%BB">针对计算机的直接攻击</a></li>
+<li><a href="#%E9%92%88%E5%AF%B9-atm-%E7%9A%84%E6%94%BB%E5%87%BB">针对 ATM 的攻击</a></li>
+</ul>
+</li>
+<li><a href="#chapter-3-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E5%85%A8">Chapter 3 操作系统的安全</a>
+<ul>
+<li><a href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%AE%89%E5%85%A8">进程的安全</a></li>
+<li><a href="#%E5%86%85%E5%AD%98%E5%92%8C%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E5%85%A8">内存和文件系统的安全</a></li>
+<li><a href="#imp-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%AE%89%E5%85%A8-p97">[IMP] 应用程序安全 [P97]</a></li>
+</ul>
+</li>
+<li><a href="#chapter-4-%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6">Chapter 4 恶意软件</a>
+<ul>
+<li><a href="#%E5%86%85%E9%83%A8%E6%94%BB%E5%87%BB%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E5%BC%8F">内部攻击的基本方式</a></li>
+<li><a href="#imp-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%97%85%E6%AF%92-%E6%9C%A8%E9%A9%AC%E5%92%8C%E8%A0%95%E8%99%AB-p120">[IMP] 计算机病毒, 木马和蠕虫 [P120]</a></li>
+<li><a href="#rootkits">Rootkits</a></li>
+<li><a href="#%E9%9B%B6%E6%97%A5%E6%94%BB%E5%87%BB">零日攻击</a></li>
+<li><a href="#%E5%83%B5%E5%B0%B8%E7%BD%91%E7%BB%9C">僵尸网络</a></li>
+<li><a href="#%E5%85%A5%E4%BE%B5%E9%9A%90%E7%A7%81%E8%BD%AF%E4%BB%B6">入侵隐私软件</a></li>
+</ul>
+</li>
+<li><a href="#imp-chapter-5-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8-i">[IMP] Chapter 5 网络安全 I</a>
+<ul>
+<li><a href="#%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E5%88%86%E5%B1%82">互联网的分层</a></li>
+<li><a href="#%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%9A%84%E6%A6%82%E5%BF%B5">以太网的概念</a></li>
+<li><a href="#imp-arp-%E6%AC%BA%E9%AA%97-p155">[IMP] ARP 欺骗 [P155]</a></li>
+<li><a href="#imp-ip-%E5%8D%8F%E8%AE%AE%E4%B8%8E-icmp-%E5%8D%8F%E8%AE%AE-p157">[IMP] IP 协议与 ICMP 协议 [P157]</a></li>
+<li><a href="#imp-ip-%E5%9C%B0%E5%9D%80%E6%AC%BA%E9%AA%97-p161">[IMP] IP 地址欺骗 [P161]</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E5%97%85%E6%8E%A2">数据包嗅探</a></li>
+<li><a href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE">传输层协议</a></li>
+<li><a href="#imp-tcp-%E4%BC%9A%E8%AF%9D%E5%8A%AB%E6%8C%81-p168">[IMP] TCP 会话劫持 [P168]</a></li>
+<li><a href="#imp-%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB-p170">[IMP] 拒绝服务攻击 [P170]</a></li>
+<li><a href="#imp-ip-%E5%9C%B0%E5%9D%80%E5%9B%9E%E6%BA%AF-p175">[IMP] IP 地址回溯 [P175]</a></li>
+</ul>
+</li>
+<li><a href="#imp-chapter-6-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8-ii-p180">[IMP] Chapter 6 网络安全 II [P180]</a>
+<ul>
+<li><a href="#imp-dns-%E5%8E%9F%E7%90%86-p183">[IMP] DNS 原理 [P183]</a></li>
+<li><a href="#imp-dns-%E6%94%BB%E5%87%BB-p185">[IMP] DNS 攻击 [P185]</a></li>
+<li><a href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%8A%80%E6%9C%AF">防火墙技术</a></li>
+<li><a href="#imp-%E9%9A%A7%E9%81%93-p195">[IMP] 隧道 [P195]</a>
+<ul>
+<li><a href="#imp-%E5%AE%89%E5%85%A8%E7%9A%84-shell-p196">[IMP] 安全的 Shell [P196]</a></li>
+<li><a href="#imp-ipsec-p197">[IMP] IPSec [P197]</a></li>
+</ul>
+</li>
+<li><a href="#%E8%99%9A%E6%8B%9F%E4%B8%93%E7%94%A8%E7%BD%91%E7%BB%9C">虚拟专用网络</a></li>
+<li><a href="#%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B">入侵检测</a></li>
+</ul>
+</li>
+<li><a href="#chapter-7-web-%E5%AE%89%E5%85%A8">Chapter 7 Web 安全</a>
+<ul>
+<li><a href="#%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC">网络钓鱼</a></li>
+<li><a href="#imp-xss-%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC-p239">[IMP] XSS (跨站脚本) [P239]</a></li>
+<li><a href="#%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">跨站请求伪造</a></li>
+<li><a href="#imp-sql-%E6%B3%A8%E5%85%A5-p251">[IMP] SQL 注入 [P251]</a></li>
+</ul>
+</li>
+<li><a href="#chapter-8-%E5%8A%A0%E5%AF%86-%E5%AF%86%E7%A0%81%E5%AD%A6%E6%A6%82%E8%BF%B0">Chapter 8 加密 (密码学概述)</a>
+<ul>
+<li><a href="#%E5%AF%B9%E5%AF%86%E7%A0%81%E7%B3%BB%E7%BB%9F%E6%94%BB%E5%87%BB%E7%9A%84%E7%B1%BB%E5%9E%8B">对密码系统攻击的类型</a></li>
+<li><a href="#%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81%E5%92%8C%E9%A2%91%E7%8E%87%E5%88%86%E6%9E%90">替换密码和频率分析</a></li>
+<li><a href="#%E4%B8%80%E6%AC%A1%E4%B8%80%E5%AF%86-otp">一次一密 (OTP)</a></li>
+<li><a href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81">分组密码</a></li>
+<li><a href="#aes-%E7%AE%97%E6%B3%95">AES 算法</a></li>
+<li><a href="#%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E7%9A%84%E6%93%8D%E4%BD%9C%E6%A8%A1%E5%BC%8F">分组密码的操作模式</a></li>
+<li><a href="#%E6%B5%81%E5%AF%86%E7%A0%81">流密码</a></li>
+<li><a href="#%E6%95%B0%E8%AE%BA%E5%9F%BA%E7%A1%80">数论基础</a>
+<ul>
+<li><a href="#%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95-%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95">辗转相除法 (欧几里得算法)</a></li>
+<li><a href="#%E8%B4%B9%E9%A9%AC%E5%AE%9A%E7%90%86%E5%92%8C%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86">费马定理和欧拉定理</a></li>
+</ul>
+</li>
+<li><a href="#rsa-%E7%AE%97%E6%B3%95">RSA 算法</a></li>
+<li><a href="#%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0">散列函数 (哈希函数)</a></li>
+<li><a href="#%E7%94%9F%E6%97%A5%E6%94%BB%E5%87%BB">生日攻击</a></li>
+<li><a href="#%E6%B6%88%E6%81%AF%E8%AE%A4%E8%AF%81%E7%A0%81">消息认证码</a></li>
+</ul>
+</li>
+<li><a href="#chapter-9-%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%AE%9E%E8%B7%B5">Chapter 9 安全模型与实践</a>
+<ul>
+<li><a href="#kerberos-%E6%9E%B6%E6%9E%84">Kerberos 架构</a></li>
+<li><a href="#kerberos-%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81">Kerberos 身份验证</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="计算机安全导论-复习与总结"><a class="markdownIt-Anchor" href="#计算机安全导论-复习与总结"></a> 计算机安全导论 复习与总结</h1>
 <h2 id="chapter-1-简介"><a class="markdownIt-Anchor" href="#chapter-1-简介"></a> Chapter 1 简介</h2>
 <h3 id="11-基本概念"><a class="markdownIt-Anchor" href="#11-基本概念"></a> 1.1 基本概念</h3>
 <h4 id="imp-cia-机密性-完整性和可用性-p2"><a class="markdownIt-Anchor" href="#imp-cia-机密性-完整性和可用性-p2"></a> [IMP] C.I.A.: 机密性, 完整性和可用性 [P2]</h4>
@@ -950,6 +1075,8 @@
 <ul>
 <li>公钥: 选择两个大素数 p q, 令 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mi>p</mi><mo>×</mo><mi>q</mi></mrow><annotation encoding="application/x-tex">n = p \times q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span></span></span></span>, 选择一个和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Φ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Phi(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Φ</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 互质的数 e, 计算 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><msup><mi>e</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mspace></mspace><mspace width="0.6666666666666666em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><mi mathvariant="normal">Φ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">d = e^{-1} \mod \Phi(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6666666666666666em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">Φ</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>, 则公钥为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>e</mi><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(e, n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">e</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 对
 <ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Φ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><msub><mi>p</mi><mn>1</mn></msub></mfrac><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><msub><mi>p</mi><mn>2</mn></msub></mfrac><mo stretchy="false">)</mo><mo>⋯</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>1</mn><msub><mi>p</mi><mi>n</mi></msub></mfrac><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Phi(n) = n(1-\frac{1}{p_1})(1-\frac{1}{p_2})\cdots(1-\frac{1}{p_n})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Φ</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.326216em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.326216em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.326216em;vertical-align:-0.481108em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span>, 其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>p</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">p_n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>为 n 的质因子</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>×</mo><mi>e</mi><mspace></mspace><mspace width="0.6666666666666666em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><mi mathvariant="normal">Φ</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mo>≡</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">d\times e \mod \Phi(n) \equiv 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">e</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6666666666666666em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">Φ</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≡</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
 <li>n 的二进制长度即为位数, 通常为 1024 或者 2048 位</li>
 <li>实际中 e 常取值 65537</li>
 </ul>
@@ -1057,6 +1184,17 @@ s-65,47,-65,47z M834 80H400000v40H845z"></path></svg></span></span></span><span 
             <div>
               <div class="post-metas mb-3">
                 
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AE%89%E5%85%A8%E5%AF%BC%E8%AE%BA/">计算机安全导论</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a>
+                    
+                  </div>
                 
               </div>
               
@@ -1293,7 +1431,7 @@ s-65,47,-65,47z M834 80H400000v40H845z"></path></svg></span></span></span><span 
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "计算机安全导论 复习笔记&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
