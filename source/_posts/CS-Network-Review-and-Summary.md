@@ -402,7 +402,7 @@ CC-BY-**NC**-SA 4.0
 
 ## Chapter 2 网络模型
 
-![Model](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210616190804.png)
+![Model](20210616190804.png)
 
 ### OSI模型 [IMP]
 
