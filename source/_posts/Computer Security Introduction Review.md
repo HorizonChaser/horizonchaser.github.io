@@ -221,7 +221,7 @@ tags:
 
 上下弹子在同一直线上, 但并没连接在一起. 通过钥匙让所有上下弹子中间的缝隙对齐即可开锁. 详细的看书.
 
-![弹子锁](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20211230231444.png)
+![弹子锁](20211230231444.png)
 
 ### 电子密码锁
 
@@ -251,7 +251,7 @@ RFID: 无线射频识别, 自带一个线圈作为天线, 可用于商品标签�
 
 > A3 A5 A8 均为非公开的算法 (违背了开放式设计的原则), 较旧的 SIM 卡通过 COMP128-1 实现它们, 但均已被逆向工程攻破; 新版的称为 COMP128-2, 尚未被攻破
 
-![GSM](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20220102171006.png)
+![GSM](20220102171006.png)
 
 ### 针对计算机的直接攻击
 
@@ -349,7 +349,7 @@ RFID: 无线射频识别, 自带一个线圈作为天线, 可用于商品标签�
 
 IP 的五层和 OSI 的七层, 直接看计网的图
 
-![Layers](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210616190804.png)
+![Layers](20210616190804.png)
 
 ### 以太网的概念
 
@@ -735,7 +735,7 @@ $F_k = 0.5$, 即成功概率达到一半时, 代入上式得 $$k \approx 1.17 \s
 
 ### Kerberos 身份验证
 
-![Kerberos Authentication](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20220106183216.png)
+![Kerberos Authentication](20220106183216.png)
 
 - 除了最开始的请求没有明文信息, 不过这个请求本身也不包含敏感信息
 - 所有的票据都有时间戳, 可以抗重放攻击

@@ -725,7 +725,7 @@ $$B_{min} = c \times N \times \frac{1}{r}$$
 
 ### 线路编码 [IMP]
 
-![编码方案](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210615193504.png)
+![编码方案](20210615193504.png)
 
 #### NRZ (不归零编码)
 
@@ -733,7 +733,7 @@ $$B_{min} = c \times N \times \frac{1}{r}$$
 
 ##### NRZ-L 与 NRZ-I
 
-![NRZ-L/I](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210615193725.png)
+![NRZ-L/I](20210615193725.png)
 
 NRZ-L 中电平决定位的值, NRZ-I 中每一个周期的电平和前一个周期相比是否反转决定位的值
 
@@ -746,13 +746,13 @@ NRZ-L 中电平决定位的值, NRZ-I 中每一个周期的电平和前一个周
 
 #### RZ (归零编码)
 
-![RZ](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210615194511.png)
+![RZ](20210615194511.png)
 
 在位中间信号必定归零, $r = \frac{1}{2}$
 
 #### 曼彻斯特编码 和 差分曼彻斯特编码
 
-![Manchester/DiffMan](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210615194637.png)
+![Manchester/DiffMan](20210615194637.png)
 
 - 双向编码, 也称作两项编码
 - 均有自同步信号
@@ -771,7 +771,7 @@ NRZ-L 中电平决定位的值, NRZ-I 中每一个周期的电平和前一个周
 
 #### AMI 和 伪三元编码
 
-![AMI/Pseudo](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210615195837.png)
+![AMI/Pseudo](20210615195837.png)
 
 - 双极性编码, 使用三种电平 (正, 负, 零)
 - 0 和 1 其中一个电平固定为0, 另一个由交替的正负电平表示
@@ -785,7 +785,7 @@ NRZ-L 中电平决定位的值, NRZ-I 中每一个周期的电平和前一个周
 
 #### 线路编码 总结
 
-![Summary](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210615200432.png)
+![Summary](20210615200432.png)
 
 > Biphase: 双向, 即曼彻斯特编码 和 差分曼彻斯特编码
 
@@ -856,7 +856,7 @@ Delta 调制同样存在量化误差, 但是远小于 PCM 的误差.
 
 ## Chapter 5 模拟传输
 
-![AnalogTrans](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210616184347.png)
+![AnalogTrans](20210616184347.png)
 
 ### 比特率和波特率 [IMP]
 
@@ -871,7 +871,7 @@ $$r = \log_2{L},\  L为信号元素的种类数$$
 
 ### 幅移键控 (ASK) [IMP]
 
-![ASK](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210616184439.png)
+![ASK](20210616184439.png)
 
 - 仅通过改变信号的振幅来生成信号元素, 不改变频率 相位等
 - 若仅有两个振幅, 则称为 BASK (二进制 ASK) 或 OOK (开关键控)
@@ -880,7 +880,7 @@ $$r = \log_2{L},\  L为信号元素的种类数$$
 
 ### 频移键控 (FSK) [IMP]
 
-![FSK](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210616184518.png)
+![FSK](20210616184518.png)
 
 - 使用多种频率, 一种振幅, 若相邻两信号元素间相位一致, 称为"相干", 反之为"非相干"
 - 若仅有两个频率, 则称为 BFSK (二进制 FSK)
@@ -890,7 +890,7 @@ $$r = \log_2{L},\  L为信号元素的种类数$$
 
 #### 二进制PSK (BPSK)
 
-![BPSK](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210616185709.png)
+![BPSK](20210616185709.png)
 
 - 仅使用两个不同的相位: $0 \degree$ 和 $180 \degree$
 - 带宽: $B=(1+d) \times S$, 和 BASK 一样, 但抗噪声能力更强
@@ -903,7 +903,7 @@ $$r = \log_2{L},\  L为信号元素的种类数$$
 
 #### 星座图
 
-![Constellation](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210616190219.png)
+![Constellation](20210616190219.png)
 
 - X 轴为同相成分振幅, Y 轴为正交成分振幅
 - 与原点距离为总振幅, 与 X 轴正半轴夹角为相位
@@ -936,7 +936,7 @@ AM, FM, PM, 提纲完全没提, 自己看一下书 p99 ~ p102 就行
   
 #### 同步 TDM
 
-![S-TDM](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617185037.png)
+![S-TDM](20210617185037.png)
 
 - 每个输入的数据流划分为多个数据单元
 - 所有输入的数据单元按照顺序组合成一个帧, 每个数据单元占一个**时隙**
@@ -966,7 +966,7 @@ T 线路的欧洲版本, 原理与概念相同, 但是容量不同
 
 #### 统计 TDM
 
-![Stat-TDM](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617191722.png)
+![Stat-TDM](20210617191722.png)
 
 - 循环检测每个输入, 若某输入无数据则不分配时隙 -> 避免了空时隙
 - 每个时隙需要添加地址, $n$ 个输入需要 $\log_2{n}$ 位地址
@@ -981,7 +981,7 @@ T 线路的欧洲版本, 原理与概念相同, 但是容量不同
 
 #### 跳频扩频 (FHSS)
 
-![FHSS](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617192640.png)
+![FHSS](20210617192640.png)
 
 - 通过伪随机噪声在频率表中选择一个频率
 - 在一段时间内 (称为跳), 将源信号使用选出的频率进行调制
@@ -990,7 +990,7 @@ T 线路的欧洲版本, 原理与概念相同, 但是容量不同
 
 #### 直接序列扩频
 
-![DSSS](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617193003.png)
+![DSSS](20210617193003.png)
 
 - 使用固定的扩频码对源信号进行调制
 - 每个数据位使用扩频码的n位代替
@@ -1011,14 +1011,14 @@ T 线路的欧洲版本, 原理与概念相同, 但是容量不同
 
 #### 同轴线缆
 
-![CCable](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617210129.png)
+![CCable](20210617210129.png)
 
 - 仅使用中央的一根实心 (或者是多股绞合的金属丝) 导体, 外面有金属屏蔽层
 - 使用 BNC 连接器, 带宽高但衰减大
 
 #### 光纤
 
-![Fiber](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617210412.png)
+![Fiber](20210617210412.png)
 
 - 通过传导光实现通信, 带宽很大
 - 分为单模光纤和多模光纤
@@ -1027,7 +1027,7 @@ T 线路的欧洲版本, 原理与概念相同, 但是容量不同
 
 ### 无线通信
 
-![ElecSpectrum](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617210557.png)
+![ElecSpectrum](20210617210557.png)
 
 - 无线电波: 3 kHz ~ 1 GHz, 大部分全方向
 - 微波: 1 GHz ~ 300 GHz, 指向性强, 使用单向天线 (定向天线)
@@ -1037,9 +1037,9 @@ T 线路的欧洲版本, 原理与概念相同, 但是容量不同
 
 ### 电路交换 [IMP]
 
-![CircuitExchange](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617211550.png)
+![CircuitExchange](20210617211550.png)
 
-![CircuitExchange](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617211411.png)
+![CircuitExchange](20210617211411.png)
 
 - 在物理层, 由物理链路连接的一组交换机组成, 链路会被复用
 - 在通信开始前要预先建立通道, 在整个传输过程中一直保留, 直到最后的拆除阶段
@@ -1052,9 +1052,9 @@ T 线路的欧洲版本, 原理与概念相同, 但是容量不同
 
 ### 数据报交换 [IMP]
 
-![DatagramExchange](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617212244.png)
+![DatagramExchange](20210617212244.png)
 
-![DatagramExchange](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617212312.png)
+![DatagramExchange](20210617212312.png)
 
 - 在网络层, **是因特网在网络层采用的交换方法**
 - 不需要建立连接, 也不需要拆除 (也被称作无连接网络, 交换机不保存连接信息), 按需分配资源, 先来先服务
@@ -1083,13 +1083,13 @@ T 线路的欧洲版本, 原理与概念相同, 但是容量不同
 
 设源端为 A, 目的端为 B
 
-![setup1](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617214418.png)
+![setup1](20210617214418.png)
 
 1. A 向交换机 1 发送建立连接帧
 2. 交换机1从端口1接受帧, 分配一个VCI, 通过路由表得到应发往端口3, 但输出VCI留空
 3. 交换机2~3相同
 
-![setup2](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210617214431.png)
+![setup2](20210617214431.png)
 
 4. B 收到建立连接帧, 给从 A 来的帧分配一个VCI, 发给交换机3
 5. 交换机3接受, 得到表中缺失的VCI项, 发给交换机2
@@ -1194,7 +1194,7 @@ T 线路的欧洲版本, 原理与概念相同, 但是容量不同
 
 3. 当没有可移下来的位时, 计算完成, 余数即为结果
 
-![CRC](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210618003752.png)
+![CRC](20210618003752.png)
 
 ##### 多项式除法
 
@@ -1282,7 +1282,7 @@ $n$ 位的校验和计算方法
 
 ##### 停止等待 ARQ [IMP]
 
-![S-W ARQ](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210618154248.png)
+![S-W ARQ](20210618154248.png)
 
 - 发送方每发送一个帧就停止, 启动一个计时器并等待接收方发送 ACK
 - 若计时器超时且未收到 ACK, 发送方自动重发
@@ -1290,15 +1290,15 @@ $n$ 位的校验和计算方法
 
 ##### 后退 N 帧 ARQ [IMP]
 
-![B-N ARQ Window](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210618154515.png)
+![B-N ARQ Window](20210618154515.png)
 
 > 发送方窗口变化
 
-![B-N ARQ Window](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210618154554.png)
+![B-N ARQ Window](20210618154554.png)
 
 > 接收方窗口变化
 
-![B-N ARQ](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210618154629.png)
+![B-N ARQ](20210618154629.png)
 
 > 流程图
 
@@ -1315,15 +1315,15 @@ $n$ 位的校验和计算方法
 
 ##### 选择性重复 ARQ [IMP]
 
-![S ARQ SW](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210618155458.png)
+![S ARQ SW](20210618155458.png)
 
 > 发送方窗口
 
-![S ARQ RW](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210618155523.png)
+![S ARQ RW](20210618155523.png)
 
 > 接收方窗口
 
-![S ARQ](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210618155553.png)
+![S ARQ](20210618155553.png)
 
 > 流程图
 
@@ -1348,7 +1348,7 @@ $n$ 位的校验和计算方法
 - 分为主-从类型的 正常相应方式 和地位平等的 异步平衡方式
 - 有三种帧: 信息帧 (I-frame), 管理帧 (S-frame) 和无编号帧 (U-frame)
 
-![HDLC Frame](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210618160740.png)
+![HDLC Frame](20210618160740.png)
 
 > FCS: Frame CheckSum, 帧校验和
 > Flag: 标记
@@ -1375,7 +1375,7 @@ $n$ 位的校验和计算方法
 
 ##### 纯 ALOHA
 
-![Pure ALHOA](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619000926.png)
+![Pure ALHOA](20210619000926.png)
 
 - 各站点之间直接竞争, 有数据直接发送, 不管其他站点
 - 每帧都有定时器, 超时未收到接收方的确认帧则等待一段时间 (称为补偿时间 $T_B$) 后重发
@@ -1388,7 +1388,7 @@ $n$ 位的校验和计算方法
 
 ##### 时隙 ALOHA
 
-![Slot ALOHA](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619000952.png)
+![Slot ALOHA](20210619000952.png)
 
 - 将时间按照 $T_{fr}$ 分割为时隙, 必须在时隙开始发送帧
 - 脆弱时间: $T_{fr}$
@@ -1403,7 +1403,7 @@ $n$ 位的校验和计算方法
 
 ##### 持续方法
 
-![Persistent](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619001045.png)
+![Persistent](20210619001045.png)
 
 - 定义了站点发现通道繁忙时的检测策略
 - 1-持续: 不停地侦听直到介质空闲
@@ -1415,7 +1415,7 @@ $n$ 位的校验和计算方法
 
 > CD: Collision Detect, 冲突检测
 
-![CSMA/CD](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619001132.png)
+![CSMA/CD](20210619001132.png)
 
 - 发送的时候同时检测是否发生冲突
 - 冲突说明至少有两个站点在发送, 会导致介质上的能量水平高于正常值 (检测冲突的方法)
@@ -1429,7 +1429,7 @@ $n$ 位的校验和计算方法
 - 在无线网络等情况下, 冲突不会显著改变介质的能量水平, 故不能检测冲突
 - 使用帧间间隔, 竞争窗口和确认三种方法来实现避免冲突
 
-![Methods](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619001153.png)
+![Methods](20210619001153.png)
 
 ###### 帧间间隔 (IFS)
 
@@ -1481,7 +1481,7 @@ $n$ 位的校验和计算方法
 
 #### 帧格式 [IMP]
 
-![Frame](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619205903.png)
+![Frame](20210619205903.png)
 
 - 由七部分组成: 前导符, 起始帧分界符(SFD), 目的地址, 源地址, 长度/类型, 数据, CRC-32
 - 帧的最小长度: 512 位, 对应数据为 46 字节 (不包含前导符和SFD)
@@ -1594,7 +1594,7 @@ $n$ 位的校验和计算方法
 - 同 BSS 内可以直接通信, 但不同 BSS 下不能直接通信
 - 移动站点可以同时属于多个 BSS
 
-![ESS](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619230019.png)
+![ESS](20210619230019.png)
 
 #### 站点类型
 
@@ -1604,7 +1604,7 @@ $n$ 位的校验和计算方法
 
 ### MAC层 [IMP]
 
-![MAC Layer](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619230043.png)
+![MAC Layer](20210619230043.png)
 
 #### 分布式协调功能 (DCF)
 
@@ -1615,7 +1615,7 @@ $n$ 位的校验和计算方法
   - 由于隐藏站点可能无法检测冲突
   - 站点间距导致的信号衰减可能会使两端无法检测到对方的冲突
 
-![CSMA/CA Flowchart](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619230422.png)
+![CSMA/CA Flowchart](20210619230422.png)
 
 #### 点协调功能 (PCF)
 
@@ -1627,7 +1627,7 @@ $n$ 位的校验和计算方法
 
 #### 帧格式 [IMP]
 
-![Frame](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619230923.png)
+![Frame](20210619230923.png)
 
 - 9 个字段: 帧控制 (FC), D, 地址 (有四个), 序列号, 帧主题, FCS (帧校验和, CRC-32)
 - 三种类型: 管理帧, 控制帧, 数据帧
@@ -1637,7 +1637,7 @@ $n$ 位的校验和计算方法
 - 四种情况: 站点间, AP 间, 站点和 AP 之间 (双向)
 - 通过 FC 中的 To DS (发往分布式系统, 差不多就是某个 AP) 和 From DS (来自分布式系统, 如前) 确定具体情况, 见下
 
-![Situations](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619231301.png)
+![Situations](20210619231301.png)
 
 1. 该帧既不是发往一个分布式系统，也不是来自于一个分布式系统，而是从同一个BSS中的一个站点到另外一个站点，不经过DS，需要给原始发送站回送ACK帧
 2. 该帧来自于分布式系统，从一个AP来，到一个站点去，ACK帧将被回送给AP
@@ -1647,14 +1647,14 @@ $n$ 位的校验和计算方法
 
 #### 隐藏站点 [IMP]
 
-![Hidden Station](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619231646.png)
+![Hidden Station](20210619231646.png)
 
 - 若 B -> A, C -> A, 由于 B C 之间相互隐藏, 不知道对方存在, 因此会造成冲突
 - 解决方法: 使用握手帧 (RTS 和 CTS, 请求发送和允许发送)
 
 #### 暴露站点 [IMP]
 
-![Exposed Station](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210619232117.png)
+![Exposed Station](20210619232117.png)
 
 - 若 A -> B, 开始后 C -> D, 由于前者干扰导致后者必须等待 (即使 D 不在 A 范围)
 
@@ -1845,9 +1845,9 @@ $n$ 位的校验和计算方法
   - 属于同一报文的所有信元沿着同一条虚电路传输, 同时保持先后次序
 - 通过 VPI 和 VCI 来定义一个虚连接, 前者定义特定 VP, 后者定义特定 VC
 
-![TP VP VC](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210620160805.png)
+![TP VP VC](20210620160805.png)
 
-![TP VP VC](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210620160831.png)
+![TP VP VC](20210620160831.png)
 
 > TP VP VC 间关系
 
@@ -1868,7 +1868,7 @@ $n$ 位的校验和计算方法
 - 划分为五类: A ~ E
 - 通过第一个字节最开始有几个 1 决定分类
 
-![Class](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621005156.png)
+![Class](20210621005156.png)
 
 |类|块的个数|块长度|应用类型|
 |----- |------|------|-----|
@@ -1948,9 +1948,9 @@ $n$ 位的校验和计算方法
 
 #### 数据报格式 [IMP]
 
-![ipv4](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621151131.png)
+![ipv4](20210621151131.png)
 
-![ipv4](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621150443.png)
+![ipv4](20210621150443.png)
 
 > HLEN: Header Length, 头部长度
 
@@ -2001,7 +2001,7 @@ $n$ 位的校验和计算方法
 
 #### 数据报格式 [IMP]
 
-![ipv6](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621195449.png)
+![ipv6](20210621195449.png)
 
 - **基本头部固定 40 字节, 选项等放在扩展头部**
 - 版本: IPv6 的版本号, 为 6
@@ -2056,7 +2056,7 @@ $n$ 位的校验和计算方法
 
 #### 分组格式
 
-![arp](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210621205627.png)
+![arp](20210621205627.png)
 
 - 硬件类型: 指定了物理网络的类型, 比如以太网
 - 协议类型: 指定了使用逻辑地址的高层协议的类型, 比如 IPv4
@@ -2149,7 +2149,7 @@ $n$ 位的校验和计算方法
 
 对网络的其他部分, 将连续的地址块儿通过缩短掩码的长度来将其是为一个地址
 
-![aggregate](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622000936.png)
+![aggregate](20210622000936.png)
 
 > 在 R2 看来, 组织 1~4 是同一个地址, 只占一个条目, 只需要转发到 m0 接口就行
 > 至于组织 1~4 之间各自的分组转发, 由 R1 负责
@@ -2160,7 +2160,7 @@ $n$ 位的校验和计算方法
 - 这样每次都从掩码最长的开始匹配
 - 而掩码最长意味着最"精确", 范围最小
 
-![longest match](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622001259.png)
+![longest match](20210622001259.png)
 
 > 假如目标地址为 140.24.7.200 (属于组织 4) 的分组到达 R2, 会从 m1 转发出去 (第一条的掩码最长且成功匹配)
 > 之后经过 R3 到达组织 4
@@ -2193,13 +2193,13 @@ $n$ 位的校验和计算方法
 
 #### UDP 的熟知端口 [IMP]
 
-![udp port](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622002944.png)
+![udp port](20210622002944.png)
 
 > 可以看书 p468
 
 #### 数据报结构
 
-![header](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622003102.png)
+![header](20210622003102.png)
 
 - 头部固定 8 字节
 - 源端口号: 如果是源主机是客户机, 则大概率是临时端口号; 服务器则大概率是熟知端口号
@@ -2210,7 +2210,7 @@ $n$ 位的校验和计算方法
 
 #### 校验和 [IMP]
 
-![p header](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622003643.png)
+![p header](20210622003643.png)
 
 - 实际上是**伪头部**与头部共同的校验和
 - 伪头部: 类似 IP 头部的最后 12 字节, 见上图
@@ -2239,7 +2239,7 @@ $n$ 位的校验和计算方法
 
 > TCP 中的分组被称为"段"
 
-![tcp segment](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622004618.png)
+![tcp segment](20210622004618.png)
 
 - 源端口地址, 目的端口地址: 和 UDP 中的一样
 - 序列号 seq: 段中数据的第一个字节的序号, 连接建立时双方各自通过随机数产生初始序列号 (ISN)
@@ -2259,7 +2259,7 @@ $n$ 位的校验和计算方法
 
 #### 连接的建立
 
-![tcp establish](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622104459.png)
+![tcp establish](20210622104459.png)
 
 - 采用三次握手
   - 客户端: SYN (仅包含己方 seq, SYN 段不携带数据, 但占用序列号)
@@ -2276,7 +2276,7 @@ $n$ 位的校验和计算方法
 
 ##### 三次挥手
 
-![3 wave](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622105351.png)
+![3 wave](20210622105351.png)
 
 - 主动方: FIN, 可携带数据, 占用一个序列号
 - 被动方: FIN+ACK, 可携带数据, 占用一个序列号
@@ -2284,7 +2284,7 @@ $n$ 位的校验和计算方法
 
 ##### 四次挥手
 
-![4 wave](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622105644.png)
+![4 wave](20210622105644.png)
 
 - 主动方: FIN
 - 被动方: FIN+ACK
@@ -2321,10 +2321,10 @@ $n$ 位的校验和计算方法
   - 暂时保留, 直到缺少的那个段到达
   - TCP 保证提交给进程的数据是顺序正确的
 
-![RTO](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622111546.png)
+![RTO](20210622111546.png)
 > 重传计时器超时重传
 
-![3 ACK](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622111612.png)
+![3 ACK](20210622111612.png)
 > 快速重传, 重传时 seq 301~400 的计时器还没到时, 但依然重传
 
 #### TCP 拥塞控制
@@ -2351,7 +2351,7 @@ $n$ 位的校验和计算方法
       - cwnd = 阈值 (部分实现是 阈值+3)
       - 开始拥塞避免阶段 (就是加性增加)
 
-![c-control](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622114245.png)
+![c-control](20210622114245.png)
 
 > SS: 慢速启动 (指数增长)
 > AI: 加性增加
@@ -2360,7 +2360,7 @@ $n$ 位的校验和计算方法
 
 #### TCP 流量控制 [IMP]
 
-![Window](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622124037.png)
+![Window](20210622124037.png)
 
 - 采用滑动窗口, 面向字节, 又称信贷滑窗协议
 - 窗口大小为头部中的接收窗口 (rwnd) 与 cwnd 较小值
@@ -2528,10 +2528,10 @@ $n$ 位的校验和计算方法
 
 #### 报文结构 [IMP]
 
-![req](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622141444.png)
+![req](20210622141444.png)
 > 请求报文的结构
 
-![res](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210622141525.png)
+![res](20210622141525.png)
 > 响应报文的结构
 
 - 都是纯文本的

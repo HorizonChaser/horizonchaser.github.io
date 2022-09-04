@@ -146,7 +146,7 @@ tags:
 
 另外, 当参数为数组, 或函数中使用到了参数的地址, 这些参数也会保存在栈中, 例如下图
 
-![demo](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210903234411.png)
+![demo](20210903234411.png)
 
 > 根据书上的说法, 当参数为结构体时也会将其保存到栈中, 但根据测试对于较为简单的结构体, 编译器仍然会将其保存到寄存器中, 参见 [GodBolt的结果](https://godbolt.org/z/ax8666aGn)
 
@@ -224,7 +224,7 @@ int main() {
 
 用 `gdb` 调试一下, 确认我们的猜想对不对. 首先, `gdb -q ./victim` 启动调试, 然后 `b *main`, 在 `main` 函数的第一条指令下断点, `r` 开始运行.
 
-![gdb pic](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210904201815.png)
+![gdb pic](20210904201815.png)
 
 可以看到, 这时 `RSP = 0x7fffffffde58`, 在下一条 `RBP` 入栈后会变为 `de50`. 用 `p &name[0]` 查看 `name` 数组的地址, 发现是 `0x7fffffffde10`. 由此确认, 返回地址与 `name[0]` 之间的长度为 `0x48 == 72` 字节.
 
@@ -281,7 +281,7 @@ python -c 'print ("\xeb\x1e\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x5e\xba\x05\
 
 这次尝试以失败告终, 已经确定成功覆盖了栈中之前保存的 `RBP`, 理论上返回地址也已经被覆盖, 但是就是无法跳转, 报告段错误... 看下图的 `EBP` 的值 (为了确定不是 x86-64 的问题, 使用 x86 重新编译了一次, shellcode 也重新写了一份)
 
-![failed-try😭](https://gitee.com/HorizonChaser/pic-bed/raw/master/img/20210904214722.png)
+![failed-try😭](20210904214722.png)
 
 > 大概是还有保护措施没有关掉......
 
