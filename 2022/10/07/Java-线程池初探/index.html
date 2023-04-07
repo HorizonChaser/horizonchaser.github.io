@@ -17,10 +17,33 @@
   <meta name="description" content="">
   <meta name="author" content="Horizon">
   <meta name="keywords" content="">
-  <title>归档 - Horizon Blog</title>
+  <title>Java 线程池初探 - Horizon Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+        
+        
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/themes/prism-coy.min.css" />
+      
+        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.6.2/gitalk.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -50,7 +73,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -156,7 +179,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.jpg') no-repeat center center;
+         style="background: url('/img/index_banner.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -164,6 +187,51 @@
             <span class="h2" id="subtitle">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-10-07 17:24" pubdate>
+         2022年10月7日 周五 17:24:38
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      0 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      大概 
+      1
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -176,109 +244,119 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Java 线程池初探</h1>
+            
+              <p class="note note-info">
                 
+                  Last Update @ 2023年4月7日 周五 7:35:23
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%80%BB%E7%BB%93/">
+                        <span class="hidden-mobile">设计模式 总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
 
-<div class="list-group">
-  <p class="h4">共计 12 篇文章</p>
-  <hr>
-  
-    
-      
-      <p class="h5">2022</p>
-    
-    <a href="/2022/10/07/Java-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%88%9D%E6%8E%A2/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Java 线程池初探</span>
-      <time style="float: right;">10-07</time>
-    </a>
-  
-    
-    <a href="/2022/08/28/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%80%BB%E7%BB%93/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">设计模式 总结</span>
-      <time style="float: right;">08-28</time>
-    </a>
-  
-    
-    <a href="/2022/03/10/Computer%20Security%20Introduction%20Review/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">计算机安全导论 复习笔记</span>
-      <time style="float: right;">03-10</time>
-    </a>
-  
-    
-      
-      <p class="h5">2021</p>
-    
-    <a href="/2021/10/26/%E9%95%BF%E5%AE%89%E6%9D%AF2021-Writeup/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">长安杯2021 Writeup</span>
-      <time style="float: right;">10-26</time>
-    </a>
-  
-    
-    <a href="/2021/08/31/CSAPP-Chap3-%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">CSAPP 第三章 笔记</span>
-      <time style="float: right;">08-31</time>
-    </a>
-  
-    
-    <a href="/2021/06/13/CS-Network-Review-and-Summary/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">CS Network Review and Summary</span>
-      <time style="float: right;">06-13</time>
-    </a>
-  
-    
-    <a href="/2021/02/01/2021-Weekly-Reverse/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">BUUCTF Weekly Reverse</span>
-      <time style="float: right;">02-01</time>
-    </a>
-  
-    
-    <a href="/2021/01/29/2021-Weekly-Misc/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">2021 Weekly Misc</span>
-      <time style="float: right;">01-29</time>
-    </a>
-  
-    
-    <a href="/2021/01/27/Strong-Reversers/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">2021 Weekly Reverse</span>
-      <time style="float: right;">01-27</time>
-    </a>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/10/16/MoeCTF-2020-Write-Up-for-RxEncode/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MoeCTF 2020 Write Up for RxEncode</span>
-      <time style="float: right;">10-16</time>
-    </a>
-  
-</div>
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    function loadGitalk() {
+      addScript('https://cdn.staticfile.org/blueimp-md5/2.13.0/js/md5.min.js');
+      addScript('https://cdn.staticfile.org/gitalk/1.6.2/gitalk.min.js', function () {
+        var gitalk = new Gitalk({
+          clientID: '3d9d508e12d68104e7e7',
+          clientSecret: 'cb441dd114622850fa93f43abcfe8c0497154926',
+          repo: 'horizonchaser.github.io',
+          owner: 'HorizonChaser',
+          admin: "HorizonChaser",
+          id: md5(location.pathname),
+          language: 'zh-CN',
+          labels: ["Gitalk"],
+          perPage: 20,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false
+        });
+        gitalk.render('gitalk-container');
+      });
     }
+    waitElementVisible('gitalk-container', loadGitalk);
   </script>
 
 
-
-              </div>
-            </div>
-          </div>
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -406,6 +484,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 3,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -413,7 +516,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "Java 线程池初探&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 65,
@@ -428,6 +531,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -441,6 +559,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
