@@ -431,7 +431,7 @@ links:
   banner_img: /img/default.jpg
   banner_img_height: 60  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
-  subtitle:  # 打字机内容
+  subtitle:  'Horizon 的很棒的朋友们!' # 打字机内容
   items:  # intro 与 image 可省略
     - {
       title: '赤道企鹅',
@@ -468,4 +468,10 @@ links:
       intro: '一言, 或者说一句话',
       link: 'https://hitokoto.cn/',
       image: '/img/hitokoto.png'
+    }
+    - {
+      title: 'Kit0444',
+      intro: 'AKA Kithium, Kit, Andr, 高技术力而且会画画!',
+      link: 'https://kithium.me/index.html',
+      image: '/img/kit.jpg'
     }
