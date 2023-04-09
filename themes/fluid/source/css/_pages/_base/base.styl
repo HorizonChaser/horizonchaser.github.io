@@ -1,17 +1,20 @@
 @import "_widget/*"
 
-html, body
+html
   font-size $font-size
-  font-family $font-family
+  letter-spacing $letter-spacing
 
-html, body, header
+html, body
   height 100%
+  font-family $font-family
   overflow-wrap break-word
 
 body
   transition color .2s ease-in-out, background-color .2s ease-in-out
   background-color var(--body-bg-color)
   color var(--text-color)
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
 
   a
     color var(--text-color)
@@ -24,7 +27,14 @@ body
       text-decoration none
       transition color .2s ease-in-out, background-color .2s ease-in-out
 
-img[srcset]
+code
+  color inherit
+
+table
+  font-size inherit
+  color var(--post-text-color)
+
+img[lazyload]
   object-fit cover
 
 *[align="left"]
@@ -35,3 +45,24 @@ img[srcset]
 
 *[align="right"]
   text-align right
+
+::-webkit-scrollbar
+  width 6px
+  height 6px
+
+::-webkit-scrollbar-thumb
+  background-color var(--scrollbar-color)
+  border-radius 6px
+
+  &:hover
+    background-color var(--scrollbar-hover-color)
+
+::-webkit-scrollbar-corner
+  background-color transparent
+
+label
+  margin-bottom 0
+
+i.iconfont
+  font-size 1em
+  line-height 1

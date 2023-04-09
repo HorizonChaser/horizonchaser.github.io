@@ -1,23 +1,65 @@
-footer > div > div:not(:first-child)
-  margin .25rem 0
-  font-size .85rem
+.footer-inner
+  padding 3rem 0 1rem 0
+  text-align center
 
-.statistics > span:last-child
-  margin 0 .35rem
+  & > div:not(:first-child)
+    margin .25rem 0
+    font-size .85rem
 
-a.beian-police
-  position relative
-  overflow hidden
-  display inline-flex
-  align-items center
-  justify-content center
+  .statistics
+    display flex
+    flex-direction row
+    justify-content center
 
-  img
-    margin 0 3px
-    width 18px
-    height 18px
+    & > span
+      flex 1
+      margin 0 .25rem
 
-@media (max-width: 320px)
-  a.beian-police
-    span.beian-police-sep
-      display none
+    & > *:nth-last-child(2):first-child
+      text-align right
+
+    & > *:nth-last-child(2):first-child ~ *
+      text-align left
+
+  .beian
+    display flex
+    flex-direction row
+    justify-content center
+
+    & > *
+      margin 0 .25rem
+
+  .beian-police
+    position relative
+    overflow hidden
+    display inline-flex
+    align-items center
+    justify-content left
+
+    img
+      margin-right 3px
+      width 1rem
+      height 1rem
+      margin-bottom .1rem
+
+  @media (max-width: 424px)
+    .statistics
+      flex-direction column
+
+      & > *:nth-last-child(2):first-child
+        text-align center
+
+      & > *:nth-last-child(2):first-child ~ *
+        text-align center
+
+    .beian
+      flex-direction column
+
+      .beian-police
+        justify-content center
+
+      & > *:nth-last-child(2):first-child
+        text-align center
+
+      & > *:nth-last-child(2):first-child ~ *
+        text-align center

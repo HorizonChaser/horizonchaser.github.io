@@ -7,6 +7,12 @@ page.banner_img_height = page.banner_img_height || theme.page.banner_img_height
 page.banner_mask_alpha = page.banner_mask_alpha || theme.page.banner_mask_alpha
 %>
 
-<div class="page-content">
+<article class="page-content">
   <%- page.content %>
-</div>
+
+  <%- inject_point('pageComments') %>
+</article>
+
+<% if (/<[^>]+? class="[^"]*?markdown-body[^"]*?"/gims.test(page.content)) { %>
+  <%- partial('_partials/markdown-plugins') %>
+<% } %>

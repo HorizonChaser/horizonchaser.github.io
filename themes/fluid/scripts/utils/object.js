@@ -1,7 +1,15 @@
 'use strict';
 
-const isObject = (item) => {
-  return item && typeof item === 'object' && !Array.isArray(item);
+const isObject = (obj) => {
+  return obj && typeof obj === 'object' && !Array.isArray(obj);
+};
+
+const isNotEmptyObject = (obj) => {
+  return obj && typeof obj === 'object' && Object.getOwnPropertyNames(obj).length !== 0;
+};
+
+const isEmptyObject = (obj) => {
+  return !isNotEmptyObject(obj);
 };
 
 const merge = (target, ...sources) => {
@@ -21,6 +29,8 @@ const merge = (target, ...sources) => {
 };
 
 module.exports = {
-  isObject: isObject,
-  merge   : merge
+  isObject,
+  isNotEmptyObject,
+  isEmptyObject,
+  merge
 };
