@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://horizonchaser.github.io/2021/01/29/2021-Weekly-Misc/2021-Weekly-Misc/image-20210204223726793.png">
 <meta property="og:image" content="https://horizonchaser.github.io/2021/01/29/2021-Weekly-Misc/2021-Weekly-Misc/image-20210204224728710.png">
 <meta property="article:published_time" content="2021-01-29T15:17:16.000Z">
-<meta property="article:modified_time" content="2023-04-09T13:43:11.957Z">
+<meta property="article:modified_time" content="2023-04-09T13:58:03.964Z">
 <meta property="article:author" content="Horizon">
 <meta property="article:tag" content="Misc">
 <meta property="article:tag" content="BUUCTF">
@@ -58,8 +58,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -255,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          3.7k 字
         
       </span>
     
@@ -407,47 +405,7 @@
 <p>对于 <a target="_blank" rel="noopener" href="https://dev.gameres.com/Program/Visual/Other/PNGFormat.htm">PNG 图片</a>, 宽高这些信息保存在 IHDR 中, 作为第一个数据块紧接着文件头之后. IHDR 长 13 字节, 定义如下.</p>
 <p><img src="2021-Weekly-Misc/image-20210201205712447.png" srcset="/img/loading.gif" lazyload alt="image-20210201205712447"></p>
 <p>所以在已知 CRC 的前提下, 我们可以通过在合理范围内穷举宽高的方式得到正确的大小.</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#coding=utf-8</span>
-<span class="token keyword">import</span> zlib
-<span class="token keyword">import</span> struct
-<span class="token keyword">import</span> time
-
-time_start<span class="token operator">=</span>time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token comment">#读文件</span>
-<span class="token builtin">file</span> <span class="token operator">=</span> <span class="token string">'1.png'</span>  <span class="token comment">#注意，1.png图片要和脚本在同一个文件夹下哦~</span>
-fileRead <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">,</span><span class="token string">'rb'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-data <span class="token operator">=</span> <span class="token builtin">bytearray</span><span class="token punctuation">(</span>fileRead<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">:</span><span class="token number">29</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">#0xCh ~ 0x1Ch</span>
-crc32key <span class="token operator">=</span> <span class="token builtin">eval</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>fileRead<span class="token punctuation">[</span><span class="token number">29</span><span class="token punctuation">:</span><span class="token number">33</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'\\x'</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"b'"</span><span class="token punctuation">,</span><span class="token string">'0x'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"'"</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token comment">#crc32key = 0xCBD6DF8A #补上0x，copy hex value</span>
-<span class="token comment">#data = bytearray(b'\x49\x48\x44\x52\x00\x00\x01\xF4\x00\x00\x01\xF1\x08\x06\x00\x00\x00')  #hex下copy grep hex</span>
-n <span class="token operator">=</span> <span class="token number">4095</span> <span class="token comment">#理论上0xffffffff,但考虑到屏幕实际，0x0fff就差不多了</span>
-
-<span class="token keyword">for</span> w <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token comment">#高和宽一起爆破</span>
-    width <span class="token operator">=</span> <span class="token builtin">bytearray</span><span class="token punctuation">(</span>struct<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token string">'&gt;i'</span><span class="token punctuation">,</span> w<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">#q为8字节，i为4字节，h为2字节</span>
-    <span class="token keyword">for</span> h <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        height <span class="token operator">=</span> <span class="token builtin">bytearray</span><span class="token punctuation">(</span>struct<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token string">'&gt;i'</span><span class="token punctuation">,</span> h<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            data<span class="token punctuation">[</span>x<span class="token operator">+</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> width<span class="token punctuation">[</span>x<span class="token punctuation">]</span>
-            data<span class="token punctuation">[</span>x<span class="token operator">+</span><span class="token number">8</span><span class="token punctuation">]</span> <span class="token operator">=</span> height<span class="token punctuation">[</span>x<span class="token punctuation">]</span>
-            <span class="token comment">#print(data)</span>
-        crc32result <span class="token operator">=</span> zlib<span class="token punctuation">.</span>crc32<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
-        <span class="token keyword">if</span> crc32result <span class="token operator">==</span> crc32key<span class="token punctuation">:</span>
-            <span class="token comment">#print("Correct Width: " + (width) + "\nCorrect Height: " + (height))</span>
-            <span class="token comment">#写文件</span>
-            newpic <span class="token operator">=</span> <span class="token builtin">bytearray</span><span class="token punctuation">(</span>fileRead<span class="token punctuation">)</span>
-            <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                newpic<span class="token punctuation">[</span>x<span class="token operator">+</span><span class="token number">16</span><span class="token punctuation">]</span> <span class="token operator">=</span> width<span class="token punctuation">[</span>x<span class="token punctuation">]</span>
-                newpic<span class="token punctuation">[</span>x<span class="token operator">+</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> height<span class="token punctuation">[</span>x<span class="token punctuation">]</span>
-            fw <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token operator">+</span><span class="token string">'_CRC_Repaired.png'</span><span class="token punctuation">,</span><span class="token string">'wb'</span><span class="token punctuation">)</span><span class="token comment">#保存副本</span>
-            fw<span class="token punctuation">.</span>write<span class="token punctuation">(</span>newpic<span class="token punctuation">)</span>
-            fw<span class="token punctuation">.</span>close
-
-time_end<span class="token operator">=</span>time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"CRC Repaired, saved as "</span> <span class="token operator">+</span> <span class="token builtin">file</span><span class="token operator">+</span><span class="token string">'_CRC_Repaired.png'</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Time Used: '</span><span class="token punctuation">,</span><span class="token builtin">str</span><span class="token punctuation">(</span>time_end<span class="token operator">-</span>time_start<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'s'</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#coding=utf-8</span><br><span class="hljs-keyword">import</span> zlib<br><span class="hljs-keyword">import</span> struct<br><span class="hljs-keyword">import</span> time<br><br>time_start=time.time()<br><br><span class="hljs-comment">#读文件</span><br>file = <span class="hljs-string">'1.png'</span>  <span class="hljs-comment">#注意，1.png图片要和脚本在同一个文件夹下哦~</span><br>fileRead = <span class="hljs-built_in">open</span>(file,<span class="hljs-string">'rb'</span>).read()<br>data = <span class="hljs-built_in">bytearray</span>(fileRead[<span class="hljs-number">12</span>:<span class="hljs-number">29</span>]) <span class="hljs-comment">#0xCh ~ 0x1Ch</span><br>crc32key = <span class="hljs-built_in">eval</span>(<span class="hljs-built_in">str</span>(fileRead[<span class="hljs-number">29</span>:<span class="hljs-number">33</span>]).replace(<span class="hljs-string">'\\x'</span>,<span class="hljs-string">''</span>).replace(<span class="hljs-string">"b'"</span>,<span class="hljs-string">'0x'</span>).replace(<span class="hljs-string">"'"</span>,<span class="hljs-string">''</span>))<br><br><span class="hljs-comment">#crc32key = 0xCBD6DF8A #补上0x，copy hex value</span><br><span class="hljs-comment">#data = bytearray(b'\x49\x48\x44\x52\x00\x00\x01\xF4\x00\x00\x01\xF1\x08\x06\x00\x00\x00')  #hex下copy grep hex</span><br>n = <span class="hljs-number">4095</span> <span class="hljs-comment">#理论上0xffffffff,但考虑到屏幕实际，0x0fff就差不多了</span><br><br><span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<span class="hljs-comment">#高和宽一起爆破</span><br>    width = <span class="hljs-built_in">bytearray</span>(struct.pack(<span class="hljs-string">'&gt;i'</span>, w))<span class="hljs-comment">#q为8字节，i为4字节，h为2字节</span><br>    <span class="hljs-keyword">for</span> h <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n):<br>        height = <span class="hljs-built_in">bytearray</span>(struct.pack(<span class="hljs-string">'&gt;i'</span>, h))<br>        <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>            data[x+<span class="hljs-number">4</span>] = width[x]<br>            data[x+<span class="hljs-number">8</span>] = height[x]<br>            <span class="hljs-comment">#print(data)</span><br>        crc32result = zlib.crc32(data)<br>        <span class="hljs-keyword">if</span> crc32result == crc32key:<br>            <span class="hljs-comment">#print("Correct Width: " + (width) + "\nCorrect Height: " + (height))</span><br>            <span class="hljs-comment">#写文件</span><br>            newpic = <span class="hljs-built_in">bytearray</span>(fileRead)<br>            <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>                newpic[x+<span class="hljs-number">16</span>] = width[x]<br>                newpic[x+<span class="hljs-number">20</span>] = height[x]<br>            fw = <span class="hljs-built_in">open</span>(file+<span class="hljs-string">'_CRC_Repaired.png'</span>,<span class="hljs-string">'wb'</span>)<span class="hljs-comment">#保存副本</span><br>            fw.write(newpic)<br>            fw.close<br><br>time_end=time.time()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">"CRC Repaired, saved as "</span> + file+<span class="hljs-string">'_CRC_Repaired.png'</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">'Time Used: '</span>,<span class="hljs-built_in">str</span>(time_end-time_start),<span class="hljs-string">'s'</span>)<br><br></code></pre></td></tr></tbody></table></figure>
 <p>查看修复后的图片, 得到 flag.</p>
 <p><code>flag{66666}</code></p>
 <h3 id="bjdctf-2nd-real_easybaba"><a class="markdownIt-Anchor" href="#bjdctf-2nd-real_easybaba"></a> [BJDCTF 2nd] Real_EasyBaBa</h3>
@@ -820,8 +778,6 @@ time_end<span class="token operator">=</span>time<span class="token punctuation"
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 

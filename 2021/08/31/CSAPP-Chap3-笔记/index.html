@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://horizonchaser.github.io/2021/08/31/CSAPP-Chap3-%E7%AC%94%E8%AE%B0/20210904201815.png">
 <meta property="og:image" content="https://horizonchaser.github.io/2021/08/31/CSAPP-Chap3-%E7%AC%94%E8%AE%B0/20210904214722.png">
 <meta property="article:published_time" content="2021-08-31T21:41:22.000Z">
-<meta property="article:modified_time" content="2023-04-09T13:43:12.113Z">
+<meta property="article:modified_time" content="2023-04-09T13:58:04.128Z">
 <meta property="article:author" content="Horizon">
 <meta property="article:tag" content="读书笔记">
 <meta property="article:tag" content="CSAPP">
@@ -47,8 +47,6 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
@@ -244,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.6k 字
+          4.8k 字
         
       </span>
     
@@ -255,7 +253,7 @@
         
         
         
-          28 分钟
+          29 分钟
         
       </span>
     
@@ -459,32 +457,7 @@
 <p>在 x86-64 中, 前六个参数可以通过寄存器传递, 从左到右顺序为 <code>rdi rsi rdx rcx r8~r15</code></p>
 <p><code>rbx rbp r12~r15</code> 为<strong>被调用者保存的寄存器</strong>, 也就是被调用者需要保证在被调用前后这些寄存器的值不变; 其他所有寄存器 (<code>rbp</code> 除外) 为调用者保存的寄存器, 也就是说, 被调用者可以修改这些寄存器的值, 因此调用者在调用其他函数前应先由自己保护好它们.</p>
 <p>如果参数多于六个 <s>(什么函数会这么写啊…)</s>, 剩下的参数按照从左到右的顺序依次压入栈中 (记得保证对齐), 然后再把调用者的返回地址入栈即可.</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">     Bottom
-     (HIGH)
-+---------------+---------+
-|               |         v
-|  parameters   |     Frame of
-|     7~n       |      caller
-+---------------+         ^
-|  return addr  |         |
-+---------------+---------+
-|               |         |
-|    saved      |         |
-|  regesiters   |         |
-|  (rbp rbx..)  |         |
-|               |
-+---------------+         |
-|               |         v
-|  local vars   |     Frame of
-|               |      callee
-+---------------+         ^
-|               |         |
-| para for next |         |
-|   function    |         |
-|               |         |
-+---------------+---------+
-      Top
-     (LOW)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs plain">     Bottom<br>     (HIGH)<br>+---------------+---------+<br>|               |         v<br>|  parameters   |     Frame of<br>|     7~n       |      caller<br>+---------------+         ^<br>|  return addr  |         |<br>+---------------+---------+<br>|               |         |<br>|    saved      |         |<br>|  regesiters   |         |<br>|  (rbp rbx..)  |         |<br>|               |<br>+---------------+         |<br>|               |         v<br>|  local vars   |     Frame of<br>|               |      callee<br>+---------------+         ^<br>|               |         |<br>| para for next |         |<br>|   function    |         |<br>|               |         |<br>+---------------+---------+<br>      Top<br>     (LOW)<br></code></pre></td></tr></tbody></table></figure>
 <p>另外, 当参数为数组, 或函数中使用到了参数的地址, 这些参数也会保存在栈中, 例如下图</p>
 <p><img src="20210903234411.png" srcset="/img/loading.gif" lazyload alt="demo"></p>
 <blockquote>
@@ -497,93 +470,20 @@
 <p>我们精心构造的这种输入, 一般被称作 <code>shellcode</code>.</p>
 <h3 id="一个失败的例子"><a class="markdownIt-Anchor" href="#一个失败的例子"></a> 一个失败的例子</h3>
 <p>来看下面一段代码.</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">char</span> name<span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"What's your name?"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello, %s!\n"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> {<br>    <span class="hljs-type">char</span> name[<span class="hljs-number">64</span>];<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"What's your name?"</span>);<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%s"</span>, name);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"Hello, %s!\n"</span>, name);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>}<br></code></pre></td></tr></tbody></table></figure>
 <p>在这里, <code>scanf</code> 会接受一个字符串的输入, 并保存到 <code>name</code> 中. 如果输入足够长, 那就可以将返回地址覆盖掉. 把它另存为 <code>victim.c</code>, 编译一下, 拿 <code>objdump</code> 反汇编看看.</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">0000000000401156 &lt;main&gt;:
-  401156:       f3 0f 1e fa             endbr64 
-  40115a:       55                      push   rbp
-  40115b:       48 89 e5                mov    rbp,rsp
-  40115e:       48 83 ec 40             sub    rsp,0x40
-  401162:       48 8d 45 c0             lea    rax,[rbp-0x40]
-  401166:       48 89 c6                mov    rsi,rax
-  401169:       48 8d 3d 94 0e 00 00    lea    rdi,[rip+0xe94]        # 402004 &lt;_IO_stdin_used+0x4&gt;
-  401170:       b8 00 00 00 00          mov    eax,0x0
-  401175:       e8 e6 fe ff ff          call   401060 &lt;__isoc99_scanf@plt&gt;
-  40117a:       48 8d 45 c0             lea    rax,[rbp-0x40]
-  40117e:       48 89 c6                mov    rsi,rax
-  401181:       48 8d 3d 7f 0e 00 00    lea    rdi,[rip+0xe7f]        # 402007 &lt;_IO_stdin_used+0x7&gt;
-  401188:       b8 00 00 00 00          mov    eax,0x0
-  40118d:       e8 be fe ff ff          call   401050 &lt;printf@plt&gt;
-  401192:       b8 00 00 00 00          mov    eax,0x0
-  401197:       c9                      leave  
-  401198:       c3                      ret    
-  401199:       0f 1f 80 00 00 00 00    nop    DWORD PTR [rax+0x0]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs plain">0000000000401156 &lt;main&gt;:<br>  401156:       f3 0f 1e fa             endbr64 <br>  40115a:       55                      push   rbp<br>  40115b:       48 89 e5                mov    rbp,rsp<br>  40115e:       48 83 ec 40             sub    rsp,0x40<br>  401162:       48 8d 45 c0             lea    rax,[rbp-0x40]<br>  401166:       48 89 c6                mov    rsi,rax<br>  401169:       48 8d 3d 94 0e 00 00    lea    rdi,[rip+0xe94]        # 402004 &lt;_IO_stdin_used+0x4&gt;<br>  401170:       b8 00 00 00 00          mov    eax,0x0<br>  401175:       e8 e6 fe ff ff          call   401060 &lt;__isoc99_scanf@plt&gt;<br>  40117a:       48 8d 45 c0             lea    rax,[rbp-0x40]<br>  40117e:       48 89 c6                mov    rsi,rax<br>  401181:       48 8d 3d 7f 0e 00 00    lea    rdi,[rip+0xe7f]        # 402007 &lt;_IO_stdin_used+0x7&gt;<br>  401188:       b8 00 00 00 00          mov    eax,0x0<br>  40118d:       e8 be fe ff ff          call   401050 &lt;printf@plt&gt;<br>  401192:       b8 00 00 00 00          mov    eax,0x0<br>  401197:       c9                      leave  <br>  401198:       c3                      ret    <br>  401199:       0f 1f 80 00 00 00 00    nop    DWORD PTR [rax+0x0]<br></code></pre></td></tr></tbody></table></figure>
 <p>可以看到, <code>sub rsp,0x40</code> 这条指令, 为 <code>name</code> 数组在栈上开辟了 64 字节大小的空间. 由此我们可以画出栈上的空间分配情况, 如下图</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">+--------------+
-|     ...      |
-+--------------+
-|              |
-|  return addr |
-|              |
-+--------------+ &lt;-- RSP should points here before ret
-|              |
-|   prev rbp   | &lt;-- 8 bytes long
-|              |
-+--------------+ &lt;-- RBP should points here
-|     ...      |
-+--------------+
-|              |
-|   name[64]   |
-|              |
-+--------------+ &lt;-- RBP-0x40<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs plain">+--------------+<br>|     ...      |<br>+--------------+<br>|              |<br>|  return addr |<br>|              |<br>+--------------+ &lt;-- RSP should points here before ret<br>|              |<br>|   prev rbp   | &lt;-- 8 bytes long<br>|              |<br>+--------------+ &lt;-- RBP should points here<br>|     ...      |<br>+--------------+<br>|              |<br>|   name[64]   |<br>|              |<br>+--------------+ &lt;-- RBP-0x40<br></code></pre></td></tr></tbody></table></figure>
 <p>用 <code>gdb</code> 调试一下, 确认我们的猜想对不对. 首先, <code>gdb -q ./victim</code> 启动调试, 然后 <code>b *main</code>, 在 <code>main</code> 函数的第一条指令下断点, <code>r</code> 开始运行.</p>
 <p><img src="20210904201815.png" srcset="/img/loading.gif" lazyload alt="gdb pic"></p>
 <p>可以看到, 这时 <code>RSP = 0x7fffffffde58</code>, 在下一条 <code>RBP</code> 入栈后会变为 <code>de50</code>. 用 <code>p &amp;name[0]</code> 查看 <code>name</code> 数组的地址, 发现是 <code>0x7fffffffde10</code>. 由此确认, 返回地址与 <code>name[0]</code> 之间的长度为 <code>0x48 == 72</code> 字节.</p>
 <p>接下来构造 <code>shellcode</code>, 我们的目标是输出一个字符串 <code>Hack!</code>, 写出如下的汇编代码:</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-ASM" data-language="ASM"><code class="language-ASM">[section .text]
-        global _start
-
-_start:
-        jmp END
-BEGIN:
-        mov rax, 1
-        mov rdi, 1
-        pop rsi         ; addr of string popped to RSI as arg of syscall
-        mov rdx, 5
-        syscall
-
-        mov rax, 0x3c
-        mov rdi, 0
-        syscall
-END:
-        call BEGIN      ; addr of string pushed into stack
-        DB "Hack!"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs ASM">[section .text]<br>        global _start<br><br>_start:<br>        jmp END<br>BEGIN:<br>        mov rax, 1<br>        mov rdi, 1<br>        pop rsi         ; addr of string popped to RSI as arg of syscall<br>        mov rdx, 5<br>        syscall<br><br>        mov rax, 0x3c<br>        mov rdi, 0<br>        syscall<br>END:<br>        call BEGIN      ; addr of string pushed into stack<br>        DB "Hack!"<br></code></pre></td></tr></tbody></table></figure>
 <p>编译 <code>nasm -f elf64 shell.asm</code>, 链接 <code>ld -s -o shell shell.o</code>, 然后 <code>objdump -d shell -M intel</code> 提取二进制的机器码:</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-ASM" data-language="ASM"><code class="language-ASM">Disassembly of section .text:
-
-0000000000401000 &lt;.text&gt;:
-  401000:       eb 1e                   jmp    0x401020
-  401002:       b8 01 00 00 00          mov    eax,0x1
-  401007:       bf 01 00 00 00          mov    edi,0x1
-  40100c:       5e                      pop    rsi
-  40100d:       ba 05 00 00 00          mov    edx,0x5
-  401012:       0f 05                   syscall 
-  401014:       b8 3c 00 00 00          mov    eax,0x3c
-  401019:       bf 00 00 00 00          mov    edi,0x0
-  40101e:       0f 05                   syscall 
-  401020:       e8 dd ff ff ff          call   0x401002
-  401025:       48 61                   rex.W (bad) 
-  401027:       63 6b 21                movsxd ebp,DWORD PTR [rbx+0x21]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ASM">Disassembly of section .text:<br><br>0000000000401000 &lt;.text&gt;:<br>  401000:       eb 1e                   jmp    0x401020<br>  401002:       b8 01 00 00 00          mov    eax,0x1<br>  401007:       bf 01 00 00 00          mov    edi,0x1<br>  40100c:       5e                      pop    rsi<br>  40100d:       ba 05 00 00 00          mov    edx,0x5<br>  401012:       0f 05                   syscall <br>  401014:       b8 3c 00 00 00          mov    eax,0x3c<br>  401019:       bf 00 00 00 00          mov    edi,0x0<br>  40101e:       0f 05                   syscall <br>  401020:       e8 dd ff ff ff          call   0x401002<br>  401025:       48 61                   rex.W (bad) <br>  401027:       63 6b 21                movsxd ebp,DWORD PTR [rbx+0x21]<br></code></pre></td></tr></tbody></table></figure>
 <p>这份 shellcode 的长度只有 42 字节, 因此我们还需要再填充 30 字节的数据, 之后才是用来覆盖返回地址的 <code>&amp;name[0]</code>. 因为其中有很多不可打印的字符, 所以我们用 python 把它输出到一个文件, 然后从文件作为输入.</p>
-<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -c <span class="token string">'print ("\xeb\x1e\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x5e\xba\x05\x00\x00\x00\x0f\x05\xb8\x3c\x00\x00\x00\xbf\x00\x00\x00\x00\x0f\x05\xe8\xdd\xff\xff\xff\x48\x61\x63\x6b\x21" + "\xdb"*30 + "\x10\xde\xff\xff\xff\x7f\x00\x00")'</span> <span class="token operator">&gt;</span> shellcode<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">python -c 'print ("\xeb\x1e\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x5e\xba\x05\x00\x00\x00\x0f\x05\xb8\x3c\x00\x00\x00\xbf\x00\x00\x00\x00\x0f\x05\xe8\xdd\xff\xff\xff\x48\x61\x63\x6b\x21" + "\xdb"*30 + "\x10\xde\xff\xff\xff\x7f\x00\x00")' &gt; shellcode<br></code></pre></td></tr></tbody></table></figure>
 <blockquote>
 <p>注意小端序</p>
 </blockquote>
@@ -958,8 +858,6 @@ END:
   });
 </script>
 
-
-  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
