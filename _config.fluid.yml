@@ -57,22 +57,21 @@ code:
     # 实现高亮的库，对应下面的设置
     # Highlight library
     # Options: highlightjs | prismjs
-    lib: "prismjs"
+    lib: "highlightjs"
 
     highlightjs:
       # 在链接中挑选 style 填入
       # Select a style in the link
       # See: https://highlightjs.org/static/demo/
-      style: "github gist"
-      style_dark: "dark"
+      style: "Atom One Light"
+      style_dark: "Atom One Dark"
 
     prismjs:
       # 在下方链接页面右侧的圆形按钮挑选 style 填入，也可以直接填入 css 链接
       # Select the style button on the right side of the link page, you can also set the CSS link
       # See: https://prismjs.com/
       style: "coy"
-      style_dark: "tomorrow night"
-      line_number: true
+      style_dark: "coy"
       # 设为 true 高亮将本地静态生成（但只支持部分 prismjs 插件），设为 false 高亮将在浏览器通过 js 生成
       # If true, it will be generated locally (but some prismjs plugins are not supported). If false, it will be generated via JS in the browser
       preprocess: true
