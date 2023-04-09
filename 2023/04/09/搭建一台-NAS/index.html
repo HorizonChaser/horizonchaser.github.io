@@ -23,9 +23,16 @@
 <meta property="og:site_name" content="Horizon Blog">
 <meta property="og:description" content="捡垃圾搭建了一台 NAS, 顺便当作服务器">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/04/09/bw4ZX9mcVQrfp3a.png">
+<meta property="og:image" content="https://s2.loli.net/2023/04/09/GEMtJn71x6YsD4i.png">
+<meta property="og:image" content="https://s2.loli.net/2023/04/09/jKoMpqeNsBFcE7C.png">
+<meta property="og:image" content="https://s2.loli.net/2023/04/09/kqGjYCQbXDI9h8s.png">
+<meta property="og:image" content="https://s2.loli.net/2023/04/09/D6gM4TqWXYnyjpv.png">
+<meta property="og:image" content="https://s2.loli.net/2023/04/09/zmOeHYUwgCXGPfx.png">
 <meta property="og:image" content="https://s2.loli.net/2023/04/09/3DWRdk5I8bLCJ2p.png">
+<meta property="og:image" content="https://s2.loli.net/2023/04/10/lwt7zc5DJdyBrhK.png">
 <meta property="article:published_time" content="2023-04-09T17:11:21.000Z">
-<meta property="article:modified_time" content="2023-04-09T13:58:53.421Z">
+<meta property="article:modified_time" content="2023-04-09T16:11:04.934Z">
 <meta property="article:author" content="Horizon">
 <meta property="article:tag" content="NAS">
 <meta property="article:tag" content="捡垃圾">
@@ -33,7 +40,7 @@
 <meta property="article:tag" content="Ubuntu">
 <meta property="article:tag" content="Server">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s2.loli.net/2023/04/09/3DWRdk5I8bLCJ2p.png">
+<meta name="twitter:image" content="https://s2.loli.net/2023/04/09/bw4ZX9mcVQrfp3a.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -243,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2.8k 字
         
       </span>
     
@@ -254,7 +261,7 @@
         
         
         
-          13 分钟
+          17 分钟
         
       </span>
     
@@ -429,14 +436,47 @@
 </table>
 <p>不算硬盘 &lt;600, 算是百元级吧 (笑)</p>
 <h2 id="装机"><a class="markdownIt-Anchor" href="#装机"></a> 装机</h2>
-<p>TODO</p>
+<p>这个机箱装机还是比较艰难的, 主要是由于硬盘位置会挡住主板的接线. 而且主板上方的高度很有限, 只能拿两根手指捏着线往下压…</p>
+<p>总之大体的流程是先把 CPU &amp; 散热器, 内存, 以及固态什么的先装在主板上, 然后在外面接上电源看看能不能亮机. 如果能的话, 再装到机箱里.</p>
+<p>装机的顺序大致是先主板, 然后电源, 接电源线, 然后硬盘, 最后接 SATA 数据线. <s>等装完你就练好了二指禅 (不是</s></p>
+<p><img src="https://s2.loli.net/2023/04/09/bw4ZX9mcVQrfp3a.png" srcset="/img/loading.gif" lazyload alt="CPU"></p>
+<blockquote>
+<p>装好了 CPU</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2023/04/09/GEMtJn71x6YsD4i.png" srcset="/img/loading.gif" lazyload alt="最小系统"></p>
+<blockquote>
+<p>装上内存和散热器, 从此 CPU 就被永远压在下面了</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2023/04/09/jKoMpqeNsBFcE7C.png" srcset="/img/loading.gif" lazyload alt="亮机测试"></p>
+<blockquote>
+<p>亮机测试, 一次点亮</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2023/04/09/kqGjYCQbXDI9h8s.png" srcset="/img/loading.gif" lazyload alt="正面"></p>
+<blockquote>
+<p>机箱正面图, 可以看到空间实在是紧凑</p>
+</blockquote>
 <h2 id="配置"><a class="markdownIt-Anchor" href="#配置"></a> 配置</h2>
-<p><img src="https://s2.loli.net/2023/04/09/3DWRdk5I8bLCJ2p.png" srcset="/img/loading.gif" lazyload alt="neofetch output"></p>
-<p>TODO</p>
+<p>配置也没什么好说的, 主要就是 SAMBA 服务器和 qbittorrent-nox, 换源什么的都是常规操作, 注意权限即可</p>
 <h2 id="用户兼开发兼运维体验"><a class="markdownIt-Anchor" href="#用户兼开发兼运维体验"></a> 用户兼开发兼运维体验</h2>
-<p>TODO</p>
+<p><img src="https://s2.loli.net/2023/04/09/D6gM4TqWXYnyjpv.png" srcset="/img/loading.gif" lazyload alt="ruler on server"></p>
+<blockquote>
+<p>可以看到, 机箱占地空间没比主板本身大多少</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2023/04/09/zmOeHYUwgCXGPfx.png" srcset="/img/loading.gif" lazyload alt="on table"></p>
+<blockquote>
+<p>放到桌面刚刚好, 边上那个黑盒子就是咱的外置硬盘盒</p>
+</blockquote>
+<p>整体体验还不错, Ubuntu Server 本身很稳定, 各部件发热也很低所以也几乎听不到风扇声</p>
+<p>但是, 硬盘有话要说: 这两块 <strong>WD40PURX</strong> 虽然是 5400RPM 的 EJRX 的 OEM 版本, 但它们<strong>是 7200 RPM 的</strong>!</p>
+<p>特别的, 其中一块硬盘的声音明显比另一块要大, 而且是低频的嗡嗡声, 降噪耳机已经无能为力了, 已经是不可能放到桌面日用的程度了.</p>
+<p>所以我把它扔到了桌子下面. 配合硬盘定时休眠, 这下就清净多了.</p>
+<p><img src="https://s2.loli.net/2023/04/09/3DWRdk5I8bLCJ2p.png" srcset="/img/loading.gif" lazyload alt="neofetch output"></p>
 <h2 id="迄今为止的事故"><a class="markdownIt-Anchor" href="#迄今为止的事故"></a> 迄今为止的事故</h2>
-<p>TODO</p>
+<h3 id="202302-主板-sata-接口脱落"><a class="markdownIt-Anchor" href="#202302-主板-sata-接口脱落"></a> 2023/02 主板 SATA 接口脱落</h3>
+<p><img src="https://s2.loli.net/2023/04/10/lwt7zc5DJdyBrhK.png" srcset="/img/loading.gif" lazyload alt="damaged SATA slot"></p>
+<p>如前所述, 由于空间有限, SATA 线是弯折了个直角插到主板上的, 所以在某次搬动带来的震动之后…</p>
+<p>主板的 SATA 接口脱落了! 而由于开机少了块硬盘, Ubuntu 自动进了恢复模式 (我也不知道怎么说, 总之就类似 grub 的 rescue).</p>
+<p>最后把硬盘接到其他空闲的接口就暂时解决了. 至于脱落了的接口, 等有时间了再看看怎么装回去吧…</p>
 
                 
               </div>
