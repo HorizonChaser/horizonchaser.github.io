@@ -107,7 +107,7 @@ TODO
 
 ## 配置
 
-![neofetch output](https://smms.app/image/3DWRdk5I8bLCJ2p)
+![neofetch output](https://s2.loli.net/2023/04/09/3DWRdk5I8bLCJ2p.png)
 
 TODO
 
