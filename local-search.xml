@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>搭建一台 NAS</title>
+    <link href="/2023/04/09/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%8F%B0-NAS/"/>
+    <url>/2023/04/09/%E6%90%AD%E5%BB%BA%E4%B8%80%E5%8F%B0-NAS/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p><strong>文章仍然在施工中, 还没写完呢</strong></p></blockquote><h1 id="horizon-nas"><a class="markdownIt-Anchor" href="#horizon-nas"></a> Horizon NAS</h1><p>其实这是去年冬天的事情了, 当时刚打完美亚杯, 拿到了点儿奖金, 正好外置的硬盘挂学校 BT 已经力不从心了 (马上就被塞满力), 于是就…</p><p>有了这台百元级 NAS 的 <s>(捡垃圾)</s> 计划! (实际是五百还是六百来着)</p><p>言归正传, 实际上当时选机箱和主板还是折腾了挺长时间的 (主要是 17x19 的, 有足够 SATA 接口并且还自带千兆网卡的板子真的不多), 写篇文章记录一下</p><p><s>顺便升级一下博客的依赖, 大半年没动过了, 都快忘了还有这个东西了 (笑)</s></p><h2 id="需求确定"><a class="markdownIt-Anchor" href="#需求确定"></a> 需求确定</h2><h3 id="软件"><a class="markdownIt-Anchor" href="#软件"></a> 软件</h3><p>在开始之前, 咱看了很多家庭/个人 NAS 组建相关的文章, 基本都是花里胡哨地作为家里的流媒体中心, 配上 emby/plex 之类软件的和自动下载海报的刮削器, 然后得到一个很炫酷的海报墙… 不是说这个不好, 只是咱的 NAS 也就一个人用, 实在用不上这么复杂的功能.</p><p>总之, 大概只有以下的功能是核心:</p><ul><li>作为 BT 下载器</li><li>作为 SAMBA / NFS 服务器, 做好文件分享</li><li>支持 Docker, 偶尔跑跑其他服务</li></ul><p>以下都是亲自测试后的结果.</p><p>为什么不选择黑群晖:</p><ul><li>安装/升级麻烦, 得固定插个引导U盘<ul><li>不小心升级了系统可能没了</li></ul></li><li>新版群晖认不到硬盘位, 不想装老版 (太丑辣.jpg)</li><li>软件少, Docker 受限 (下个 Transmission 害得折腾, 至于 qbittorrent, 加油吧)</li><li>群晖自己的文件系统可能不好修复 (虽然基于 Btrfs, 但是群晖貌似有魔改)</li><li>总感觉群晖的图形界面卡卡的 (也许是个人因素吧)</li></ul><p>为什么不选择 TrueNAS:</p><ul><li>TrueNAS 本身即是一个应用, 不允许你自己手动装其他软件</li><li>Docker 支持有限</li></ul><p>TrueNAS 是一个很好的 NAS OS, 但不适合作为服务器.</p><p>综上, 选择 Ubuntu Server 22.04 LTS 作为系统, 没有也不需要图形界面, 还能降低性能需求 - 反正都在一个内网下, 想要干什么直接 SSH 过去就好, 平时不用管</p><h3 id="硬件"><a class="markdownIt-Anchor" href="#硬件"></a> 硬件</h3><p>硬件方面的选择比软件可麻烦太多了… 虽然软件尝试了不少, 但是硬件就没这个条件了</p><p>首先是机箱, 考虑到宿舍一共也没多大地方, 机架式的就免了 (梦想破灭.jpg), 长宽高都控制在35cm以下最好, 同时至少支持 4 个 3.5’ SATA 硬盘位</p><p>找了半天, 找到一个基本满足上述限制的机箱: 惠普的 Gen 7 MicroServer 机箱, 体积很小, 带四个硬盘屉, 各方面算是满足要求</p><p>这个机箱的主板是底置的, 硬盘在主板正上方排列放置, 所以机箱整体接近一个立方体. 由于它本质上是惠普自己定制的机箱, 因此背板的扩展卡槽位和主板的螺丝位置和普通的主板并不通用. 好在万能的淘宝商家总有办法, 他们直接把机箱的背板按照正常主板的需求切割好; 至于螺丝位置, 则设计了一个托盘用来转接 (果然绝大多数问题都能通过加一层解决啊…).</p><p>当然, <strong>这机箱是二手的</strong> (N 手也说不定).</p><p>机箱选定之后, 主板也就只能在 17x19 的 ITX 主板里选了. 找了半天, 集成 CPU 的主板基本都是要大一点的 (而且 CPU 还不能换), 所以最后还是选了磐石至尊的 B85 ITX 的板子. 寨板就寨板吧, 他家至少是有做服务器的, 咱这没什么负载的应该问题不大 (当然了, B85 的板子早就停产了, 至于为啥是全新的 – PCB 是新的, 南桥可不一定是, <strong>主板整体就算二手吧</strong>)</p><p>硬盘没什么好说的, 这预算也只能选<strong>二手机械盘</strong>. 正好现在手头这块儿西数的紫盘 (4T 的 WD40EJRX)给我留下了很不错的印象 (速度还行 &amp;&amp; 声音很小, 完全听不见, 毕竟是 5400 RPM 的监控盘), 那就上两块儿 4T 紫盘吧! WD40EJRX 的 OEM 版本是 WD40PURX, 那就它了!</p><p><strong>事实证明, 这个是整个选型中最大的错误. 问题甚至不完全在型号上.</strong></p><p>系统盘方面, 主板有个 M.2 盘位, 那就傲腾 16G 走起, 反正数据在机械盘上, 16G 妥妥够用. 当然, 这条 <strong>M.2 固态也是拆机二手的</strong>, 不过傲腾的寿命极长, 有点写入也问题不大.</p><p>CPU 选择了 G3250, 因为这家的 G3260 正好无货了… 内存则是一条威刚的 4G DDR3 1600MHz. 不用想了, <strong>CPU 和内存也都是二手的</strong>.</p><p>有意思的是, 我选的 G3250, 店家发过来的是一颗巨脏的 G3260… 大概咱是赚了吧 (也许).</p><p>风扇方面, 这个 CPU 的发热量其实被动散热都够了, 随便一个散热器都够, 不过高度是个大问题… 由于主板在最下方, 上方距离硬盘位只有大概不到 30mm 的间距, 所以还得选个超薄的 – 结果就是 CPU 散热器比 CPU 还贵. 考虑到硬盘的散热问题, 额外加了个 12cm 的机箱风扇. 这<strong>俩风扇倒都是一手的.</strong></p><p>电源方面, 250W 的全汉小 1U 电源就完全够用了. 咱也<strong>不知道这电源是不是全新的, 就算是吧</strong>.</p><p>由于机箱不带背板, 因此得用足够长的 SATA 线接到主板上. 后来, 主板上方极为有限的高度, 加上垂直于主板的 SATA 接口导致了一次事故.</p><h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3><table><thead><tr><th style="text-align:center"><strong>组件</strong></th><th style="text-align:center"><strong>型号</strong></th><th style="text-align:center"><strong>价格</strong></th></tr></thead><tbody><tr><td style="text-align:center"><strong>OS</strong></td><td style="text-align:center">Ubuntu Server 22.04 LTS</td><td style="text-align:center">0</td></tr><tr><td style="text-align:center"><strong>主板</strong></td><td style="text-align:center">磐石至尊 B85</td><td style="text-align:center">245</td></tr><tr><td style="text-align:center"><strong>CPU</strong></td><td style="text-align:center">Intel G3250</td><td style="text-align:center">12</td></tr><tr><td style="text-align:center"><strong>固态硬盘</strong></td><td style="text-align:center">傲腾 16G</td><td style="text-align:center">28</td></tr><tr><td style="text-align:center"><strong>CPU散热器</strong></td><td style="text-align:center">16mm高 全铝</td><td style="text-align:center">25</td></tr><tr><td style="text-align:center"><strong>机箱风扇</strong></td><td style="text-align:center">航嘉清风 12cm 无光</td><td style="text-align:center">9.9</td></tr><tr><td style="text-align:center"><strong>电源</strong></td><td style="text-align:center">全汉小 1U 250W</td><td style="text-align:center">62</td></tr><tr><td style="text-align:center"><strong>内存</strong></td><td style="text-align:center">威刚 DDR3 4G</td><td style="text-align:center">30.9</td></tr><tr><td style="text-align:center"><strong>机箱</strong></td><td style="text-align:center">HP Gen7</td><td style="text-align:center">140</td></tr><tr><td style="text-align:center"><strong>总价</strong></td><td style="text-align:center"><strong>不计硬盘</strong></td><td style="text-align:center">552.8</td></tr></tbody></table><p>不算硬盘 &lt;600, 算是百元级吧 (笑)</p><h2 id="装机"><a class="markdownIt-Anchor" href="#装机"></a> 装机</h2><p>TODO</p><h2 id="配置"><a class="markdownIt-Anchor" href="#配置"></a> 配置</h2><p><img src="https://smms.app/image/3DWRdk5I8bLCJ2p" alt="neofetch output"></p><p>TODO</p><h2 id="用户兼开发兼运维体验"><a class="markdownIt-Anchor" href="#用户兼开发兼运维体验"></a> 用户兼开发兼运维体验</h2><p>TODO</p><h2 id="迄今为止的事故"><a class="markdownIt-Anchor" href="#迄今为止的事故"></a> 迄今为止的事故</h2><p>TODO</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>NAS</tag>
+      
+      <tag>捡垃圾</tag>
+      
+      <tag>Linux</tag>
+      
+      <tag>Ubuntu</tag>
+      
+      <tag>Server</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java 线程池初探</title>
     <link href="/2022/10/07/Java-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%88%9D%E6%8E%A2/"/>
     <url>/2022/10/07/Java-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%88%9D%E6%8E%A2/</url>
