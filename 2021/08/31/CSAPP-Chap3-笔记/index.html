@@ -1,71 +1,96 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar_small_round.png">
-  <link rel="icon" type="image/png" href="/img/avatar_small_round.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="icon" href="/img/avatar_small_round.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="Horizon">
   <meta name="keywords" content="">
+  
+    <meta name="description" content="CSAPP 第三章的笔记, 包括初级汇编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP 第三章 笔记">
+<meta property="og:url" content="https://horizonchaser.github.io/2021/08/31/CSAPP-Chap3-%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Horizon Blog">
+<meta property="og:description" content="CSAPP 第三章的笔记, 包括初级汇编">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://horizonchaser.github.io/2021/08/31/CSAPP-Chap3-%E7%AC%94%E8%AE%B0/20210903234411.png">
+<meta property="og:image" content="https://horizonchaser.github.io/2021/08/31/CSAPP-Chap3-%E7%AC%94%E8%AE%B0/20210904201815.png">
+<meta property="og:image" content="https://horizonchaser.github.io/2021/08/31/CSAPP-Chap3-%E7%AC%94%E8%AE%B0/20210904214722.png">
+<meta property="article:published_time" content="2021-08-31T21:41:22.000Z">
+<meta property="article:modified_time" content="2023-04-09T12:53:53.813Z">
+<meta property="article:author" content="Horizon">
+<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="CSAPP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://horizonchaser.github.io/2021/08/31/CSAPP-Chap3-%E7%AC%94%E8%AE%B0/20210903234411.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>CSAPP 第三章 笔记 - Horizon Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      
-        
-        
-        
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/themes/prism-coy.min.css" />
-      
-        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
-      
-    
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.6.2/gitalk.css" />
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
 
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-<link rel="stylesheet" href="/css/icon_cloud/iconfont.css">
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
 
 
 
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"horizonchaser.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/rss2.xml" title="Horizon Blog" type="application/rss+xml">
@@ -73,11 +98,17 @@
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Horizon Blog</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>Horizon Blog</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -96,7 +127,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -108,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -120,7 +151,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -132,7 +163,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/bangumis/index.html">
                 <i class="iconfont icon-bilibili-fill"></i>
-                Bangumi
+                <span>Bangumi</span>
               </a>
             </li>
           
@@ -144,7 +175,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -156,21 +187,24 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-friends"></i>
-                友链
+                <span>友链</span>
               </a>
             </li>
           
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -178,92 +212,109 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/index_banner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-08-31 21:41" pubdate>
-         2021年8月31日 周二 21:41:22
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      2.2k 字
-    </span>
   
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      大概 
-      31
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index_banner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CSAPP 第三章 笔记"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-08-31 21:41" pubdate>
+          2021年8月31日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">CSAPP 第三章 笔记</h1>
             
               <p class="note note-info">
                 
-                  Last Update @ 2023年4月9日 周日 11:3:58
+                  
+                    本文最后更新于：2023年4月9日 下午
+                  
                 
               </p>
             
-            <div class="markdown-body" id="post-body">
-              <blockquote>
+            
+              <div class="markdown-body">
+                
+                <blockquote>
 <p>CSAPP 采用的是 x64 ATT 汇编, 然而平时用的 IDA 什么的都是 MASM 汇编… 有点头大<br>
 话说回来, 都会肯定不是坏事… 大概</p>
 </blockquote>
@@ -408,7 +459,7 @@
 <p>在 x86-64 中, 前六个参数可以通过寄存器传递, 从左到右顺序为 <code>rdi rsi rdx rcx r8~r15</code></p>
 <p><code>rbx rbp r12~r15</code> 为<strong>被调用者保存的寄存器</strong>, 也就是被调用者需要保证在被调用前后这些寄存器的值不变; 其他所有寄存器 (<code>rbp</code> 除外) 为调用者保存的寄存器, 也就是说, 被调用者可以修改这些寄存器的值, 因此调用者在调用其他函数前应先由自己保护好它们.</p>
 <p>如果参数多于六个 <s>(什么函数会这么写啊…)</s>, 剩下的参数按照从左到右的顺序依次压入栈中 (记得保证对齐), 然后再把调用者的返回地址入栈即可.</p>
-<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">     Bottom
+<figure><div class="code-wrapper"><pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">     Bottom
      (HIGH)
 +---------------+---------+
 |               |         v
@@ -433,9 +484,9 @@
 |               |         |
 +---------------+---------+
       Top
-     (LOW)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+     (LOW)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>另外, 当参数为数组, 或函数中使用到了参数的地址, 这些参数也会保存在栈中, 例如下图</p>
-<p><img src="20210903234411.png" srcset="/img/loading.gif" alt="demo"></p>
+<p><img src="20210903234411.png" srcset="/img/loading.gif" lazyload alt="demo"></p>
 <blockquote>
 <p>根据书上的说法, 当参数为结构体时也会将其保存到栈中, 但根据测试对于较为简单的结构体, 编译器仍然会将其保存到寄存器中, 参见 <a target="_blank" rel="noopener" href="https://godbolt.org/z/ax8666aGn">GodBolt的结果</a></p>
 </blockquote>
@@ -446,7 +497,7 @@
 <p>我们精心构造的这种输入, 一般被称作 <code>shellcode</code>.</p>
 <h3 id="一个失败的例子"><a class="markdownIt-Anchor" href="#一个失败的例子"></a> 一个失败的例子</h3>
 <p>来看下面一段代码.</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
 
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">char</span> name<span class="token punctuation">[</span><span class="token number">64</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -454,9 +505,9 @@
     <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello, %s!\n"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>在这里, <code>scanf</code> 会接受一个字符串的输入, 并保存到 <code>name</code> 中. 如果输入足够长, 那就可以将返回地址覆盖掉. 把它另存为 <code>victim.c</code>, 编译一下, 拿 <code>objdump</code> 反汇编看看.</p>
-<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">0000000000401156 &lt;main&gt;:
+<figure><div class="code-wrapper"><pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">0000000000401156 &lt;main&gt;:
   401156:       f3 0f 1e fa             endbr64 
   40115a:       55                      push   rbp
   40115b:       48 89 e5                mov    rbp,rsp
@@ -474,9 +525,9 @@
   401192:       b8 00 00 00 00          mov    eax,0x0
   401197:       c9                      leave  
   401198:       c3                      ret    
-  401199:       0f 1f 80 00 00 00 00    nop    DWORD PTR [rax+0x0]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  401199:       0f 1f 80 00 00 00 00    nop    DWORD PTR [rax+0x0]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>可以看到, <code>sub rsp,0x40</code> 这条指令, 为 <code>name</code> 数组在栈上开辟了 64 字节大小的空间. 由此我们可以画出栈上的空间分配情况, 如下图</p>
-<pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">+--------------+
+<figure><div class="code-wrapper"><pre class="line-numbers language-plain" data-language="plain"><code class="language-plain">+--------------+
 |     ...      |
 +--------------+
 |              |
@@ -492,12 +543,12 @@
 |              |
 |   name[64]   |
 |              |
-+--------------+ &lt;-- RBP-0x40<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
++--------------+ &lt;-- RBP-0x40<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>用 <code>gdb</code> 调试一下, 确认我们的猜想对不对. 首先, <code>gdb -q ./victim</code> 启动调试, 然后 <code>b *main</code>, 在 <code>main</code> 函数的第一条指令下断点, <code>r</code> 开始运行.</p>
-<p><img src="20210904201815.png" srcset="/img/loading.gif" alt="gdb pic"></p>
+<p><img src="20210904201815.png" srcset="/img/loading.gif" lazyload alt="gdb pic"></p>
 <p>可以看到, 这时 <code>RSP = 0x7fffffffde58</code>, 在下一条 <code>RBP</code> 入栈后会变为 <code>de50</code>. 用 <code>p &amp;name[0]</code> 查看 <code>name</code> 数组的地址, 发现是 <code>0x7fffffffde10</code>. 由此确认, 返回地址与 <code>name[0]</code> 之间的长度为 <code>0x48 == 72</code> 字节.</p>
 <p>接下来构造 <code>shellcode</code>, 我们的目标是输出一个字符串 <code>Hack!</code>, 写出如下的汇编代码:</p>
-<pre class="line-numbers language-ASM" data-language="ASM"><code class="language-ASM">[section .text]
+<figure><div class="code-wrapper"><pre class="line-numbers language-ASM" data-language="ASM"><code class="language-ASM">[section .text]
         global _start
 
 _start:
@@ -514,9 +565,9 @@ BEGIN:
         syscall
 END:
         call BEGIN      ; addr of string pushed into stack
-        DB "Hack!"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        DB "Hack!"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>编译 <code>nasm -f elf64 shell.asm</code>, 链接 <code>ld -s -o shell shell.o</code>, 然后 <code>objdump -d shell -M intel</code> 提取二进制的机器码:</p>
-<pre class="line-numbers language-ASM" data-language="ASM"><code class="language-ASM">Disassembly of section .text:
+<figure><div class="code-wrapper"><pre class="line-numbers language-ASM" data-language="ASM"><code class="language-ASM">Disassembly of section .text:
 
 0000000000401000 &lt;.text&gt;:
   401000:       eb 1e                   jmp    0x401020
@@ -530,14 +581,14 @@ END:
   40101e:       0f 05                   syscall 
   401020:       e8 dd ff ff ff          call   0x401002
   401025:       48 61                   rex.W (bad) 
-  401027:       63 6b 21                movsxd ebp,DWORD PTR [rbx+0x21]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  401027:       63 6b 21                movsxd ebp,DWORD PTR [rbx+0x21]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>这份 shellcode 的长度只有 42 字节, 因此我们还需要再填充 30 字节的数据, 之后才是用来覆盖返回地址的 <code>&amp;name[0]</code>. 因为其中有很多不可打印的字符, 所以我们用 python 把它输出到一个文件, 然后从文件作为输入.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -c <span class="token string">'print ("\xeb\x1e\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x5e\xba\x05\x00\x00\x00\x0f\x05\xb8\x3c\x00\x00\x00\xbf\x00\x00\x00\x00\x0f\x05\xe8\xdd\xff\xff\xff\x48\x61\x63\x6b\x21" + "\xdb"*30 + "\x10\xde\xff\xff\xff\x7f\x00\x00")'</span> <span class="token operator">&gt;</span> shellcode<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure><div class="code-wrapper"><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -c <span class="token string">'print ("\xeb\x1e\xb8\x01\x00\x00\x00\xbf\x01\x00\x00\x00\x5e\xba\x05\x00\x00\x00\x0f\x05\xb8\x3c\x00\x00\x00\xbf\x00\x00\x00\x00\x0f\x05\xe8\xdd\xff\xff\xff\x48\x61\x63\x6b\x21" + "\xdb"*30 + "\x10\xde\xff\xff\xff\x7f\x00\x00")'</span> <span class="token operator">&gt;</span> shellcode<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></div></figure>
 <blockquote>
 <p>注意小端序</p>
 </blockquote>
 <p>这次尝试以失败告终, 已经确定成功覆盖了栈中之前保存的 <code>RBP</code>, 理论上返回地址也已经被覆盖, 但是就是无法跳转, 报告段错误… 看下图的 <code>EBP</code> 的值 (为了确定不是 x86-64 的问题, 使用 x86 重新编译了一次, shellcode 也重新写了一份)</p>
-<p><img src="20210904214722.png" srcset="/img/loading.gif" alt="failed-try😭"></p>
+<p><img src="20210904214722.png" srcset="/img/loading.gif" lazyload alt="failed-try😭"></p>
 <blockquote>
 <p>大概是还有保护措施没有关掉…</p>
 </blockquote>
@@ -547,31 +598,89 @@ END:
 <h2 id="对抗措施"><a class="markdownIt-Anchor" href="#对抗措施"></a> 对抗措施</h2>
 <p>//TODO</p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-                    
-                      <a class="hover-with-bg" href="/tags/CSAPP/">CSAPP</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">#读书笔记</a>
+      
+        <a href="/tags/CSAPP/">#CSAPP</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处</p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CSAPP 第三章 笔记</div>
+      <div>https://horizonchaser.github.io/2021/08/31/CSAPP-Chap3-笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Horizon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年8月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
               
               
-                <div class="post-prevnext row">
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/26/%E9%95%BF%E5%AE%89%E6%9D%AF2021-Writeup/">
+                      <a href="/2021/10/26/%E9%95%BF%E5%AE%89%E6%9D%AF2021-Writeup/" title="长安杯2021 Writeup">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">长安杯2021 Writeup</span>
                         <span class="visible-mobile">上一篇</span>
@@ -581,7 +690,7 @@ END:
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/06/13/CS-Network-Review-and-Summary/">
+                      <a href="/2021/06/13/CS-Network-Review-and-Summary/" title="CS Network Review and Summary">
                         <span class="hidden-mobile">CS Network Review and Summary</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -593,68 +702,113 @@ END:
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments">
-                
-                
-  <div id="gitalk-container"></div>
-  <script type="text/javascript">
-    function loadGitalk() {
-      addScript('https://cdn.staticfile.org/blueimp-md5/2.13.0/js/md5.min.js');
-      addScript('https://cdn.staticfile.org/gitalk/1.6.2/gitalk.min.js', function () {
-        var gitalk = new Gitalk({
-          clientID: '3d9d508e12d68104e7e7',
-          clientSecret: 'cb441dd114622850fa93f43abcfe8c0497154926',
-          repo: 'horizonchaser.github.io',
-          owner: 'HorizonChaser',
-          admin: "HorizonChaser",
-          id: md5(location.pathname),
-          language: 'zh-CN',
-          labels: ["Gitalk"],
-          perPage: 20,
-          pagerDirection: 'last',
-          createIssueManually: true,
-          distractionFreeMode: false
-        });
-        gitalk.render('gitalk-container');
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"HorizonChaser/horizonchaser.github.io","repo-id":"MDEwOlJlcG9zaXRvcnkzMDM2OTkwNDY=","category":"Announcements","category-id":"DIC_kwDOEhoUZs4CVpcM","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
       });
-    }
-    waitElementVisible('gitalk-container', loadGitalk);
-  </script>
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -667,103 +821,200 @@ END:
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
-      <script>
-        var now = new Date();
-        function createtime() {
-          var grt = new Date("10/14/2020 17:38:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
-          now.setTime(now.getTime() + 250);
-          days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
-          hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
-          if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
-          mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
-          seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-          snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
-          document.getElementById("timeDate").innerHTML = "Horizon Blog 已经运行 " + dnum + " 天 ";
-          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒 ";
-        }
-        setInterval("createtime()", 250);
-      </script>
-
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+    <div class="footer-content">
+      
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span> <script> var now = new Date(); function createtime() { var grt = new Date("10/14/2020 17:38:00"); now.setTime(now.getTime() + 250); days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; } seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; } document.getElementById("timeDate").innerHTML = "Horizon Blog 已经运行 " + dnum + " 天 "; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒 \n"; } setInterval("createtime()", 250); </script> <br/>
+<span id="powererxxx">Powered by Horizon, </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo, </span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid, and </span></a> <i class="iconfont icon-love"></i> <span id="lovefromX">from everyone of you!</span> 
     </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
   
-    <script  src="/js/lazyload.js" ></script>
   
-
-
+    <div class="statistics">
+  
+  
 
   
     
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -771,113 +1022,15 @@ END:
 
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 3,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
+  
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "CSAPP 第三章 笔记&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 65,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

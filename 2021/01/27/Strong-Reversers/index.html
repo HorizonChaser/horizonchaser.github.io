@@ -1,71 +1,103 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar_small_round.png">
-  <link rel="icon" type="image/png" href="/img/avatar_small_round.png">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="icon" href="/img/avatar_small_round.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="Horizon">
   <meta name="keywords" content="">
+  
+    <meta name="description" content="每周的逆向练习与 Writeup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2021 Weekly Reverse">
+<meta property="og:url" content="https://horizonchaser.github.io/2021/01/27/Strong-Reversers/index.html">
+<meta property="og:site_name" content="Horizon Blog">
+<meta property="og:description" content="每周的逆向练习与 Writeup">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/01/27/Jd8H6ITzRl5NYsO.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/27/hwg4BSpNfiFO8DH.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/27/7UM1xOPLB3RTIFK.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/27/shcxbOGXJ2U6DFV.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/27/fuRYoAhm31TjLzw.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/27/Mu2QcKWZ81dfzFR.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/27/id16RHAoK5TBpW3.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/27/DeuYsaXi3ZW4mMt.png">
+<meta property="og:image" content="https://horizonchaser.github.io/2021/01/27/Strong-Reversers/Strong-Reversers/image-20210210230050652.png">
+<meta property="og:image" content="https://horizonchaser.github.io/2021/01/27/Strong-Reversers/Strong-Reversers/image-20210305182332107.png">
+<meta property="article:published_time" content="2021-01-27T14:39:10.000Z">
+<meta property="article:modified_time" content="2023-04-09T12:53:53.977Z">
+<meta property="article:author" content="Horizon">
+<meta property="article:tag" content="Reverse">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/27/Jd8H6ITzRl5NYsO.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>2021 Weekly Reverse - Horizon Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      
-        
-        
-        
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/themes/prism-coy.min.css" />
-      
-        <link  rel="stylesheet" href="https://cdn.staticfile.org/prism/1.21.0/plugins/line-numbers/prism-line-numbers.min.css" />
-      
-    
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.6.2/gitalk.css" />
-  
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
 
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-<link rel="stylesheet" href="/css/icon_cloud/iconfont.css">
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
 
 
 
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"horizonchaser.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
 <meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/rss2.xml" title="Horizon Blog" type="application/rss+xml">
@@ -73,11 +105,17 @@
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>Horizon Blog</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>Horizon Blog</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -96,7 +134,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -108,7 +146,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -120,7 +158,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -132,7 +170,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/bangumis/index.html">
                 <i class="iconfont icon-bilibili-fill"></i>
-                Bangumi
+                <span>Bangumi</span>
               </a>
             </li>
           
@@ -144,7 +182,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -156,21 +194,24 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-friends"></i>
-                友链
+                <span>友链</span>
               </a>
             </li>
           
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -178,96 +219,113 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/index_banner.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
-            <span class="h2" id="subtitle">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-01-27 14:39" pubdate>
-         2021年1月27日 周三 14:39:10
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      3.4k 字
-    </span>
   
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      大概 
-      54
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index_banner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2021 Weekly Reverse"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-01-27 14:39" pubdate>
+          2021年1月27日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">2021 Weekly Reverse</h1>
             
               <p class="note note-info">
                 
-                  Last Update @ 2023年4月9日 周日 11:3:58
+                  
+                    本文最后更新于：2023年4月9日 下午
+                  
                 
               </p>
             
-            <div class="markdown-body" id="post-body">
-              <h1 id="2021-week-2-0126"><a class="markdownIt-Anchor" href="#2021-week-2-0126"></a> 2021 Week 2 - 01/26</h1>
+            
+              <div class="markdown-body">
+                
+                <h1 id="2021-week-2-0126"><a class="markdownIt-Anchor" href="#2021-week-2-0126"></a> 2021 Week 2 - 01/26</h1>
 <h2 id="0x00-ddctf-android-easy"><a class="markdownIt-Anchor" href="#0x00-ddctf-android-easy"></a> 0x00 DDCTF-Android Easy</h2>
 <p><s>接触到的第二道安卓逆向题</s></p>
 <p>下载, 发现是个 zip , 但是有 apk 的目录结构, 用 jadx-gui 打开可以看到如下的结构</p>
-<p><img src="https://i.loli.net/2021/01/27/Jd8H6ITzRl5NYsO.png" srcset="/img/loading.gif" alt="image-20210127124159278"></p>
+<p><img src="https://i.loli.net/2021/01/27/Jd8H6ITzRl5NYsO.png" srcset="/img/loading.gif" lazyload alt="image-20210127124159278"></p>
 <p>很明显, 重点在 FlagActivity 类里面, <code>i()</code>中将<code>p</code> <code>q</code> 两个byte数组进行一系列操作后得到解密后的<code>byte[] bArr2</code>, 作为<code>String()</code>的参数返回.  之后在<code>onClickTest()</code>中通过将输入的字符串同<code>i()</code>的返回值进行比较, 判定 flag 是否正确.</p>
 <p>那就很显然, <code>i()</code>的返回值就是正确的 flag. 把<code>i()</code>运行一次, 得到返回值<code>DDCTF-3ad60811d87c4a2dba0ef651b2d93476@didichuxing.com</code>, 用<code>flag{ }</code>包裹提交.</p>
 <p><code>flag{DDCTF-3ad60811d87c4a2dba0ef651b2d93476@didichuxing.com}</code></p>
@@ -281,28 +339,28 @@
 </blockquote>
 <p>简单的来说, JNI 可以让 Java 调用其他语言的库.</p>
 <p>用 jadx-gui 打开 apk 文件, 定位到 Main Activity --在<code>com.reverier.xdsec_re_20200126</code>下面</p>
-<p><img src="https://i.loli.net/2021/01/27/hwg4BSpNfiFO8DH.png" srcset="/img/loading.gif" alt="image-20210127131115411"></p>
+<p><img src="https://i.loli.net/2021/01/27/hwg4BSpNfiFO8DH.png" srcset="/img/loading.gif" lazyload alt="image-20210127131115411"></p>
 <p>在<code>MainActivity</code>类中, 可以看到声明了一个 native 方法 - <code>loginUtils()</code>, 从名字推测是 <s>检查 flag</s> 登陆验证, 加载了一个本地库<code>native-lib</code>, 它对应的文件在<code>/lib</code>下面, 对应不同的架构.</p>
 <p>在 33 行可以看到, <code>loginUtil()</code>接受了输入的字符串作为参数, 然后返回一个布尔值作为结果, 控制输出<code>Right</code>和<code>Wrong</code> - 这就是重点了.</p>
 <p>从 apk 中提取出 x86 架构对应的<code>native-lib.so</code>, IDA 打开, 找到对应的方法<code>Java_com_reverier_xdsec_1re_120200126_MainActivity_loginUtils()</code>, 反编译如下.</p>
-<p><img src="https://i.loli.net/2021/01/27/7UM1xOPLB3RTIFK.png" srcset="/img/loading.gif" alt="image-20210127132734025"></p>
+<p><img src="https://i.loli.net/2021/01/27/7UM1xOPLB3RTIFK.png" srcset="/img/loading.gif" lazyload alt="image-20210127132734025"></p>
 <p>第 8 行开始, <code>v6</code>保存了作为参数的字符串的长度, <code>v5</code>则保存了另一个字符串的长度, <code>v4</code>保存了参数字符串. 第 11 行比较两个字符串的长度, 若相等则再通过<code>strncmp()</code>比较.</p>
 <p>综上, <code>off_1FD4 + 5972</code>应该就指向了flag. <code>0x1FD4 + 5972d == 0x880</code>, 跳转过去, 发现果然保存着flag.</p>
-<p><img src="https://i.loli.net/2021/01/27/shcxbOGXJ2U6DFV.png" srcset="/img/loading.gif" alt="image-20210127133107771"></p>
+<p><img src="https://i.loli.net/2021/01/27/shcxbOGXJ2U6DFV.png" srcset="/img/loading.gif" lazyload alt="image-20210127133107771"></p>
 <p><code>flag{welcome_to_naive_lib!}</code></p>
 <p>做完了才意识到, 其实当时直接从 IDA 的 Strings window 能直接看到这个明文字符串…</p>
 <h2 id="002-codegate-ctf-2018-redvelvet"><a class="markdownIt-Anchor" href="#002-codegate-ctf-2018-redvelvet"></a> 0×02 Codegate CTF 2018 RedVelvet</h2>
 <p>IDA 打开, 跳转到<code>main()</code>, 发现了一大串<code>funcX()</code>的调用.  <s>有点壮观(x</s></p>
 <p>观察结构发现, 在 48 行, ``fgets()<code>接受了 28 个字节的输入(包含末尾的</code>\n<code>), 保存到</code>s<code>中. 而</code>funcX()<code>并未改变</code>s<code>的值, 而是进行了一些验证, 比如</code>func7()`:</p>
-<p><img src="https://i.loli.net/2021/01/27/fuRYoAhm31TjLzw.png" srcset="/img/loading.gif" alt="image-20210127134648665"></p>
+<p><img src="https://i.loli.net/2021/01/27/fuRYoAhm31TjLzw.png" srcset="/img/loading.gif" lazyload alt="image-20210127134648665"></p>
 <p>这 15 个<code>funcX()</code>共同对<code>s</code>进行了一系列的检查, 然后计算<code>s</code>的 SHA256 值, 并和<code>0a435f46288bb5a764d13fca6c901d3750cee73fd7689ce79ef6dc0ff8f380e5</code>比较, 确定 flag 正确与否.</p>
 <p><s>所以直接用 hashcat 穷举破解理论上倒也可行</s></p>
 <p>接下来就是 angr 发挥威力的时候了, 我们不需要将程序执行完, 只需要找到一个输入, 能够满足这十五个<code>funcX()</code>的约束, 使程序运行到<code>SHA256_Init()</code>前即可 - 对应的地址是<code>0x401534</code>.</p>
 <p>同时, 我们还需要避免进入<code>funcX()</code>中的<code>exit(1)</code>的分支, 以<code>func1()</code>为例.</p>
-<p><img src="https://i.loli.net/2021/01/27/Mu2QcKWZ81dfzFR.png" srcset="/img/loading.gif" alt="image-20210127135526675"></p>
+<p><img src="https://i.loli.net/2021/01/27/Mu2QcKWZ81dfzFR.png" srcset="/img/loading.gif" lazyload alt="image-20210127135526675"></p>
 <p><code>0x4009ED</code>和<code>0x4009F7</code>就是我们不希望运行到的地方, 因为到这里说明我们的输入没有通过<code>func1()</code>的检验, 执行了<code>exit(1)</code> - 其他的<code>funcX()</code>同理.</p>
 <p>这样, 我们得到了期望执行到的地址与要避免的地址, 写出如下脚本.</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> angr
+<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> angr
 
 prog <span class="token operator">=</span> angr<span class="token punctuation">.</span>Project<span class="token punctuation">(</span><span class="token string">'./RedVelvet'</span><span class="token punctuation">,</span> load_options<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">'auto_load_libs'</span><span class="token punctuation">:</span> <span class="token boolean">False</span><span class="token punctuation">}</span><span class="token punctuation">)</span>   
 state <span class="token operator">=</span> prog<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>entry_state<span class="token punctuation">(</span><span class="token punctuation">)</span>    
@@ -313,11 +371,11 @@ simgr<span class="token punctuation">.</span>explore<span class="token punctuati
 flag <span class="token operator">=</span> simgr<span class="token punctuation">.</span>found<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>posix<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span>
 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>经过漫长的运行( VMWare Ubuntu + Docker angr/angr 大概 30 分钟? ), 我们得到了如下输出 (<code>fg</code>是因为我之前误以为写错了, 于是挂起去检查脚本了…)</p>
-<p><img src="https://i.loli.net/2021/01/27/id16RHAoK5TBpW3.png" srcset="/img/loading.gif" alt="image-20210127140006667"></p>
+<p><img src="https://i.loli.net/2021/01/27/id16RHAoK5TBpW3.png" srcset="/img/loading.gif" lazyload alt="image-20210127140006667"></p>
 <p>放到源程序里检查一下, 看来没毛病.</p>
-<p><img src="https://i.loli.net/2021/01/27/DeuYsaXi3ZW4mMt.png" srcset="/img/loading.gif" alt="image-20210127140226953"></p>
+<p><img src="https://i.loli.net/2021/01/27/DeuYsaXi3ZW4mMt.png" srcset="/img/loading.gif" lazyload alt="image-20210127140226953"></p>
 <p><code>flag{What_You_Wanna_Be?:)_la_la}</code></p>
 <h3 id="something-else"><a class="markdownIt-Anchor" href="#something-else"></a> Something Else</h3>
 <ol>
@@ -332,7 +390,7 @@ flag <span class="token operator">=</span> simgr<span class="token punctuation">
 <p>不过我们总是可以自己手动来解决 √ <s>从零开始, 半天过去了</s></p>
 <p>根据提示, 用 <code>marshal</code> 解析 pyc 文件, 提取出指令部分, 然后用 <code>dis</code> 反编译, 拿到字节码指令. 根据 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/dis.html">Python文档</a>, 我们可以写出同义的代码, 如下.</p>
 <p>(<code>#</code>开头的是我们推测出的每行对应的源代码, 缩进一致)</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"> <span class="token number">1</span>           <span class="token number">0</span> BUILD_LIST               <span class="token number">0</span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python"> <span class="token number">1</span>           <span class="token number">0</span> BUILD_LIST               <span class="token number">0</span>
              <span class="token number">2</span> LOAD_CONST               <span class="token number">0</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">178</span><span class="token punctuation">,</span> <span class="token number">184</span><span class="token punctuation">,</span> <span class="token number">185</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">182</span><span class="token punctuation">,</span> <span class="token number">165</span><span class="token punctuation">,</span> <span class="token number">174</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">183</span><span class="token punctuation">,</span> <span class="token number">187</span><span class="token punctuation">,</span> <span class="token number">176</span><span class="token punctuation">,</span> <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">169</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">167</span><span class="token punctuation">,</span> <span class="token number">163</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
              <span class="token number">4</span> CALL_FINALLY             <span class="token number">1</span> <span class="token punctuation">(</span>to <span class="token number">7</span><span class="token punctuation">)</span>
              <span class="token number">6</span> STORE_NAME               <span class="token number">0</span> <span class="token punctuation">(</span>magic<span class="token punctuation">)</span>
@@ -495,9 +553,9 @@ flag <span class="token operator">=</span> simgr<span class="token punctuation">
 
    <span class="token comment"># print("happy new year!")</span>
 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>之后写个jio本解密就行了.</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">enc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">178</span><span class="token punctuation">,</span> <span class="token number">184</span><span class="token punctuation">,</span> <span class="token number">185</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">182</span><span class="token punctuation">,</span> <span class="token number">165</span><span class="token punctuation">,</span> <span class="token number">174</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">enc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">178</span><span class="token punctuation">,</span> <span class="token number">184</span><span class="token punctuation">,</span> <span class="token number">185</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">182</span><span class="token punctuation">,</span> <span class="token number">165</span><span class="token punctuation">,</span> <span class="token number">174</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span>
        <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">183</span><span class="token punctuation">,</span> <span class="token number">187</span><span class="token punctuation">,</span> <span class="token number">176</span><span class="token punctuation">,</span> <span class="token number">129</span><span class="token punctuation">,</span> <span class="token number">169</span><span class="token punctuation">,</span> <span class="token number">191</span><span class="token punctuation">,</span> <span class="token number">167</span><span class="token punctuation">,</span> <span class="token number">163</span><span class="token punctuation">]</span>
 dec <span class="token operator">=</span> <span class="token string">""</span>
 
@@ -508,11 +566,11 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
     dec <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>enc<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
     dec <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>enc<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
 
-<span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p><code>flag{hapi_new_ya</code>, 记得补上 <code>}</code></p>
 <h2 id="0x01-flareon4-igniteme"><a class="markdownIt-Anchor" href="#0x01-flareon4-igniteme"></a> 0x01 FlareOn4 IgniteMe</h2>
 <p><code>die</code>查壳, 确认 32 位 pe 文件, 没壳, IDA 打开, 定位到入口点 <code>start</code>函数.</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> __noreturn <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> __noreturn <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
   DWORD NumberOfBytesWritten<span class="token punctuation">;</span> <span class="token comment">// [esp+0h] [ebp-4h] BYREF</span>
 
@@ -526,10 +584,10 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
   <span class="token keyword">else</span>
     <span class="token function">WriteFile</span><span class="token punctuation">(</span>stdoutHandle<span class="token punctuation">,</span> aN0tT00H0tRWe7r<span class="token punctuation">,</span> <span class="token number">0x24u</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>NumberOfBytesWritten<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token function">ExitProcess</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p><code>GetStdHandle</code>函数没见过, 查了一下<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/console/getstdhandle">文档</a>, 是获得设备句柄, 参数决定是标准 输入/输出/错误 设备.</p>
 <p>在第 8 行输出提示之后调用了一个函数, 推测是解析输入 - 同时确定的输入缓冲区的第一个零字节的位置作为结尾. 然后在第 10 行调用<code>sub_401050</code>检验 flag,</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">sub_401050</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">sub_401050</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
   <span class="token keyword">int</span> v1<span class="token punctuation">;</span> <span class="token comment">// [esp+0h] [ebp-Ch]</span>
   <span class="token keyword">int</span> i<span class="token punctuation">;</span> <span class="token comment">// [esp+4h] [ebp-8h]</span>
@@ -549,19 +607,19 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
       <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>是一个简单的循环异或加密, 不过注意是反向的, 初始的<code>key</code>是<code>0x4</code>. 写个jio本解密, 拿到 flag.</p>
 <p><code>flag{R_y0u_H0t_3n0ugH_t0_1gn1t3@flare-on.com}</code></p>
 <p><s>还真是晚上做的…</s></p>
 <h2 id="0x02-buuctf-firmware"><a class="markdownIt-Anchor" href="#0x02-buuctf-firmware"></a> 0x02 BUUCTF Firmware</h2>
 <p>看题目是一个路由器固件的分析, 用 binwalk 扫描一下, 得到了文件系统的位置, 也就是提取出来的<code>120200.squashfs</code>文件.</p>
-<p><img src="Strong-Reversers/image-20210210230050652.png" srcset="/img/loading.gif" alt="image-20210210230050652"></p>
+<p><img src="Strong-Reversers/image-20210210230050652.png" srcset="/img/loading.gif" lazyload alt="image-20210210230050652"></p>
 <p>用 <code>file</code>命令确认了一下, 是 squashfs 文件系统, 不过不能直接用<code>mount</code>挂载 - 可能是因为有 lzma 压缩了…</p>
 <p>在网上搜索了一下, 得知 <a target="_blank" rel="noopener" href="https://github.com/mirror/firmware-mod-kit">firmware-mod-kit</a> (简称 fmk) 可以从 squashfs 提取文件, 不过在我这里总是提取失败, 或者返回成功但是啥也没提取出来… 也许是因为 fmk 从 2013 年之后没更新过吧…</p>
 <p>最后用 <code>unsquashfs</code> 提取成功 (是 <a target="_blank" rel="noopener" href="https://github.com/plougher/squashfs-tools">squashfs-tools</a> 下的一个工具), 在 <code>/tmp</code>下发现一个 <code>backdoor</code> 文件…<s>还好这名字挺明显…</s></p>
 <p>确认是 32 位的 ARM ELF 文件, die 检查发现 upx 壳, 脱壳之后 IDA 打开, 定位到 <code>main</code>.</p>
 <p>在前面获取 MAC 等等之后, 这个 <code>initConnection</code>函数引起了我们的注意, 尤其是这里.</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">while</span> <span class="token punctuation">(</span> <span class="token number">1</span> <span class="token punctuation">)</span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">while</span> <span class="token punctuation">(</span> <span class="token number">1</span> <span class="token punctuation">)</span>
  <span class="token punctuation">{</span>
    <span class="token keyword">while</span> <span class="token punctuation">(</span> <span class="token function">initConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
    <span class="token punctuation">{</span>
@@ -571,7 +629,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
     
    <span class="token comment">// do some other things</span>
     
-  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>在<code>initConnextion</code>返回不为零时, 会等待五秒再重来 - 这里应该就是回连服务器了. 进去看看, 确定地址<code>echo.byethost51.com</code>, 端口<code>36667</code>.</p>
 <p><code>MD5(echo.byethost51.com:36667) == 33a422c45d551ac6e4756f59812a954b</code></p>
 <p>所以, <code>flag{33a422c45d551ac6e4756f59812a954b}</code></p>
@@ -581,12 +639,12 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 <h2 id="000-hacking-with-google-2020-beginner"><a class="markdownIt-Anchor" href="#000-hacking-with-google-2020-beginner"></a> 0×00 Hacking with Google 2020 Beginner</h2>
 <p>已经理解了整个过程, 不过还没有拿到 flag… angr 也没有跑出来正确的结果, 可能是没能正确识别 SSE 的函数…?</p>
 <p>跑出来是这样…</p>
-<p><img src="Strong-Reversers/image-20210305182332107.png" srcset="/img/loading.gif" alt="image-20210305182332107"></p>
+<p><img src="Strong-Reversers/image-20210305182332107.png" srcset="/img/loading.gif" lazyload alt="image-20210305182332107"></p>
 <p>等我再研究研究, 或许直接用 z3 会比较适合?</p>
 <h2 id="001-vn-公开赛-csre"><a class="markdownIt-Anchor" href="#001-vn-公开赛-csre"></a> 0×01 V&amp;N 公开赛 CSRe</h2>
 <p>看题目是混淆过的 C#, 查了一下, 可以用 <a target="_blank" rel="noopener" href="https://github.com/CodingGuru1989/de4dot">detdot的修改版</a> 反混淆, 之后再用 <a target="_blank" rel="noopener" href="https://github.com/icsharpcode/ILSpy">ILSpy</a> 反编译.</p>
 <p>一个类一个类地找, 很快就能发现 <code>Class3.Main</code> 方法, 如下.</p>
-<pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">// Class3
+<figure><div class="code-wrapper"><pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">// Class3
 using System;
 using System.Security.Cryptography;
 using System.Text;
@@ -647,7 +705,7 @@ internal sealed class Class3
 			Console.WriteLine("flag{" + text + text2 + "}");
 		}
 	}
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>flag 一共有两端, 其中<code>text</code>直接就是<code>B498BFA2498E21325D1178417BEA459EB2CD28F8</code>的 SHA1 原文.</p>
 <p>对于 <code>text2</code>, 观察<code>method_0</code>, 发现它会返回两个 string 类型参数的异或值, 而之后的 for 循环会比较异或后的字符串每个字符是否均为<code>"0"</code> - 很明显, <code>x ^ x == 0</code>, 所以<code>"re" + text2</code>的 SHA1 值就是 <code>63143B6F8007B98C53CA2149822777B3566F9241</code>.</p>
 <p>cmd5 上查询, 得到 <code>text = "1415"</code>, <code>text2 = "turn"</code>, 最后得到 flag.</p>
@@ -658,7 +716,7 @@ internal sealed class Class3
 <p>​                                                – RX</p>
 </blockquote>
 <p>IDA64 打开, 定位到<code>main</code>函数, 发现 flag 就摆在眼前 (误</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">__int64 __fastcall <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> a1<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>a2<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>a3<span class="token punctuation">)</span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c">__int64 __fastcall <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> a1<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>a2<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>a3<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span> a1 <span class="token operator">&gt;</span> <span class="token number">1</span> <span class="token punctuation">)</span>
   <span class="token punctuation">{</span>
@@ -672,10 +730,10 @@ internal sealed class Class3
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Usage: %s &lt;FLAG&gt;\n"</span><span class="token punctuation">,</span> <span class="token operator">*</span>a2<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> <span class="token number">0LL</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p><s>怎么看第五行的那东西都不能是 flag 吧</s></p>
 <p>我们发现它确实调用了一个<code>strcmp</code>比较<code>argv[0]</code>和那东西 (就叫假 flag 吧) 的值, 但是它又确实不是 flag… 看看左侧, 发现还有两个奇怪的函数 <code>sub_6EA</code>和<code>sub_795</code>.</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// write access to const memory has been detected, the output may be wrong!</span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// write access to const memory has been detected, the output may be wrong!</span>
 <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token operator">*</span><span class="token function">sub_795</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s1<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>s2<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
   <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token operator">*</span>result<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// rax</span>
@@ -684,9 +742,9 @@ internal sealed class Class3
   strcmp_pointer <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token function">__int64</span> <span class="token punctuation">(</span>__fastcall <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span>_QWORD<span class="token punctuation">,</span> _QWORD<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&amp;</span>strcmp<span class="token punctuation">;</span>
   off_201028 <span class="token operator">=</span> sub_6EA<span class="token punctuation">;</span>
   <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>(<code>srecmp_pointer</code>是我重命名的)</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">__int64 __fastcall <span class="token function">sub_6EA</span><span class="token punctuation">(</span>__int64 a1<span class="token punctuation">,</span> __int64 a2<span class="token punctuation">)</span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-c" data-language="c"><code class="language-c">__int64 __fastcall <span class="token function">sub_6EA</span><span class="token punctuation">(</span>__int64 a1<span class="token punctuation">,</span> __int64 a2<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
   <span class="token keyword">int</span> i<span class="token punctuation">;</span> <span class="token comment">// [rsp+18h] [rbp-8h]</span>
   <span class="token keyword">int</span> v4<span class="token punctuation">;</span> <span class="token comment">// [rsp+18h] [rbp-8h]</span>
@@ -698,11 +756,11 @@ internal sealed class Class3
   <span class="token keyword">for</span> <span class="token punctuation">(</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> v4<span class="token punctuation">;</span> <span class="token operator">++</span>j <span class="token punctuation">)</span>
     <span class="token operator">*</span><span class="token punctuation">(</span>_QWORD <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">8</span> <span class="token operator">*</span> j <span class="token operator">+</span> a1<span class="token punctuation">)</span> <span class="token operator">-=</span> qword_201060<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token function">strcmp_pointer</span><span class="token punctuation">(</span>a1<span class="token punctuation">,</span> a2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>但是我们并没有在<code>main</code>中看到这两个函数的调用, 看一下交叉引用, 发现这两个函数都在<code>.init_array</code>段里 - 会在<code>main</code>前就执行.</p>
 <p><code>sub_795</code>会把在<code>.got.plt</code>段中原先正常的<code>strcmp</code>的地址替换成<code>sub_6EA</code>的地址, 而<code>sub_6EA</code>会把第一个参数按照每 8 个字符一组, 减去<code>qword_201060[j]</code>后再和假 flag 进行真正的<code>strcmp</code>…</p>
 <p>既然这样, 写个 jio 本 - 看上去是这样.</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">key <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0x42</span><span class="token punctuation">,</span> <span class="token number">0x09</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x49</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x43</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x41</span><span class="token punctuation">,</span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">key <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0x42</span><span class="token punctuation">,</span> <span class="token number">0x09</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x49</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x43</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x41</span><span class="token punctuation">,</span>
        <span class="token number">0xF0</span><span class="token punctuation">,</span> <span class="token number">0x19</span><span class="token punctuation">,</span> <span class="token number">0xE6</span><span class="token punctuation">,</span> <span class="token number">0x0B</span><span class="token punctuation">,</span> <span class="token number">0xF5</span><span class="token punctuation">,</span> <span class="token number">0xF2</span><span class="token punctuation">,</span> <span class="token number">0x0E</span><span class="token punctuation">,</span> <span class="token number">0x0B</span><span class="token punctuation">,</span>
        <span class="token number">0x2B</span><span class="token punctuation">,</span> <span class="token number">0x28</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x06</span><span class="token punctuation">,</span> <span class="token number">0x3A</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x4F</span><span class="token punctuation">]</span>
 enc <span class="token operator">=</span> <span class="token string">"********CENSORED********"</span>
@@ -713,10 +771,10 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
     dec <span class="token operator">=</span> dec <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span>c <span class="token operator">%</span> <span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span>
-dec <span class="token operator">=</span> <span class="token string">""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+dec <span class="token operator">=</span> <span class="token string">""</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p>得到的结果是<code>l3ts_m4k3^4^DDSOUR_t0d4y</code>, 中间部分看上去不太对… 原因在于, 原程序是将整个<code>QWORD</code>作为一个整体进行加减, 但我们的 exp 是对每一个字节进行的计算, 这样进位不会影响到前一位.</p>
 <p>进位影响的是 9 11 13 14 这几个位置, 手动加一就好.</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">key <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0x42</span><span class="token punctuation">,</span> <span class="token number">0x09</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x49</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x43</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x41</span><span class="token punctuation">,</span>
+<figure><div class="code-wrapper"><pre class="line-numbers language-python" data-language="python"><code class="language-python">key <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0x42</span><span class="token punctuation">,</span> <span class="token number">0x09</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x49</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x43</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x41</span><span class="token punctuation">,</span>
        <span class="token number">0xF0</span><span class="token punctuation">,</span> <span class="token number">0x19</span><span class="token punctuation">,</span> <span class="token number">0xE6</span><span class="token punctuation">,</span> <span class="token number">0x0B</span><span class="token punctuation">,</span> <span class="token number">0xF5</span><span class="token punctuation">,</span> <span class="token number">0xF2</span><span class="token punctuation">,</span> <span class="token number">0x0E</span><span class="token punctuation">,</span> <span class="token number">0x0B</span><span class="token punctuation">,</span>
        <span class="token number">0x2B</span><span class="token punctuation">,</span> <span class="token number">0x28</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x4A</span><span class="token punctuation">,</span> <span class="token number">0x06</span><span class="token punctuation">,</span> <span class="token number">0x3A</span><span class="token punctuation">,</span> <span class="token number">0x0A</span><span class="token punctuation">,</span> <span class="token number">0x4F</span><span class="token punctuation">]</span>
 enc <span class="token operator">=</span> <span class="token string">"********CENSORED********"</span>
@@ -733,35 +791,93 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>dec<span class="token punctuation">)</span>
 dec <span class="token operator">=</span> <span class="token string">""</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div></figure>
 <p><code>zer0pts{l3ts_m4k3_4_DETOUR_t0d4y}</code></p>
 <p>不过在平台上提交的时候应该是<code>flag{l3ts_m4k3_4_DETOUR_t0d4y}</code></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Reverse/">Reverse</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Android/">Android</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Reverse/">#Reverse</a>
+      
+        <a href="/tags/Android/">#Android</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-NC-SA 4.0 协议</a> ，转载请注明出处</p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2021 Weekly Reverse</div>
+      <div>https://horizonchaser.github.io/2021/01/27/Strong-Reversers/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Horizon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年1月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
               
               
-                <div class="post-prevnext row">
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/01/29/2021-Weekly-Misc/">
+                      <a href="/2021/01/29/2021-Weekly-Misc/" title="2021 Weekly Misc">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">2021 Weekly Misc</span>
                         <span class="visible-mobile">上一篇</span>
@@ -771,7 +887,7 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/16/MoeCTF-2020-Write-Up-for-RxEncode/">
+                      <a href="/2020/10/16/MoeCTF-2020-Write-Up-for-RxEncode/" title="MoeCTF 2020 Write Up for RxEncode">
                         <span class="hidden-mobile">MoeCTF 2020 Write Up for RxEncode</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -783,68 +899,113 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments">
-                
-                
-  <div id="gitalk-container"></div>
-  <script type="text/javascript">
-    function loadGitalk() {
-      addScript('https://cdn.staticfile.org/blueimp-md5/2.13.0/js/md5.min.js');
-      addScript('https://cdn.staticfile.org/gitalk/1.6.2/gitalk.min.js', function () {
-        var gitalk = new Gitalk({
-          clientID: '3d9d508e12d68104e7e7',
-          clientSecret: 'cb441dd114622850fa93f43abcfe8c0497154926',
-          repo: 'horizonchaser.github.io',
-          owner: 'HorizonChaser',
-          admin: "HorizonChaser",
-          id: md5(location.pathname),
-          language: 'zh-CN',
-          labels: ["Gitalk"],
-          perPage: 20,
-          pagerDirection: 'last',
-          createIssueManually: true,
-          distractionFreeMode: false
-        });
-        gitalk.render('gitalk-container');
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"HorizonChaser/horizonchaser.github.io","repo-id":"MDEwOlJlcG9zaXRvcnkzMDM2OTkwNDY=","category":"Announcements","category-id":"DIC_kwDOEhoUZs4CVpcM","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
       });
-    }
-    waitElementVisible('gitalk-container', loadGitalk);
-  </script>
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+    </article>
+  
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
 
 
     
-  </main>
 
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
@@ -857,103 +1018,200 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
   
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
-      <script>
-        var now = new Date();
-        function createtime() {
-          var grt = new Date("10/14/2020 17:38:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
-          now.setTime(now.getTime() + 250);
-          days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
-          hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
-          if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
-          mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; }
-          seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-          snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; }
-          document.getElementById("timeDate").innerHTML = "Horizon Blog 已经运行 " + dnum + " 天 ";
-          document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒 ";
-        }
-        setInterval("createtime()", 250);
-      </script>
-
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+    <div class="footer-content">
+      
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span> <script> var now = new Date(); function createtime() { var grt = new Date("10/14/2020 17:38:00"); now.setTime(now.getTime() + 250); days = (now - grt) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); if (String(hnum).length == 1) { hnum = "0" + hnum; } minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum); mnum = Math.floor(minutes); if (String(mnum).length == 1) { mnum = "0" + mnum; } seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); snum = Math.round(seconds); if (String(snum).length == 1) { snum = "0" + snum; } document.getElementById("timeDate").innerHTML = "Horizon Blog 已经运行 " + dnum + " 天 "; document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒 \n"; } setInterval("createtime()", 250); </script> <br/>
+<span id="powererxxx">Powered by Horizon, </span> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo, </span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid, and </span></a> <i class="iconfont icon-love"></i> <span id="lovefromX">from everyone of you!</span> 
     </div>
-    
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
-    
-
-    
-  </div>
-</footer>
-
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
-
-<!-- Plugins -->
-
-
   
-    <script  src="/js/lazyload.js" ></script>
   
-
-
+    <div class="statistics">
+  
+  
 
   
     
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script  src="https://lib.baomitu.com/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js" ></script>
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
@@ -961,113 +1219,15 @@ dec <span class="token operator">=</span> <span class="token string">""</span>
 
 
 
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 3,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
+  
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "2021 Weekly Reverse&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 65,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
