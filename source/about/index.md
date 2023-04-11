@@ -16,8 +16,7 @@ about-name: Horizon
 
 ### 代码高亮
 
-- prismjs
-- soy主题
+- Highghtjs (prismjs 在升级主题后样式出问题了...)
 - 开启行数显示
 
 ## 关于 Horizon 头像来源
@@ -25,6 +24,8 @@ about-name: Horizon
 ​[Prinz Eugen by Hiten from Pixiv](https://www.pixiv.net/artworks/47522338)
 
 ## Horizon 的 GPG 公钥 (RSA4096)
+
+> Last Updated @ 2023/04/11
 
 ```plain
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -76,8 +77,24 @@ ZcXLavkX5MzHGsKGOQvg9ZAibZ3NjCfJ/rMNtRJ3ueiJE1J+CnwiVQzM/9Ez5mDP
 S7TR9sstYtvhI01lrAWNquJUTR6oPMi9MqVLPW3G10infQqXLQGuhF3RwFHFSQPd
 gNdfXAyY94O1/YMd4J4mbhS7JsT+ayuufBQXSsCVZ5jU6HOxE8Lq6wcR+TTwErD1
 atit1Co6VhUs44TqjX4HL8BDSqb2xGV8T5I9VFengBgycIXZYUZ5krHeCH/vS56B
-637PxFH0PDoryKKQ9zTncD/0wWVU0MGeUxjTah7cMG+/i+63T5/XNZc=
-=T3vc
+637PxFH0PDoryKKQ9zTncD/0wWVU0MGeUxjTah7cMG+/i+63T5/XNZe4TwRkNTFk
+EwUrgQQACgIDBLG9JhJS49blTEYLduHWtJ3prGL5iFtXHy1rC//LbrsvbSFYUrKr
+QKqKNRQ2VzQuaDX8UnvYYFVNoqxLHsKDUIqJAq0EGAEIACAWIQSLWCs9mkq7dYnY
+AeSvpvywUwUutAUCZDUxZAIbIgCBCRCvpvywUwUutHYgBBkTCAAdFiEExr+VbIb5
+INWFBGAbtkdLOMGFy0wFAmQ1MWQACgkQtkdLOMGFy0xndgD/b4AKfP3IPWBXQT0l
+3kRg69b1RCaXxzXBqwcXnPO6hZUBAJuj8UDCj2QJ4UsZd9w6KWY3BZEmZ86RGBO+
+OvAB3QcEBo8QAKAeA7ySqHVTTpdD3wfXiQ2nZw17Kt38PiMnp6klDlsvj5orsUKC
+Tw90H92esIJX332u3VzxwMjumf7b+CkeoMdDySelaHQH8Yq79V7NDGig3ajPTT3o
+7MwRlxfJMr1vT3DBelAjOTvsRBgPK07EXcF8AYC/UrYnOBe/PGLq7D5uTCJF9/I8
+FZ8+AM2SSXlSuN7t0ZcprEGu4R0egwed/0LRC8iauwAC3yqZeCddgsszo7Uc5sNR
+CWYt6lJJT2ovHiRwVx66+FJGgZZJ2pNQ1fo2P7GvDmtH7eaUZyCRxjvxfdXq8ddq
+KTb6g5nE88Os6a0UyHqI+1xan8Wq+opScosQvSM7PPEeDyRD/h7zzYaf/Swz9Gb0
+hyIuLeTGykYedl0vYMtQKn08bkuptSffkYLa2u0inJIuB1iB83GV5C86oAq7exmv
+qyOK1Urho6ylTwVr2R1LMJTNYD1O1tcwiwyZ7OBmU5aaJGQ6AndO7pXblidD2Z8Q
+sNUDls0eOIm2mv4vYQv1+RvZhM09Fq2GsGg3KVMZ2TpkYJQD8c0VKAKYr01w667R
+79EfunthLAnP9nrbe7ei1kOl/rG1hdvyV0UbBjf+1bgyIPyXp+rdPs3xVcoLcAgR
+hXDorDjrmkY1LtqZk2sFQbW5Q7Zig6usMzHjs/UbNLLYMi+RmohKRK+/
+=uakC
 -----END PGP PUBLIC KEY BLOCK-----
 
 ```

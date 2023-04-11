@@ -977,7 +977,7 @@ about:  # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.co
   banner_img_height: 60  # available: 0 - 100
   banner_mask_alpha: 0.3  # available: 0 - 1.0
   subtitle: About Horizon
-  avatar: /img/avatar.png # 头像
+  avatar: /img/avatar_Horizon.png # 头像
   name: Horizon
   introduce: '学生, CTF新手, 对很多事情都感兴趣 <del>但是总是三分钟热度</del>' # 支持 HTML
   icons: # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，class 代表图标的 css class
