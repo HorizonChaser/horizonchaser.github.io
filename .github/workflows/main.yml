@@ -114,7 +114,7 @@ jobs:
             md_files = [f for f in commit_files if f.endswith('.md')]
             latest_md_file = md_files[-1]  # Assuming the latest MD file is the last one in the list
             title = latest_md_file.split('/')[-1].split('.md')[0]
-            os.system("echo ::set-output name=article_title::" + title)
+            os.system("echo \"article_title=" + title + "\" >> \"$GITHUB_ENV\"")
             
         EOF
 
