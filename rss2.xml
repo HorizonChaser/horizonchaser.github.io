@@ -15,8 +15,33 @@
     <atom:link href="https://horizonchaser.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Tue, 11 Apr 2023 10:36:41 GMT</pubDate>
+    <pubDate>Tue, 02 Jan 2024 11:03:09 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>使用 GitHub Action 自动推送博客更新到 Telegram 频道</title>
+      <link>https://horizonchaser.github.io/2024/01/02/%E4%BD%BF%E7%94%A8-GitHub-Action-%E8%87%AA%E5%8A%A8%E6%8E%A8%E9%80%81%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E5%88%B0-Telegram-%E9%A2%91%E9%81%93/</link>
+      <guid>https://horizonchaser.github.io/2024/01/02/%E4%BD%BF%E7%94%A8-GitHub-Action-%E8%87%AA%E5%8A%A8%E6%8E%A8%E9%80%81%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E5%88%B0-Telegram-%E9%A2%91%E9%81%93/</guid>
+      <pubDate>Tue, 02 Jan 2024 19:00:07 GMT</pubDate>
+      
+      <description>利用 Action, 我们不仅可以自动化构建与发布博客, 还可以推送更新消息</description>
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="to-be-filled-later"><a class="markdownIt-Anchor" href="#to-be-filled-later"></a> To Be Filled Later</h1>]]></content:encoded>
+      
+      
+      
+      <category domain="https://horizonchaser.github.io/tags/GitHub/">GitHub</category>
+      
+      <category domain="https://horizonchaser.github.io/tags/CI-CD/">CI/CD</category>
+      
+      <category domain="https://horizonchaser.github.io/tags/Telegram-Bot/">Telegram Bot</category>
+      
+      
+      <comments>https://horizonchaser.github.io/2024/01/02/%E4%BD%BF%E7%94%A8-GitHub-Action-%E8%87%AA%E5%8A%A8%E6%8E%A8%E9%80%81%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%96%B0%E5%88%B0-Telegram-%E9%A2%91%E9%81%93/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>搭建一台 NAS</title>
