@@ -17,6 +17,8 @@ jobs:
 
     - name: Checkout source
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: Checkout deploy repo
       uses: actions/checkout@v2
@@ -121,7 +123,7 @@ jobs:
       run: |
         article_title=$(cat ./source/_posts/${{ steps.py_article.outputs.article_title }}.md |  grep -m 1 '^title: ' | cut -d ':' -f 2- | sed -e 's/^ *//' -e 's/ *$//')
         article_link=$(echo "https://horizonchaser.github.io/")
-        
+
         echo "::set-output name=article_title::$article_title"
         echo "::set-output name=article_link::$article_link"
 
