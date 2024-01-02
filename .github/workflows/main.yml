@@ -94,15 +94,15 @@ jobs:
         python-version: '3.10' 
 
     - name: Install Python libs
-      run: pip install gitpython
+      run: pip install gitpython python-telegram-bot
 
-    - name: Get new post title with Python
+    - name: Get new post title with Python and send message
       if: steps.check_message.outputs.should_notify == 'true'
-      id: py_article
       run: |
         python - <<EOF
         import os
         import git
+        import telegram
 
         repo = git.Repo(os.getcwd())
         commit = repo.head.commit
@@ -113,28 +113,21 @@ jobs:
             commit_files = commit.stats.files.keys()
             md_files = [f for f in commit_files if f.endswith('.md')]
             latest_md_file = md_files[-1]  # Assuming the latest MD file is the last one in the list
+
             title = latest_md_file.split('/')[-1].split('.md')[0]
-            with open("py_article_title", "+w") as f:
-              f.write(title)
+            bot_token = os.environ['TELEGRAM_BOT_TOKEN']
+            chat_id = os.environ['TELEGRAM_CHANNEL_ID']
+
+            with open("./source/_posts/" + title + ".md", "r") as f:
+                t = f.read().splitlines()
+                if len(t) >= 6 and t[1].strip().startswith("title:"):
+                    title = t[1].strip().replace("title:", "")
+                    exerpt = t[3].strip().replace("exerpt:", "")
+                    bot = telegram.Bot(token=bot_token)
+                    bot.send_message(chat_id=chat_id, text=f"Horizon Blog更新辣\n新的文章: {title}\n摘要: {exerpt}\nHorizon Blog: https://horizonchaser.github.io/")
             
         EOF
-
-    - name: Get article details
-      id: article
-      run: |
-        article_file=$(cat py_article_title)
-        eval article_title=$(cat ./source/_posts/$(cat py_article_title).md |  grep -m 1 '^title: ' | cut -d ':' -f 2- | sed -e 's/^ *//' -e 's/ *$//')
-        article_link=$(echo "https://horizonchaser.github.io/")
-
-        echo "::set-output name=article_title::$article_title"
-        echo "::set-output name=article_link::$article_link"
-
-    - name: Send Telegram notification
-      uses: appleboy/telegram-action@master
-      if: steps.check_message.outputs.should_notify == 'true'
-      with:
-        to: ${{ secrets.TELEGRAM_CHANNEL_ID }}
-        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        message: "New article: ${{ steps.article.outputs.article_title }}\nLink: ${{ steps.article.outputs.article_link }}\n\nCommit message: ${{ steps.commit.outputs.commit_message }}"
-
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
   
