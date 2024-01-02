@@ -122,7 +122,8 @@ jobs:
     - name: Get article details
       id: article
       run: |
-        article_title=$(cat ./source/_posts/$(cat py_article_title).md |  grep -m 1 '^title: ' | cut -d ':' -f 2- | sed -e 's/^ *//' -e 's/ *$//')
+        article_file=$(cat py_article_title)
+        eval article_title=$(cat ./source/_posts/$(cat py_article_title).md |  grep -m 1 '^title: ' | cut -d ':' -f 2- | sed -e 's/^ *//' -e 's/ *$//')
         article_link=$(echo "https://horizonchaser.github.io/")
 
         echo "::set-output name=article_title::$article_title"
