@@ -40,4 +40,4 @@ tags:
 
 等我有时间再改改吧, 最近还是比较忙
 
-就这样, 博客的 Action 配置文件在[这里](https://github.com/HorizonChaser/horizonchaser.github.io/blob/backup/.github/workflows/main.yml), 需要的话可以看看.
+就这样, 博客的 Action 配置文件在[这里](https://github.com/HorizonChaser/horizonchaser.github.io/blob/backup/.github/workflows/main.yml), 需要的话可以看看~

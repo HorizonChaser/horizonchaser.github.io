@@ -122,6 +122,7 @@ jobs:
                 title = latest_md_file.split('/')[-1].split('.md')[0]
                 # Send message to Telegram channel
                 bot = telegram.Bot(token=bot_token)
+                print(title)
                 await bot.send_message(chat_id=chat_id, text=f'Horizon Blog 更新辣\!\n新的文章: {title}\n\nFrom [Horizon Blog](https://horizonchaser.github.io/)', parse_mode=telegram.constants.ParseMode.MARKDOWN_V2)
         
         if __name__ == "__main__":
@@ -130,7 +131,7 @@ jobs:
         EOF
       env:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+        TELEGRAM_CHAN_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
 
 #  with open("./source/_posts/" + title + ".md", "r") as f:
 #                 t = f.read().splitlines()
