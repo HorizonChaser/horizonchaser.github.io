@@ -97,7 +97,7 @@ jobs:
       run: pip install gitpython python-telegram-bot
 
     - name: Get new post title with Python and send message
-      if: steps.check_message.outputs.should_notify == 'true'
+      # if: steps.check_message.outputs.should_notify == 'true'
       run: |
         python - <<EOF
         import os
