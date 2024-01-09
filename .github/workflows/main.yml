@@ -103,31 +103,38 @@ jobs:
         import os
         import git
         import telegram
-
+        import asyncio
         repo = git.Repo(os.getcwd())
         commit = repo.head.commit
 
+        def cmd(x): from subprocess import check_output as c; return c(x, shell=True, text=True)
+
         # Check if the latest commit includes an md file
-        if any(f.endswith('.md') for f in commit.stats.files.keys()):
-            # Get the title of the latest commit's MD file
-            commit_files = commit.stats.files.keys()
-            md_files = [f for f in commit_files if f.endswith('.md')]
-            latest_md_file = md_files[-1]  # Assuming the latest MD file is the last one in the list
-
-            title = latest_md_file.split('/')[-1].split('.md')[0]
-            bot_token = os.environ['TELEGRAM_BOT_TOKEN']
-            chat_id = os.environ['TELEGRAM_CHANNEL_ID']
-
-            with open("./source/_posts/" + title + ".md", "r") as f:
-                t = f.read().splitlines()
-                if len(t) >= 6 and t[1].strip().startswith("title:"):
-                    title = t[1].strip().replace("title:", "")
-                    exerpt = t[3].strip().replace("exerpt:", "")
-                    bot = telegram.Bot(token=bot_token)
-                    bot.send_message(chat_id=chat_id, text=f"Horizon Blog更新辣\n新的文章: {title}\n摘要: {exerpt}\nHorizon Blog: https://horizonchaser.github.io/")
-            
+        async def m():
+            if any(f.endswith('.md') for f in commit.stats.files.keys()):
+                # Load Telegram bot token from secrets
+                bot_token = os.environ['TELEGRAM_BOT_TOKEN']
+                chat_id = os.environ['TELEGRAM_CHAN_ID']
+                # Get the title of the latest commit's MD file
+                commit_files = commit.stats.files.keys()
+                md_files = [f for f in commit_files if f.endswith('.md')]
+                latest_md_file = md_files[-1]  # Assuming the latest MD file is the last one in the list
+                title = latest_md_file.split('/')[-1].split('.md')[0]
+                # Send message to Telegram channel
+                bot = telegram.Bot(token=bot_token)
+                await bot.send_message(chat_id=chat_id, text=f'Horizon Blog 更新辣\!\n新的文章: {title}\n\nFrom [Horizon Blog](https://horizonchaser.github.io/)', parse_mode=telegram.constants.ParseMode.MARKDOWN_V2)
+        
+        if __name__ == "__main__":
+            asyncio.run(m())
+                     
         EOF
       env:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+
+#  with open("./source/_posts/" + title + ".md", "r") as f:
+#                 t = f.read().splitlines()
+#                 if len(t) >= 6 and t[1].strip().startswith("title:"):
+#                     title = t[1].strip().replace("title:", "")
+#                     exerpt = t[3].strip().replace("exerpt:", "")
   
