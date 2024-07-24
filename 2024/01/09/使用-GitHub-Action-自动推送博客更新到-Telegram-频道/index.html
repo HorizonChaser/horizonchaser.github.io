@@ -24,7 +24,7 @@
 <meta property="og:description" content="利用 Action, 我们不仅可以自动化构建与发布博客, 还可以推送更新消息">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-01-09T23:39:32.000Z">
-<meta property="article:modified_time" content="2024-06-29T10:04:12.053Z">
+<meta property="article:modified_time" content="2024-07-24T01:56:46.930Z">
 <meta property="article:author" content="Horizon">
 <meta property="article:tag" content="GitHub">
 <meta property="article:tag" content="CI&#x2F;CD">
@@ -302,7 +302,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2024年6月29日 上午
+                    本文最后更新于：2024年7月24日 凌晨
                   
                 
               </p>
@@ -320,7 +320,7 @@
 <li>如果包含, 则通过 <code>gitpython</code> 库获得当前提交包含的 Markdown 文件, 再通过 head matter 的第二行拿到名称, 第三行拿到摘要</li>
 <li>拼一下消息字符串, 通过 <code>telegram</code> 库, 用机器人账号把消息发到指定的位置
 <ol>
-<li>Bot 通过 BotFather 创建, 记得手动加到频道里并给对应的发送消息的权限</li>
+<li>Bot 通过 BotFather 创建, <strong>记得手动加到频道里并给对应的发送消息的权限</strong></li>
 <li>Bot 的 Token 和目标频道的 ID 放到 Secret 里面, 通过环境变量在执行时获取
 <ol>
 <li>虽然 Action 会试着给你包含这些内容的输出 (如果真有的话) 打码, 但你要是直接写在源码里仓库还是 public 的话谁也救不了</li>
