@@ -22,7 +22,7 @@ tags:
 1. 获取当前的 Commit Message, 判断是否包含 `upd post` 或 `new post`
 2. 如果包含, 则通过 `gitpython` 库获得当前提交包含的 Markdown 文件, 再通过 head matter 的第二行拿到名称, 第三行拿到摘要
 3. 拼一下消息字符串, 通过 `telegram` 库, 用机器人账号把消息发到指定的位置
-   1. Bot 通过 BotFather 创建, 记得手动加到频道里并给对应的发送消息的权限
+   1. Bot 通过 BotFather 创建, **记得手动加到频道里并给对应的发送消息的权限**
    2. Bot 的 Token 和目标频道的 ID 放到 Secret 里面, 通过环境变量在执行时获取
       1. 虽然 Action 会试着给你包含这些内容的输出 (如果真有的话) 打码, 但你要是直接写在源码里仓库还是 public 的话谁也救不了
 
